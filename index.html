@@ -1,0 +1,1122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PyHealth — Open-Source Healthcare AI Toolkit</title>
+  <meta name="description" content="PyHealth is an open-source Python toolkit for clinical deep learning, unifying datasets, tasks, and models across EHR, signals, and imaging modalities.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    /* ── PyHealth page-specific styles ── */
+
+    .landing-card {
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      box-shadow: 0 20px 48px rgba(22, 33, 31, 0.15);
+      animation: rise 420ms ease;
+    }
+
+    .ph-hero {
+      background: linear-gradient(140deg, #1c2b3a 0%, #28425e 60%, #1e3348 100%);
+      padding: 3rem 2.4rem 2.8rem;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Decorative blobs */
+    .ph-hero::before {
+      content: "";
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,95,38,0.22) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .ph-hero::after {
+      content: "";
+      position: absolute;
+      bottom: -100px;
+      left: -60px;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(90,160,230,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .ph-logo { height: 90px; width: auto; display: block; margin-bottom: 0.5rem; }
+
+    .ph-eyebrow {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(201,95,38,0.9);
+      margin: 0 0 0.6rem;
+    }
+
+    .ph-hero h1 {
+      color: white;
+      font-size: clamp(2.4rem, 5.5vw, 4rem);
+      margin: 0 0 0.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .ph-tagline {
+      color: rgba(255,255,255,0.72);
+      font-size: 1.08rem;
+      line-height: 1.55;
+      max-width: 580px;
+      margin: 0 0 2rem;
+    }
+
+    .ph-cta-row {
+      display: flex;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .ph-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      border-radius: 10px;
+      padding: 0.64rem 1.15rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      font-family: "IBM Plex Sans", sans-serif;
+      transition: filter 0.15s, transform 0.1s;
+      cursor: pointer;
+    }
+    .ph-btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+    .ph-btn svg { flex-shrink: 0; }
+
+    .ph-btn.primary {
+      background: var(--accent);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 4px 12px rgba(201,95,38,0.35);
+    }
+    .ph-btn.outline {
+      background: rgba(255,255,255,0.09);
+      color: rgba(255,255,255,0.9);
+      border: 1px solid rgba(255,255,255,0.22);
+      backdrop-filter: blur(6px);
+    }
+
+    /* ── Stats ── */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+      gap: 0.85rem;
+      margin-top: 1.2rem;
+      animation: rise 500ms ease;
+    }
+
+    .stat-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1.2rem 0.9rem;
+      text-align: center;
+    }
+    .stat-number {
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+    .stat-label {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.3;
+    }
+
+    /* ── Resource link cards ── */
+    .link-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.85rem;
+      margin-top: 1rem;
+    }
+    .link-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1.5rem 1.3rem;
+      text-decoration: none;
+      color: var(--ink);
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      transition: border-color 0.15s, box-shadow 0.15s, transform 0.1s;
+      animation: rise 560ms ease;
+    }
+    .link-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 6px 20px rgba(201,95,38,0.11);
+      transform: translateY(-2px);
+    }
+    .lc-icon {
+      color: var(--accent);
+      margin-bottom: 0.2rem;
+    }
+    .link-card h3 {
+      font-size: 1.08rem;
+      margin: 0;
+    }
+    .link-card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.45;
+    }
+    .lc-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      color: var(--accent);
+      font-size: 0.88rem;
+      font-weight: 500;
+      margin-top: auto;
+      padding-top: 0.5rem;
+    }
+
+    /* ── Back nav ── */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.94rem;
+      padding: 0.35rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: color 0.12s, background 0.12s, border-color 0.12s;
+    }
+    .back-link:hover {
+      color: var(--accent);
+      border-color: var(--line);
+      background: var(--paper);
+    }
+
+    .section-h2 {
+      font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+      margin: 0 0 0.3rem;
+    }
+    .section-sub {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin: 0 0 1rem;
+    }
+
+    /* ── Pipeline grid ── */
+    .pipeline-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-top: 0.85rem;
+    }
+
+    .pipeline-row-label {
+      grid-column: 1 / -1;
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--muted);
+      margin: 0.65rem 0 0;
+      padding-left: 0.15rem;
+    }
+    .pipeline-row-label:first-child { margin-top: 0; }
+
+    .pipeline-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1rem 1rem 0.9rem;
+      text-decoration: none;
+      color: var(--ink);
+      display: flex;
+      flex-direction: column;
+      gap: 0.18rem;
+      transition: border-color 0.15s, box-shadow 0.15s, transform 0.12s;
+      animation: rise 520ms ease;
+    }
+    .pipeline-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 5px 18px rgba(201,95,38,0.11);
+      transform: translateY(-2px);
+    }
+
+    .pipeline-step {
+      font-size: 0.71rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      opacity: 0.85;
+    }
+
+    .pipeline-name {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 0.91rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.2rem;
+    }
+
+    .pipeline-desc {
+      font-size: 0.83rem;
+      color: var(--muted);
+      line-height: 1.45;
+      margin: 0;
+    }
+
+    @media (max-width: 600px) {
+      .pipeline-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 380px) {
+      .pipeline-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── Pip install bar ── */
+    .ph-install-row {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1.2rem;
+      position: relative;
+      z-index: 1;
+    }
+    .ph-install-cmd {
+      font-family: "IBM Plex Mono", "Menlo", monospace;
+      font-size: 0.92rem;
+      background: rgba(0,0,0,0.35);
+      color: #a6e3a1;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.1);
+      letter-spacing: 0.01em;
+    }
+    .ph-copy-btn {
+      background: rgba(255,255,255,0.09);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 7px;
+      color: rgba(255,255,255,0.75);
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 0.42rem 0.8rem;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .ph-copy-btn:hover { background: rgba(255,255,255,0.15); color: white; }
+    .ph-copy-btn.copied { background: rgba(74,222,128,0.15); color: #4ade80; border-color: rgba(74,222,128,0.3); }
+
+    /* ── Badges ── */
+    .ph-badges {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+    .ph-badges a { display: inline-block; line-height: 0; }
+    .ph-badges img { border-radius: 4px; }
+
+    /* ── Quickstart code section ── */
+    .ph-quickstart {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .ph-quickstart-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      padding: 1.1rem 1.4rem 0.9rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .ph-quickstart-header h3 {
+      margin: 0;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .ph-quickstart-actions {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .ph-quickstart-copy {
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 0.3rem 0.7rem;
+      border-radius: 6px;
+      border: 1.5px solid var(--line);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .ph-quickstart-copy:hover { border-color: var(--accent); color: var(--accent); }
+    .ph-quickstart-copy.copied { border-color: #16a34a; color: #16a34a; }
+    .colab-inline-link {
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-decoration: none;
+      color: #c95f26;
+      padding: 0.3rem 0.7rem;
+      border-radius: 6px;
+      border: 1.5px solid rgba(201,95,38,0.3);
+      background: rgba(201,95,38,0.06);
+      transition: opacity 0.15s;
+    }
+    .colab-inline-link:hover { opacity: 0.8; }
+    .ph-code {
+      background: #0f1923;
+      padding: 1.2rem 1.4rem;
+      margin: 0;
+      font-family: "IBM Plex Mono", "Menlo", monospace;
+      font-size: 0.82rem;
+      line-height: 1.7;
+      color: #cdd6f4;
+      overflow-x: auto;
+      white-space: pre;
+    }
+    .tok-kw  { color: #89b4fa; }
+    .tok-cl  { color: #cba6f7; }
+    .tok-fn  { color: #89dceb; }
+    .tok-str { color: #a6e3a1; }
+    .tok-num { color: #fab387; }
+    .tok-op  { color: #cdd6f4; }
+    .tok-cm  { color: #585b70; font-style: italic; }
+
+    /* ── Explore button ── */
+    @keyframes chevron-bounce {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(5px); }
+    }
+    @keyframes explore-reveal {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes btn-fade-out {
+      to { opacity: 0; transform: translateY(8px); pointer-events: none; }
+    }
+
+    .explore-btn-wrap {
+      display: flex;
+      justify-content: center;
+      margin: 2.8rem 0 1rem;
+    }
+    .explore-btn {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--muted);
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 0.5rem 1rem;
+      transition: color 0.15s;
+    }
+    .explore-btn:hover { color: var(--ink); }
+    .explore-chevron {
+      display: block;
+      animation: chevron-bounce 1.4s ease-in-out infinite;
+      color: var(--accent);
+    }
+    .explore-btn-wrap.hiding {
+      animation: btn-fade-out 0.3s ease forwards;
+    }
+
+    .explore-content-hidden {
+      opacity: 0;
+      pointer-events: none;
+      user-select: none;
+    }
+    .explore-content-visible {
+      animation: explore-reveal 0.55s ease both;
+      pointer-events: auto;
+    }
+
+    .landing-card .stats-row {
+      margin-top: 0;
+      background: var(--bg);
+      border-top: 1px solid var(--line);
+      padding: 1.2rem 1.4rem;
+    }
+
+    /* ── Linkable stat cards ── */
+    a.stat-card {
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.15s, box-shadow 0.15s, transform 0.12s;
+    }
+    a.stat-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 14px rgba(201,95,38,0.12);
+      transform: translateY(-2px);
+    }
+    a.stat-card .stat-label { color: var(--muted); }
+
+    /* ── Scroll anchor offset for sticky header ── */
+    #exploreAnchor { scroll-margin-top: 4rem; }
+
+    /* ── Performance charts ── */
+    .perf-charts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .perf-panel {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1.2rem 1.3rem;
+    }
+    .perf-panel-title {
+      font-size: 1rem;
+      margin: 0 0 1rem;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .perf-metric-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin: 0.8rem 0 0.45rem;
+    }
+    .perf-metric-label:first-of-type { margin-top: 0; }
+    .bar-group { margin-bottom: 0.3rem; }
+    .bar-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.38rem;
+    }
+    .bar-name {
+      width: 86px;
+      font-size: 0.77rem;
+      color: var(--muted);
+      text-align: right;
+      flex-shrink: 0;
+      line-height: 1.2;
+    }
+    .perf-bar-track {
+      flex: 1;
+      background: var(--bg);
+      border-radius: 4px;
+      height: 17px;
+      overflow: hidden;
+    }
+    .perf-bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      width: 0%;
+      transition: width 1.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .perf-bar-fill.pyhealth2   { background: var(--accent); }
+    .perf-bar-fill.pyhealth116 { background: #5a9fd4; }
+    .perf-bar-fill.meds        { background: #a0aec0; }
+    .perf-bar-fill.pandas      {
+      background: repeating-linear-gradient(
+        45deg,
+        #b0bec5,
+        #b0bec5 3px,
+        #dde3e8 3px,
+        #dde3e8 7px
+      );
+    }
+    .bar-val {
+      font-size: 0.77rem;
+      color: var(--ink);
+      font-weight: 500;
+      width: 60px;
+      flex-shrink: 0;
+    }
+    .perf-legend {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 0.9rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .perf-legend-item { display: flex; align-items: center; gap: 0.35rem; }
+    .perf-legend-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+    .perf-footnote {
+      font-size: 0.83rem;
+      color: var(--muted);
+      margin-top: 0.9rem;
+    }
+    @media (max-width: 900px) {
+      .perf-charts { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 580px) {
+      .perf-charts { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="site-wrap header-inner">
+      <nav class="nav" aria-label="Main navigation">
+        <a href="https://jhnwu3.github.io" class="back-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          John Wu
+        </a>
+      </nav>
+      <span style="color: var(--muted); font-size: 0.88rem; font-weight: 500;">PyHealth</span>
+    </div>
+  </header>
+
+  <main class="site-wrap" style="padding: 2.2rem 0 3.5rem;">
+
+    <div class="landing-card">
+
+    <!-- ── Hero ── -->
+    <section class="ph-hero">
+      <p class="ph-eyebrow">Open-Source Healthcare AI</p>
+      <img src="images/pyhealth-logo.png" alt="PyHealth" class="ph-logo">
+      <p class="ph-tagline">A Python toolkit for clinical deep learning — unifying datasets, tasks, and models across electronic health records, physiological signals, and medical imaging.</p>
+      <div class="ph-install-row">
+        <span class="ph-install-cmd">pip install pyhealth</span>
+        <button class="ph-copy-btn" onclick="copyInstall(this)" aria-label="Copy install command">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy
+        </button>
+      </div>
+      <div class="ph-cta-row">
+        <a href="https://pyhealth.readthedocs.io/en/latest/how_to_get_started.html" class="ph-btn primary" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Get Started in 5 Minutes
+        </a>
+        <a href="https://github.com/sunlabuiuc/PyHealth" class="ph-btn outline" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          GitHub
+        </a>
+        <a href="https://discord.gg/mpb835EHaX" class="ph-btn outline" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.055 20.03 20.03 0 0 0 5.993 3.029.078.078 0 0 0 .084-.026 13.83 13.83 0 0 0 1.185-1.93.076.076 0 0 0-.041-.106 13.201 13.201 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.184 1.929a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.029.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+          Discord Community
+        </a>
+        <a href="https://pyhealth.readthedocs.io/en/latest/research_initiative.html" class="ph-btn outline" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Research Initiative
+        </a>
+        <a href="https://arxiv.org/pdf/2601.16414" class="ph-btn outline" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          Read the Paper
+        </a>
+      </div>
+      <div class="ph-badges">
+        <a href="https://github.com/sunlabuiuc/pyhealth/stargazers" target="_blank" rel="noopener">
+          <img src="https://img.shields.io/github/stars/sunlabuiuc/pyhealth.svg?style=flat-square&labelColor=1c2b3a&color=c95f26&label=Stars" alt="GitHub stars">
+        </a>
+        <a href="https://pypi.org/project/pyhealth/" target="_blank" rel="noopener">
+          <img src="https://img.shields.io/pypi/v/pyhealth.svg?style=flat-square&labelColor=1c2b3a&color=5a9fd4&label=PyPI" alt="PyPI version">
+        </a>
+        <a href="https://pepy.tech/project/pyhealth" target="_blank" rel="noopener">
+          <img src="https://img.shields.io/pypi/dm/pyhealth?style=flat-square&labelColor=1c2b3a&color=5a9fd4&label=Downloads%2Fmo" alt="Monthly downloads">
+        </a>
+      </div>
+    </section>
+
+    <!-- ── Stats ── -->
+    <section class="stats-row">
+      <a href="datasets.html" class="stat-card">
+        <div class="stat-number">20+</div>
+        <div class="stat-label">Clinical<br>Datasets</div>
+      </a>
+      <a href="tasks.html" class="stat-card">
+        <div class="stat-number">26+</div>
+        <div class="stat-label">Clinical<br>Tasks</div>
+      </a>
+      <a href="models.html" class="stat-card">
+        <div class="stat-number">33+</div>
+        <div class="stat-label">ML<br>Models</div>
+      </a>
+      <a href="https://discord.gg/mpb835EHaX" class="stat-card" target="_blank" rel="noopener">
+        <div class="stat-number">400+</div>
+        <div class="stat-label">Discord<br>Members</div>
+      </a>
+      <a href="https://pyhealth.readthedocs.io/en/latest/research_initiative.html" class="stat-card" target="_blank" rel="noopener">
+        <div class="stat-number">10+</div>
+        <div class="stat-label">Active<br>Researchers</div>
+      </a>
+      <a href="https://pyhealth.readthedocs.io/en/latest/why_pyhealth.html" class="stat-card" target="_blank" rel="noopener" title="39x faster data loading vs pandas-based approaches">
+        <div class="stat-number">39×</div>
+        <div class="stat-label">Faster than<br>pandas</div>
+      </a>
+      <a href="https://pyhealth.readthedocs.io/en/latest/why_pyhealth.html" class="stat-card" target="_blank" rel="noopener" title="20x less peak memory vs pandarallel-based solutions">
+        <div class="stat-number">20×</div>
+        <div class="stat-label">Less memory than<br>pandarallel</div>
+      </a>
+    </section>
+
+    </div> <!-- /landing-card -->
+
+    <!-- ── Explore button ── -->
+    <div class="explore-btn-wrap fade-up" id="exploreBtnWrap">
+      <button class="explore-btn" onclick="revealExplore()" aria-label="See how PyHealth works">
+        <span class="explore-btn-text">See how PyHealth simplifies healthcare AI development</span>
+        <span class="explore-chevron" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </span>
+      </button>
+    </div>
+
+    <!-- ── Reveal content ── -->
+    <div id="exploreContent" class="explore-content-hidden">
+
+    <!-- ── Quickstart ── -->
+    <section class="page-section fade-up" id="exploreAnchor">
+      <h2 class="section-h2">5-Stage Pipeline in &lt;15 Lines</h2>
+      <p class="section-sub">The same pattern works for any task — swap the dataset and task class to move between mortality, readmission, drug recommendation, or imaging.</p>
+      <div class="ph-quickstart">
+        <div class="ph-quickstart-header">
+          <h3>Mortality prediction on MIMIC-III</h3>
+          <div class="ph-quickstart-actions">
+            <button class="ph-quickstart-copy" onclick="copyCode(this)" aria-label="Copy code">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy
+            </button>
+            <a href="https://colab.research.google.com/drive/1b9xRbxUz-HLzxsrvxdsdJ868ajGQCY6U?usp=sharing" class="colab-inline-link" target="_blank" rel="noopener">Open in Colab →</a>
+          </div>
+        </div>
+        <pre class="ph-code" id="quickstartCode"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">MIMIC3Dataset</span>
+<span class="tok-kw">from</span> pyhealth.tasks <span class="tok-kw">import</span> <span class="tok-cl">MortalityPredictionMIMIC3</span>
+<span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-fn">split_by_patient</span>, <span class="tok-fn">get_dataloader</span>
+<span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">Transformer</span>
+<span class="tok-kw">from</span> pyhealth.trainer <span class="tok-kw">import</span> <span class="tok-cl">Trainer</span>
+
+<span class="tok-kw">if</span> __name__ <span class="tok-op">==</span> <span class="tok-str">"__main__"</span>:
+    <span class="tok-cm"># 1. Load data</span>
+    dataset <span class="tok-op">=</span> <span class="tok-cl">MIMIC3Dataset</span>(root<span class="tok-op">=</span><span class="tok-str">"data/"</span>, tables<span class="tok-op">=</span>[<span class="tok-str">"DIAGNOSES_ICD"</span>, <span class="tok-str">"PROCEDURES_ICD"</span>])
+    samples <span class="tok-op">=</span> dataset.<span class="tok-fn">set_task</span>(<span class="tok-cl">MortalityPredictionMIMIC3</span>())
+
+    <span class="tok-cm"># 2. Split &amp; load</span>
+    train_ds, val_ds, test_ds <span class="tok-op">=</span> <span class="tok-fn">split_by_patient</span>(samples, [<span class="tok-num">0.8</span>, <span class="tok-num">0.1</span>, <span class="tok-num">0.1</span>])
+    train_loader <span class="tok-op">=</span> <span class="tok-fn">get_dataloader</span>(train_ds, batch_size<span class="tok-op">=</span><span class="tok-num">32</span>, shuffle<span class="tok-op">=</span><span class="tok-num">True</span>)
+
+    <span class="tok-cm"># 3. Train</span>
+    model <span class="tok-op">=</span> <span class="tok-cl">Transformer</span>(dataset<span class="tok-op">=</span>samples)
+    trainer <span class="tok-op">=</span> <span class="tok-cl">Trainer</span>(model<span class="tok-op">=</span>model)
+    trainer.<span class="tok-fn">train</span>(train_loader, val_loader, epochs<span class="tok-op">=</span><span class="tok-num">50</span>, monitor<span class="tok-op">=</span><span class="tok-str">"pr_auc"</span>)
+    trainer.<span class="tok-fn">evaluate</span>(test_loader)</pre>
+      </div>
+    </section>
+
+    <!-- ── Performance ── -->
+    <section class="page-section fade-up" id="perfSection">
+      <h2 class="section-h2">Built for Scale — Efficient by Design</h2>
+      <p class="section-sub">Benchmarked on MIMIC-IV at 4 parallel workers. PyHealth 2.0 uses a memory-mapped architecture that dynamically adapts to your hardware — whether you have 2 cores or 64, it scales without manual memory management so you can focus on the ML, not the infrastructure. Pandas values shown at 1 worker only (†) as it could not scale beyond single-threaded execution.</p>
+      <div class="perf-charts">
+
+        <div class="perf-panel">
+          <p class="perf-panel-title">Drug Recommendation</p>
+          <p class="perf-metric-label">Wall Time (seconds · lower is better)</p>
+          <div class="bar-group">
+            <div class="bar-row">
+              <span class="bar-name">PyHealth 2.0</span>
+              <div class="perf-bar-track"><div class="perf-bar-fill pyhealth2" data-frac="0.080"></div></div>
+              <span class="bar-val">841s</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-name">MEDS</span>
+              <div class="perf-bar-track"><div class="perf-bar-fill meds" data-frac="1.0"></div></div>
+              <span class="bar-val">10,477s</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-name">Pandas †</span>
+              <div class="perf-bar-track"><div class="perf-bar-fill pandas" data-frac="0.451"></div></div>
+              <span class="bar-val">4,725s</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-name">PyHealth 1.16</span>
+              <div class="perf-bar-track"><div class="perf-bar-fill pyhealth116" data-frac="0.094"></div></div>
+              <span class="bar-val">981s</span>
+            </div>
+          </div>
+          <p class="perf-metric-label">Peak Memory (GB · lower is better)</p>
+          <div class="bar-group">
+            <div class="bar-row">
+              <span class="bar-name">PyHealth 2.0</span>
+              <div class="perf-bar-track"><div class="perf-bar-fill pyhealth2" data-frac="0.106"></div></div>
+              <span class="bar-val">8.9 GB</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-name">MEDS</span>
+              <div class="perf-bar-track"><div class="perf-bar-fill meds" data-frac="0.741"></div></div>
+              <span class="bar-val">61.7 GB</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-name">Pandas †</span>
+              <div class="perf-bar-track"><div class="perf-bar-fill pandas" data-frac="0.125"></div></div>
+              <span class="bar-val">10.4 GB</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-name">PyHealth 1.16</span>
+              <div class="perf-bar-track"><div class="perf-bar-fill pyhealth116" data-frac="1.0"></div></div>
+              <span class="bar-val">83.2 GB</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="perf-panel">
+          <p class="perf-panel-title">Length of Stay Prediction</p>
+          <p class="perf-metric-label">Wall Time (seconds · lower is better)</p>
+          <div class="bar-group">
+            <div class="bar-row">
+              <span class="bar-name">PyHealth 2.0</span>
+              <div class="perf-bar-track"><div class="perf-bar-fill pyhealth2" data-frac="0.208"></div></div>
+              <span class="bar-val">2,484s</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-name">MEDS</span>
+              <div class="perf-bar-track"><div class="perf-bar-fill meds" data-frac="1.0"></div></div>
+              <span class="bar-val">11,947s</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-name">Pandas †</span>
+              <div class="perf-bar-track"><div class="perf-bar-fill pandas" data-frac="0.860"></div></div>
+              <span class="bar-val">10,269s</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-name">PyHealth 1.16</span>
+              <div class="perf-bar-track"><div class="perf-bar-fill pyhealth116" data-frac="0.194"></div></div>
+              <span class="bar-val">2,316s</span>
+            </div>
+          </div>
+          <p class="perf-metric-label">Peak Memory (GB · lower is better)</p>
+          <div class="bar-group">
+            <div class="bar-row">
+              <span class="bar-name">PyHealth 2.0</span>
+              <div class="perf-bar-track"><div class="perf-bar-fill pyhealth2" data-frac="0.105"></div></div>
+              <span class="bar-val">8.5 GB</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-name">MEDS</span>
+              <div class="perf-bar-track"><div class="perf-bar-fill meds" data-frac="0.764"></div></div>
+              <span class="bar-val">61.8 GB</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-name">Pandas †</span>
+              <div class="perf-bar-track"><div class="perf-bar-fill pandas" data-frac="0.141"></div></div>
+              <span class="bar-val">11.4 GB</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-name">PyHealth 1.16</span>
+              <div class="perf-bar-track"><div class="perf-bar-fill pyhealth116" data-frac="1.0"></div></div>
+              <span class="bar-val">80.9 GB</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="perf-panel">
+          <p class="perf-panel-title">In-Hospital Mortality</p>
+          <p class="perf-metric-label">Wall Time (seconds · lower is better)</p>
+          <div class="bar-group">
+            <div class="bar-row">
+              <span class="bar-name">PyHealth 2.0</span>
+              <div class="perf-bar-track"><div class="perf-bar-fill pyhealth2" data-frac="0.049"></div></div>
+              <span class="bar-val">4,605s</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-name">MEDS</span>
+              <div class="perf-bar-track"><div class="perf-bar-fill meds" data-frac="0.114"></div></div>
+              <span class="bar-val">10,672s</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-name">Pandas †</span>
+              <div class="perf-bar-track"><div class="perf-bar-fill pandas" data-frac="1.0"></div></div>
+              <span class="bar-val">93,708s</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-name">PyHealth 1.16</span>
+              <div class="perf-bar-track"><div class="perf-bar-fill pyhealth116" data-frac="0.034"></div></div>
+              <span class="bar-val">3,174s</span>
+            </div>
+          </div>
+          <p class="perf-metric-label">Peak Memory (GB · lower is better)</p>
+          <div class="bar-group">
+            <div class="bar-row">
+              <span class="bar-name">PyHealth 2.0</span>
+              <div class="perf-bar-track"><div class="perf-bar-fill pyhealth2" data-frac="0.125"></div></div>
+              <span class="bar-val">23.4 GB</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-name">MEDS</span>
+              <div class="perf-bar-track"><div class="perf-bar-fill meds" data-frac="0.320"></div></div>
+              <span class="bar-val">60.0 GB</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-name">Pandas †</span>
+              <div class="perf-bar-track"><div class="perf-bar-fill pandas" data-frac="0.263"></div></div>
+              <span class="bar-val">49.2 GB</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-name">PyHealth 1.16</span>
+              <div class="perf-bar-track"><div class="perf-bar-fill pyhealth116" data-frac="1.0"></div></div>
+              <span class="bar-val">187.2 GB</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="perf-legend">
+        <span class="perf-legend-item"><span class="perf-legend-dot" style="background:var(--accent)"></span>PyHealth 2.0</span>
+        <span class="perf-legend-item"><span class="perf-legend-dot" style="background:#5a9fd4"></span>PyHealth 1.16</span>
+        <span class="perf-legend-item"><span class="perf-legend-dot" style="background:#a0aec0"></span>MEDS</span>
+        <span class="perf-legend-item"><span class="perf-legend-dot" style="background:repeating-linear-gradient(45deg,#b0bec5,#b0bec5 3px,#dde3e8 3px,#dde3e8 7px)"></span>Pandas † (1 worker only)</span>
+      </div>
+      <p class="perf-footnote">† Pandas measured at 1 worker; failed beyond single-threaded execution. All other methods at 4 workers on MIMIC-IV. Full benchmark in the <a href="https://arxiv.org/pdf/2601.16414" class="inline-link" target="_blank" rel="noopener">PyHealth 2.0 paper</a>.</p>
+    </section>
+
+    <!-- ── Pipeline ── -->
+    <section class="page-section fade-up">
+      <h2 class="section-h2">How PyHealth Standardizes Clinical AI Development</h2>
+      <p class="section-sub">A unified API from raw clinical data to trustworthy, interpretable models — follow the pipeline step by step.</p>
+      <div class="pipeline-grid">
+
+        <p class="pipeline-row-label">Data Foundation</p>
+
+        <a href="https://pyhealth.readthedocs.io/en/latest/api/data.html" class="pipeline-card" target="_blank" rel="noopener">
+          <div class="pipeline-step">01</div>
+          <div class="pipeline-name">pyhealth.data</div>
+          <p class="pipeline-desc">Core patient and clinical event data structures.</p>
+        </a>
+        <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets.html" class="pipeline-card" target="_blank" rel="noopener">
+          <div class="pipeline-step">02</div>
+          <div class="pipeline-name">pyhealth.datasets</div>
+          <p class="pipeline-desc">Loaders for MIMIC-III/IV, eICU, OMOP, and 17+ more.</p>
+        </a>
+        <a href="https://pyhealth.readthedocs.io/en/latest/api/tasks.html" class="pipeline-card" target="_blank" rel="noopener">
+          <div class="pipeline-step">03</div>
+          <div class="pipeline-name">pyhealth.tasks</div>
+          <p class="pipeline-desc">Standardized clinical prediction task definitions.</p>
+        </a>
+
+        <p class="pipeline-row-label">Modeling Pipeline</p>
+
+        <a href="https://pyhealth.readthedocs.io/en/latest/api/processors.html" class="pipeline-card" target="_blank" rel="noopener">
+          <div class="pipeline-step">04</div>
+          <div class="pipeline-name">pyhealth.processors</div>
+          <p class="pipeline-desc">Feature extraction, encoding, and transformation.</p>
+        </a>
+        <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="pipeline-card" target="_blank" rel="noopener">
+          <div class="pipeline-step">05</div>
+          <div class="pipeline-name">pyhealth.models</div>
+          <p class="pipeline-desc">33+ clinical ML models across EHR, signals, and imaging.</p>
+        </a>
+        <a href="https://pyhealth.readthedocs.io/en/latest/api/trainer.html" class="pipeline-card" target="_blank" rel="noopener">
+          <div class="pipeline-step">06</div>
+          <div class="pipeline-name">pyhealth.trainer</div>
+          <p class="pipeline-desc">Unified training loop with checkpointing and early stopping.</p>
+        </a>
+
+        <p class="pipeline-row-label">Evaluation &amp; Trust</p>
+
+        <a href="https://pyhealth.readthedocs.io/en/latest/api/metrics.html" class="pipeline-card" target="_blank" rel="noopener">
+          <div class="pipeline-step">07</div>
+          <div class="pipeline-name">pyhealth.metrics</div>
+          <p class="pipeline-desc">Clinical evaluation metrics and benchmarking utilities.</p>
+        </a>
+        <a href="https://pyhealth.readthedocs.io/en/latest/api/interpret.html" class="pipeline-card" target="_blank" rel="noopener">
+          <div class="pipeline-step">08</div>
+          <div class="pipeline-name">pyhealth.interpret</div>
+          <p class="pipeline-desc">Explainability methods for transparent clinical AI.</p>
+        </a>
+        <a href="https://pyhealth.readthedocs.io/en/latest/api/calib.html" class="pipeline-card" target="_blank" rel="noopener">
+          <div class="pipeline-step">09</div>
+          <div class="pipeline-name">pyhealth.calib</div>
+          <p class="pipeline-desc">Conformal prediction for rigorous uncertainty quantification.</p>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ── Resources ── -->
+    <section class="page-section fade-up">
+      <h2 class="section-h2">Resources</h2>
+      <p class="section-sub">Everything you need to get started or get involved.</p>
+      <div class="link-cards">
+        <a href="https://pyhealth.readthedocs.io/en/latest/" class="link-card" target="_blank" rel="noopener">
+          <div class="lc-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          </div>
+          <h3>Documentation</h3>
+          <p>Full API reference, tutorials, quickstart guides, and worked examples for all supported tasks.</p>
+          <span class="lc-arrow">Read the docs
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </a>
+        <a href="https://github.com/sunlabuiuc/PyHealth" class="link-card" target="_blank" rel="noopener">
+          <div class="lc-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          </div>
+          <h3>GitHub Repository</h3>
+          <p>Browse the source code, open issues, submit pull requests, and track ongoing development.</p>
+          <span class="lc-arrow">View on GitHub
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </a>
+        <a href="https://discord.gg/mpb835EHaX" class="link-card" target="_blank" rel="noopener">
+          <div class="lc-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.055 20.03 20.03 0 0 0 5.993 3.029.078.078 0 0 0 .084-.026 13.83 13.83 0 0 0 1.185-1.93.076.076 0 0 0-.041-.106 13.201 13.201 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.184 1.929a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.029.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+          </div>
+          <h3>Discord Community</h3>
+          <p>Join 400+ members to ask questions, share research, and collaborate on healthcare AI projects.</p>
+          <span class="lc-arrow">Join the server
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </a>
+        <a href="https://pyhealth.readthedocs.io/en/latest/research_initiative.html" class="link-card" target="_blank" rel="noopener">
+          <div class="lc-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Research Initiative</h3>
+          <p>A structured program of 10+ researchers — including healthcare domain experts — building and publishing open-source, reproducible clinical AI research on top of PyHealth. Apply to join and collaborate with clinicians, data scientists, and AI researchers advancing trustworthy healthcare AI.</p>
+          <span class="lc-arrow">Apply to join
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </a>
+      </div>
+    </section>
+
+    </div> <!-- /exploreContent -->
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-wrap" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+      <span>Copyright <span id="year"></span> John Wu</span>
+      <a href="https://jhnwu3.github.io" style="color:var(--accent); text-decoration:none; font-size:0.9rem;">← Back to profile</a>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    let exploreRevealed = false;
+    function revealExplore(fromScroll) {
+      if (exploreRevealed) return;
+      exploreRevealed = true;
+      const wrap = document.getElementById('exploreBtnWrap');
+      const content = document.getElementById('exploreContent');
+      wrap.classList.add('hiding');
+      setTimeout(() => {
+        wrap.style.display = 'none';
+        content.classList.remove('explore-content-hidden');
+        content.classList.add('explore-content-visible');
+        if (!fromScroll) {
+          document.getElementById('exploreAnchor').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 280);
+    }
+
+    // Auto-reveal on scroll when button reaches center of viewport
+    const _observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        revealExplore(true);
+        _observer.disconnect();
+      }
+    }, { rootMargin: '0px 0px -35% 0px' });
+    _observer.observe(document.getElementById('exploreBtnWrap'));
+
+    // Animate performance bars on scroll into view
+    const _perfObserver = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        document.querySelectorAll('.perf-panel').forEach(panel => {
+          panel.querySelectorAll('.perf-bar-fill').forEach((bar, i) => {
+            bar.style.transitionDelay = (i * 0.07) + 's';
+            bar.style.width = (parseFloat(bar.dataset.frac) * 100) + '%';
+          });
+        });
+        _perfObserver.disconnect();
+      }
+    }, { rootMargin: '0px 0px -10% 0px' });
+    const perfSection = document.getElementById('perfSection');
+    if (perfSection) _perfObserver.observe(perfSection);
+
+    function copyInstall(btn) {
+      navigator.clipboard.writeText('pip install pyhealth').then(() => {
+        btn.classList.add('copied');
+        btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied!';
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy';
+        }, 2000);
+      });
+    }
+
+    function copyCode(btn) {
+      const code = `from pyhealth.datasets import MIMIC3Dataset
+from pyhealth.tasks import MortalityPredictionMIMIC3
+from pyhealth.datasets import split_by_patient, get_dataloader
+from pyhealth.models import Transformer
+from pyhealth.trainer import Trainer
+
+# 1. Load data
+dataset = MIMIC3Dataset(root="data/", tables=["DIAGNOSES_ICD", "PROCEDURES_ICD"])
+samples = dataset.set_task(MortalityPredictionMIMIC3())
+
+# 2. Split & load
+train_ds, val_ds, test_ds = split_by_patient(samples, [0.8, 0.1, 0.1])
+train_loader = get_dataloader(train_ds, batch_size=32, shuffle=True)
+
+# 3. Train
+model = Transformer(dataset=samples)
+trainer = Trainer(model=model)
+trainer.train(train_loader, val_loader, epochs=50, monitor="pr_auc")
+trainer.evaluate(test_loader)`;
+      navigator.clipboard.writeText(code).then(() => {
+        btn.classList.add('copied');
+        btn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied!';
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          btn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy';
+        }, 2000);
+      });
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,728 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PyHealth Datasets — 21 Clinical Datasets</title>
+  <meta name="description" content="Browse all 21 clinical datasets supported by PyHealth across EHR, biosignals, medical imaging, genomics, and clinical text.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    /* ── Hero ── */
+    .ph-hero {
+      background: linear-gradient(140deg, #1c2b3a 0%, #28425e 60%, #1e3348 100%);
+      border-radius: 16px;
+      padding: 3rem 2.4rem 2.8rem;
+      color: white;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.07);
+      box-shadow: 0 20px 48px rgba(22, 33, 31, 0.18);
+      animation: rise 420ms ease;
+    }
+    .ph-hero::before {
+      content: "";
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 340px; height: 340px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,95,38,0.22) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .ph-hero::after {
+      content: "";
+      position: absolute;
+      bottom: -100px; left: -60px;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(90,160,230,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .ph-eyebrow {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(201,95,38,0.9);
+      margin: 0 0 0.6rem;
+    }
+    .ph-hero h1 {
+      color: white;
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      margin: 0 0 0.5rem;
+      letter-spacing: -0.01em;
+    }
+    .ph-tagline {
+      color: rgba(255,255,255,0.72);
+      font-size: 1.05rem;
+      line-height: 1.55;
+      max-width: 600px;
+      margin: 0 0 1.8rem;
+    }
+    .ph-cta-row {
+      display: flex;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+    .ph-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      border-radius: 10px;
+      padding: 0.64rem 1.15rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      font-family: "IBM Plex Sans", sans-serif;
+      transition: filter 0.15s, transform 0.1s;
+    }
+    .ph-btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+    .ph-btn.primary {
+      background: var(--accent);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 4px 12px rgba(201,95,38,0.35);
+    }
+    .ph-btn.outline {
+      background: rgba(255,255,255,0.09);
+      color: rgba(255,255,255,0.9);
+      border: 1px solid rgba(255,255,255,0.22);
+      backdrop-filter: blur(6px);
+    }
+
+    /* ── Growing notice ── */
+    .growing-notice {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 100px;
+      padding: 0.4rem 1rem;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.7);
+      margin-top: 1.4rem;
+      position: relative;
+      z-index: 1;
+    }
+    .growing-notice .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #4ade80;
+      box-shadow: 0 0 0 2px rgba(74,222,128,0.3);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { box-shadow: 0 0 0 2px rgba(74,222,128,0.3); }
+      50% { box-shadow: 0 0 0 5px rgba(74,222,128,0.1); }
+    }
+
+    /* ── Filter bar ── */
+    .filter-bar {
+      display: flex;
+      gap: 0.45rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+      animation: rise 380ms ease;
+    }
+    .filter-btn {
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.83rem;
+      font-weight: 500;
+      padding: 0.38rem 0.85rem;
+      border-radius: 100px;
+      border: 1.5px solid var(--line);
+      background: var(--paper);
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .filter-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
+
+    /* ── Dataset grid ── */
+    .dataset-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1rem;
+    }
+    .dataset-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1.3rem 1.4rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      transition: border-color 0.15s, box-shadow 0.15s, transform 0.12s;
+    }
+    .dataset-card:hover {
+      border-color: rgba(201,95,38,0.35);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+      transform: translateY(-2px);
+    }
+    .dataset-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+    .dataset-classname {
+      font-family: "IBM Plex Mono", "Menlo", monospace;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+    .modality-tag {
+      flex-shrink: 0;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.2rem 0.55rem;
+      border-radius: 100px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .mod-ehr   { background: rgba(59,130,246,0.12); color: #2563eb; }
+    .mod-signal { background: rgba(16,185,129,0.12); color: #059669; }
+    .mod-image { background: rgba(236,72,153,0.12); color: #db2777; }
+    .mod-genomics { background: rgba(139,92,246,0.12); color: #7c3aed; }
+    .mod-text  { background: rgba(245,158,11,0.12); color: #d97706; }
+
+    .dataset-desc {
+      font-size: 0.86rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* ── Code block ── */
+    .dataset-code {
+      background: #0f1923;
+      border-radius: 8px;
+      padding: 0.9rem 1rem;
+      font-family: "IBM Plex Mono", "Menlo", monospace;
+      font-size: 0.77rem;
+      line-height: 1.65;
+      color: #cdd6f4;
+      overflow-x: auto;
+      margin: 0;
+      white-space: pre;
+    }
+    .tok-kw  { color: #89b4fa; }
+    .tok-cl  { color: #cba6f7; }
+    .tok-fn  { color: #89dceb; }
+    .tok-str { color: #a6e3a1; }
+    .tok-num { color: #fab387; }
+    .tok-op  { color: #cdd6f4; }
+    .tok-cm  { color: #585b70; font-style: italic; }
+
+    /* ── Card footer ── */
+    .dataset-card-footer {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-top: auto;
+      padding-top: 0.3rem;
+    }
+    .colab-link, .docs-link {
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-decoration: none;
+      padding: 0.28rem 0.7rem;
+      border-radius: 6px;
+      transition: opacity 0.15s;
+    }
+    .colab-link:hover, .docs-link:hover { opacity: 0.8; }
+    .colab-link {
+      background: rgba(234,88,12,0.1);
+      color: #c95f26;
+      border: 1px solid rgba(201,95,38,0.25);
+    }
+    .docs-link {
+      background: rgba(59,130,246,0.08);
+      color: #2563eb;
+      border: 1px solid rgba(59,130,246,0.2);
+    }
+
+    /* ── Count badge ── */
+    .count-badge {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.15rem 0.55rem;
+      border-radius: 100px;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+
+    @media (max-width: 500px) {
+      .dataset-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="site-wrap header-inner">
+      <nav class="nav" aria-label="Main navigation">
+        <a href="https://jhnwu3.github.io" class="back-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          John Wu
+        </a>
+        <span style="color:var(--muted); margin: 0 0.4rem; font-size:0.9rem;">›</span>
+        <a href="index.html" style="color:var(--muted); text-decoration:none; font-size:0.88rem; font-weight:500; transition:color 0.15s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">PyHealth</a>
+      </nav>
+      <span style="color: var(--muted); font-size: 0.88rem; font-weight: 500;">Datasets</span>
+    </div>
+  </header>
+
+  <main class="site-wrap" style="padding: 2.2rem 0 3.5rem;">
+
+    <!-- ── Hero ── -->
+    <section class="ph-hero">
+      <p class="ph-eyebrow">PyHealth Datasets</p>
+      <h1>21 Clinical Datasets</h1>
+      <p class="ph-tagline">A unified API for loading healthcare data across electronic health records, physiological signals, medical imaging, genomics, and clinical text — all ready for machine learning.</p>
+      <div class="ph-cta-row">
+        <a href="https://colab.research.google.com/drive/1voSx7wEfzXfEf2sIfW6b-8p1KqMyuWxK?usp=sharing" class="ph-btn primary" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Open Tutorial Notebook
+        </a>
+        <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets.html" class="ph-btn outline" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          API Reference
+        </a>
+      </div>
+      <div class="growing-notice">
+        <span class="dot"></span>
+        Actively growing — new datasets added regularly. <a href="https://docs.google.com/spreadsheets/d/1PNMgDe-llOm1SM5ZyGLkmPysjC4wwaVblPLAHLxejTw/edit#gid=159213380" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.85); text-decoration:underline; text-underline-offset:2px;">View planned additions →</a>
+      </div>
+    </section>
+
+    <!-- ── Filter + Grid ── -->
+    <section class="page-section fade-up">
+      <div style="display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.2rem;">
+        <h2 class="section-h2" style="margin:0;">Browse Datasets <span class="count-badge" id="visibleCount">21</span></h2>
+        <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets.html" target="_blank" rel="noopener" style="font-size:0.85rem; color:var(--accent); text-decoration:none; font-weight:500;">Full API reference →</a>
+      </div>
+
+      <div class="filter-bar" role="group" aria-label="Filter by modality">
+        <button class="filter-btn active" onclick="filterDatasets('all', this)">All <span style="opacity:0.65;">(21)</span></button>
+        <button class="filter-btn" onclick="filterDatasets('ehr', this)">EHR <span style="opacity:0.65;">(7)</span></button>
+        <button class="filter-btn" onclick="filterDatasets('signal', this)">Biosignal <span style="opacity:0.65;">(8)</span></button>
+        <button class="filter-btn" onclick="filterDatasets('image', this)">Image <span style="opacity:0.65;">(2)</span></button>
+        <button class="filter-btn" onclick="filterDatasets('genomics', this)">Genomics <span style="opacity:0.65;">(3)</span></button>
+        <button class="filter-btn" onclick="filterDatasets('text', this)">Text <span style="opacity:0.65;">(1)</span></button>
+      </div>
+
+      <div class="dataset-grid" id="datasetGrid">
+
+        <!-- ───────────── EHR (7) ───────────── -->
+
+        <div class="dataset-card" data-modality="ehr">
+          <div class="dataset-card-header">
+            <span class="dataset-classname">MIMIC3Dataset</span>
+            <span class="modality-tag mod-ehr">EHR</span>
+          </div>
+          <p class="dataset-desc">MIMIC-III Critical Care database with 40K+ ICU stays covering diagnoses, procedures, medications, lab results, and free text notes.</p>
+          <pre class="dataset-code"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">MIMIC3Dataset</span>
+dataset <span class="tok-op">=</span> <span class="tok-cl">MIMIC3Dataset</span>(
+    root<span class="tok-op">=</span><span class="tok-str">"data/mimic3/"</span>,
+    tables<span class="tok-op">=</span>[<span class="tok-str">"DIAGNOSES_ICD"</span>, <span class="tok-str">"PROCEDURES_ICD"</span>],
+)</pre>
+          <div class="dataset-card-footer">
+            <a href="https://colab.research.google.com/drive/1voSx7wEfzXfEf2sIfW6b-8p1KqMyuWxK?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="dataset-card" data-modality="ehr">
+          <div class="dataset-card-header">
+            <span class="dataset-classname">MIMIC4Dataset</span>
+            <span class="modality-tag mod-ehr">EHR</span>
+          </div>
+          <p class="dataset-desc">MIMIC-IV with 300K+ patients spanning hospital and ICU encounters, including structured EHR tables and clinical notes.</p>
+          <pre class="dataset-code"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">MIMIC4Dataset</span>
+dataset <span class="tok-op">=</span> <span class="tok-cl">MIMIC4Dataset</span>(
+    root<span class="tok-op">=</span><span class="tok-str">"data/mimic4/"</span>,
+    tables<span class="tok-op">=</span>[<span class="tok-str">"diagnoses_icd"</span>, <span class="tok-str">"labevents"</span>],
+)</pre>
+          <div class="dataset-card-footer">
+            <a href="https://colab.research.google.com/drive/1voSx7wEfzXfEf2sIfW6b-8p1KqMyuWxK?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="dataset-card" data-modality="ehr">
+          <div class="dataset-card-header">
+            <span class="dataset-classname">eICUDataset</span>
+            <span class="modality-tag mod-ehr">EHR</span>
+          </div>
+          <p class="dataset-desc">Multi-center eICU Collaborative Research Database with 200K+ ICU stays from 208 hospitals across the US.</p>
+          <pre class="dataset-code"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">eICUDataset</span>
+dataset <span class="tok-op">=</span> <span class="tok-cl">eICUDataset</span>(
+    root<span class="tok-op">=</span><span class="tok-str">"data/eicu/"</span>,
+    tables<span class="tok-op">=</span>[<span class="tok-str">"diagnosis"</span>, <span class="tok-str">"medication"</span>],
+)</pre>
+          <div class="dataset-card-footer">
+            <a href="https://colab.research.google.com/drive/1voSx7wEfzXfEf2sIfW6b-8p1KqMyuWxK?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="dataset-card" data-modality="ehr">
+          <div class="dataset-card-header">
+            <span class="dataset-classname">OMOPDataset</span>
+            <span class="modality-tag mod-ehr">EHR</span>
+          </div>
+          <p class="dataset-desc">OMOP Common Data Model loader — a standardized format for observational health data used widely across academic medical centers.</p>
+          <pre class="dataset-code"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">OMOPDataset</span>
+dataset <span class="tok-op">=</span> <span class="tok-cl">OMOPDataset</span>(
+    root<span class="tok-op">=</span><span class="tok-str">"data/omop/"</span>,
+    tables<span class="tok-op">=</span>[<span class="tok-str">"condition_occurrence"</span>],
+)</pre>
+          <div class="dataset-card-footer">
+            <a href="https://colab.research.google.com/drive/1voSx7wEfzXfEf2sIfW6b-8p1KqMyuWxK?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="dataset-card" data-modality="ehr">
+          <div class="dataset-card-header">
+            <span class="dataset-classname">MIMICExtractDataset</span>
+            <span class="modality-tag mod-ehr">EHR</span>
+          </div>
+          <p class="dataset-desc">MIMIC-Extract pre-processed cohort with time-series vitals and lab values for 34K ICU patients, ready for timeseries modeling.</p>
+          <pre class="dataset-code"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">MIMICExtractDataset</span>
+dataset <span class="tok-op">=</span> <span class="tok-cl">MIMICExtractDataset</span>(
+    root<span class="tok-op">=</span><span class="tok-str">"data/mimic-extract/"</span>,
+)</pre>
+          <div class="dataset-card-footer">
+            <a href="https://colab.research.google.com/drive/1voSx7wEfzXfEf2sIfW6b-8p1KqMyuWxK?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="dataset-card" data-modality="ehr">
+          <div class="dataset-card-header">
+            <span class="dataset-classname">EHRShotDataset</span>
+            <span class="modality-tag mod-ehr">EHR</span>
+          </div>
+          <p class="dataset-desc">EHRShot few-shot benchmark derived from EHRSFM with 15 clinical prediction tasks for evaluating foundation models on EHR data.</p>
+          <pre class="dataset-code"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">EHRShotDataset</span>
+dataset <span class="tok-op">=</span> <span class="tok-cl">EHRShotDataset</span>(
+    root<span class="tok-op">=</span><span class="tok-str">"data/ehrshot/"</span>,
+)</pre>
+          <div class="dataset-card-footer">
+            <a href="https://colab.research.google.com/drive/1voSx7wEfzXfEf2sIfW6b-8p1KqMyuWxK?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="dataset-card" data-modality="ehr">
+          <div class="dataset-card-header">
+            <span class="dataset-classname">Support2Dataset</span>
+            <span class="modality-tag mod-ehr">EHR</span>
+          </div>
+          <p class="dataset-desc">SUPPORT2 study dataset for survival prediction with demographics, vitals, labs, comorbidities, and 2-month / 6-month survival labels.</p>
+          <pre class="dataset-code"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">Support2Dataset</span>
+dataset <span class="tok-op">=</span> <span class="tok-cl">Support2Dataset</span>(
+    root<span class="tok-op">=</span><span class="tok-str">"data/support2/"</span>,
+)</pre>
+          <div class="dataset-card-footer">
+            <a href="https://colab.research.google.com/drive/1voSx7wEfzXfEf2sIfW6b-8p1KqMyuWxK?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <!-- ───────────── Biosignal (8) ───────────── -->
+
+        <div class="dataset-card" data-modality="signal">
+          <div class="dataset-card-header">
+            <span class="dataset-classname">CardiologyDataset</span>
+            <span class="modality-tag mod-signal">Biosignal</span>
+          </div>
+          <p class="dataset-desc">Multi-label ECG dataset for cardiac arrhythmia detection with 12-lead signals annotated across multiple cardiac conditions.</p>
+          <pre class="dataset-code"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">CardiologyDataset</span>
+dataset <span class="tok-op">=</span> <span class="tok-cl">CardiologyDataset</span>(
+    root<span class="tok-op">=</span><span class="tok-str">"data/cardiology/"</span>,
+)</pre>
+          <div class="dataset-card-footer">
+            <a href="https://colab.research.google.com/drive/1voSx7wEfzXfEf2sIfW6b-8p1KqMyuWxK?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="dataset-card" data-modality="signal">
+          <div class="dataset-card-header">
+            <span class="dataset-classname">ISRUCDataset</span>
+            <span class="modality-tag mod-signal">Biosignal</span>
+          </div>
+          <p class="dataset-desc">ISRUC-Sleep dataset with polysomnography recordings (EEG, EOG, EMG) from healthy subjects and patients with sleep disorders.</p>
+          <pre class="dataset-code"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">ISRUCDataset</span>
+dataset <span class="tok-op">=</span> <span class="tok-cl">ISRUCDataset</span>(
+    root<span class="tok-op">=</span><span class="tok-str">"data/isruc/"</span>,
+)</pre>
+          <div class="dataset-card-footer">
+            <a href="https://colab.research.google.com/drive/1voSx7wEfzXfEf2sIfW6b-8p1KqMyuWxK?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="dataset-card" data-modality="signal">
+          <div class="dataset-card-header">
+            <span class="dataset-classname">DREAMTDataset</span>
+            <span class="modality-tag mod-signal">Biosignal</span>
+          </div>
+          <p class="dataset-desc">DREAMT study dataset with multi-night wrist-worn EEG data for sleep staging in a free-living environment.</p>
+          <pre class="dataset-code"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">DREAMTDataset</span>
+dataset <span class="tok-op">=</span> <span class="tok-cl">DREAMTDataset</span>(
+    root<span class="tok-op">=</span><span class="tok-str">"data/dreamt/"</span>,
+)</pre>
+          <div class="dataset-card-footer">
+            <a href="https://colab.research.google.com/drive/1voSx7wEfzXfEf2sIfW6b-8p1KqMyuWxK?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="dataset-card" data-modality="signal">
+          <div class="dataset-card-header">
+            <span class="dataset-classname">SHHSDataset</span>
+            <span class="modality-tag mod-signal">Biosignal</span>
+          </div>
+          <p class="dataset-desc">Sleep Heart Health Study with overnight polysomnography from 5,800+ participants for sleep staging and cardiovascular risk research.</p>
+          <pre class="dataset-code"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">SHHSDataset</span>
+dataset <span class="tok-op">=</span> <span class="tok-cl">SHHSDataset</span>(
+    root<span class="tok-op">=</span><span class="tok-str">"data/shhs/"</span>,
+)</pre>
+          <div class="dataset-card-footer">
+            <a href="https://colab.research.google.com/drive/1voSx7wEfzXfEf2sIfW6b-8p1KqMyuWxK?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="dataset-card" data-modality="signal">
+          <div class="dataset-card-header">
+            <span class="dataset-classname">SleepEDFDataset</span>
+            <span class="modality-tag mod-signal">Biosignal</span>
+          </div>
+          <p class="dataset-desc">SleepEDF-78/Cassette dataset with full-night EEG recordings from 78 healthy subjects, widely used for sleep staging benchmarks.</p>
+          <pre class="dataset-code"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">SleepEDFDataset</span>
+dataset <span class="tok-op">=</span> <span class="tok-cl">SleepEDFDataset</span>(
+    root<span class="tok-op">=</span><span class="tok-str">"data/sleepedf/"</span>,
+)</pre>
+          <div class="dataset-card-footer">
+            <a href="https://colab.research.google.com/drive/1voSx7wEfzXfEf2sIfW6b-8p1KqMyuWxK?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="dataset-card" data-modality="signal">
+          <div class="dataset-card-header">
+            <span class="dataset-classname">BMDHSDataset</span>
+            <span class="modality-tag mod-signal">Biosignal</span>
+          </div>
+          <p class="dataset-desc">BMDHS heart sound dataset with phonocardiogram recordings for cardiac valve disease classification and auscultation research.</p>
+          <pre class="dataset-code"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">BMDHSDataset</span>
+dataset <span class="tok-op">=</span> <span class="tok-cl">BMDHSDataset</span>(
+    root<span class="tok-op">=</span><span class="tok-str">"data/bmdhs/"</span>,
+)</pre>
+          <div class="dataset-card-footer">
+            <a href="https://colab.research.google.com/drive/1voSx7wEfzXfEf2sIfW6b-8p1KqMyuWxK?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="dataset-card" data-modality="signal">
+          <div class="dataset-card-header">
+            <span class="dataset-classname">TUABDataset</span>
+            <span class="modality-tag mod-signal">Biosignal</span>
+          </div>
+          <p class="dataset-desc">Temple University EEG Abnormal (TUAB) corpus with clinical EEG recordings labeled as normal or abnormal by board-certified neurologists.</p>
+          <pre class="dataset-code"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">TUABDataset</span>
+dataset <span class="tok-op">=</span> <span class="tok-cl">TUABDataset</span>(
+    root<span class="tok-op">=</span><span class="tok-str">"data/tuab/"</span>,
+)</pre>
+          <div class="dataset-card-footer">
+            <a href="https://colab.research.google.com/drive/1voSx7wEfzXfEf2sIfW6b-8p1KqMyuWxK?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="dataset-card" data-modality="signal">
+          <div class="dataset-card-header">
+            <span class="dataset-classname">TUEVDataset</span>
+            <span class="modality-tag mod-signal">Biosignal</span>
+          </div>
+          <p class="dataset-desc">Temple University EEG Events (TUEV) corpus annotated with six EEG event types including spike-wave complexes and artifacts.</p>
+          <pre class="dataset-code"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">TUEVDataset</span>
+dataset <span class="tok-op">=</span> <span class="tok-cl">TUEVDataset</span>(
+    root<span class="tok-op">=</span><span class="tok-str">"data/tuev/"</span>,
+)</pre>
+          <div class="dataset-card-footer">
+            <a href="https://colab.research.google.com/drive/1voSx7wEfzXfEf2sIfW6b-8p1KqMyuWxK?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <!-- ───────────── Image (2) ───────────── -->
+
+        <div class="dataset-card" data-modality="image">
+          <div class="dataset-card-header">
+            <span class="dataset-classname">COVID19CXRDataset</span>
+            <span class="modality-tag mod-image">Image</span>
+          </div>
+          <p class="dataset-desc">COVID-19 chest X-ray dataset for binary classification of COVID-19 vs. normal and pneumonia images across multiple sources.</p>
+          <pre class="dataset-code"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">COVID19CXRDataset</span>
+dataset <span class="tok-op">=</span> <span class="tok-cl">COVID19CXRDataset</span>(
+    root<span class="tok-op">=</span><span class="tok-str">"data/covid19cxr/"</span>,
+)</pre>
+          <div class="dataset-card-footer">
+            <a href="https://colab.research.google.com/drive/18vK23gyI1LjWbTgkq4f99yDZA3A7Pxp9?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="dataset-card" data-modality="image">
+          <div class="dataset-card-header">
+            <span class="dataset-classname">ChestXray14Dataset</span>
+            <span class="modality-tag mod-image">Image</span>
+          </div>
+          <p class="dataset-desc">NIH ChestX-ray14 with 112K frontal chest X-rays from 30K patients, annotated with 14 disease labels for multi-label classification.</p>
+          <pre class="dataset-code"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">ChestXray14Dataset</span>
+dataset <span class="tok-op">=</span> <span class="tok-cl">ChestXray14Dataset</span>(
+    root<span class="tok-op">=</span><span class="tok-str">"data/chestxray14/"</span>,
+)</pre>
+          <div class="dataset-card-footer">
+            <a href="https://colab.research.google.com/drive/18vK23gyI1LjWbTgkq4f99yDZA3A7Pxp9?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <!-- ───────────── Genomics (3) ───────────── -->
+
+        <div class="dataset-card" data-modality="genomics">
+          <div class="dataset-card-header">
+            <span class="dataset-classname">ClinVarDataset</span>
+            <span class="modality-tag mod-genomics">Genomics</span>
+          </div>
+          <p class="dataset-desc">NCBI ClinVar database of genomic variants and their clinical significance, used for variant pathogenicity classification.</p>
+          <pre class="dataset-code"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">ClinVarDataset</span>
+dataset <span class="tok-op">=</span> <span class="tok-cl">ClinVarDataset</span>(
+    root<span class="tok-op">=</span><span class="tok-str">"data/clinvar/"</span>,
+)</pre>
+          <div class="dataset-card-footer">
+            <a href="https://colab.research.google.com/drive/1voSx7wEfzXfEf2sIfW6b-8p1KqMyuWxK?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="dataset-card" data-modality="genomics">
+          <div class="dataset-card-header">
+            <span class="dataset-classname">COSMICDataset</span>
+            <span class="modality-tag mod-genomics">Genomics</span>
+          </div>
+          <p class="dataset-desc">Catalogue of Somatic Mutations in Cancer (COSMIC) for predicting the functional impact of somatic mutations in cancer.</p>
+          <pre class="dataset-code"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">COSMICDataset</span>
+dataset <span class="tok-op">=</span> <span class="tok-cl">COSMICDataset</span>(
+    root<span class="tok-op">=</span><span class="tok-str">"data/cosmic/"</span>,
+)</pre>
+          <div class="dataset-card-footer">
+            <a href="https://colab.research.google.com/drive/1voSx7wEfzXfEf2sIfW6b-8p1KqMyuWxK?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="dataset-card" data-modality="genomics">
+          <div class="dataset-card-header">
+            <span class="dataset-classname">TCGAPRADDataset</span>
+            <span class="modality-tag mod-genomics">Genomics</span>
+          </div>
+          <p class="dataset-desc">TCGA Prostate Adenocarcinoma (PRAD) multi-omics dataset for cancer survival prediction using RNA-seq, CNV, and mutation profiles.</p>
+          <pre class="dataset-code"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">TCGAPRADDataset</span>
+dataset <span class="tok-op">=</span> <span class="tok-cl">TCGAPRADDataset</span>(
+    root<span class="tok-op">=</span><span class="tok-str">"data/tcga/"</span>,
+)</pre>
+          <div class="dataset-card-footer">
+            <a href="https://colab.research.google.com/drive/1voSx7wEfzXfEf2sIfW6b-8p1KqMyuWxK?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <!-- ───────────── Text (1) ───────────── -->
+
+        <div class="dataset-card" data-modality="text">
+          <div class="dataset-card-header">
+            <span class="dataset-classname">MedicalTranscriptionsDataset</span>
+            <span class="modality-tag mod-text">Text</span>
+          </div>
+          <p class="dataset-desc">Kaggle medical transcriptions dataset with 5K+ clinical notes across 40 specialties for specialty classification and NLP tasks.</p>
+          <pre class="dataset-code"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">MedicalTranscriptionsDataset</span>
+dataset <span class="tok-op">=</span> <span class="tok-cl">MedicalTranscriptionsDataset</span>(
+    root<span class="tok-op">=</span><span class="tok-str">"data/medical_transcriptions/"</span>,
+)</pre>
+          <div class="dataset-card-footer">
+            <a href="https://colab.research.google.com/drive/1ThYP_5ng5xPQwscv5XztefkkoTruhjeK?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+      </div><!-- /dataset-grid -->
+    </section>
+
+    <!-- ── Custom Dataset Note ── -->
+    <section class="page-section fade-up">
+      <div style="background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:1.6rem 1.8rem; display:flex; gap:1.2rem; align-items:flex-start;">
+        <div style="flex-shrink:0; width:40px; height:40px; border-radius:10px; background:rgba(201,95,38,0.1); display:flex; align-items:center; justify-content:center;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <div>
+          <h3 style="margin:0 0 0.4rem; font-size:1rem;">Need a custom dataset?</h3>
+          <p style="margin:0 0 0.8rem; font-size:0.88rem; color:var(--muted); line-height:1.55;">PyHealth makes it easy to add your own data source by inheriting <code style="font-family:monospace; font-size:0.85rem; background:rgba(0,0,0,0.05); padding:0.1rem 0.35rem; border-radius:4px;">BaseDataset</code>. Your custom dataset immediately gets access to all PyHealth tasks, models, and the trainer — no extra wiring needed.</p>
+          <div style="display:flex; gap:0.6rem; flex-wrap:wrap;">
+            <a href="https://pyhealth.readthedocs.io/en/latest/tutorials/custom_dataset.html" target="_blank" rel="noopener" style="font-size:0.83rem; font-weight:500; color:var(--accent); text-decoration:none; padding:0.3rem 0.75rem; border:1.5px solid rgba(201,95,38,0.3); border-radius:7px; transition:background 0.15s;" onmouseover="this.style.background='rgba(201,95,38,0.07)'" onmouseout="this.style.background=''">Custom Dataset Tutorial →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth" target="_blank" rel="noopener" style="font-size:0.83rem; font-weight:500; color:var(--muted); text-decoration:none; padding:0.3rem 0.75rem; border:1.5px solid var(--line); border-radius:7px; transition:background 0.15s;" onmouseover="this.style.background='rgba(0,0,0,0.03)'" onmouseout="this.style.background=''">View Source on GitHub →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-wrap" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+      <span>Copyright <span id="year"></span> John Wu</span>
+      <a href="index.html" style="color:var(--accent); text-decoration:none; font-size:0.9rem;">← Back to PyHealth</a>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function filterDatasets(modality, btn) {
+      // Update active button
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      // Show/hide cards
+      const cards = document.querySelectorAll('#datasetGrid .dataset-card');
+      let visible = 0;
+      cards.forEach(card => {
+        const show = modality === 'all' || card.dataset.modality === modality;
+        card.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+
+      document.getElementById('visibleCount').textContent = visible;
+    }
+  </script>
+
+</body>
+</html>

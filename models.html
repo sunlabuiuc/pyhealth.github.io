@@ -1,0 +1,896 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PyHealth Models — 33+ Clinical ML Models</title>
+  <meta name="description" content="Browse all clinical machine learning models supported by PyHealth across EHR, drug recommendation, biosignals, graph, imaging, and text modalities.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    /* ── Hero ── */
+    .ph-hero {
+      background: linear-gradient(140deg, #1c2b3a 0%, #28425e 60%, #1e3348 100%);
+      border-radius: 16px;
+      padding: 3rem 2.4rem 2.8rem;
+      color: white;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.07);
+      box-shadow: 0 20px 48px rgba(22, 33, 31, 0.18);
+      animation: rise 420ms ease;
+    }
+    .ph-hero::before {
+      content: "";
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 340px; height: 340px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,95,38,0.22) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .ph-hero::after {
+      content: "";
+      position: absolute;
+      bottom: -100px; left: -60px;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(90,160,230,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .ph-eyebrow {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(201,95,38,0.9);
+      margin: 0 0 0.6rem;
+    }
+    .ph-hero h1 {
+      color: white;
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      margin: 0 0 0.5rem;
+      letter-spacing: -0.01em;
+    }
+    .ph-tagline {
+      color: rgba(255,255,255,0.72);
+      font-size: 1.05rem;
+      line-height: 1.55;
+      max-width: 600px;
+      margin: 0 0 1.8rem;
+    }
+    .ph-cta-row {
+      display: flex;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+    .ph-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      border-radius: 10px;
+      padding: 0.64rem 1.15rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      font-family: "IBM Plex Sans", sans-serif;
+      transition: filter 0.15s, transform 0.1s;
+    }
+    .ph-btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+    .ph-btn.primary {
+      background: var(--accent);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 4px 12px rgba(201,95,38,0.35);
+    }
+    .ph-btn.outline {
+      background: rgba(255,255,255,0.09);
+      color: rgba(255,255,255,0.9);
+      border: 1px solid rgba(255,255,255,0.22);
+      backdrop-filter: blur(6px);
+    }
+
+    /* ── Growing notice ── */
+    .growing-notice {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 100px;
+      padding: 0.4rem 1rem;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.7);
+      margin-top: 1.4rem;
+      position: relative;
+      z-index: 1;
+    }
+    .growing-notice .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #4ade80;
+      box-shadow: 0 0 0 2px rgba(74,222,128,0.3);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { box-shadow: 0 0 0 2px rgba(74,222,128,0.3); }
+      50% { box-shadow: 0 0 0 5px rgba(74,222,128,0.1); }
+    }
+
+    /* ── Filter bar ── */
+    .filter-bar {
+      display: flex;
+      gap: 0.45rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+      animation: rise 380ms ease;
+    }
+    .filter-btn {
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.83rem;
+      font-weight: 500;
+      padding: 0.38rem 0.85rem;
+      border-radius: 100px;
+      border: 1.5px solid var(--line);
+      background: var(--paper);
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .filter-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
+
+    /* ── Model grid ── */
+    .model-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+    .model-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1.3rem 1.4rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      transition: border-color 0.15s, box-shadow 0.15s, transform 0.12s;
+    }
+    .model-card:hover {
+      border-color: rgba(201,95,38,0.35);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+      transform: translateY(-2px);
+    }
+    .model-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+    .model-classname {
+      font-family: "IBM Plex Mono", "Menlo", monospace;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+    .category-tag {
+      flex-shrink: 0;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.2rem 0.55rem;
+      border-radius: 100px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .cat-ehr      { background: rgba(59,130,246,0.12); color: #2563eb; }
+    .cat-drug     { background: rgba(16,185,129,0.12); color: #059669; }
+    .cat-signal   { background: rgba(139,92,246,0.12); color: #7c3aed; }
+    .cat-graph    { background: rgba(245,158,11,0.12); color: #d97706; }
+    .cat-image    { background: rgba(236,72,153,0.12); color: #db2777; }
+    .cat-text     { background: rgba(20,184,166,0.12); color: #0d9488; }
+    .cat-multimodal { background: rgba(99,102,241,0.12); color: #4f46e5; }
+
+    .model-desc {
+      font-size: 0.86rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* ── Code block ── */
+    .model-code {
+      background: #0f1923;
+      border-radius: 8px;
+      padding: 0.9rem 1rem;
+      font-family: "IBM Plex Mono", "Menlo", monospace;
+      font-size: 0.77rem;
+      line-height: 1.65;
+      color: #cdd6f4;
+      overflow-x: auto;
+      margin: 0;
+      white-space: pre;
+    }
+    .tok-kw  { color: #89b4fa; }
+    .tok-cl  { color: #cba6f7; }
+    .tok-fn  { color: #89dceb; }
+    .tok-str { color: #a6e3a1; }
+    .tok-num { color: #fab387; }
+    .tok-op  { color: #cdd6f4; }
+    .tok-cm  { color: #585b70; font-style: italic; }
+
+    /* ── Card footer ── */
+    .model-card-footer {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-top: auto;
+      padding-top: 0.3rem;
+    }
+    .colab-link, .docs-link {
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-decoration: none;
+      padding: 0.28rem 0.7rem;
+      border-radius: 6px;
+      transition: opacity 0.15s;
+    }
+    .colab-link:hover, .docs-link:hover { opacity: 0.8; }
+    .colab-link {
+      background: rgba(234,88,12,0.1);
+      color: #c95f26;
+      border: 1px solid rgba(201,95,38,0.25);
+    }
+    .docs-link {
+      background: rgba(59,130,246,0.08);
+      color: #2563eb;
+      border: 1px solid rgba(59,130,246,0.2);
+    }
+
+    /* ── Count badge ── */
+    .count-badge {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.15rem 0.55rem;
+      border-radius: 100px;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+
+    /* ── Back nav ── */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.94rem;
+      padding: 0.35rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: color 0.12s, background 0.12s, border-color 0.12s;
+    }
+    .back-link:hover {
+      color: var(--accent);
+      border-color: var(--line);
+      background: var(--paper);
+    }
+
+    @media (max-width: 500px) {
+      .model-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="site-wrap header-inner">
+      <nav class="nav" aria-label="Main navigation">
+        <a href="https://jhnwu3.github.io" class="back-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          John Wu
+        </a>
+        <span style="color:var(--muted); margin: 0 0.4rem; font-size:0.9rem;">›</span>
+        <a href="index.html" style="color:var(--muted); text-decoration:none; font-size:0.88rem; font-weight:500; transition:color 0.15s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">PyHealth</a>
+      </nav>
+      <span style="color: var(--muted); font-size: 0.88rem; font-weight: 500;">Models</span>
+    </div>
+  </header>
+
+  <main class="site-wrap" style="padding: 2.2rem 0 3.5rem;">
+
+    <!-- ── Hero ── -->
+    <section class="ph-hero">
+      <p class="ph-eyebrow">PyHealth Models</p>
+      <h1>33+ Clinical ML Models</h1>
+      <p class="ph-tagline">Production-ready models spanning EHR sequence learning, drug recommendation, biosignal analysis, graph neural networks, medical imaging, and clinical NLP — all with a unified training API.</p>
+      <div class="ph-cta-row">
+        <a href="https://colab.research.google.com/drive/1LcXZlu7ZUuqepf269X3FhXuhHeRvaJX5?usp=sharing" class="ph-btn primary" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Open Tutorial Notebook
+        </a>
+        <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="ph-btn outline" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          API Reference
+        </a>
+      </div>
+      <div class="growing-notice">
+        <span class="dot"></span>
+        Actively growing — new models added regularly. <a href="https://docs.google.com/spreadsheets/d/1PNMgDe-llOm1SM5ZyGLkmPysjC4wwaVblPLAHLxejTw/edit#gid=159213380" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.85); text-decoration:underline; text-underline-offset:2px;">View planned additions →</a>
+      </div>
+    </section>
+
+    <!-- ── Filter + Grid ── -->
+    <section class="page-section fade-up">
+      <div style="display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
+        <h2 style="margin:0; font-size:clamp(1.1rem,2vw,1.4rem);">
+          All Models <span class="count-badge" id="visibleCount">34</span>
+        </h2>
+        <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" target="_blank" rel="noopener" style="font-size:0.85rem; color:var(--accent); text-decoration:none; font-weight:500;">Full API reference →</a>
+      </div>
+
+      <div class="filter-bar" role="group" aria-label="Filter by category">
+        <button class="filter-btn active" onclick="filterModels('all', this)">All <span style="opacity:0.65;">(34)</span></button>
+        <button class="filter-btn" onclick="filterModels('ehr', this)">EHR <span style="opacity:0.65;">(14)</span></button>
+        <button class="filter-btn" onclick="filterModels('drug', this)">Drug Rec <span style="opacity:0.65;">(4)</span></button>
+        <button class="filter-btn" onclick="filterModels('signal', this)">Signal <span style="opacity:0.65;">(4)</span></button>
+        <button class="filter-btn" onclick="filterModels('graph', this)">Graph <span style="opacity:0.65;">(2)</span></button>
+        <button class="filter-btn" onclick="filterModels('image', this)">Image <span style="opacity:0.65;">(4)</span></button>
+        <button class="filter-btn" onclick="filterModels('text', this)">Text <span style="opacity:0.65;">(3)</span></button>
+        <button class="filter-btn" onclick="filterModels('multimodal', this)">Multimodal <span style="opacity:0.65;">(3)</span></button>
+      </div>
+
+      <div class="model-grid" id="modelGrid">
+
+        <!-- ───────────── EHR Sequence (14) ───────────── -->
+
+        <div class="model-card" data-category="ehr">
+          <div class="model-card-header">
+            <span class="model-classname">RNN</span>
+            <span class="category-tag cat-ehr">EHR</span>
+          </div>
+          <p class="model-desc">Gated recurrent network (GRU/LSTM) for sequential EHR data — a strong, interpretable baseline for longitudinal clinical tasks.</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">RNN</span>
+model <span class="tok-op">=</span> <span class="tok-cl">RNN</span>(dataset<span class="tok-op">=</span>samples, rnn_type<span class="tok-op">=</span><span class="tok-str">"GRU"</span>)</pre>
+          <div class="model-card-footer">
+            <a href="https://colab.research.google.com/drive/1LcXZlu7ZUuqepf269X3FhXuhHeRvaJX5?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="model-card" data-category="ehr">
+          <div class="model-card-header">
+            <span class="model-classname">Transformer</span>
+            <span class="category-tag cat-ehr">EHR</span>
+          </div>
+          <p class="model-desc">Self-attention transformer encoder for EHR sequences — captures long-range dependencies across clinical visits.</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">Transformer</span>
+model <span class="tok-op">=</span> <span class="tok-cl">Transformer</span>(dataset<span class="tok-op">=</span>samples)</pre>
+          <div class="model-card-footer">
+            <a href="https://colab.research.google.com/drive/1LcXZlu7ZUuqepf269X3FhXuhHeRvaJX5?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="model-card" data-category="ehr">
+          <div class="model-card-header">
+            <span class="model-classname">MLP</span>
+            <span class="category-tag cat-ehr">EHR</span>
+          </div>
+          <p class="model-desc">Multi-layer perceptron over aggregated patient features — a fast, simple non-sequential baseline.</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">MLP</span>
+model <span class="tok-op">=</span> <span class="tok-cl">MLP</span>(dataset<span class="tok-op">=</span>samples, hidden_dim<span class="tok-op">=</span><span class="tok-num">256</span>)</pre>
+          <div class="model-card-footer">
+            <a href="https://colab.research.google.com/drive/1LcXZlu7ZUuqepf269X3FhXuhHeRvaJX5?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="model-card" data-category="ehr">
+          <div class="model-card-header">
+            <span class="model-classname">LogisticRegression</span>
+            <span class="category-tag cat-ehr">EHR</span>
+          </div>
+          <p class="model-desc">Logistic regression over bag-of-codes features — the standard interpretable clinical baseline.</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">LogisticRegression</span>
+model <span class="tok-op">=</span> <span class="tok-cl">LogisticRegression</span>(dataset<span class="tok-op">=</span>samples)</pre>
+          <div class="model-card-footer">
+            <a href="https://colab.research.google.com/drive/1LcXZlu7ZUuqepf269X3FhXuhHeRvaJX5?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="model-card" data-category="ehr">
+          <div class="model-card-header">
+            <span class="model-classname">RETAIN</span>
+            <span class="category-tag cat-ehr">EHR</span>
+          </div>
+          <p class="model-desc">Reverse-time attention network providing visit-level and code-level interpretability for clinical risk prediction (Choi et al., 2016).</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">RETAIN</span>
+model <span class="tok-op">=</span> <span class="tok-cl">RETAIN</span>(dataset<span class="tok-op">=</span>samples)</pre>
+          <div class="model-card-footer">
+            <a href="https://colab.research.google.com/drive/1LcXZlu7ZUuqepf269X3FhXuhHeRvaJX5?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="model-card" data-category="ehr">
+          <div class="model-card-header">
+            <span class="model-classname">StageNet</span>
+            <span class="category-tag cat-ehr">EHR</span>
+          </div>
+          <p class="model-desc">Stage-aware LSTM that models disease progression stages from irregular time-series EHR data (Gao et al., 2020).</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">StageNet</span>
+model <span class="tok-op">=</span> <span class="tok-cl">StageNet</span>(dataset<span class="tok-op">=</span>samples)</pre>
+          <div class="model-card-footer">
+            <a href="https://colab.research.google.com/drive/1LcXZlu7ZUuqepf269X3FhXuhHeRvaJX5?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="model-card" data-category="ehr">
+          <div class="model-card-header">
+            <span class="model-classname">StageNetMHA</span>
+            <span class="category-tag cat-ehr">EHR</span>
+          </div>
+          <p class="model-desc">StageNet variant with multi-head attention over clinical stages for richer temporal modeling of disease trajectories.</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">StageNetMHA</span>
+model <span class="tok-op">=</span> <span class="tok-cl">StageNetMHA</span>(dataset<span class="tok-op">=</span>samples)</pre>
+          <div class="model-card-footer">
+            <a href="https://colab.research.google.com/drive/1LcXZlu7ZUuqepf269X3FhXuhHeRvaJX5?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="model-card" data-category="ehr">
+          <div class="model-card-header">
+            <span class="model-classname">AdaCare</span>
+            <span class="category-tag cat-ehr">EHR</span>
+          </div>
+          <p class="model-desc">Adaptive recurrent model with feature recalibration and multi-scale temporal convolution for clinical time-series (Ma et al., 2020).</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">AdaCare</span>
+model <span class="tok-op">=</span> <span class="tok-cl">AdaCare</span>(dataset<span class="tok-op">=</span>samples)</pre>
+          <div class="model-card-footer">
+            <a href="https://colab.research.google.com/drive/1LcXZlu7ZUuqepf269X3FhXuhHeRvaJX5?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="model-card" data-category="ehr">
+          <div class="model-card-header">
+            <span class="model-classname">ConCare</span>
+            <span class="category-tag cat-ehr">EHR</span>
+          </div>
+          <p class="model-desc">Context-aware attention model that uses demographic features to guide multi-head attention over clinical features (Ma et al., 2020).</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">ConCare</span>
+model <span class="tok-op">=</span> <span class="tok-cl">ConCare</span>(dataset<span class="tok-op">=</span>samples)</pre>
+          <div class="model-card-footer">
+            <a href="https://colab.research.google.com/drive/1LcXZlu7ZUuqepf269X3FhXuhHeRvaJX5?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="model-card" data-category="ehr">
+          <div class="model-card-header">
+            <span class="model-classname">Agent</span>
+            <span class="category-tag cat-ehr">EHR</span>
+          </div>
+          <p class="model-desc">Attention-based model with global-to-local information gathering for learning patient representations from irregular clinical visits.</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">Agent</span>
+model <span class="tok-op">=</span> <span class="tok-cl">Agent</span>(dataset<span class="tok-op">=</span>samples)</pre>
+          <div class="model-card-footer">
+            <a href="https://colab.research.google.com/drive/1LcXZlu7ZUuqepf269X3FhXuhHeRvaJX5?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="model-card" data-category="ehr">
+          <div class="model-card-header">
+            <span class="model-classname">GRASP</span>
+            <span class="category-tag cat-ehr">EHR</span>
+          </div>
+          <p class="model-desc">Graph-based similarity retrieval model that learns from both local patient features and similar patients in the dataset (Zhang et al., 2021).</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">GRASP</span>
+model <span class="tok-op">=</span> <span class="tok-cl">GRASP</span>(dataset<span class="tok-op">=</span>samples)</pre>
+          <div class="model-card-footer">
+            <a href="https://colab.research.google.com/drive/1LcXZlu7ZUuqepf269X3FhXuhHeRvaJX5?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="model-card" data-category="ehr">
+          <div class="model-card-header">
+            <span class="model-classname">DeepR</span>
+            <span class="category-tag cat-ehr">EHR</span>
+          </div>
+          <p class="model-desc">Deep representation learning from clinical records using sparse ICD code embeddings with temporal decay (Nguyen et al., 2016).</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">DeepR</span>
+model <span class="tok-op">=</span> <span class="tok-cl">DeepR</span>(dataset<span class="tok-op">=</span>samples)</pre>
+          <div class="model-card-footer">
+            <a href="https://colab.research.google.com/drive/1LcXZlu7ZUuqepf269X3FhXuhHeRvaJX5?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="model-card" data-category="ehr">
+          <div class="model-card-header">
+            <span class="model-classname">EHRMamba</span>
+            <span class="category-tag cat-ehr">EHR</span>
+          </div>
+          <p class="model-desc">State-space model (Mamba/SSM) adapted for EHR sequences — efficient linear-time alternative to transformers for long patient histories.</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">EHRMamba</span>
+model <span class="tok-op">=</span> <span class="tok-cl">EHRMamba</span>(dataset<span class="tok-op">=</span>samples)</pre>
+          <div class="model-card-footer">
+            <a href="https://colab.research.google.com/drive/1LcXZlu7ZUuqepf269X3FhXuhHeRvaJX5?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="model-card" data-category="ehr">
+          <div class="model-card-header">
+            <span class="model-classname">JambaEHR</span>
+            <span class="category-tag cat-ehr">EHR</span>
+          </div>
+          <p class="model-desc">Hybrid Jamba architecture (SSM + attention layers) for EHR, balancing the efficiency of Mamba with the expressiveness of transformers.</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">JambaEHR</span>
+model <span class="tok-op">=</span> <span class="tok-cl">JambaEHR</span>(dataset<span class="tok-op">=</span>samples)</pre>
+          <div class="model-card-footer">
+            <a href="https://colab.research.google.com/drive/1LcXZlu7ZUuqepf269X3FhXuhHeRvaJX5?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <!-- ───────────── Drug Recommendation (4) ───────────── -->
+
+        <div class="model-card" data-category="drug">
+          <div class="model-card-header">
+            <span class="model-classname">SafeDrug</span>
+            <span class="category-tag cat-drug">Drug Rec</span>
+          </div>
+          <p class="model-desc">Drug recommendation with molecular structure and drug-drug interaction constraints for safe prescription (Yang et al., 2021).</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">SafeDrug</span>
+model <span class="tok-op">=</span> <span class="tok-cl">SafeDrug</span>(dataset<span class="tok-op">=</span>samples)</pre>
+          <div class="model-card-footer">
+            <a href="https://colab.research.google.com/drive/1b9xRbxUz-HLzxsrvxdsdJ868ajGQCY6U?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="model-card" data-category="drug">
+          <div class="model-card-header">
+            <span class="model-classname">GAMENet</span>
+            <span class="category-tag cat-drug">Drug Rec</span>
+          </div>
+          <p class="model-desc">Graph augmented memory network leveraging drug knowledge graphs and patient history for medication recommendation (Shang et al., 2019).</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">GAMENet</span>
+model <span class="tok-op">=</span> <span class="tok-cl">GAMENet</span>(dataset<span class="tok-op">=</span>samples)</pre>
+          <div class="model-card-footer">
+            <a href="https://colab.research.google.com/drive/1b9xRbxUz-HLzxsrvxdsdJ868ajGQCY6U?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="model-card" data-category="drug">
+          <div class="model-card-header">
+            <span class="model-classname">MICRON</span>
+            <span class="category-tag cat-drug">Drug Rec</span>
+          </div>
+          <p class="model-desc">Medication change prediction network that models prescription changes between visits via residual learning (Yang et al., 2021).</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">MICRON</span>
+model <span class="tok-op">=</span> <span class="tok-cl">MICRON</span>(dataset<span class="tok-op">=</span>samples)</pre>
+          <div class="model-card-footer">
+            <a href="https://colab.research.google.com/drive/1b9xRbxUz-HLzxsrvxdsdJ868ajGQCY6U?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="model-card" data-category="drug">
+          <div class="model-card-header">
+            <span class="model-classname">MoleRec</span>
+            <span class="category-tag cat-drug">Drug Rec</span>
+          </div>
+          <p class="model-desc">Molecule-level drug recommendation with substructure-aware representation learning from drug molecular graphs (Yang et al., 2023).</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">MoleRec</span>
+model <span class="tok-op">=</span> <span class="tok-cl">MoleRec</span>(dataset<span class="tok-op">=</span>samples)</pre>
+          <div class="model-card-footer">
+            <a href="https://colab.research.google.com/drive/1b9xRbxUz-HLzxsrvxdsdJ868ajGQCY6U?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <!-- ───────────── Biosignal / EEG (4) ───────────── -->
+
+        <div class="model-card" data-category="signal">
+          <div class="model-card-header">
+            <span class="model-classname">SparcNet</span>
+            <span class="category-tag cat-signal">Signal</span>
+          </div>
+          <p class="model-desc">Sparse neural network for EEG and biosignal classification — strong performance on sleep staging, abnormality detection, and EEG events.</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">SparcNet</span>
+model <span class="tok-op">=</span> <span class="tok-cl">SparcNet</span>(dataset<span class="tok-op">=</span>samples)</pre>
+          <div class="model-card-footer">
+            <a href="https://colab.research.google.com/drive/1LcXZlu7ZUuqepf269X3FhXuhHeRvaJX5?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="model-card" data-category="signal">
+          <div class="model-card-header">
+            <span class="model-classname">BIOT</span>
+            <span class="category-tag cat-signal">Signal</span>
+          </div>
+          <p class="model-desc">Biosignal foundation model with tokenized EEG patch representations and cross-dataset transfer learning capabilities (Yang et al., 2023).</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">BIOT</span>
+model <span class="tok-op">=</span> <span class="tok-cl">BIOT</span>(dataset<span class="tok-op">=</span>samples)</pre>
+          <div class="model-card-footer">
+            <a href="https://colab.research.google.com/drive/1LcXZlu7ZUuqepf269X3FhXuhHeRvaJX5?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="model-card" data-category="signal">
+          <div class="model-card-header">
+            <span class="model-classname">ContraWR</span>
+            <span class="category-tag cat-signal">Signal</span>
+          </div>
+          <p class="model-desc">Contrastive learning for wearable and EEG signals — self-supervised pretraining for sleep staging and physiological classification (Yang et al., 2023).</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">ContraWR</span>
+model <span class="tok-op">=</span> <span class="tok-cl">ContraWR</span>(dataset<span class="tok-op">=</span>samples)</pre>
+          <div class="model-card-footer">
+            <a href="https://colab.research.google.com/drive/1LcXZlu7ZUuqepf269X3FhXuhHeRvaJX5?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="model-card" data-category="signal">
+          <div class="model-card-header">
+            <span class="model-classname">TCN</span>
+            <span class="category-tag cat-signal">Signal</span>
+          </div>
+          <p class="model-desc">Temporal Convolutional Network with dilated causal convolutions for time-series classification — efficient and parallelizable.</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">TCN</span>
+model <span class="tok-op">=</span> <span class="tok-cl">TCN</span>(dataset<span class="tok-op">=</span>samples)</pre>
+          <div class="model-card-footer">
+            <a href="https://colab.research.google.com/drive/1LcXZlu7ZUuqepf269X3FhXuhHeRvaJX5?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <!-- ───────────── Graph (2) ───────────── -->
+
+        <div class="model-card" data-category="graph">
+          <div class="model-card-header">
+            <span class="model-classname">GNN</span>
+            <span class="category-tag cat-graph">Graph</span>
+          </div>
+          <p class="model-desc">General-purpose graph neural network for clinical knowledge graphs, patient similarity networks, and drug interaction graphs.</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">GNN</span>
+model <span class="tok-op">=</span> <span class="tok-cl">GNN</span>(dataset<span class="tok-op">=</span>samples, conv_type<span class="tok-op">=</span><span class="tok-str">"GAT"</span>)</pre>
+          <div class="model-card-footer">
+            <a href="https://colab.research.google.com/drive/1LcXZlu7ZUuqepf269X3FhXuhHeRvaJX5?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="model-card" data-category="graph">
+          <div class="model-card-header">
+            <span class="model-classname">GraphCare</span>
+            <span class="category-tag cat-graph">Graph</span>
+          </div>
+          <p class="model-desc">Knowledge graph-enhanced patient representation that integrates clinical ontologies (ICD, ATC) for personalized healthcare prediction (Jiang et al., 2023).</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">GraphCare</span>
+model <span class="tok-op">=</span> <span class="tok-cl">GraphCare</span>(dataset<span class="tok-op">=</span>samples)</pre>
+          <div class="model-card-footer">
+            <a href="https://colab.research.google.com/drive/1LcXZlu7ZUuqepf269X3FhXuhHeRvaJX5?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <!-- ───────────── Image (4) ───────────── -->
+
+        <div class="model-card" data-category="image">
+          <div class="model-card-header">
+            <span class="model-classname">CNN</span>
+            <span class="category-tag cat-image">Image</span>
+          </div>
+          <p class="model-desc">Convolutional neural network for medical image classification — configurable depth and normalization for chest X-ray and other imaging tasks.</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">CNN</span>
+model <span class="tok-op">=</span> <span class="tok-cl">CNN</span>(dataset<span class="tok-op">=</span>samples)</pre>
+          <div class="model-card-footer">
+            <a href="https://colab.research.google.com/drive/18vK23gyI1LjWbTgkq4f99yDZA3A7Pxp9?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="model-card" data-category="image">
+          <div class="model-card-header">
+            <span class="model-classname">TorchvisionModel</span>
+            <span class="category-tag cat-image">Image</span>
+          </div>
+          <p class="model-desc">Wrapper for any torchvision architecture (ResNet, ViT, EfficientNet, DenseNet) as a drop-in PyHealth model with pre-trained weights support.</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">TorchvisionModel</span>
+model <span class="tok-op">=</span> <span class="tok-cl">TorchvisionModel</span>(dataset<span class="tok-op">=</span>samples,
+    backbone<span class="tok-op">=</span><span class="tok-str">"resnet50"</span>)</pre>
+          <div class="model-card-footer">
+            <a href="https://colab.research.google.com/drive/18vK23gyI1LjWbTgkq4f99yDZA3A7Pxp9?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="model-card" data-category="image">
+          <div class="model-card-header">
+            <span class="model-classname">VAE</span>
+            <span class="category-tag cat-image">Image</span>
+          </div>
+          <p class="model-desc">Variational autoencoder for medical image generation and latent-space representation learning — supports chest X-ray synthesis.</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">VAE</span>
+model <span class="tok-op">=</span> <span class="tok-cl">VAE</span>(dataset<span class="tok-op">=</span>samples, latent_dim<span class="tok-op">=</span><span class="tok-num">128</span>)</pre>
+          <div class="model-card-footer">
+            <a href="https://colab.research.google.com/drive/18vK23gyI1LjWbTgkq4f99yDZA3A7Pxp9?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="model-card" data-category="image">
+          <div class="model-card-header">
+            <span class="model-classname">GAN</span>
+            <span class="category-tag cat-image">Image</span>
+          </div>
+          <p class="model-desc">Generative adversarial network for medical image synthesis and data augmentation — includes generator and discriminator for chest X-ray generation.</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">GAN</span>
+model <span class="tok-op">=</span> <span class="tok-cl">GAN</span>(dataset<span class="tok-op">=</span>samples)</pre>
+          <div class="model-card-footer">
+            <a href="https://colab.research.google.com/drive/18vK23gyI1LjWbTgkq4f99yDZA3A7Pxp9?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <!-- ───────────── Text / NLP (3) ───────────── -->
+
+        <div class="model-card" data-category="text">
+          <div class="model-card-header">
+            <span class="model-classname">TransformersModel</span>
+            <span class="category-tag cat-text">Text</span>
+          </div>
+          <p class="model-desc">HuggingFace model wrapper — plug in any BERT, ClinicalBERT, BioBERT, or LLM checkpoint as a PyHealth model for clinical NLP tasks.</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">TransformersModel</span>
+model <span class="tok-op">=</span> <span class="tok-cl">TransformersModel</span>(dataset<span class="tok-op">=</span>samples,
+    model_name<span class="tok-op">=</span><span class="tok-str">"emilyalsentzer/Bio_ClinicalBERT"</span>)</pre>
+          <div class="model-card-footer">
+            <a href="https://colab.research.google.com/drive/1ThYP_5ng5xPQwscv5XztefkkoTruhjeK?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="model-card" data-category="text">
+          <div class="model-card-header">
+            <span class="model-classname">TextEmbeddingModel</span>
+            <span class="category-tag cat-text">Text</span>
+          </div>
+          <p class="model-desc">Extracts fixed-size text embeddings from clinical notes using a HuggingFace encoder, feeding downstream PyHealth models.</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">TextEmbeddingModel</span>
+model <span class="tok-op">=</span> <span class="tok-cl">TextEmbeddingModel</span>(dataset<span class="tok-op">=</span>samples,
+    model_name<span class="tok-op">=</span><span class="tok-str">"bert-base-uncased"</span>)</pre>
+          <div class="model-card-footer">
+            <a href="https://colab.research.google.com/drive/1ThYP_5ng5xPQwscv5XztefkkoTruhjeK?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="model-card" data-category="text">
+          <div class="model-card-header">
+            <span class="model-classname">SDOH</span>
+            <span class="category-tag cat-text">Text</span>
+          </div>
+          <p class="model-desc">Social determinants of health model that extracts SDOH factors from unstructured clinical notes and integrates them into risk prediction.</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">SDOH</span>
+model <span class="tok-op">=</span> <span class="tok-cl">SDOH</span>(dataset<span class="tok-op">=</span>samples)</pre>
+          <div class="model-card-footer">
+            <a href="https://colab.research.google.com/drive/1LcXZlu7ZUuqepf269X3FhXuhHeRvaJX5?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <!-- ───────────── Multimodal / Utility (3) ───────────── -->
+
+        <div class="model-card" data-category="multimodal">
+          <div class="model-card-header">
+            <span class="model-classname">UnifiedMultimodalEmbeddingModel</span>
+            <span class="category-tag cat-multimodal">Multimodal</span>
+          </div>
+          <p class="model-desc">Unified temporal embedding model for simultaneous EHR codes, clinical text, medical images, and biosignals — the backbone of PyHealth 2.0's multimodal API.</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">UnifiedMultimodalEmbeddingModel</span>
+model <span class="tok-op">=</span> <span class="tok-cl">UnifiedMultimodalEmbeddingModel</span>(
+    dataset<span class="tok-op">=</span>samples)</pre>
+          <div class="model-card-footer">
+            <a href="https://colab.research.google.com/drive/1LcXZlu7ZUuqepf269X3FhXuhHeRvaJX5?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="model-card" data-category="multimodal">
+          <div class="model-card-header">
+            <span class="model-classname">VisionEmbeddingModel</span>
+            <span class="category-tag cat-multimodal">Multimodal</span>
+          </div>
+          <p class="model-desc">Vision encoder bridge that wraps torchvision backbones as temporal feature processors compatible with the unified multimodal pipeline.</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">VisionEmbeddingModel</span>
+model <span class="tok-op">=</span> <span class="tok-cl">VisionEmbeddingModel</span>(dataset<span class="tok-op">=</span>samples,
+    backbone<span class="tok-op">=</span><span class="tok-str">"vit_b_16"</span>)</pre>
+          <div class="model-card-footer">
+            <a href="https://colab.research.google.com/drive/18vK23gyI1LjWbTgkq4f99yDZA3A7Pxp9?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="model-card" data-category="multimodal">
+          <div class="model-card-header">
+            <span class="model-classname">MedLink</span>
+            <span class="category-tag cat-multimodal">Multimodal</span>
+          </div>
+          <p class="model-desc">Patient record linkage model combining structured EHR features and free-text notes to identify duplicate patient records across data sources.</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">MedLink</span>
+model <span class="tok-op">=</span> <span class="tok-cl">MedLink</span>(dataset<span class="tok-op">=</span>samples)</pre>
+          <div class="model-card-footer">
+            <a href="https://colab.research.google.com/drive/1LcXZlu7ZUuqepf269X3FhXuhHeRvaJX5?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+      </div><!-- /model-grid -->
+    </section>
+
+    <!-- ── Custom Model Note ── -->
+    <section class="page-section fade-up">
+      <div style="background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:1.6rem 1.8rem; display:flex; gap:1.2rem; align-items:flex-start;">
+        <div style="flex-shrink:0; width:40px; height:40px; border-radius:10px; background:rgba(201,95,38,0.1); display:flex; align-items:center; justify-content:center;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <div>
+          <h3 style="margin:0 0 0.4rem; font-size:1rem;">Need a custom model?</h3>
+          <p style="margin:0 0 0.8rem; font-size:0.88rem; color:var(--muted); line-height:1.55;">PyHealth models inherit from <code style="font-family:monospace; font-size:0.85rem; background:rgba(0,0,0,0.05); padding:0.1rem 0.35rem; border-radius:4px;">BaseModel</code>. Your custom model immediately works with the <code style="font-family:monospace; font-size:0.85rem; background:rgba(0,0,0,0.05); padding:0.1rem 0.35rem; border-radius:4px;">Trainer</code>, all metrics, and explainability tools — no extra wiring needed.</p>
+          <div style="display:flex; gap:0.6rem; flex-wrap:wrap;">
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" target="_blank" rel="noopener" style="font-size:0.83rem; font-weight:500; color:var(--accent); text-decoration:none; padding:0.3rem 0.75rem; border:1.5px solid rgba(201,95,38,0.3); border-radius:7px; transition:background 0.15s;" onmouseover="this.style.background='rgba(201,95,38,0.07)'" onmouseout="this.style.background=''">Model API Reference →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth" target="_blank" rel="noopener" style="font-size:0.83rem; font-weight:500; color:var(--muted); text-decoration:none; padding:0.3rem 0.75rem; border:1.5px solid var(--line); border-radius:7px; transition:background 0.15s;" onmouseover="this.style.background='rgba(0,0,0,0.03)'" onmouseout="this.style.background=''">View Source on GitHub →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-wrap" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+      <span>Copyright <span id="year"></span> John Wu</span>
+      <a href="index.html" style="color:var(--accent); text-decoration:none; font-size:0.9rem;">← Back to PyHealth</a>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function filterModels(category, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const cards = document.querySelectorAll('#modelGrid .model-card');
+      let visible = 0;
+      cards.forEach(card => {
+        const show = category === 'all' || card.dataset.category === category;
+        card.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+
+      document.getElementById('visibleCount').textContent = visible;
+    }
+  </script>
+
+</body>
+</html>
