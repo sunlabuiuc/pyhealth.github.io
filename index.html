@@ -12,6 +12,9 @@
   <style>
     /* ── PyHealth page-specific styles ── */
 
+    /* Wider canvas than the personal site */
+    :root { --maxw: 1140px; }
+
     .landing-card {
       border-radius: 20px;
       overflow: hidden;
@@ -22,7 +25,7 @@
 
     .ph-hero {
       background: linear-gradient(140deg, #1c2b3a 0%, #28425e 60%, #1e3348 100%);
-      padding: 3rem 2.4rem 2.8rem;
+      padding: 3.5rem 3rem 3.2rem;
       color: white;
       position: relative;
       overflow: hidden;
@@ -52,7 +55,7 @@
       pointer-events: none;
     }
 
-    .ph-logo { height: 90px; width: auto; display: block; margin-bottom: 0.5rem; }
+    .ph-logo { height: 110px; width: auto; display: block; margin-bottom: 0.6rem; }
 
     .ph-eyebrow {
       font-size: 0.8rem;
@@ -65,14 +68,14 @@
 
     .ph-hero h1 {
       color: white;
-      font-size: clamp(2.4rem, 5.5vw, 4rem);
+      font-size: clamp(2.6rem, 5.5vw, 4.5rem);
       margin: 0 0 0.5rem;
       letter-spacing: -0.01em;
     }
 
     .ph-tagline {
       color: rgba(255,255,255,0.72);
-      font-size: 1.08rem;
+      font-size: 1.15rem;
       line-height: 1.55;
       max-width: 580px;
       margin: 0 0 2rem;
@@ -128,19 +131,19 @@
       background: var(--paper);
       border: 1px solid var(--line);
       border-radius: 14px;
-      padding: 1.2rem 0.9rem;
+      padding: 1.5rem 1rem;
       text-align: center;
     }
     .stat-number {
       font-family: "Source Serif 4", Georgia, serif;
-      font-size: 2rem;
+      font-size: 2.4rem;
       font-weight: 600;
       color: var(--accent);
       line-height: 1;
       margin-bottom: 0.35rem;
     }
     .stat-label {
-      font-size: 0.82rem;
+      font-size: 0.9rem;
       color: var(--muted);
       line-height: 1.3;
     }
@@ -156,7 +159,7 @@
       background: var(--paper);
       border: 1px solid var(--line);
       border-radius: 14px;
-      padding: 1.5rem 1.3rem;
+      padding: 1.8rem 1.6rem;
       text-decoration: none;
       color: var(--ink);
       display: flex;
@@ -175,11 +178,11 @@
       margin-bottom: 0.2rem;
     }
     .link-card h3 {
-      font-size: 1.08rem;
+      font-size: 1.15rem;
       margin: 0;
     }
     .link-card p {
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       color: var(--muted);
       margin: 0;
       line-height: 1.45;
@@ -215,12 +218,12 @@
     }
 
     .section-h2 {
-      font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
       margin: 0 0 0.3rem;
     }
     .section-sub {
       color: var(--muted);
-      font-size: 0.95rem;
+      font-size: 1rem;
       margin: 0 0 1rem;
     }
 
@@ -248,7 +251,7 @@
       background: var(--paper);
       border: 1px solid var(--line);
       border-radius: 14px;
-      padding: 1rem 1rem 0.9rem;
+      padding: 1.3rem 1.2rem 1.1rem;
       text-decoration: none;
       color: var(--ink);
       display: flex;
@@ -273,14 +276,14 @@
 
     .pipeline-name {
       font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-      font-size: 0.91rem;
+      font-size: 0.97rem;
       font-weight: 600;
       color: var(--ink);
       margin-bottom: 0.2rem;
     }
 
     .pipeline-desc {
-      font-size: 0.83rem;
+      font-size: 0.9rem;
       color: var(--muted);
       line-height: 1.45;
       margin: 0;
@@ -476,7 +479,7 @@
       margin-top: 0;
       background: var(--bg);
       border-top: 1px solid var(--line);
-      padding: 1.2rem 1.4rem;
+      padding: 1.5rem 2rem;
     }
 
     /* ── Linkable stat cards ── */
@@ -506,10 +509,10 @@
       background: var(--paper);
       border: 1px solid var(--line);
       border-radius: 14px;
-      padding: 1.2rem 1.3rem;
+      padding: 1.5rem 1.6rem;
     }
     .perf-panel-title {
-      font-size: 1rem;
+      font-size: 1.08rem;
       margin: 0 0 1rem;
       font-family: "IBM Plex Sans", sans-serif;
       font-weight: 600;
@@ -532,8 +535,8 @@
       margin-bottom: 0.38rem;
     }
     .bar-name {
-      width: 86px;
-      font-size: 0.77rem;
+      width: 96px;
+      font-size: 0.83rem;
       color: var(--muted);
       text-align: right;
       flex-shrink: 0;
@@ -543,7 +546,7 @@
       flex: 1;
       background: var(--bg);
       border-radius: 4px;
-      height: 17px;
+      height: 20px;
       overflow: hidden;
     }
     .perf-bar-fill {
@@ -565,7 +568,7 @@
       );
     }
     .bar-val {
-      font-size: 0.77rem;
+      font-size: 0.83rem;
       color: var(--ink);
       font-weight: 500;
       width: 60px;
@@ -1045,14 +1048,24 @@
       }, 280);
     }
 
-    // Auto-reveal on scroll when button reaches center of viewport
+    // Auto-reveal on scroll: only when button scrolls into view AND user has actually scrolled
     const _observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
+      if (entries[0].isIntersecting && window.scrollY > 0) {
         revealExplore(true);
         _observer.disconnect();
       }
     }, { rootMargin: '0px 0px -35% 0px' });
     _observer.observe(document.getElementById('exploreBtnWrap'));
+
+    // Fallback: if button was already visible on load (large viewport / zoomed out),
+    // reveal once the user scrolls down at least 150px
+    function _scrollReveal() {
+      if (window.scrollY > 150) {
+        revealExplore(true);
+        window.removeEventListener('scroll', _scrollReveal);
+      }
+    }
+    window.addEventListener('scroll', _scrollReveal, { passive: true });
 
     // Animate performance bars on scroll into view
     const _perfObserver = new IntersectionObserver((entries) => {
