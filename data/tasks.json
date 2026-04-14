@@ -1,0 +1,587 @@
+[
+  {
+    "class_name": "MortalityPredictionMIMIC3",
+    "display_name": "Mortality Prediction",
+    "display_class": "MortalityPredictionMIMIC3",
+    "datasets": [
+      "MIMIC-III"
+    ],
+    "description": "Predict in-hospital mortality from ICU visit sequences of diagnoses and procedures.",
+    "colab_url": "https://colab.research.google.com/drive/1b9xRbxUz-HLzxsrvxdsdJ868ajGQCY6U?usp=sharing",
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html",
+    "input_schema": {
+      "conditions": "sequence",
+      "procedures": "sequence",
+      "drugs": "sequence"
+    },
+    "output_schema": {
+      "mortality": "binary"
+    },
+    "task_name": "MortalityPredictionMIMIC3",
+    "source_file": "pyhealth/tasks/mortality_prediction.py",
+    "modality": [
+      "ehr"
+    ],
+    "output_type": "binary"
+  },
+  {
+    "class_name": "InHospitalMortalityMIMIC4",
+    "display_name": "In-Hospital Mortality",
+    "display_class": "InHospitalMortalityMIMIC4",
+    "datasets": [
+      "MIMIC-IV"
+    ],
+    "description": "Binary mortality prediction on MIMIC-IV timeseries data using vitals and lab measurements.",
+    "colab_url": "https://colab.research.google.com/drive/1b9xRbxUz-HLzxsrvxdsdJ868ajGQCY6U?usp=sharing",
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html",
+    "input_schema": {
+      "labs": "timeseries"
+    },
+    "output_schema": {
+      "mortality": "binary"
+    },
+    "task_name": "InHospitalMortalityMIMIC4",
+    "source_file": "pyhealth/tasks/in_hospital_mortality_mimic4.py",
+    "modality": [
+      "timeseries"
+    ],
+    "output_type": "binary"
+  },
+  {
+    "class_name": "ReadmissionPredictionMIMIC3",
+    "display_name": "30-Day Readmission",
+    "display_class": "ReadmissionPredictionMIMIC3",
+    "modality": [
+      "ehr"
+    ],
+    "datasets": [
+      "MIMIC-III"
+    ],
+    "description": "Predict whether a patient will be readmitted within 30 days of hospital discharge.",
+    "colab_url": "https://colab.research.google.com/drive/1h0pAymUlPQfkLFryI9QI37-HAW1tRxGZ?usp=sharing",
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html",
+    "output_type": null
+  },
+  {
+    "class_name": "DKAPredictionMIMIC4",
+    "display_name": "DKA Prediction",
+    "display_class": "DKAPrediction",
+    "modality": [
+      "ehr"
+    ],
+    "datasets": [
+      "MIMIC-IV"
+    ],
+    "description": "Predict onset of diabetic ketoacidosis (DKA) from clinical event sequences in ICU patients.",
+    "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html",
+    "output_type": null
+  },
+  {
+    "class_name": "EEGAbnormalTUAB",
+    "display_name": "EEG Abnormality Detection",
+    "display_class": "EEGAbnormal",
+    "modality": [
+      "signal"
+    ],
+    "datasets": [
+      "TUAB"
+    ],
+    "description": "Classify clinical EEG recordings as normal or abnormal using deep signal models.",
+    "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html",
+    "output_type": null
+  },
+  {
+    "class_name": "COVID19CXRClassification",
+    "display_name": "COVID-19 Detection",
+    "display_class": "COVID19CXRClassification",
+    "output_type": "binary",
+    "datasets": [
+      "COVID19-CXR"
+    ],
+    "description": "Binary classification of chest X-rays as COVID-19 positive vs. normal/pneumonia.",
+    "colab_url": "https://colab.research.google.com/drive/18vK23gyI1LjWbTgkq4f99yDZA3A7Pxp9?usp=sharing",
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html",
+    "input_schema": {
+      "image": "image"
+    },
+    "output_schema": {
+      "disease": "multiclass"
+    },
+    "task_name": "COVID19CXRClassification",
+    "source_file": "pyhealth/tasks/covid19_cxr_classification.py",
+    "modality": [
+      "image"
+    ]
+  },
+  {
+    "class_name": "MutationPathogenicityPrediction",
+    "display_name": "Variant Pathogenicity",
+    "display_class": "MutationPathogenicity",
+    "modality": [
+      "genomics"
+    ],
+    "datasets": [
+      "COSMIC"
+    ],
+    "description": "Classify genomic variants as pathogenic or benign using sequence-based features.",
+    "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html",
+    "output_type": null
+  },
+  {
+    "class_name": "CancerSurvivalPrediction",
+    "display_name": "Cancer Survival Prediction",
+    "display_class": "CancerSurvivalPrediction",
+    "modality": [
+      "genomics"
+    ],
+    "datasets": [
+      "TCGA-PRAD"
+    ],
+    "description": "Predict 5-year survival of prostate cancer patients from multi-omics profiles.",
+    "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html",
+    "output_type": null
+  },
+  {
+    "class_name": "PatientLinkageMIMIC3Task",
+    "display_name": "Patient Record Linkage",
+    "display_class": "PatientLinkage",
+    "output_type": "binary",
+    "modality": [
+      "ehr"
+    ],
+    "datasets": [
+      "MIMIC-III"
+    ],
+    "description": "Determine whether two clinical records belong to the same patient across fragmented health systems.",
+    "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html"
+  },
+  {
+    "class_name": "LengthOfStayPredictionMIMIC3",
+    "display_name": "Length of Stay",
+    "display_class": "LengthOfStayMIMIC3",
+    "modality": [
+      "ehr"
+    ],
+    "datasets": [
+      "MIMIC-III"
+    ],
+    "description": "Predict ICU length of stay as one of multiple duration buckets from admission data.",
+    "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html",
+    "output_type": null
+  },
+  {
+    "class_name": "SleepStagingSleepEDF",
+    "display_name": "Sleep Staging (SleepEDF)",
+    "display_class": "SleepStagingSleepEDF",
+    "modality": [
+      "signal"
+    ],
+    "datasets": [
+      "SleepEDF"
+    ],
+    "description": "Classify 30-second EEG epochs into Wake, N1, N2, N3, or REM sleep stages.",
+    "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html",
+    "input_schema": null,
+    "output_schema": null,
+    "task_name": "SleepStaging",
+    "source_file": "pyhealth/tasks/sleep_staging_v2.py",
+    "output_type": null
+  },
+  {
+    "class_name": "SleepStagingSHHS",
+    "display_name": "Sleep Staging (SHHS)",
+    "display_class": "SleepStagingSHHS",
+    "output_type": "multiclass",
+    "modality": [
+      "signal"
+    ],
+    "datasets": [
+      "SHHS"
+    ],
+    "description": "5-class sleep staging on the large-scale Sleep Heart Health Study polysomnography dataset.",
+    "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html"
+  },
+  {
+    "class_name": "SleepStagingISRUC",
+    "display_name": "Sleep Staging (ISRUC)",
+    "display_class": "SleepStagingISRUC",
+    "output_type": "multiclass",
+    "modality": [
+      "signal"
+    ],
+    "datasets": [
+      "ISRUC"
+    ],
+    "description": "Sleep stage classification on the ISRUC dataset including patients with sleep disorders.",
+    "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html"
+  },
+  {
+    "class_name": "EEGEventsTUEV",
+    "display_name": "EEG Event Classification",
+    "display_class": "EEGEvents",
+    "modality": [
+      "signal"
+    ],
+    "datasets": [
+      "TUEV"
+    ],
+    "description": "Classify EEG events into six types including spike-wave complexes, periodic discharges, and artifacts.",
+    "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html",
+    "output_type": null
+  },
+  {
+    "class_name": "COVID19CXRClassification",
+    "display_name": "COVID-19 3-Class",
+    "display_class": "COVID19CXRMulticlass",
+    "output_type": "multiclass",
+    "datasets": [
+      "COVID19-CXR"
+    ],
+    "description": "3-class chest X-ray classification: COVID-19, viral pneumonia, or normal lung.",
+    "colab_url": "https://colab.research.google.com/drive/18vK23gyI1LjWbTgkq4f99yDZA3A7Pxp9?usp=sharing",
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html",
+    "input_schema": {
+      "image": "image"
+    },
+    "output_schema": {
+      "disease": "multiclass"
+    },
+    "task_name": "COVID19CXRClassification",
+    "source_file": "pyhealth/tasks/covid19_cxr_classification.py",
+    "modality": [
+      "image"
+    ]
+  },
+  {
+    "class_name": "MedicalTranscriptionsClassification",
+    "display_name": "Medical Specialty Classification",
+    "display_class": "MedicalTranscriptions",
+    "datasets": [
+      "MedTranscriptions"
+    ],
+    "description": "Classify clinical transcription notes into one of 40 medical specialties using language models.",
+    "colab_url": "https://colab.research.google.com/drive/1ThYP_5ng5xPQwscv5XztefkkoTruhjeK?usp=sharing",
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html",
+    "input_schema": {
+      "transcription": "text"
+    },
+    "output_schema": {
+      "medical_specialty": "multiclass"
+    },
+    "task_name": "MedicalTranscriptionsClassification",
+    "source_file": "pyhealth/tasks/medical_transcriptions_classification.py",
+    "modality": [
+      "text"
+    ],
+    "output_type": "multiclass"
+  },
+  {
+    "class_name": "BenchmarkEHRShot",
+    "display_name": "EHRShot Benchmark",
+    "display_class": "EHRShotTask",
+    "output_type": "multiclass",
+    "modality": [
+      "ehr"
+    ],
+    "datasets": [
+      "EHRShot"
+    ],
+    "description": "15-task few-shot benchmark suite for evaluating clinical foundation models on real-world EHR prediction challenges.",
+    "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html",
+    "input_schema": null,
+    "output_schema": null,
+    "task_name": "BenchmarkEHRShot",
+    "source_file": "pyhealth/tasks/benchmark_ehrshot.py"
+  },
+  {
+    "class_name": "DrugRecommendationMIMIC3",
+    "display_name": "Drug Recommendation",
+    "display_class": "DrugRecommendationMIMIC3",
+    "modality": [
+      "ehr"
+    ],
+    "datasets": [
+      "MIMIC-III"
+    ],
+    "description": "Recommend a safe set of medications for a patient visit given their diagnosis and procedure history.",
+    "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html",
+    "output_type": null
+  },
+  {
+    "class_name": "MIMIC3ICD9Coding",
+    "display_name": "ICD-9 Code Prediction",
+    "display_class": "ICD9CodingMIMIC3",
+    "modality": [
+      "text"
+    ],
+    "datasets": [
+      "MIMIC-III"
+    ],
+    "description": "Automatically assign ICD-9 diagnosis codes from clinical notes and structured EHR data.",
+    "colab_url": "https://colab.research.google.com/drive/1ThYP_5ng5xPQwscv5XztefkkoTruhjeK?usp=sharing",
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html",
+    "input_schema": {
+      "text": "TextProcessor"
+    },
+    "output_schema": {
+      "icd_codes": "MultiLabelProcessor"
+    },
+    "task_name": "mimic3_icd9_coding",
+    "source_file": "pyhealth/tasks/medical_coding.py",
+    "output_type": null
+  },
+  {
+    "class_name": "CardiologyDetect",
+    "display_name": "Cardiac Arrhythmia Detection",
+    "display_class": "CardioDetection",
+    "output_type": "multilabel",
+    "modality": [
+      "signal"
+    ],
+    "datasets": [
+      "Cardiology"
+    ],
+    "description": "Detect multiple cardiac arrhythmia types simultaneously from 12-lead ECG recordings.",
+    "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html"
+  },
+  {
+    "class_name": "BMDHSDiseaseClassification",
+    "display_name": "Heart Sound Classification",
+    "display_class": "HeartSoundClassification",
+    "modality": [
+      "audio"
+    ],
+    "datasets": [
+      "BMDHS"
+    ],
+    "description": "Classify cardiac valve disease conditions from phonocardiogram (PCG) heart sound recordings.",
+    "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html",
+    "output_type": null
+  },
+  {
+    "class_name": "ChestXray14MultilabelClassification",
+    "display_name": "Chest X-Ray Diagnosis",
+    "display_class": "ChestXray14Multilabel",
+    "modality": [
+      "image"
+    ],
+    "datasets": [
+      "ChestXray14"
+    ],
+    "description": "Multi-label classification of 14 thoracic diseases from frontal chest X-ray images.",
+    "colab_url": "https://colab.research.google.com/drive/18vK23gyI1LjWbTgkq4f99yDZA3A7Pxp9?usp=sharing",
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html",
+    "output_type": null
+  },
+  {
+    "class_name": "VariantClassificationClinVar",
+    "display_name": "Variant Classification",
+    "display_class": "VariantClassification",
+    "output_type": "multilabel",
+    "modality": [
+      "genomics"
+    ],
+    "datasets": [
+      "COSMIC"
+    ],
+    "description": "Predict functional impact and cancer driver gene status of somatic mutations.",
+    "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html"
+  },
+  {
+    "class_name": "DrugRecommendationMIMIC3",
+    "display_name": "Safe Drug Combinations",
+    "display_class": "SafeDrugMIMIC3",
+    "output_type": "recommend",
+    "modality": [
+      "ehr"
+    ],
+    "datasets": [
+      "MIMIC-III"
+    ],
+    "description": "Recommend medication combinations that minimize drug-drug interaction (DDI) risk for a patient visit.",
+    "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html"
+  },
+  {
+    "class_name": "DrugRecommendationEICU",
+    "display_name": "Drug Recommendation (eICU)",
+    "display_class": "DrugRecommendationeICU",
+    "output_type": "recommend",
+    "modality": [
+      "ehr"
+    ],
+    "datasets": [
+      "eICU"
+    ],
+    "description": "Medication recommendation from multi-center ICU data with cross-site generalization evaluation.",
+    "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html"
+  },
+  {
+    "class_name": "CancerMutationBurden",
+    "display_name": "Tumor Mutation Burden",
+    "display_class": "CancerMutationBurden",
+    "modality": [
+      "genomics"
+    ],
+    "datasets": [
+      "TCGA-PRAD"
+    ],
+    "description": "Predict tumor mutation burden (TMB) as a continuous value from multi-omics cancer profiles.",
+    "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html",
+    "output_type": null
+  },
+  {
+    "class_name": "MortalityPredictionEICU",
+    "display_name": "Mortality Prediction EICU",
+    "display_class": null,
+    "task_name": "MortalityPredictionEICU",
+    "description": "Task for predicting mortality using eICU dataset.",
+    "datasets": [],
+    "input_schema": {
+      "conditions": "sequence",
+      "procedures": "sequence",
+      "drugs": "sequence"
+    },
+    "output_schema": {
+      "mortality": "binary"
+    },
+    "output_type": "binary",
+    "modality": [
+      "ehr"
+    ],
+    "source_file": "pyhealth/tasks/mortality_prediction.py",
+    "colab_url": null,
+    "docs_url": null
+  },
+  {
+    "class_name": "MortalityPredictionEICU2",
+    "display_name": "Mortality Prediction EICU2",
+    "display_class": null,
+    "task_name": "MortalityPredictionEICU2",
+    "description": "Task for predicting mortality using eICU dataset with alternative coding.",
+    "datasets": [],
+    "input_schema": {
+      "conditions": "sequence",
+      "procedures": "sequence"
+    },
+    "output_schema": {
+      "mortality": "binary"
+    },
+    "output_type": "binary",
+    "modality": [
+      "ehr"
+    ],
+    "source_file": "pyhealth/tasks/mortality_prediction.py",
+    "colab_url": null,
+    "docs_url": null
+  },
+  {
+    "class_name": "MortalityPredictionMIMIC4",
+    "display_name": "Mortality Prediction MIMIC4",
+    "display_class": null,
+    "task_name": "MortalityPredictionMIMIC4",
+    "description": "Task for predicting mortality using MIMIC-IV EHR data only.",
+    "datasets": [],
+    "input_schema": {
+      "conditions": "sequence",
+      "procedures": "sequence",
+      "drugs": "sequence"
+    },
+    "output_schema": {
+      "mortality": "binary"
+    },
+    "output_type": "binary",
+    "modality": [
+      "ehr"
+    ],
+    "source_file": "pyhealth/tasks/mortality_prediction.py",
+    "colab_url": null,
+    "docs_url": null
+  },
+  {
+    "class_name": "MortalityPredictionOMOP",
+    "display_name": "Mortality Prediction OMOP",
+    "display_class": null,
+    "task_name": "MortalityPredictionOMOP",
+    "description": "Task for predicting mortality using OMOP dataset.",
+    "datasets": [],
+    "input_schema": {
+      "conditions": "sequence",
+      "procedures": "sequence",
+      "drugs": "sequence"
+    },
+    "output_schema": {
+      "mortality": "binary"
+    },
+    "output_type": "binary",
+    "modality": [
+      "ehr"
+    ],
+    "source_file": "pyhealth/tasks/mortality_prediction.py",
+    "colab_url": null,
+    "docs_url": null
+  },
+  {
+    "class_name": "MortalityPredictionStageNetMIMIC4",
+    "display_name": "Mortality Prediction Stage Net MIMIC4",
+    "display_class": null,
+    "task_name": "MortalityPredictionStageNetMIMIC4",
+    "description": "Task for predicting mortality using MIMIC-IV with StageNet format.",
+    "datasets": [],
+    "input_schema": {
+      "icd_codes": "stagenet",
+      "labs": "stagenet_tensor"
+    },
+    "output_schema": {
+      "mortality": "binary"
+    },
+    "output_type": "binary",
+    "modality": [
+      "ehr",
+      "timeseries"
+    ],
+    "source_file": "pyhealth/tasks/mortality_prediction_stagenet_mimic4.py",
+    "colab_url": null,
+    "docs_url": null
+  },
+  {
+    "class_name": "Readmission30DaysMIMIC4",
+    "display_name": "Readmission30 Days MIMIC4",
+    "display_class": null,
+    "task_name": "Readmission30DaysMIMIC4",
+    "description": "Task for predicting 30-day readmission using MIMIC-IV data.",
+    "datasets": [],
+    "input_schema": {
+      "conditions": "sequence",
+      "procedures": "sequence",
+      "drugs": "sequence"
+    },
+    "output_schema": {
+      "readmission": "binary"
+    },
+    "output_type": "binary",
+    "modality": [
+      "ehr"
+    ],
+    "source_file": "pyhealth/tasks/readmission_30days_mimic4.py",
+    "colab_url": null,
+    "docs_url": null
+  }
+]

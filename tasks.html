@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PyHealth Tasks — 26 Clinical Prediction Tasks</title>
+  <title>PyHealth Tasks — Clinical Prediction Tasks</title>
   <meta name="description" content="Browse all clinical prediction tasks supported by PyHealth across mortality, readmission, drug recommendation, sleep staging, imaging, and genomics.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -214,6 +214,34 @@
       font-family: "IBM Plex Mono", monospace;
     }
 
+    /* Modality pills */
+    .mod-pill {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.15rem 0.5rem;
+      border-radius: 100px;
+      letter-spacing: 0.02em;
+    }
+    .mod-ehr        { background: rgba(99,102,241,0.12);  color: #4f46e5; }
+    .mod-timeseries { background: rgba(20,184,166,0.12);  color: #0d9488; }
+    .mod-image      { background: rgba(139,92,246,0.12);  color: #7c3aed; }
+    .mod-text       { background: rgba(245,158,11,0.12);  color: #d97706; }
+    .mod-signal     { background: rgba(34,197,94,0.12);   color: #16a34a; }
+    .mod-audio      { background: rgba(236,72,153,0.12);  color: #db2777; }
+    .mod-genomics   { background: rgba(6,182,212,0.12);   color: #0891b2; }
+    .mod-graph      { background: rgba(249,115,22,0.12);  color: #ea580c; }
+
+    /* Filter section labels */
+    .filter-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
     .task-desc {
       font-size: 0.85rem;
       color: var(--muted);
@@ -305,7 +333,7 @@
     <!-- ── Hero ── -->
     <section class="ph-hero">
       <p class="ph-eyebrow">PyHealth Tasks</p>
-      <h1>26 Clinical Tasks</h1>
+      <h1><span id="heroTaskCount">…</span> Clinical Tasks</h1>
       <p class="ph-tagline">Standardized clinical prediction task definitions — from mortality and readmission to drug recommendation, sleep staging, and genomic analysis. Call <code style="font-family:monospace; background:rgba(255,255,255,0.1); padding:0.1rem 0.4rem; border-radius:4px;">dataset.set_task()</code> and you're ready to train.</p>
       <div class="ph-cta-row">
         <a href="https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing" class="ph-btn primary" target="_blank" rel="noopener">
@@ -326,499 +354,21 @@
     <!-- ── Filter + Grid ── -->
     <section class="page-section fade-up">
       <div style="display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.2rem;">
-        <h2 class="section-h2" style="margin:0;">Browse Tasks <span class="count-badge" id="visibleCount">26</span></h2>
+        <h2 class="section-h2" style="margin:0;">Browse Tasks <span class="count-badge" id="visibleCount">…</span></h2>
         <a href="https://pyhealth.readthedocs.io/en/latest/api/tasks.html" target="_blank" rel="noopener" style="font-size:0.85rem; color:var(--accent); text-decoration:none; font-weight:500;">Full API reference →</a>
       </div>
 
-      <div class="filter-bar" role="group" aria-label="Filter by output type">
-        <button class="filter-btn active" onclick="filterTasks('all', this)">All <span style="opacity:0.65;">(26)</span></button>
-        <button class="filter-btn" onclick="filterTasks('binary', this)">Binary <span style="opacity:0.65;">(9)</span></button>
-        <button class="filter-btn" onclick="filterTasks('multiclass', this)">Multiclass <span style="opacity:0.65;">(8)</span></button>
-        <button class="filter-btn" onclick="filterTasks('multilabel', this)">Multilabel <span style="opacity:0.65;">(6)</span></button>
-        <button class="filter-btn" onclick="filterTasks('recommend', this)">Recommendation <span style="opacity:0.65;">(2)</span></button>
-        <button class="filter-btn" onclick="filterTasks('regression', this)">Regression <span style="opacity:0.65;">(1)</span></button>
+      <p class="filter-label">Output type</p>
+      <div class="filter-bar" role="group" aria-label="Filter by output type" id="filterBar">
+        <!-- populated by JS after tasks.json loads -->
+      </div>
+      <p class="filter-label" style="margin-top:0.9rem;">Input modality</p>
+      <div class="filter-bar" role="group" aria-label="Filter by input modality" id="modalityBar">
+        <!-- populated by JS after tasks.json loads -->
       </div>
 
       <div class="task-grid" id="taskGrid">
-
-        <!-- ───────────── Binary (9) ───────────── -->
-
-        <div class="task-card" data-type="binary">
-          <div class="task-card-header">
-            <div>
-              <p class="task-title">Mortality Prediction</p>
-              <p class="task-classname">MortalityPredictionMIMIC3</p>
-            </div>
-            <span class="output-tag out-binary">Binary</span>
-          </div>
-          <div><span class="dataset-pill">MIMIC-III</span></div>
-          <p class="task-desc">Predict in-hospital mortality from ICU visit sequences of diagnoses and procedures.</p>
-          <pre class="task-code"><span class="tok-kw">from</span> pyhealth.tasks <span class="tok-kw">import</span> <span class="tok-cl">MortalityPredictionMIMIC3</span>
-samples <span class="tok-op">=</span> dataset.<span class="tok-fn">set_task</span>(<span class="tok-cl">MortalityPredictionMIMIC3</span>())</pre>
-          <div class="task-card-footer">
-            <a href="https://colab.research.google.com/drive/1b9xRbxUz-HLzxsrvxdsdJ868ajGQCY6U?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
-            <a href="https://pyhealth.readthedocs.io/en/latest/api/tasks.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
-          </div>
-        </div>
-
-        <div class="task-card" data-type="binary">
-          <div class="task-card-header">
-            <div>
-              <p class="task-title">In-Hospital Mortality</p>
-              <p class="task-classname">InHospitalMortalityMIMIC4</p>
-            </div>
-            <span class="output-tag out-binary">Binary</span>
-          </div>
-          <div><span class="dataset-pill">MIMIC-IV</span></div>
-          <p class="task-desc">Binary mortality prediction on MIMIC-IV timeseries data using vitals and lab measurements.</p>
-          <pre class="task-code"><span class="tok-kw">from</span> pyhealth.tasks <span class="tok-kw">import</span> <span class="tok-cl">InHospitalMortalityMIMIC4</span>
-samples <span class="tok-op">=</span> dataset.<span class="tok-fn">set_task</span>(<span class="tok-cl">InHospitalMortalityMIMIC4</span>())</pre>
-          <div class="task-card-footer">
-            <a href="https://colab.research.google.com/drive/1b9xRbxUz-HLzxsrvxdsdJ868ajGQCY6U?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
-            <a href="https://pyhealth.readthedocs.io/en/latest/api/tasks.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
-          </div>
-        </div>
-
-        <div class="task-card" data-type="binary">
-          <div class="task-card-header">
-            <div>
-              <p class="task-title">30-Day Readmission</p>
-              <p class="task-classname">ReadmissionPredictionMIMIC3</p>
-            </div>
-            <span class="output-tag out-binary">Binary</span>
-          </div>
-          <div><span class="dataset-pill">MIMIC-III</span></div>
-          <p class="task-desc">Predict whether a patient will be readmitted within 30 days of hospital discharge.</p>
-          <pre class="task-code"><span class="tok-kw">from</span> pyhealth.tasks <span class="tok-kw">import</span> <span class="tok-cl">ReadmissionPredictionMIMIC3</span>
-samples <span class="tok-op">=</span> dataset.<span class="tok-fn">set_task</span>(<span class="tok-cl">ReadmissionPredictionMIMIC3</span>())</pre>
-          <div class="task-card-footer">
-            <a href="https://colab.research.google.com/drive/1h0pAymUlPQfkLFryI9QI37-HAW1tRxGZ?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
-            <a href="https://pyhealth.readthedocs.io/en/latest/api/tasks.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
-          </div>
-        </div>
-
-        <div class="task-card" data-type="binary">
-          <div class="task-card-header">
-            <div>
-              <p class="task-title">DKA Prediction</p>
-              <p class="task-classname">DKAPrediction</p>
-            </div>
-            <span class="output-tag out-binary">Binary</span>
-          </div>
-          <div><span class="dataset-pill">MIMIC-III</span></div>
-          <p class="task-desc">Predict onset of diabetic ketoacidosis (DKA) from clinical event sequences in ICU patients.</p>
-          <pre class="task-code"><span class="tok-kw">from</span> pyhealth.tasks <span class="tok-kw">import</span> <span class="tok-cl">DKAPrediction</span>
-samples <span class="tok-op">=</span> dataset.<span class="tok-fn">set_task</span>(<span class="tok-cl">DKAPrediction</span>())</pre>
-          <div class="task-card-footer">
-            <a href="https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
-            <a href="https://pyhealth.readthedocs.io/en/latest/api/tasks.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
-          </div>
-        </div>
-
-        <div class="task-card" data-type="binary">
-          <div class="task-card-header">
-            <div>
-              <p class="task-title">EEG Abnormality Detection</p>
-              <p class="task-classname">EEGAbnormal</p>
-            </div>
-            <span class="output-tag out-binary">Binary</span>
-          </div>
-          <div><span class="dataset-pill">TUAB</span></div>
-          <p class="task-desc">Classify clinical EEG recordings as normal or abnormal using deep signal models.</p>
-          <pre class="task-code"><span class="tok-kw">from</span> pyhealth.tasks <span class="tok-kw">import</span> <span class="tok-cl">EEGAbnormal</span>
-samples <span class="tok-op">=</span> dataset.<span class="tok-fn">set_task</span>(<span class="tok-cl">EEGAbnormal</span>())</pre>
-          <div class="task-card-footer">
-            <a href="https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
-            <a href="https://pyhealth.readthedocs.io/en/latest/api/tasks.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
-          </div>
-        </div>
-
-        <div class="task-card" data-type="binary">
-          <div class="task-card-header">
-            <div>
-              <p class="task-title">COVID-19 Detection</p>
-              <p class="task-classname">COVID19CXR</p>
-            </div>
-            <span class="output-tag out-binary">Binary</span>
-          </div>
-          <div><span class="dataset-pill">COVID19CXR</span></div>
-          <p class="task-desc">Binary classification of chest X-rays as COVID-19 positive vs. normal/pneumonia.</p>
-          <pre class="task-code"><span class="tok-kw">from</span> pyhealth.tasks <span class="tok-kw">import</span> <span class="tok-cl">COVID19CXRBinary</span>
-samples <span class="tok-op">=</span> dataset.<span class="tok-fn">set_task</span>(<span class="tok-cl">COVID19CXRBinary</span>())</pre>
-          <div class="task-card-footer">
-            <a href="https://colab.research.google.com/drive/18vK23gyI1LjWbTgkq4f99yDZA3A7Pxp9?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
-            <a href="https://pyhealth.readthedocs.io/en/latest/api/tasks.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
-          </div>
-        </div>
-
-        <div class="task-card" data-type="binary">
-          <div class="task-card-header">
-            <div>
-              <p class="task-title">Variant Pathogenicity</p>
-              <p class="task-classname">MutationPathogenicity</p>
-            </div>
-            <span class="output-tag out-binary">Binary</span>
-          </div>
-          <div><span class="dataset-pill">ClinVar</span></div>
-          <p class="task-desc">Classify genomic variants as pathogenic or benign using sequence-based features.</p>
-          <pre class="task-code"><span class="tok-kw">from</span> pyhealth.tasks <span class="tok-kw">import</span> <span class="tok-cl">MutationPathogenicity</span>
-samples <span class="tok-op">=</span> dataset.<span class="tok-fn">set_task</span>(<span class="tok-cl">MutationPathogenicity</span>())</pre>
-          <div class="task-card-footer">
-            <a href="https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
-            <a href="https://pyhealth.readthedocs.io/en/latest/api/tasks.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
-          </div>
-        </div>
-
-        <div class="task-card" data-type="binary">
-          <div class="task-card-header">
-            <div>
-              <p class="task-title">Cancer Survival Prediction</p>
-              <p class="task-classname">CancerSurvivalPrediction</p>
-            </div>
-            <span class="output-tag out-binary">Binary</span>
-          </div>
-          <div><span class="dataset-pill">TCGA-PRAD</span></div>
-          <p class="task-desc">Predict 5-year survival of prostate cancer patients from multi-omics profiles.</p>
-          <pre class="task-code"><span class="tok-kw">from</span> pyhealth.tasks <span class="tok-kw">import</span> <span class="tok-cl">CancerSurvivalPrediction</span>
-samples <span class="tok-op">=</span> dataset.<span class="tok-fn">set_task</span>(<span class="tok-cl">CancerSurvivalPrediction</span>())</pre>
-          <div class="task-card-footer">
-            <a href="https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
-            <a href="https://pyhealth.readthedocs.io/en/latest/api/tasks.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
-          </div>
-        </div>
-
-        <div class="task-card" data-type="binary">
-          <div class="task-card-header">
-            <div>
-              <p class="task-title">Patient Record Linkage</p>
-              <p class="task-classname">PatientLinkage</p>
-            </div>
-            <span class="output-tag out-binary">Binary</span>
-          </div>
-          <div><span class="dataset-pill">MIMIC-III</span></div>
-          <p class="task-desc">Determine whether two clinical records belong to the same patient across fragmented health systems.</p>
-          <pre class="task-code"><span class="tok-kw">from</span> pyhealth.tasks <span class="tok-kw">import</span> <span class="tok-cl">PatientLinkage</span>
-samples <span class="tok-op">=</span> dataset.<span class="tok-fn">set_task</span>(<span class="tok-cl">PatientLinkage</span>())</pre>
-          <div class="task-card-footer">
-            <a href="https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
-            <a href="https://pyhealth.readthedocs.io/en/latest/api/tasks.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
-          </div>
-        </div>
-
-        <!-- ───────────── Multiclass (8) ───────────── -->
-
-        <div class="task-card" data-type="multiclass">
-          <div class="task-card-header">
-            <div>
-              <p class="task-title">Length of Stay</p>
-              <p class="task-classname">LengthOfStayMIMIC3</p>
-            </div>
-            <span class="output-tag out-multiclass">Multiclass</span>
-          </div>
-          <div><span class="dataset-pill">MIMIC-III</span></div>
-          <p class="task-desc">Predict ICU length of stay as one of multiple duration buckets from admission data.</p>
-          <pre class="task-code"><span class="tok-kw">from</span> pyhealth.tasks <span class="tok-kw">import</span> <span class="tok-cl">LengthOfStayMIMIC3</span>
-samples <span class="tok-op">=</span> dataset.<span class="tok-fn">set_task</span>(<span class="tok-cl">LengthOfStayMIMIC3</span>())</pre>
-          <div class="task-card-footer">
-            <a href="https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
-            <a href="https://pyhealth.readthedocs.io/en/latest/api/tasks.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
-          </div>
-        </div>
-
-        <div class="task-card" data-type="multiclass">
-          <div class="task-card-header">
-            <div>
-              <p class="task-title">Sleep Staging (SleepEDF)</p>
-              <p class="task-classname">SleepStagingMIMIC3</p>
-            </div>
-            <span class="output-tag out-multiclass">Multiclass</span>
-          </div>
-          <div><span class="dataset-pill">SleepEDF</span></div>
-          <p class="task-desc">Classify 30-second EEG epochs into Wake, N1, N2, N3, or REM sleep stages.</p>
-          <pre class="task-code"><span class="tok-kw">from</span> pyhealth.tasks <span class="tok-kw">import</span> <span class="tok-cl">SleepStagingSleepEDF</span>
-samples <span class="tok-op">=</span> dataset.<span class="tok-fn">set_task</span>(<span class="tok-cl">SleepStagingSleepEDF</span>())</pre>
-          <div class="task-card-footer">
-            <a href="https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
-            <a href="https://pyhealth.readthedocs.io/en/latest/api/tasks.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
-          </div>
-        </div>
-
-        <div class="task-card" data-type="multiclass">
-          <div class="task-card-header">
-            <div>
-              <p class="task-title">Sleep Staging (SHHS)</p>
-              <p class="task-classname">SleepStagingSHHS</p>
-            </div>
-            <span class="output-tag out-multiclass">Multiclass</span>
-          </div>
-          <div><span class="dataset-pill">SHHS</span></div>
-          <p class="task-desc">5-class sleep staging on the large-scale Sleep Heart Health Study polysomnography dataset.</p>
-          <pre class="task-code"><span class="tok-kw">from</span> pyhealth.tasks <span class="tok-kw">import</span> <span class="tok-cl">SleepStagingSHHS</span>
-samples <span class="tok-op">=</span> dataset.<span class="tok-fn">set_task</span>(<span class="tok-cl">SleepStagingSHHS</span>())</pre>
-          <div class="task-card-footer">
-            <a href="https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
-            <a href="https://pyhealth.readthedocs.io/en/latest/api/tasks.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
-          </div>
-        </div>
-
-        <div class="task-card" data-type="multiclass">
-          <div class="task-card-header">
-            <div>
-              <p class="task-title">Sleep Staging (ISRUC)</p>
-              <p class="task-classname">SleepStagingISRUC</p>
-            </div>
-            <span class="output-tag out-multiclass">Multiclass</span>
-          </div>
-          <div><span class="dataset-pill">ISRUC</span></div>
-          <p class="task-desc">Sleep stage classification on the ISRUC dataset including patients with sleep disorders.</p>
-          <pre class="task-code"><span class="tok-kw">from</span> pyhealth.tasks <span class="tok-kw">import</span> <span class="tok-cl">SleepStagingISRUC</span>
-samples <span class="tok-op">=</span> dataset.<span class="tok-fn">set_task</span>(<span class="tok-cl">SleepStagingISRUC</span>())</pre>
-          <div class="task-card-footer">
-            <a href="https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
-            <a href="https://pyhealth.readthedocs.io/en/latest/api/tasks.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
-          </div>
-        </div>
-
-        <div class="task-card" data-type="multiclass">
-          <div class="task-card-header">
-            <div>
-              <p class="task-title">EEG Event Classification</p>
-              <p class="task-classname">EEGEvents</p>
-            </div>
-            <span class="output-tag out-multiclass">Multiclass</span>
-          </div>
-          <div><span class="dataset-pill">TUEV</span></div>
-          <p class="task-desc">Classify EEG events into six types including spike-wave complexes, periodic discharges, and artifacts.</p>
-          <pre class="task-code"><span class="tok-kw">from</span> pyhealth.tasks <span class="tok-kw">import</span> <span class="tok-cl">EEGEvents</span>
-samples <span class="tok-op">=</span> dataset.<span class="tok-fn">set_task</span>(<span class="tok-cl">EEGEvents</span>())</pre>
-          <div class="task-card-footer">
-            <a href="https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
-            <a href="https://pyhealth.readthedocs.io/en/latest/api/tasks.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
-          </div>
-        </div>
-
-        <div class="task-card" data-type="multiclass">
-          <div class="task-card-header">
-            <div>
-              <p class="task-title">COVID-19 3-Class</p>
-              <p class="task-classname">COVID19CXRMulticlass</p>
-            </div>
-            <span class="output-tag out-multiclass">Multiclass</span>
-          </div>
-          <div><span class="dataset-pill">COVID19CXR</span></div>
-          <p class="task-desc">3-class chest X-ray classification: COVID-19, viral pneumonia, or normal lung.</p>
-          <pre class="task-code"><span class="tok-kw">from</span> pyhealth.tasks <span class="tok-kw">import</span> <span class="tok-cl">COVID19CXRMulticlass</span>
-samples <span class="tok-op">=</span> dataset.<span class="tok-fn">set_task</span>(<span class="tok-cl">COVID19CXRMulticlass</span>())</pre>
-          <div class="task-card-footer">
-            <a href="https://colab.research.google.com/drive/18vK23gyI1LjWbTgkq4f99yDZA3A7Pxp9?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
-            <a href="https://pyhealth.readthedocs.io/en/latest/api/tasks.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
-          </div>
-        </div>
-
-        <div class="task-card" data-type="multiclass">
-          <div class="task-card-header">
-            <div>
-              <p class="task-title">Medical Specialty Classification</p>
-              <p class="task-classname">MedicalTranscriptions</p>
-            </div>
-            <span class="output-tag out-multiclass">Multiclass</span>
-          </div>
-          <div><span class="dataset-pill">MedTranscriptions</span></div>
-          <p class="task-desc">Classify clinical transcription notes into one of 40 medical specialties using language models.</p>
-          <pre class="task-code"><span class="tok-kw">from</span> pyhealth.tasks <span class="tok-kw">import</span> <span class="tok-cl">MedicalTranscriptions</span>
-samples <span class="tok-op">=</span> dataset.<span class="tok-fn">set_task</span>(<span class="tok-cl">MedicalTranscriptions</span>())</pre>
-          <div class="task-card-footer">
-            <a href="https://colab.research.google.com/drive/1ThYP_5ng5xPQwscv5XztefkkoTruhjeK?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
-            <a href="https://pyhealth.readthedocs.io/en/latest/api/tasks.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
-          </div>
-        </div>
-
-        <div class="task-card" data-type="multiclass">
-          <div class="task-card-header">
-            <div>
-              <p class="task-title">EHRShot Benchmark</p>
-              <p class="task-classname">EHRShotTask</p>
-            </div>
-            <span class="output-tag out-multiclass">Multiclass</span>
-          </div>
-          <div><span class="dataset-pill">EHRShot</span></div>
-          <p class="task-desc">15-task few-shot benchmark suite for evaluating clinical foundation models on real-world EHR prediction challenges.</p>
-          <pre class="task-code"><span class="tok-kw">from</span> pyhealth.tasks <span class="tok-kw">import</span> <span class="tok-cl">EHRShotTask</span>
-samples <span class="tok-op">=</span> dataset.<span class="tok-fn">set_task</span>(<span class="tok-cl">EHRShotTask</span>())</pre>
-          <div class="task-card-footer">
-            <a href="https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
-            <a href="https://pyhealth.readthedocs.io/en/latest/api/tasks.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
-          </div>
-        </div>
-
-        <!-- ───────────── Multilabel (6) ───────────── -->
-
-        <div class="task-card" data-type="multilabel">
-          <div class="task-card-header">
-            <div>
-              <p class="task-title">Drug Recommendation</p>
-              <p class="task-classname">DrugRecommendationMIMIC3</p>
-            </div>
-            <span class="output-tag out-multilabel">Multilabel</span>
-          </div>
-          <div><span class="dataset-pill">MIMIC-III</span></div>
-          <p class="task-desc">Recommend a safe set of medications for a patient visit given their diagnosis and procedure history.</p>
-          <pre class="task-code"><span class="tok-kw">from</span> pyhealth.tasks <span class="tok-kw">import</span> <span class="tok-cl">DrugRecommendationMIMIC3</span>
-samples <span class="tok-op">=</span> dataset.<span class="tok-fn">set_task</span>(<span class="tok-cl">DrugRecommendationMIMIC3</span>())</pre>
-          <div class="task-card-footer">
-            <a href="https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
-            <a href="https://pyhealth.readthedocs.io/en/latest/api/tasks.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
-          </div>
-        </div>
-
-        <div class="task-card" data-type="multilabel">
-          <div class="task-card-header">
-            <div>
-              <p class="task-title">ICD-9 Code Prediction</p>
-              <p class="task-classname">ICD9CodingMIMIC3</p>
-            </div>
-            <span class="output-tag out-multilabel">Multilabel</span>
-          </div>
-          <div><span class="dataset-pill">MIMIC-III</span></div>
-          <p class="task-desc">Automatically assign ICD-9 diagnosis codes from clinical notes and structured EHR data.</p>
-          <pre class="task-code"><span class="tok-kw">from</span> pyhealth.tasks <span class="tok-kw">import</span> <span class="tok-cl">ICD9CodingMIMIC3</span>
-samples <span class="tok-op">=</span> dataset.<span class="tok-fn">set_task</span>(<span class="tok-cl">ICD9CodingMIMIC3</span>())</pre>
-          <div class="task-card-footer">
-            <a href="https://colab.research.google.com/drive/1ThYP_5ng5xPQwscv5XztefkkoTruhjeK?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
-            <a href="https://pyhealth.readthedocs.io/en/latest/api/tasks.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
-          </div>
-        </div>
-
-        <div class="task-card" data-type="multilabel">
-          <div class="task-card-header">
-            <div>
-              <p class="task-title">Cardiac Arrhythmia Detection</p>
-              <p class="task-classname">CardioDetection</p>
-            </div>
-            <span class="output-tag out-multilabel">Multilabel</span>
-          </div>
-          <div><span class="dataset-pill">Cardiology</span></div>
-          <p class="task-desc">Detect multiple cardiac arrhythmia types simultaneously from 12-lead ECG recordings.</p>
-          <pre class="task-code"><span class="tok-kw">from</span> pyhealth.tasks <span class="tok-kw">import</span> <span class="tok-cl">CardioDetection</span>
-samples <span class="tok-op">=</span> dataset.<span class="tok-fn">set_task</span>(<span class="tok-cl">CardioDetection</span>())</pre>
-          <div class="task-card-footer">
-            <a href="https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
-            <a href="https://pyhealth.readthedocs.io/en/latest/api/tasks.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
-          </div>
-        </div>
-
-        <div class="task-card" data-type="multilabel">
-          <div class="task-card-header">
-            <div>
-              <p class="task-title">Heart Sound Classification</p>
-              <p class="task-classname">HeartSoundClassification</p>
-            </div>
-            <span class="output-tag out-multilabel">Multilabel</span>
-          </div>
-          <div><span class="dataset-pill">BMDHS</span></div>
-          <p class="task-desc">Classify cardiac valve disease conditions from phonocardiogram (PCG) heart sound recordings.</p>
-          <pre class="task-code"><span class="tok-kw">from</span> pyhealth.tasks <span class="tok-kw">import</span> <span class="tok-cl">HeartSoundClassification</span>
-samples <span class="tok-op">=</span> dataset.<span class="tok-fn">set_task</span>(<span class="tok-cl">HeartSoundClassification</span>())</pre>
-          <div class="task-card-footer">
-            <a href="https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
-            <a href="https://pyhealth.readthedocs.io/en/latest/api/tasks.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
-          </div>
-        </div>
-
-        <div class="task-card" data-type="multilabel">
-          <div class="task-card-header">
-            <div>
-              <p class="task-title">Chest X-Ray Diagnosis</p>
-              <p class="task-classname">ChestXray14Multilabel</p>
-            </div>
-            <span class="output-tag out-multilabel">Multilabel</span>
-          </div>
-          <div><span class="dataset-pill">ChestXray14</span></div>
-          <p class="task-desc">Multi-label classification of 14 thoracic diseases from frontal chest X-ray images.</p>
-          <pre class="task-code"><span class="tok-kw">from</span> pyhealth.tasks <span class="tok-kw">import</span> <span class="tok-cl">ChestXray14Multilabel</span>
-samples <span class="tok-op">=</span> dataset.<span class="tok-fn">set_task</span>(<span class="tok-cl">ChestXray14Multilabel</span>())</pre>
-          <div class="task-card-footer">
-            <a href="https://colab.research.google.com/drive/18vK23gyI1LjWbTgkq4f99yDZA3A7Pxp9?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
-            <a href="https://pyhealth.readthedocs.io/en/latest/api/tasks.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
-          </div>
-        </div>
-
-        <div class="task-card" data-type="multilabel">
-          <div class="task-card-header">
-            <div>
-              <p class="task-title">Variant Classification</p>
-              <p class="task-classname">VariantClassification</p>
-            </div>
-            <span class="output-tag out-multilabel">Multilabel</span>
-          </div>
-          <div><span class="dataset-pill">COSMIC</span></div>
-          <p class="task-desc">Predict functional impact and cancer driver gene status of somatic mutations.</p>
-          <pre class="task-code"><span class="tok-kw">from</span> pyhealth.tasks <span class="tok-kw">import</span> <span class="tok-cl">VariantClassification</span>
-samples <span class="tok-op">=</span> dataset.<span class="tok-fn">set_task</span>(<span class="tok-cl">VariantClassification</span>())</pre>
-          <div class="task-card-footer">
-            <a href="https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
-            <a href="https://pyhealth.readthedocs.io/en/latest/api/tasks.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
-          </div>
-        </div>
-
-        <!-- ───────────── Recommendation (2) ───────────── -->
-
-        <div class="task-card" data-type="recommend">
-          <div class="task-card-header">
-            <div>
-              <p class="task-title">Safe Drug Combinations</p>
-              <p class="task-classname">SafeDrugMIMIC3</p>
-            </div>
-            <span class="output-tag out-recommend">Recommendation</span>
-          </div>
-          <div><span class="dataset-pill">MIMIC-III</span></div>
-          <p class="task-desc">Recommend medication combinations that minimize drug-drug interaction (DDI) risk for a patient visit.</p>
-          <pre class="task-code"><span class="tok-kw">from</span> pyhealth.tasks <span class="tok-kw">import</span> <span class="tok-cl">DrugRecommendationMIMIC3</span>
-samples <span class="tok-op">=</span> dataset.<span class="tok-fn">set_task</span>(<span class="tok-cl">DrugRecommendationMIMIC3</span>())</pre>
-          <div class="task-card-footer">
-            <a href="https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
-            <a href="https://pyhealth.readthedocs.io/en/latest/api/tasks.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
-          </div>
-        </div>
-
-        <div class="task-card" data-type="recommend">
-          <div class="task-card-header">
-            <div>
-              <p class="task-title">Drug Recommendation (eICU)</p>
-              <p class="task-classname">DrugRecommendationeICU</p>
-            </div>
-            <span class="output-tag out-recommend">Recommendation</span>
-          </div>
-          <div><span class="dataset-pill">eICU</span></div>
-          <p class="task-desc">Medication recommendation from multi-center ICU data with cross-site generalization evaluation.</p>
-          <pre class="task-code"><span class="tok-kw">from</span> pyhealth.tasks <span class="tok-kw">import</span> <span class="tok-cl">DrugRecommendationeICU</span>
-samples <span class="tok-op">=</span> dataset.<span class="tok-fn">set_task</span>(<span class="tok-cl">DrugRecommendationeICU</span>())</pre>
-          <div class="task-card-footer">
-            <a href="https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
-            <a href="https://pyhealth.readthedocs.io/en/latest/api/tasks.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
-          </div>
-        </div>
-
-        <!-- ───────────── Regression (1) ───────────── -->
-
-        <div class="task-card" data-type="regression">
-          <div class="task-card-header">
-            <div>
-              <p class="task-title">Tumor Mutation Burden</p>
-              <p class="task-classname">CancerMutationBurden</p>
-            </div>
-            <span class="output-tag out-regression">Regression</span>
-          </div>
-          <div><span class="dataset-pill">TCGA-PRAD</span></div>
-          <p class="task-desc">Predict tumor mutation burden (TMB) as a continuous value from multi-omics cancer profiles.</p>
-          <pre class="task-code"><span class="tok-kw">from</span> pyhealth.tasks <span class="tok-kw">import</span> <span class="tok-cl">CancerMutationBurden</span>
-samples <span class="tok-op">=</span> dataset.<span class="tok-fn">set_task</span>(<span class="tok-cl">CancerMutationBurden</span>())</pre>
-          <div class="task-card-footer">
-            <a href="https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
-            <a href="https://pyhealth.readthedocs.io/en/latest/api/tasks.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
-          </div>
-        </div>
-
+        <div id="taskGridPlaceholder" style="grid-column:1/-1; padding:2rem; text-align:center; color:var(--muted); font-size:0.9rem;">Loading tasks…</div>
       </div><!-- /task-grid -->
     </section>
 
@@ -851,20 +401,192 @@ samples <span class="tok-op">=</span> dataset.<span class="tok-fn">set_task</spa
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    function filterTasks(type, btn) {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+    // ── Output type display config ──────────────────────────────────────────
+    const OUTPUT_LABELS = {
+      binary:     { label: 'Binary',         cls: 'out-binary' },
+      multiclass: { label: 'Multiclass',     cls: 'out-multiclass' },
+      multilabel: { label: 'Multilabel',     cls: 'out-multilabel' },
+      regression: { label: 'Regression',     cls: 'out-regression' },
+      recommend:  { label: 'Recommendation', cls: 'out-recommend' },
+    };
 
+    // ── Modality display config ─────────────────────────────────────────────
+    const MODALITY_LABEL = {
+      ehr:        'EHR Codes',
+      timeseries: 'Timeseries',
+      image:      'Image',
+      text:       'Text / NLP',
+      signal:     'Signal',
+      audio:      'Audio',
+      genomics:   'Genomics',
+      graph:      'Graph',
+    };
+
+    // ── Escape HTML to avoid XSS from JSON data ─────────────────────────────
+    function esc(str) {
+      return String(str ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    // ── Build one task card ─────────────────────────────────────────────────
+    function buildCard(task) {
+      const displayName = task.display_name || task.class_name;
+      const type = task.output_type || 'binary';
+      const cfg  = OUTPUT_LABELS[type] || { label: type, cls: 'out-binary' };
+      const datasets = (task.datasets || []).map(d =>
+        `<span class="dataset-pill">${esc(d)}</span>`
+      ).join(' ');
+      const modalities = (task.modality || []).join(' ');
+      const modPills = (task.modality || []).map(m =>
+        `<span class="mod-pill mod-${esc(m)}">${esc(MODALITY_LABEL[m] || m)}</span>`
+      ).join(' ');
+      const dc = esc(task.display_class || task.class_name);
+      const codeHtml =
+        `<span class="tok-kw">from</span> pyhealth.tasks ` +
+        `<span class="tok-kw">import</span> <span class="tok-cl">${dc}</span>\n` +
+        `samples <span class="tok-op">=</span> dataset.<span class="tok-fn">set_task</span>` +
+        `(<span class="tok-cl">${dc}</span>())`;
+
+      return `
+        <div class="task-card" data-type="${esc(type)}" data-modality="${esc(modalities)}">
+          <div class="task-card-header">
+            <div>
+              <p class="task-title">${esc(displayName)}</p>
+              <p class="task-classname">${dc}</p>
+            </div>
+            <span class="output-tag ${cfg.cls}">${cfg.label}</span>
+          </div>
+          <div>${datasets}${modPills ? ' ' + modPills : ''}</div>
+          <p class="task-desc">${esc(task.description)}</p>
+          <pre class="task-code">${codeHtml}</pre>
+          <div class="task-card-footer">
+            ${task.colab_url ? `<a href="${esc(task.colab_url)}" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>` : ''}
+            <a href="${esc(task.docs_url || 'https://pyhealth.readthedocs.io/en/latest/api/tasks.html')}" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>`;
+    }
+
+    // ── Build output-type filter bar ────────────────────────────────────────
+    function buildFilterBar(tasks, activeType) {
+      const counts = { all: tasks.length };
+      tasks.forEach(t => {
+        const tp = t.output_type || 'binary';
+        counts[tp] = (counts[tp] || 0) + 1;
+      });
+
+      const buttons = [
+        ['all',        'All'],
+        ['binary',     'Binary'],
+        ['multiclass', 'Multiclass'],
+        ['multilabel', 'Multilabel'],
+        ['recommend',  'Recommendation'],
+        ['regression', 'Regression'],
+      ];
+
+      return buttons
+        .filter(([type]) => type === 'all' || counts[type])
+        .map(([type, label]) => {
+          const active = type === activeType ? ' active' : '';
+          const n = counts[type] || 0;
+          return `<button class="filter-btn${active}" data-filter="${type}">${label} <span style="opacity:0.65;">(${n})</span></button>`;
+        })
+        .join('\n        ');
+    }
+
+    // ── Build modality filter bar ───────────────────────────────────────────
+    function buildModalityBar(tasks, activeModality) {
+      const counts = { all: tasks.length };
+      tasks.forEach(t => {
+        (t.modality || []).forEach(m => {
+          counts[m] = (counts[m] || 0) + 1;
+        });
+      });
+
+      const buttons = [
+        ['all',        'All'],
+        ['ehr',        'EHR Codes'],
+        ['timeseries', 'Timeseries'],
+        ['image',      'Image'],
+        ['text',       'Text / NLP'],
+        ['signal',     'Signal'],
+        ['audio',      'Audio'],
+        ['genomics',   'Genomics'],
+        ['graph',      'Graph'],
+      ];
+
+      return buttons
+        .filter(([type]) => type === 'all' || counts[type])
+        .map(([type, label]) => {
+          const active = type === activeModality ? ' active' : '';
+          const n = counts[type] !== undefined ? counts[type] : 0;
+          return `<button class="filter-btn${active}" data-filter="${type}">${label} <span style="opacity:0.65;">(${n})</span></button>`;
+        })
+        .join('\n        ');
+    }
+
+    // ── Active filter state ─────────────────────────────────────────────────
+    let activeType = 'all';
+    let activeModality = 'all';
+
+    function applyFilters() {
       const cards = document.querySelectorAll('#taskGrid .task-card');
       let visible = 0;
       cards.forEach(card => {
-        const show = type === 'all' || card.dataset.type === type;
+        const typeMatch = activeType === 'all' || card.dataset.type === activeType;
+        const mods = card.dataset.modality ? card.dataset.modality.split(' ') : [];
+        const modMatch = activeModality === 'all' || mods.includes(activeModality);
+        const show = typeMatch && modMatch;
         card.style.display = show ? '' : 'none';
         if (show) visible++;
       });
-
       document.getElementById('visibleCount').textContent = visible;
     }
+
+    // ── Filter handlers (delegated) ─────────────────────────────────────────
+    document.getElementById('filterBar').addEventListener('click', e => {
+      const btn = e.target.closest('.filter-btn');
+      if (!btn) return;
+      activeType = btn.dataset.filter;
+      document.querySelectorAll('#filterBar .filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      applyFilters();
+    });
+
+    document.getElementById('modalityBar').addEventListener('click', e => {
+      const btn = e.target.closest('.filter-btn');
+      if (!btn) return;
+      activeModality = btn.dataset.filter;
+      document.querySelectorAll('#modalityBar .filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      applyFilters();
+    });
+
+    // ── Load and render ─────────────────────────────────────────────────────
+    (async function () {
+      const grid = document.getElementById('taskGrid');
+      const placeholder = document.getElementById('taskGridPlaceholder');
+
+      try {
+        const res = await fetch('data/tasks.json');
+        if (!res.ok) throw new Error('Failed to load task data');
+        const tasks = await res.json();
+
+        // Render filter bars (default: all)
+        document.getElementById('filterBar').innerHTML   = buildFilterBar(tasks, 'all');
+        document.getElementById('modalityBar').innerHTML = buildModalityBar(tasks, 'all');
+
+        // Render cards
+        placeholder.remove();
+        grid.insertAdjacentHTML('beforeend', tasks.map(buildCard).join(''));
+
+        // Update counts in hero and header badge
+        document.getElementById('heroTaskCount').textContent = tasks.length;
+        document.getElementById('visibleCount').textContent  = tasks.length;
+
+      } catch (err) {
+        placeholder.textContent = 'Could not load task data. Check data/tasks.json for errors.';
+        console.error(err);
+      }
+    })();
   </script>
 
 </body>
