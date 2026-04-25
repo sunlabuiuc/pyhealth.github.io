@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prostate-VarBench: TabNet for Prostate Cancer Variant Classification — PyHealth Research</title>
+  <meta name="description" content="A benchmark with an interpretable TabNet framework for prostate cancer variant classification.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <style>
+    .ph-hero {
+      background: linear-gradient(140deg, #1c2b3a 0%, #28425e 60%, #1e3348 100%);
+      border-radius: 16px;
+      padding: 3rem 2.4rem 2.8rem;
+      color: white;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.07);
+      box-shadow: 0 20px 48px rgba(22,33,31,0.18);
+      animation: rise 420ms ease;
+    }
+    .ph-hero::before {
+      content: "";
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 340px; height: 340px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,95,38,0.22) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .ph-hero::after {
+      content: "";
+      position: absolute;
+      bottom: -100px; left: -60px;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(90,160,230,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .ph-eyebrow {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(201,95,38,0.9);
+      margin: 0 0 0.6rem;
+    }
+    .hero-title {
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+      font-weight: 600;
+      color: white;
+      margin: 0 0 1rem;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      max-width: 780px;
+    }
+    .badge-row {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.2rem;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.22rem 0.65rem;
+      border-radius: 100px;
+      letter-spacing: 0.03em;
+    }
+    .badge-year {
+      background: color-mix(in srgb, var(--accent) 18%, rgba(0,0,0,0));
+      color: #f4a56a;
+      border: 1px solid rgba(201,95,38,0.3);
+    }
+    .badge-venue {
+      background: rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.8);
+      border: 1px solid rgba(255,255,255,0.18);
+    }
+    .ph-cta-row {
+      display: flex;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+    .ph-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      border-radius: 10px;
+      padding: 0.64rem 1.15rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      font-family: "IBM Plex Sans", sans-serif;
+      transition: filter 0.15s, transform 0.1s;
+    }
+    .ph-btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+    .ph-btn.primary {
+      background: var(--accent);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 4px 12px rgba(201,95,38,0.35);
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.94rem;
+      padding: 0.35rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: color 0.12s, background 0.12s, border-color 0.12s;
+    }
+    .back-link:hover {
+      color: var(--accent);
+      border-color: var(--line);
+      background: var(--paper);
+    }
+    .paper-body {
+      margin-top: 2rem;
+      animation: rise 500ms ease;
+    }
+    .paper-meta {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1.5rem 1.6rem;
+      margin-bottom: 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem 2rem;
+    }
+    .meta-item label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
+    }
+    .meta-item span {
+      font-size: 0.97rem;
+      color: var(--ink);
+      line-height: 1.45;
+    }
+    .abstract-section {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1.8rem 1.8rem;
+      margin-bottom: 1.5rem;
+    }
+    .abstract-section h2 {
+      font-size: 1.1rem;
+      margin: 0 0 0.8rem;
+      color: var(--ink);
+    }
+    .abstract-section p {
+      font-size: 0.97rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin: 0;
+    }
+    .links-section {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      text-decoration: none;
+      border-radius: 10px;
+      padding: 0.64rem 1.15rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      font-family: "IBM Plex Sans", sans-serif;
+      transition: filter 0.15s, transform 0.1s;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      color: var(--ink);
+    }
+    .link-btn:hover { filter: brightness(0.96); transform: translateY(-1px); border-color: var(--accent); color: var(--accent); }
+    .link-btn.primary {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+      box-shadow: 0 4px 12px rgba(201,95,38,0.28);
+    }
+    .link-btn.primary:hover { filter: brightness(1.08); color: white; }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="site-wrap header-inner">
+      <nav class="nav" aria-label="Main navigation">
+        <a href="../research.html" class="back-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          All Research
+        </a>
+      </nav>
+      <span style="color: var(--muted); font-size: 0.88rem; font-weight: 500;">2025</span>
+    </div>
+  </header>
+
+  <main class="site-wrap" style="padding: 2.2rem 0 3.5rem;">
+
+    <section class="ph-hero">
+      <p class="ph-eyebrow">PyHealth Research Initiative · ML4H 2025</p>
+      <div class="badge-row">
+        <span class="badge badge-year">2025</span>
+        <span class="badge badge-venue">ML4H 2025</span>
+      </div>
+      <h1 class="hero-title">Prostate-VarBench: A Benchmark with Interpretable TabNet Framework for Prostate Cancer Variant Classification</h1>
+      <div class="ph-cta-row">
+        <a href="https://openreview.net/forum?id=zOUjZgKD2E" class="ph-btn primary" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Read on OpenReview
+        </a>
+      </div>
+    </section>
+
+    <div class="paper-body">
+
+      <div class="paper-meta">
+        <div class="meta-item">
+          <label>Authors</label>
+          <span>Abraham Francisco Arellano Tavara, Umesh Kumar</span>
+        </div>
+        <div class="meta-item">
+          <label>Venue</label>
+          <span>ML4H 2025</span>
+        </div>
+        <div class="meta-item">
+          <label>Year</label>
+          <span>2025</span>
+        </div>
+        <div class="meta-item">
+          <label>Modality</label>
+          <span>Genomic / Molecular Data</span>
+        </div>
+      </div>
+
+      <div class="abstract-section">
+        <h2>Abstract</h2>
+        <p>Prostate cancer genomics presents a challenging classification problem due to the high dimensionality and heterogeneity of variant data. This work introduces Prostate-VarBench, a standardized benchmark for prostate cancer somatic variant classification, paired with an interpretable TabNet-based framework that provides feature-level attribution alongside predictions. Our approach enables clinicians to understand which genomic features drive model decisions, addressing a key barrier to clinical adoption of ML-based genomic classifiers. We evaluate multiple approaches and demonstrate that TabNet achieves competitive accuracy while substantially improving interpretability over black-box baselines.</p>
+      </div>
+
+      <div class="links-section">
+        <a href="https://openreview.net/forum?id=zOUjZgKD2E" class="link-btn primary" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Read Paper (OpenReview)
+        </a>
+        <a href="https://github.com/sunlabuiuc/PyHealth" class="link-btn" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          PyHealth on GitHub
+        </a>
+        <a href="../research.html" class="link-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          All Research
+        </a>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-wrap" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+      <span>Copyright <span id="year"></span> John Wu</span>
+      <a href="../research.html" style="color:var(--accent); text-decoration:none; font-size:0.9rem;">← All Research</a>
+    </div>
+  </footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+</body>
+</html>
