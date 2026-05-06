@@ -390,6 +390,7 @@
                     card.className = 'blog-card';
                     card.innerHTML = `
                         <h3 class="blog-title">${blog.title}</h3>
+                    ${blog.author ? `<p class="blog-author">By ${blog.author}</p>` : ''}
                         <div class="blog-actions">
                             <span class="blog-btn read">Read post</span>
                         </div>

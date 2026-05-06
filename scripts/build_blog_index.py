@@ -8,16 +8,24 @@ OUTPUT_FILE = ROOT / "data" / "blogs.json"
 
 MD_HEADER_RE = re.compile(r"^#\s+(.*)", re.MULTILINE)
 FRONTMATTER_RE = re.compile(r"^---\s*$(.*?)^---\s*$", re.MULTILINE | re.DOTALL)
-TITLE_RE = re.compile(r"^title:\s*(.*)$", re.MULTILINE | re.IGNORECASE)
+FIELD_RE = re.compile(r"^(title|author):\s*(.*)$", re.MULTILINE | re.IGNORECASE)
+
+
+def parse_frontmatter(text: str) -> dict[str, str]:
+    frontmatter = FRONTMATTER_RE.search(text)
+    if not frontmatter:
+        return {}
+
+    fields: dict[str, str] = {}
+    for match in FIELD_RE.finditer(frontmatter.group(1)):
+        fields[match.group(1).lower()] = match.group(2).strip().strip('"\'')
+    return fields
 
 
 def infer_title(text: str, filename: str) -> str:
-    frontmatter = FRONTMATTER_RE.search(text)
-    if frontmatter:
-        fm_text = frontmatter.group(1)
-        title_match = TITLE_RE.search(fm_text)
-        if title_match:
-            return title_match.group(1).strip().strip('"\'')
+    fields = parse_frontmatter(text)
+    if title := fields.get('title'):
+        return title
 
     header_match = MD_HEADER_RE.search(text)
     if header_match:
@@ -35,10 +43,12 @@ def main() -> None:
 
     for path in blog_files:
         text = path.read_text(encoding='utf-8')
-        title = infer_title(text, path.stem)
+        fields = parse_frontmatter(text)
+        title = fields.get('title') or infer_title(text, path.stem)
         blogs.append({
             'id': path.stem,
             'title': title,
+            'author': fields.get('author', ''),
             'url': f'blog.html?post={path.stem}',
         })
 

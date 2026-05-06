@@ -123,6 +123,35 @@
     <div id="blog-content">Loading...</div>
 
     <script>
+    function parseFrontmatter(text) {
+      const match = text.match(/^---\s*$([\s\S]*?)^---\s*$/m);
+      if (!match) {
+        return { meta: {}, body: text };
+      }
+
+      const meta = {};
+      match[1].split('\n').forEach(line => {
+        const field = line.match(/^(title|author):\s*(.*)$/i);
+        if (field) {
+          meta[field[1].toLowerCase()] = field[2].trim().replace(/^['"]|['"]$/g, '');
+        }
+      });
+
+      return {
+        meta,
+        body: text.slice(match[0].length).replace(/^\s+/, '')
+      };
+    }
+
+    function escapeHtml(text) {
+      return text
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
         // Get the blog post name from the URL
         const params = new URLSearchParams(window.location.search);
         const postId = params.get('post');
@@ -133,7 +162,10 @@
             // Fetch the markdown file
             fetch(`blogs/${postId}.md`)
                 .then(response => response.text())
-                .then(html => {
+            .then(text => {
+              const { meta, body } = parseFrontmatter(text);
+              let html = body;
+
                     // Simple markdown to HTML converter
                     // Headers
                     html = html.replace(/^### (.*?)$/gm, '<h3>$1</h3>');
@@ -158,8 +190,11 @@
                     
                     // Line breaks
                     html = html.split('\n\n').map(para => `<p>${para}</p>`).join('');
-                    
-                    document.getElementById('blog-content').innerHTML = html;
+
+                    const authorLine = meta.author ? `<p><strong>Author:</strong> ${escapeHtml(meta.author)}</p>` : '';
+                    const titleLine = meta.title ? `<h1>${escapeHtml(meta.title)}</h1>` : '';
+
+                    document.getElementById('blog-content').innerHTML = `${titleLine}${authorLine}${html}`;
                 })
                 .catch(err => {
                     document.getElementById('blog-content').innerHTML = 'Post not found';
