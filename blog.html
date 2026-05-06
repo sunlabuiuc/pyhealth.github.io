@@ -131,12 +131,10 @@
             document.getElementById('blog-content').innerHTML = 'No post specified';
         } else {
             // Fetch the markdown file
-            fetch(`/blogs/${postId}.md`)
+            fetch(`blogs/${postId}.md`)
                 .then(response => response.text())
-                .then(markdown => {
+                .then(html => {
                     // Simple markdown to HTML converter
-                    let html = markdown;
-                    
                     // Headers
                     html = html.replace(/^### (.*?)$/gm, '<h3>$1</h3>');
                     html = html.replace(/^## (.*?)$/gm, '<h2>$1</h2>');

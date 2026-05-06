@@ -372,33 +372,33 @@
     </section>
 
      <script>
-        // Scan the blogs folder and list all .md files
-        fetch('blogs')
-            .then(response => response.text())
-            .then(html => {
-                // Parse HTML to find .md files (this is a simple parser)
-                const regex = /href="([^"]*\.md)"/g;
-                const files = [];
-                let match;
-                while ((match = regex.exec(html)) !== null) {
-                    files.push(match[1]);
-                }
-                
+        // Load the pre-generated blog index from a static JSON file.
+        fetch('data/blogs.json')
+            .then(response => response.json())
+            .then(blogs => {
                 const blogList = document.getElementById('blogList');
                 blogList.innerHTML = '';
-                
-                files.forEach(file => {
-                    const postId = file.replace('.md', '');
-                    const title = postId.replace(/-/g, ' ');
-                    
+
+                if (!blogs.length) {
+                    blogList.textContent = 'No blog posts found.';
+                    return;
+                }
+
+                blogs.forEach(blog => {
                     const card = document.createElement('a');
-                    card.href = `/blog.html?post=${postId}`;
+                    card.href = blog.url;
                     card.className = 'blog-card';
-                    card.innerHTML = `<strong>${title}</strong><p>Read more →</p>`;
+                    card.innerHTML = `
+                        <h3 class="blog-title">${blog.title}</h3>
+                        <div class="blog-actions">
+                            <span class="blog-btn read">Read post</span>
+                        </div>
+                    `;
                     blogList.appendChild(card);
                 });
             })
             .catch(err => {
+                console.error(err);
                 document.getElementById('blogList').innerHTML = 'Could not load blogs';
             });
     </script>
