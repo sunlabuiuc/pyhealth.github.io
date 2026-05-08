@@ -198,6 +198,11 @@
       gap: 0.5rem;
       transition: border-color 0.15s, box-shadow 0.15s, transform 0.1s;
       animation: rise 500ms ease;
+      text-decoration: none;
+      color: inherit;
+    }
+    .blog-card:hover {
+      text-decoration: none;
     }
     .blog-card:not(.hidden):hover {
       border-color: var(--accent);
@@ -214,6 +219,12 @@
       line-height: 1.4;
       margin: 0;
     }
+    .blog-author {
+      margin: 0;
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
     .blog-date {
       font-size: 0.88rem;
       color: var(--muted);
@@ -227,11 +238,21 @@
       margin-top: auto;
       padding-top: 0.5rem;
     }
+    .blog_list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      align-items: start;
+    }
+    .blog_list .blog-card {
+      width: 100%;
+    }
     .blog-btn {
       display: inline-flex;
       align-items: center;
       gap: 0.35rem;
       text-decoration: none;
+      cursor: pointer;
       font-size: 0.84rem;
       font-weight: 500;
       font-family: "IBM Plex Sans", sans-serif;

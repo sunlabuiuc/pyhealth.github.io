@@ -38,18 +38,30 @@ def main() -> None:
     if not BLOGS_DIR.exists():
         raise SystemExit(f"Blogs directory not found: {BLOGS_DIR}")
 
-    blog_files = sorted(BLOGS_DIR.glob('*.md'))
+    # Get all subdirectories in blogs folder
+    blog_dirs = sorted([d for d in BLOGS_DIR.iterdir() if d.is_dir()])
     blogs = []
 
-    for path in blog_files:
+    for blog_dir in blog_dirs:
+        # Find markdown files in each blog directory
+        md_files = sorted(blog_dir.glob('*.md'))
+        
+        if not md_files:
+            print(f"Warning: No markdown files found in {blog_dir.name}")
+            continue
+        
+        # Use the first markdown file found
+        path = md_files[0]
         text = path.read_text(encoding='utf-8')
         fields = parse_frontmatter(text)
         title = fields.get('title') or infer_title(text, path.stem)
+        
         blogs.append({
-            'id': path.stem,
+            'id': blog_dir.name,
             'title': title,
             'author': fields.get('author', ''),
-            'url': f'blog.html?post={path.stem}',
+            'file': path.name,
+            'url': f'blog.html?post={blog_dir.name}',
         })
 
     OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
