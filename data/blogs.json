@@ -3,6 +3,7 @@
     "id": "2026-05-03",
     "title": "Test Blog Post One",
     "author": "Alice Roberts",
+    "preview": "This is a mostly text-first post meant to check spacing, headings, and long-form reading flow. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel...",
     "file": "myblog-title.md",
     "url": "blog.html?post=2026-05-03"
   },
@@ -10,6 +11,7 @@
     "id": "2026-05-06",
     "title": "Conformal Prediction",
     "author": "Charles Devins",
+    "preview": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus at mauris id ex ultricies fringilla. Integer sit amet justo at lectus tristique volutpat. Cras sed...",
     "file": "testing-blog-with-assets.md",
     "url": "blog.html?post=2026-05-06"
   }
