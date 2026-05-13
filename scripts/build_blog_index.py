@@ -13,7 +13,7 @@ OUTPUT_FILE = ROOT / "data" / "blogs.json"
 
 MD_HEADER_RE = re.compile(r"^#\s+(.*)", re.MULTILINE)
 FRONTMATTER_RE = re.compile(r"^---\s*$(.*?)^---\s*$", re.MULTILINE | re.DOTALL)
-FIELD_RE = re.compile(r"^(title|author):\s*(.*)$", re.MULTILINE | re.IGNORECASE)
+FIELD_RE = re.compile(r"^(title|author|description):\s*(.*)$", re.MULTILINE | re.IGNORECASE)
 MARKDOWN_CLEAN_RE = re.compile(r'(\*\*|\*|~~|`|\[.*?\]\(.*?\)|!\[.*?\]\(.*?\)|<.*?>|#{1,6}\s*)', re.MULTILINE)
 
 
@@ -123,7 +123,8 @@ def main() -> None:
         text = path.read_text(encoding='utf-8')
         fields = parse_frontmatter(text)
         title = fields.get('title') or infer_title(text, path.stem)
-        preview = extract_preview(text)
+        description = (fields.get('description') or '').strip()
+        preview = description if description else extract_preview(text)
         
         date_iso, date_display = parse_folder_date(blog_dir.name)
         last_updated_iso = datetime.fromtimestamp(folder_last_modified(blog_dir)).isoformat(timespec='seconds')

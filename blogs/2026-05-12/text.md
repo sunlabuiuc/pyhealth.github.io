@@ -1,5 +1,6 @@
 ---
-title: "Test Blog Post One"
+title: "How to Actually Work With Us on Healthcare AI Research"
+description: "A practical guide to joining the PyHealth Research Initiative: join Discord, pick a bounty, and earn trust by shipping a solid PR."
 author: "Alice Roberts"
 ---
 **How to Actually Work With Us on Healthcare AI Research**
