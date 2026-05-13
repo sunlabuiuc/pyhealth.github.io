@@ -237,9 +237,17 @@
       margin: 0;
       line-height: 1.4;
     }
-    .blog-date-tag {
-      align-self: flex-start;
-      display: inline-block;
+    .blog-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 0 0 0.1rem;
+    }
+    .blog-date-tag,
+    .blog-readtime-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
       font-size: 0.75rem;
       font-weight: 500;
       font-family: "IBM Plex Sans", sans-serif;
@@ -249,7 +257,6 @@
       border: 1px solid var(--line);
       border-radius: 999px;
       padding: 0.2rem 0.65rem;
-      margin: 0 0 0.1rem;
     }
     .blog-updated {
       margin: 0;
@@ -309,18 +316,10 @@
     }
 
     /* ── Search ── */
-    .search-row {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin: 0 0 1.4rem;
-    }
     .blog-search {
       position: relative;
-      flex: 1 1 320px;
-      max-width: 460px;
-      margin: 0;
+      width: 100%;
+      margin: 0 0 1rem;
     }
     .blog-search input {
       width: 100%;
@@ -365,13 +364,52 @@
     .blog-search .clear-btn:hover { color: var(--accent); }
     .blog-search.has-value .clear-btn { display: inline-flex; }
 
-    /* ── Date range filter ── */
-    .date-filter {
+    /* ── Filters row (date + read time) ── */
+    .filters-row {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      align-items: center;
+      margin: 0 0 1.4rem;
+    }
+    .date-filter,
+    .readtime-filter {
       display: flex;
       gap: 0.6rem;
       flex-wrap: wrap;
       align-items: center;
       margin: 0;
+    }
+    .readtime-filter input[type="number"] {
+      width: 4.5rem;
+      font-size: 0.9rem;
+      font-family: "IBM Plex Sans", sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 0.4rem 0.55rem;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .readtime-filter input[type="number"]:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(201,95,38,0.15);
+    }
+    .readtime-filter label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+    .readtime-filter .readtime-sep {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .readtime-filter .readtime-unit {
+      color: var(--muted);
+      font-size: 0.85rem;
     }
     .date-filter .date-field {
       display: inline-flex;
@@ -400,18 +438,33 @@
       border-color: var(--accent);
       box-shadow: 0 0 0 3px rgba(201,95,38,0.15);
     }
-    .date-filter .reset-dates {
-      background: transparent;
+    .reset-dates {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--paper);
       border: 1px solid var(--line);
       color: var(--muted);
-      border-radius: 8px;
-      padding: 0.4rem 0.75rem;
-      font-size: 0.85rem;
+      border-radius: 10px;
+      padding: 0.6rem 1.1rem;
+      font-size: 0.92rem;
+      font-weight: 500;
       font-family: "IBM Plex Sans", sans-serif;
       cursor: pointer;
-      transition: border-color 0.15s, color 0.15s;
+      transition: border-color 0.15s, color 0.15s, box-shadow 0.15s, transform 0.1s;
     }
-    .date-filter .reset-dates:hover { color: var(--accent); border-color: var(--accent); }
+    .reset-dates:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      box-shadow: 0 2px 8px rgba(201,95,38,0.12);
+      transform: translateY(-1px);
+    }
+    .reset-dates:focus-visible {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(201,95,38,0.15);
+    }
+    .reset-dates svg { flex-shrink: 0; opacity: 0.85; }
 
     /* ── Callout banner ── */
     .apply-callout {
@@ -475,14 +528,14 @@
   <main class="site-wrap" style="padding: 2.2rem 0 3.5rem;">
   <div class="landing-card">
   <h1>Blog Posts</h1>
-  <div class="search-row">
-    <div class="blog-search" id="blogSearch">
-      <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <input type="search" id="blogSearchInput" placeholder="Search posts by title, author, or date…" aria-label="Search blog posts" autocomplete="off">
-      <button type="button" class="clear-btn" id="blogSearchClear" aria-label="Clear search">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
-    </div>
+  <div class="blog-search" id="blogSearch">
+    <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input type="search" id="blogSearchInput" placeholder="Search posts by title, author, or date…" aria-label="Search blog posts" autocomplete="off">
+    <button type="button" class="clear-btn" id="blogSearchClear" aria-label="Clear search">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="filters-row">
     <div class="date-filter" id="dateFilter">
       <div class="date-field">
         <label for="dateFrom">From</label>
@@ -492,8 +545,18 @@
         <label for="dateTo">To</label>
         <input type="date" id="dateTo" aria-label="Filter posts on or before this date">
       </div>
-      <button type="button" class="reset-dates" id="dateReset">Reset</button>
     </div>
+    <div class="readtime-filter" id="readtimeFilter">
+      <label for="readtimeMin">Read time</label>
+      <input type="number" id="readtimeMin" placeholder="Min" min="0" aria-label="Minimum read time in minutes">
+      <span class="readtime-sep">–</span>
+      <input type="number" id="readtimeMax" placeholder="Max" min="0" aria-label="Maximum read time in minutes">
+      <span class="readtime-unit">min</span>
+    </div>
+    <button type="button" class="reset-dates" id="dateReset">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15.5-6.3L21 8"/><polyline points="21 3 21 8 16 8"/><path d="M21 12a9 9 0 0 1-15.5 6.3L3 16"/><polyline points="3 21 3 16 8 16"/></svg>
+      Reset filters
+    </button>
   </div>
   <div class="blog_list" id="blogList">Loading...
   <!-- ── Blog Posts ── -->
@@ -552,6 +615,8 @@
         const dateFromInput = document.getElementById('dateFrom');
         const dateToInput = document.getElementById('dateTo');
         const dateReset = document.getElementById('dateReset');
+        const readtimeMinInput = document.getElementById('readtimeMin');
+        const readtimeMaxInput = document.getElementById('readtimeMax');
         let allBlogs = [];
 
         function formatUpdated(iso) {
@@ -560,11 +625,30 @@
             return d.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
         }
 
+        function formatReadTime(min) {
+            if (!min) return '';
+            if (min <= 60) return `${min} min read`;
+            const hr = Math.floor(min / 60);
+            const rem = min % 60;
+            if (rem === 0) return `${hr} hr read`;
+            return `${hr} hr ${rem} min read`;
+        }
+
         function cardHtml(blog) {
             const dateLabel = blog.date_display || blog.date || '';
             const updated = blog.last_updated ? formatUpdated(blog.last_updated) : '';
+            const readTime = formatReadTime(blog.read_time_min);
+            const readTimeTitle = blog.word_count ? `${blog.word_count} words` : '';
+            const tags = (dateLabel || readTime) ? `
+                <div class="blog-tags">
+                    ${dateLabel ? `<time class="blog-date-tag" datetime="${blog.date || ''}">${dateLabel}</time>` : ''}
+                    ${readTime ? `<span class="blog-readtime-tag" title="${readTimeTitle}">
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        ${readTime}
+                    </span>` : ''}
+                </div>` : '';
             return `
-                ${dateLabel ? `<time class="blog-date-tag" datetime="${blog.date || ''}">${dateLabel}</time>` : ''}
+                ${tags}
                 <h3 class="blog-title">${blog.title}</h3>
                 ${blog.author ? `<p class="blog-author">By ${blog.author}</p>` : ''}
                 ${updated ? `<p class="blog-updated" title="${blog.last_updated}">Last updated on ${updated}</p>` : ''}
@@ -594,6 +678,10 @@
             const q = searchInput.value.trim().toLowerCase();
             const from = dateFromInput.value;
             const to = dateToInput.value;
+            const rtMinRaw = readtimeMinInput.value.trim();
+            const rtMaxRaw = readtimeMaxInput.value.trim();
+            const rtMin = rtMinRaw !== '' ? parseInt(rtMinRaw, 10) : null;
+            const rtMax = rtMaxRaw !== '' ? parseInt(rtMaxRaw, 10) : null;
             searchWrap.classList.toggle('has-value', q.length > 0);
 
             const filtered = allBlogs.filter(b => {
@@ -605,6 +693,9 @@
                 if ((from || to) && !b.date) return false;
                 if (from && b.date < from) return false;
                 if (to && b.date > to) return false;
+                const rt = b.read_time_min || 0;
+                if (rtMin !== null && !isNaN(rtMin) && rt < rtMin) return false;
+                if (rtMax !== null && !isNaN(rtMax) && rt > rtMax) return false;
                 return true;
             });
             render(filtered);
@@ -618,9 +709,13 @@
         });
         dateFromInput.addEventListener('change', applyFilter);
         dateToInput.addEventListener('change', applyFilter);
+        readtimeMinInput.addEventListener('input', applyFilter);
+        readtimeMaxInput.addEventListener('input', applyFilter);
         dateReset.addEventListener('click', () => {
             dateFromInput.value = '';
             dateToInput.value = '';
+            readtimeMinInput.value = '';
+            readtimeMaxInput.value = '';
             applyFilter();
         });
 

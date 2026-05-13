@@ -1,9 +1,11 @@
 import json
+import math
 import re
 from datetime import datetime
 from pathlib import Path
 
 FOLDER_DATE_RE = re.compile(r"^(\d{4})-(\d{2})-(\d{2})")
+WORDS_PER_MINUTE = 238
 
 ROOT = Path(__file__).resolve().parent.parent
 BLOGS_DIR = ROOT / "blogs"
@@ -66,6 +68,18 @@ def extract_preview(text: str) -> str:
     return preview.strip()
 
 
+def count_words(text: str) -> int:
+    text = FRONTMATTER_RE.sub('', text)
+    text = re.sub(r'```[\s\S]*?```', '', text)
+    text = re.sub(r'`[^`]+`', '', text)
+    text = re.sub(r'!\[.*?\]\(.*?\)', '', text)
+    text = re.sub(r'\[(.*?)\]\(.*?\)', r'\1', text)
+    text = re.sub(r'<[^>]+>', '', text)
+    text = re.sub(r'[#>*_~`\-]+', ' ', text)
+    words = re.findall(r"\b\w[\w'-]*\b", text)
+    return len(words)
+
+
 def folder_last_modified(folder: Path) -> float:
     latest = folder.stat().st_mtime
     for child in folder.rglob('*'):
@@ -113,6 +127,8 @@ def main() -> None:
         
         date_iso, date_display = parse_folder_date(blog_dir.name)
         last_updated_iso = datetime.fromtimestamp(folder_last_modified(blog_dir)).isoformat(timespec='seconds')
+        word_count = count_words(text)
+        read_time_min = max(1, math.ceil(word_count / WORDS_PER_MINUTE)) if word_count else 0
 
         blogs.append({
             'id': blog_dir.name,
@@ -122,6 +138,8 @@ def main() -> None:
             'date': date_iso,
             'date_display': date_display,
             'last_updated': last_updated_iso,
+            'word_count': word_count,
+            'read_time_min': read_time_min,
             'file': path.name,
             'url': f'blog.html?post={blog_dir.name}',
         })

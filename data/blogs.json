@@ -7,6 +7,8 @@
     "date": "2026-05-03",
     "date_display": "May 3, 2026",
     "last_updated": "2026-05-06T21:14:21",
+    "word_count": 148,
+    "read_time_min": 1,
     "file": "myblog-title.md",
     "url": "blog.html?post=2026-05-03"
   },
@@ -18,7 +20,22 @@
     "date": "2026-05-06",
     "date_display": "May 6, 2026",
     "last_updated": "2026-05-06T21:14:21",
+    "word_count": 207,
+    "read_time_min": 1,
     "file": "testing-blog-with-assets.md",
     "url": "blog.html?post=2026-05-06"
+  },
+  {
+    "id": "2026-05-12",
+    "title": "The Long Read: A Visual Stress Test in Lorem Ipsum",
+    "author": "Dolor Sitamet",
+    "preview": "Suspendisse potenti, vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam varius,...",
+    "date": "2026-05-12",
+    "date_display": "May 12, 2026",
+    "last_updated": "2026-05-12T22:38:49",
+    "word_count": 20610,
+    "read_time_min": 87,
+    "file": "stress-test.md",
+    "url": "blog.html?post=2026-05-12"
   }
 ]
