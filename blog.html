@@ -42,6 +42,12 @@
         align-items: center;
         gap: 0.4rem;
       }
+      .blog-content p.blog-updated {
+        margin: -0.4rem 0 1.4rem;
+        font-size: 0.88rem;
+        color: var(--muted);
+        font-style: italic;
+      }
       .blog-content {
         display: grid;
         gap: 1.25rem;
@@ -177,6 +183,12 @@
         meta,
         body: text.slice(match[0].length).replace(/^\s+/, '')
       };
+    }
+
+    function formatUpdated(iso) {
+      const d = new Date(iso);
+      if (isNaN(d)) return '';
+      return d.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
     }
 
     function escapeHtml(text) {
@@ -315,6 +327,8 @@
         const params = new URLSearchParams(window.location.search);
         const postId = params.get('post');
 
+        let blogMeta = null;
+
         if (!postId) {
             document.getElementById('blog-content').innerHTML = 'No post specified';
         } else {
@@ -327,6 +341,7 @@
                         document.getElementById('blog-content').innerHTML = 'Post not found';
                         return;
                     }
+                    blogMeta = blog;
                     // Fetch the markdown file from the blog folder
                     return fetch(`blogs/${postId}/${blog.file}`);
                 })
@@ -413,8 +428,10 @@
 
                     const authorLine = meta.author ? `<div class="blog-meta"><span>By ${escapeHtml(meta.author)}</span></div>` : '';
                     const titleLine = meta.title ? `<h1 class="blog-title">${escapeHtml(meta.title)}</h1>` : '';
+                    const updatedAbs = blogMeta && blogMeta.last_updated ? formatUpdated(blogMeta.last_updated) : '';
+                    const updatedLine = updatedAbs ? `<p class="blog-updated" title="${escapeHtml(blogMeta.last_updated)}">Last updated on ${updatedAbs}</p>` : '';
 
-                    document.getElementById('blog-content').innerHTML = `${titleLine}${authorLine}${html}`;
+                    document.getElementById('blog-content').innerHTML = `${titleLine}${authorLine}${updatedLine}${html}`;
                 })
                 .catch(err => {
                     document.getElementById('blog-content').innerHTML = 'Post not found';

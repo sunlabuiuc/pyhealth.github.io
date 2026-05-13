@@ -1,6 +1,9 @@
 import json
 import re
+from datetime import datetime
 from pathlib import Path
+
+FOLDER_DATE_RE = re.compile(r"^(\d{4})-(\d{2})-(\d{2})")
 
 ROOT = Path(__file__).resolve().parent.parent
 BLOGS_DIR = ROOT / "blogs"
@@ -63,6 +66,28 @@ def extract_preview(text: str) -> str:
     return preview.strip()
 
 
+def folder_last_modified(folder: Path) -> float:
+    latest = folder.stat().st_mtime
+    for child in folder.rglob('*'):
+        try:
+            latest = max(latest, child.stat().st_mtime)
+        except OSError:
+            continue
+    return latest
+
+
+def parse_folder_date(folder_name: str) -> tuple[str, str]:
+    match = FOLDER_DATE_RE.match(folder_name)
+    if not match:
+        return '', ''
+    iso = f"{match.group(1)}-{match.group(2)}-{match.group(3)}"
+    try:
+        display = datetime.strptime(iso, "%Y-%m-%d").strftime("%b %d, %Y").replace(" 0", " ")
+    except ValueError:
+        display = iso
+    return iso, display
+
+
 def main() -> None:
     if not BLOGS_DIR.exists():
         raise SystemExit(f"Blogs directory not found: {BLOGS_DIR}")
@@ -86,11 +111,17 @@ def main() -> None:
         title = fields.get('title') or infer_title(text, path.stem)
         preview = extract_preview(text)
         
+        date_iso, date_display = parse_folder_date(blog_dir.name)
+        last_updated_iso = datetime.fromtimestamp(folder_last_modified(blog_dir)).isoformat(timespec='seconds')
+
         blogs.append({
             'id': blog_dir.name,
             'title': title,
             'author': fields.get('author', ''),
             'preview': preview,
+            'date': date_iso,
+            'date_display': date_display,
+            'last_updated': last_updated_iso,
             'file': path.name,
             'url': f'blog.html?post={blog_dir.name}',
         })
