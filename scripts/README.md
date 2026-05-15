@@ -88,3 +88,49 @@ cd /path/to/pyhealth.github.io
 python -m http.server 8080
 # open http://localhost:8080/tasks.html
 ```
+
+---
+
+## build_blog_index.py (blog index + metadata)
+
+This script scans the `blogs/` folder and writes the blog index used by the
+site.
+
+- **Input:** `blogs/YYYY-MM-DD/*.md` (uses the first `.md` file in each dated folder)
+- **Output:** `data/blogs.json`
+- **What it computes:** title/author (from frontmatter or `# ...`), preview text,
+  `word_count`, and `read_time_min` (based on words-per-minute).
+
+Run it whenever you:
+
+- add a new blog post folder,
+- rename the `.md` file inside a post folder,
+- or change post content and want `preview` / `word_count` / `read_time_min` updated.
+
+```bash
+# From the pyhealth.github.io repo root:
+python scripts/build_blog_index.py
+```
+
+### How blog pages render
+
+- `blog_list.html` loads `data/blogs.json` to render the list.
+- `blog.html?post=YYYY-MM-DD` loads `data/blogs.json` to find the markdown
+  filename, then fetches `blogs/YYYY-MM-DD/<file>.md` and converts the Markdown
+  to HTML in the browser.
+
+---
+
+## Previewing the blog locally
+
+Because the site uses `fetch()`, preview via an HTTP server:
+
+```bash
+cd /path/to/pyhealth.github.io
+python -m http.server 8080
+# open http://localhost:8080/blog_list.html
+```
+
+To open a specific post:
+
+- `http://localhost:8080/blog.html?post=YYYY-MM-DD`
