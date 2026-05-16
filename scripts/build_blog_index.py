@@ -17,7 +17,7 @@ OG_IMAGE = f"{SITE_URL}/images/pyhealth-logo.png"
 
 MD_HEADER_RE = re.compile(r"^#\s+(.*)", re.MULTILINE)
 FRONTMATTER_RE = re.compile(r"^---\s*$(.*?)^---\s*$", re.MULTILINE | re.DOTALL)
-FIELD_RE = re.compile(r"^(title|author|description):\s*(.*)$", re.MULTILINE | re.IGNORECASE)
+FIELD_RE = re.compile(r"^(title|author|description|updated):\s*(.*)$", re.MULTILINE | re.IGNORECASE)
 MARKDOWN_CLEAN_RE = re.compile(r'(\*\*|\*|~~|`|\[.*?\]\(.*?\)|!\[.*?\]\(.*?\)|<.*?>|#{1,6}\s*)', re.MULTILINE)
 
 
@@ -95,6 +95,19 @@ def folder_last_modified(folder: Path) -> float:
         except OSError:
             continue
     return latest
+
+
+def resolve_last_updated(fields: dict[str, str], folder: Path) -> str:
+    """Use the optional 'updated' frontmatter field if present; else fall back to file mtime."""
+    explicit = fields.get('updated', '').strip()
+    if explicit:
+        try:
+            d = datetime.strptime(explicit[:10], "%Y-%m-%d")
+            # noon, no timezone — renders as the intended date regardless of viewer tz
+            return d.replace(hour=12).isoformat(timespec='seconds')
+        except ValueError:
+            pass
+    return datetime.fromtimestamp(folder_last_modified(folder)).isoformat(timespec='seconds')
 
 
 def parse_folder_date(folder_name: str) -> tuple[str, str]:
@@ -192,7 +205,7 @@ def main() -> None:
         preview = description if description else extract_preview(text)
         
         date_iso, date_display = parse_folder_date(blog_dir.name)
-        last_updated_iso = datetime.fromtimestamp(folder_last_modified(blog_dir)).isoformat(timespec='seconds')
+        last_updated_iso = resolve_last_updated(fields, blog_dir)
         word_count = count_words(text)
         read_time_min = max(1, math.ceil(word_count / WORDS_PER_MINUTE)) if word_count else 0
 
