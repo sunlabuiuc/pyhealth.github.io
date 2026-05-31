@@ -15,7 +15,7 @@ One of the headline features of PyHealth is its memory efficiency. Processing 10
 
 But when researchers first try to use PyHealth, they run into something unexpected: you have to define *two* separate modules, a `pyhealth.dataset` and a `pyhealth.task`. This confuses almost everyone, because most research repos have some version of a `data.py`, `dataset.py`, or `create_dataset.py` that does everything in one place.
 
-The problem with that instinct is that it assumes a researcher takes one fixed path through their data. Define your features once, and you're done. But that's not how research actually works.
+The problem with that instinct is that it assumes a researcher takes one fixed path through their data. Define your features once, and you're done. But that's not how research actually works, even if the average researcher's codebase doesn't reflect it. 
 
 Preprocessing is an *ever-changing process*. You're constantly refining what features to include, how to define labels, what time windows to use. And once your dataset is too large to fit in memory, which happens fast with EHR data, iterating on that monolithic function means reimplementing memory-disk tricks every single time you want to try something different. Not to mention, a 1000-line `preprocess_data.py` is genuinely painful to read and debug.
 
@@ -23,12 +23,16 @@ Preprocessing is an *ever-changing process*. You're constantly refining what fea
 
 ## The Two-Step Solution
 
-PyHealth splits data processing into two conceptually distinct steps:
+When you strip away all the engineering, every data preprocessing pipeline really comes down to two questions: what is your data and where is it, and how do you use it to do something meaningful? PyHealth just formalizes that into two explicit pieces.
 
-1. **`pyhealth.datasets`**: Define what's in your raw data (and how to read it, if it's not already tabular, parallel I/O, memory management, and caching are handled for you either way).
-2. **`pyhealth.tasks`**: Define how to transform that loaded data into something usable for a specific experiment.
+The names are intentional. A *dataset* is just a set of data: it describes what exists and how to access it. A *task* is what you're trying to do with that data: the clinical question you're asking, and all the logic that goes into answering it.
 
-Once defined, a dataset stays static. Everything downstream (labels, features, time windows) lives in your task.
+PyHealth makes this split explicit:
+
+1. **`pyhealth.datasets`**: Describes your raw data as a collection, what patients are in it, what events exist, and where it lives (and how to read it, if it's not already tabular). All the complexity behind actually working with that data, file I/O, memory management, caching, is handled by PyHealth automatically. You just tell us what's there.
+2. **`pyhealth.tasks`**: Defines how you use that data to do something. This is where your research decisions live: inclusion and exclusion criteria, which features go in, what the output label is, how you window time-series events. Every design choice that turns raw records into a model-ready sample belongs here.
+
+Once defined, a dataset stays static. Everything downstream (labels, features, time windows, cohort logic) lives in your task, where it belongs.
 
 ---
 
