@@ -23,7 +23,7 @@ Preprocessing is an *ever-changing process*. You're constantly refining what fea
 
 ## The Two-Step Solution
 
-When you strip away all the engineering, every data preprocessing pipeline really comes down to two questions: what is your data and where is it, and how do you use it to do something meaningful? PyHealth just formalizes that into two explicit pieces.
+When you strip away all the engineering, every data preprocessing pipeline really comes down to two questions: what is your data, and how do you use it to do something meaningful? PyHealth just formalizes that into two explicit pieces.
 
 The names are intentional. A *dataset* is just a set of data: it describes what exists and how to access it. A *task* is what you're trying to do with that data: the clinical question you're asking, and all the logic that goes into answering it.
 
