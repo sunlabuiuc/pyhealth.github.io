@@ -46,9 +46,68 @@ Once defined, a dataset stays static. Everything downstream (labels, features, t
 
 ---
 
+## Example in Action
+
+Here's that two-step split in practice, using two tasks that already ship with PyHealth: mortality prediction and drug recommendation.
+
+First, the reuse. You define the data once, then point as many tasks at it as you like:
+
+```python
+from pyhealth.datasets import MIMIC4Dataset
+from pyhealth.tasks import MortalityPredictionMIMIC4, DrugRecommendationMIMIC4
+
+base = MIMIC4Dataset(                       # define the data once
+    ehr_root="...",
+    ehr_tables=["patients", "admissions", "diagnoses_icd",
+                "procedures_icd", "prescriptions"],
+)
+
+mortality = base.set_task(MortalityPredictionMIMIC4())   # same call,
+drug_rec  = base.set_task(DrugRecommendationMIMIC4())     # different task
+```
+
+The dataset is built and cached once. Each task is the exact same one-line `set_task`, just with a different task object. Swapping your research question never touches the data layer.
+
+Now the part that makes this pleasant to live with: a task is genuinely easy to read. Here's a trimmed version of the mortality task:
+
+```python
+class MortalityPredictionMIMIC4(BaseTask):
+    task_name: str = "MortalityPredictionMIMIC4"
+    input_schema:  Dict[str, str] = {"conditions": "sequence",
+                                      "procedures": "sequence",
+                                      "drugs": "sequence"}
+    output_schema: Dict[str, str] = {"mortality": "binary"}
+
+    def __call__(self, patient):
+        samples = []
+        admissions = patient.get_events(event_type="admissions")
+        for i in range(len(admissions) - 1):
+            # ... pull this visit's conditions / procedures / drugs
+            # ... derive the mortality label from the next admission
+            samples.append({"conditions": conditions,
+                            "procedures": procedures,
+                            "drugs": drugs,
+                            "mortality": mortality_label})
+        return samples
+```
+
+A few things fall out of this structure:
+
+**The contract is the first thing you read.** `input_schema` and `output_schema` sit right at the top and tell you exactly what goes in and what comes out, before you read a single line of logic. Mortality maps three `sequence` inputs to one `binary` label. Drug recommendation instead maps `nested_sequence` visit history to a `multilabel` output. Each schema value names a reusable processor that turns raw codes into model-ready tensors for you, and you can always drop to a custom one when a field is too complex.
+
+**All the logic funnels through one `__call__(patient)`.** Every cohort filter, label definition, and time window lives in that single per-patient method. If a sample comes out wrong, there is exactly one place to look, instead of hunting through a 1000-line `preprocess_data.py`.
+
+**You write it for one patient, PyHealth runs it for all of them.** `set_task` fans `__call__` across every patient automatically, so you never write the parallelism, batching, or I/O yourself.
+
+If you want to see the real, untrimmed code, here are the full files: [mortality prediction](https://github.com/sunlabuiuc/PyHealth/blob/master/pyhealth/tasks/mortality_prediction.py), [drug recommendation](https://github.com/sunlabuiuc/PyHealth/blob/master/pyhealth/tasks/drug_recommendation.py), the [base task class](https://github.com/sunlabuiuc/PyHealth/blob/master/pyhealth/tasks/base_task.py), and [`set_task`](https://github.com/sunlabuiuc/PyHealth/blob/master/pyhealth/datasets/base_dataset.py) where the parallelization happens.
+
+Want the whole thing end to end? See the [runnable example](https://github.com/sunlabuiuc/PyHealth/blob/master/examples/drug_recommendation_mimic4_retain.py), or keep reading below for docs and guides.
+
+---
+
 ## Where to Learn More
 
-This post won't go into the code specifics of writing a `pyhealth.task`. For documentation and hands-on examples, see:
+Every built-in task follows this same shape, so once you've read one, you've read them all. For full documentation and more hands-on examples, see:
 
 - [pyhealth.dev](https://pyhealth.dev), the PyHealth project site
 - [pyhealth.tasks API reference](https://pyhealth.readthedocs.io/en/latest/api/tasks.html)
