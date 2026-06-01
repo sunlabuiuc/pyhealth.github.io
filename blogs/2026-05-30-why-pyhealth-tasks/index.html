@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faster, Cleaner Healthcare Data Preprocessing with PyHealth — PyHealth Blog</title>
+    <meta name="description" content="pyhealth.tasks separates static data loading from dynamic transformation logic, so you can iterate on preprocessing pipelines quickly without re-loading gigabytes of data every time.">
+    <link rel="canonical" href="https://pyhealth.dev/blogs/2026-05-30-why-pyhealth-tasks/">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="PyHealth">
+    <meta property="og:url" content="https://pyhealth.dev/blogs/2026-05-30-why-pyhealth-tasks/">
+    <meta property="og:title" content="Faster, Cleaner Healthcare Data Preprocessing with PyHealth">
+    <meta property="og:description" content="pyhealth.tasks separates static data loading from dynamic transformation logic, so you can iterate on preprocessing pipelines quickly without re-loading gigabytes of data every time.">
+    <meta property="og:image" content="https://pyhealth.dev/images/pyhealth-logo.png">
+    <meta property="article:published_time" content="2026-05-30">
+    <meta property="article:author" content="John Wu">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Faster, Cleaner Healthcare Data Preprocessing with PyHealth">
+    <meta name="twitter:description" content="pyhealth.tasks separates static data loading from dynamic transformation logic, so you can iterate on preprocessing pipelines quickly without re-loading gigabytes of data every time.">
+    <meta name="twitter:image" content="https://pyhealth.dev/images/pyhealth-logo.png">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <style>
+      body {
+        background: var(--bg);
+        color: var(--ink);
+      }
+      /* Prettier scrollbars (Firefox + WebKit) */
+      html {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(148, 163, 184, 0.45) transparent;
+      }
+      ::-webkit-scrollbar {
+        height: 10px;
+        width: 10px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: rgba(148, 163, 184, 0.4);
+        border-radius: 999px;
+        border: 2px solid transparent;
+        background-clip: content-box;
+        transition: background-color 0.15s;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgba(148, 163, 184, 0.7);
+        background-clip: content-box;
+      }
+      ::-webkit-scrollbar-corner {
+        background: transparent;
+      }
+      .site-wrap {
+        width: min(100% - 2rem, 760px);
+        margin: 0 auto;
+        padding: 2.5rem 0 4rem;
+      }
+      .blog-card {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        padding: 3.2rem 3rem 3.4rem;
+        box-shadow: 0 20px 42px rgba(22, 33, 31, 0.08);
+      }
+      .blog-title {
+        font-family: "Source Serif 4", Georgia, serif;
+        font-size: clamp(2rem, 4.2vw, 3rem);
+        font-weight: 600;
+        margin: 0 0 1.5rem;
+        line-height: 1.1;
+        letter-spacing: -0.012em;
+      }
+      .blog-content h1:not(.blog-title) {
+        font-family: "Source Serif 4", Georgia, serif;
+        font-size: 1.85rem;
+        font-weight: 600;
+        line-height: 1.2;
+        margin: 2.8rem 0 1.4rem;
+        letter-spacing: -0.01em;
+      }
+      .blog-content h1:not(.blog-title) + p,
+      .blog-content h1:not(.blog-title) + ul,
+      .blog-content h1:not(.blog-title) + ol {
+        margin-top: 0;
+      }
+      .blog-meta {
+        display: flex;
+        gap: 0.6rem 1rem;
+        flex-wrap: wrap;
+        color: var(--muted);
+        font-size: 0.95rem;
+        margin: 0 0 0.25rem;
+        align-items: center;
+      }
+      .blog-meta span {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+      }
+      .blog-meta .meta-readtime {
+        position: relative;
+        padding-left: 1rem;
+      }
+      .blog-meta .meta-readtime::before {
+        content: "·";
+        position: absolute;
+        left: 0;
+        color: var(--line);
+        font-weight: 700;
+      }
+      .blog-meta .meta-readtime svg {
+        opacity: 0.75;
+      }
+      .blog-content p.blog-updated {
+        margin: 0 0 2.2rem;
+        padding: 0 0 1.6rem;
+        border-bottom: 1px solid var(--line);
+        font-size: 0.84rem;
+        color: var(--muted);
+        font-style: italic;
+        letter-spacing: 0.01em;
+      }
+      .blog-content {
+        display: block;
+        font-size: 1.06rem;
+        line-height: 1.72;
+        color: var(--ink);
+      }
+      .blog-content > * {
+        margin: 0;
+      }
+      .blog-content p {
+        margin: 0 0 1.15rem;
+      }
+      .blog-content p:last-child {
+        margin-bottom: 0;
+      }
+      .blog-content h2 {
+        font-family: "Source Serif 4", Georgia, serif;
+        font-size: 1.55rem;
+        font-weight: 600;
+        line-height: 1.25;
+        margin: 2.4rem 0 0.8rem;
+        letter-spacing: -0.005em;
+      }
+      .blog-content h3 {
+        font-family: "Source Serif 4", Georgia, serif;
+        font-size: 1.22rem;
+        font-weight: 600;
+        line-height: 1.3;
+        margin: 1.9rem 0 0.6rem;
+      }
+      .blog-content h2 + p,
+      .blog-content h3 + p {
+        margin-top: 0;
+      }
+      .blog-content ul,
+      .blog-content ol {
+        padding-left: 1.4rem;
+        margin: 0 0 1.15rem;
+      }
+      .blog-content li {
+        margin: 0.35rem 0;
+      }
+      .blog-content li > p {
+        margin: 0;
+      }
+      .blog-content blockquote {
+        margin: 1.8rem 0;
+        padding: 1.1rem 1.4rem;
+        border-left: 3px solid var(--accent);
+        background: rgba(201, 95, 38, 0.06);
+        color: var(--ink);
+        font-style: italic;
+        border-radius: 0 8px 8px 0;
+      }
+      .blog-content blockquote p:last-child { margin-bottom: 0; }
+      .blog-content pre {
+        background: #0f172a;
+        color: #e2e8f0;
+        border-radius: 14px;
+        padding: 1.2rem 1.3rem;
+        overflow-x: auto;
+        border: 1px solid rgba(148, 163, 184, 0.18);
+        margin: 1.6rem 0;
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+      .blog-content pre code {
+        display: block;
+        background: transparent;
+        color: inherit;
+        padding: 0;
+        margin: 0;
+        border-radius: 0;
+        white-space: pre;
+      }
+      .blog-content code {
+        background: rgba(124, 58, 237, 0.08);
+        color: #7c3aed;
+        font-weight: 500;
+        border-radius: 5px;
+        padding: 0.1rem 0.35rem;
+        font-size: 0.92em;
+      }
+      .blog-content pre code,
+      .blog-content pre code.hljs {
+        background: transparent;
+        color: inherit;
+        padding: 0;
+        border-radius: 0;
+        font-weight: normal;
+        font-size: inherit;
+      }
+      .blog-content a {
+        color: var(--accent);
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 2px;
+      }
+      .blog-content a:hover { text-decoration-thickness: 2px; }
+      .blog-content img {
+        width: 100%;
+        max-width: 100%;
+        border-radius: 14px;
+        margin: 2rem 0;
+        display: block;
+      }
+      .blog-content hr {
+        border: none;
+        border-top: 1px solid var(--line);
+        margin: 2.4rem auto;
+        width: 60%;
+      }
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        text-decoration: none;
+        color: var(--muted);
+        font-size: 0.94rem;
+        padding: 0.35rem 0.65rem;
+        border-radius: 999px;
+        border: 1px solid transparent;
+        transition: color 0.12s, background 0.12s, border-color 0.12s;
+        margin-bottom: 1.8rem;
+      }
+      .back-link:hover {
+        color: var(--accent);
+        border-color: var(--line);
+        background: var(--paper);
+      }
+      @media (max-width: 720px) {
+        .blog-card { padding: 2rem 1.5rem 2.2rem; border-radius: 16px; }
+        .site-wrap { padding: 1.2rem 0 2.5rem; }
+        .blog-content { font-size: 1.02rem; line-height: 1.65; }
+        .blog-content h2 { margin-top: 1.9rem; }
+        .blog-content h3 { margin-top: 1.5rem; }
+      }
+    </style>
+</head>
+<body>
+  <div class="site-wrap">
+    <a href="/blog_list.html" class="back-link">← Back to Blog List</a>
+    <article class="blog-card">
+      <div id="blog-content" class="blog-content">Loading...</div>
+    </article>
+  </div>
+
+    <script>
+    function parseFrontmatter(text) {
+      text = text.replace(/\r/g, '');
+      const match = text.match(/^---\s*$([\s\S]*?)^---\s*$/m);
+      if (!match) {
+        return { meta: {}, body: text };
+      }
+
+      const meta = {};
+      match[1].split('\n').forEach(line => {
+        const field = line.match(/^(title|author):\s*(.*)$/i);
+        if (field) {
+          meta[field[1].toLowerCase()] = field[2].trim().replace(/^['"]|['"]$/g, '');
+        }
+      });
+
+      return {
+        meta,
+        body: text.slice(match[0].length).replace(/^\s+/, '')
+      };
+    }
+
+    function formatUpdated(iso) {
+      const d = new Date(iso);
+      if (isNaN(d)) return '';
+      return d.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+    }
+
+    function formatReadTime(min) {
+      if (!min) return '';
+      if (min <= 60) return `${min} min read`;
+      const hr = Math.floor(min / 60);
+      const rem = min % 60;
+      if (rem === 0) return `${hr} hr read`;
+      return `${hr} hr ${rem} min read`;
+    }
+
+    function escapeHtml(text) {
+      return text
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function convertMarkdownBlockquotes(text) {
+      text = text.replace(/\r/g, '');
+      return text.replace(/(^|\n)((?:>.*(?:\n|$))+)/g, (match, prefix, block) => {
+        const lines = block.trimEnd().split('\n');
+        let html = prefix;
+        let currentLevel = 0;
+
+        lines.forEach((line, index) => {
+          const match = line.match(/^(>+)\s?(.*)$/);
+          if (!match) {
+            return;
+          }
+
+          const level = match[1].length;
+          const content = match[2];
+
+          while (currentLevel < level) {
+            html += '<blockquote>';
+            currentLevel += 1;
+          }
+          while (currentLevel > level) {
+            html += '</blockquote>';
+            currentLevel -= 1;
+          }
+
+          html += content;
+          if (index < lines.length - 1) {
+            html += '\n';
+          }
+        });
+
+        while (currentLevel > 0) {
+          html += '</blockquote>';
+          currentLevel -= 1;
+        }
+
+        return html;
+      });
+    }
+
+    function highlightCodeSyntax(text) {
+      return text.replace(/```([\w+\-#.]+)?\s*\n?([\s\S]*?)```/g, (match, lang, code) => {
+        const escapedCode = escapeHtml(code.replace(/\n$/, ''));
+        const langClass = lang ? ` class="language-${lang.toLowerCase()}"` : '';
+        return `<pre><code${langClass}>${escapedCode}</code></pre>`;
+      });
+    }
+
+    function convertMarkdownLists(text) {
+      text = text.replace(/\r/g, '');
+      return text.replace(/(^|\n)((?:[ \t]*(?:[-*]|\d+\.) .+(?:\n|$))+)/g, (match, prefix, listBlock) => {
+        const lines = listBlock.replace(/\t/g, '    ').split('\n').filter(line => line.trim().length > 0);
+        let html = prefix;
+        const stack = [];
+
+        const closeToDepth = (depth) => {
+          while (stack.length > depth) {
+            const current = stack.pop();
+            if (current.openItem) {
+              html += '</li>';
+              current.openItem = false;
+            }
+            html += `</${current.tag}>`;
+          }
+        };
+
+        const openList = (tag) => {
+          html += `<${tag}>`;
+          stack.push({ tag, openItem: false });
+        };
+
+        const openListItem = (content) => {
+          const current = stack[stack.length - 1];
+          if (current.openItem) {
+            html += '</li>';
+            current.openItem = false;
+          }
+          html += `<li>${content}`;
+          current.openItem = true;
+        };
+
+        lines.forEach(line => {
+          const unordered = line.match(/^(\s*)[-*]\s+(.*)$/);
+          const ordered = line.match(/^(\s*)(\d+)\.\s+(.*)$/);
+          if (!unordered && !ordered) {
+            return;
+          }
+
+          const indent = (unordered ? unordered[1].length : ordered[1].length);
+          const level = indent === 0 ? 0 : Math.ceil(indent / 4);
+          const depth = level + 1;
+          const tag = ordered ? 'ol' : 'ul';
+          let content = ordered ? ordered[3] : unordered[2];
+
+          const taskMatch = content.match(/^\[([ xX])\]\s+(.*)$/);
+          if (taskMatch) {
+            const checked = taskMatch[1].toLowerCase() === 'x';
+            content = `<label><input type="checkbox" disabled${checked ? ' checked' : ''}> ${taskMatch[2].trim()}</label>`;
+          }
+
+          if (stack.length < depth) {
+            openList(tag);
+          } else if (stack.length > depth) {
+            closeToDepth(depth);
+          }
+
+          if (stack[stack.length - 1].tag !== tag) {
+            closeToDepth(depth - 1);
+            openList(tag);
+          }
+
+          openListItem(content.trim());
+        });
+
+        closeToDepth(0);
+        return html;
+      });
+    }
+
+        // Get the blog post id — from ?post= query, or from a /blogs/<id>/ path
+        const params = new URLSearchParams(window.location.search);
+        let postId = params.get('post');
+        if (!postId) {
+            const pathMatch = window.location.pathname.match(/\/blogs\/([^/]+)\/?/);
+            if (pathMatch) postId = pathMatch[1];
+        }
+
+        let blogMeta = null;
+
+        if (!postId) {
+            document.getElementById('blog-content').innerHTML = 'No post specified';
+        } else {
+            // Fetch blogs.json to find the markdown filename
+            fetch('/data/blogs.json')
+                .then(response => response.json())
+                .then(blogs => {
+                    const blog = blogs.find(b => b.id === postId);
+                    if (!blog) {
+                        document.getElementById('blog-content').innerHTML = 'Post not found';
+                        return;
+                    }
+                    blogMeta = blog;
+                    // Fetch the markdown file from the blog folder
+                    return fetch(`/blogs/${postId}/${blog.file}`);
+                })
+                .then(response => response.text())
+            .then(text => {
+              const { meta, body } = parseFrontmatter(text);
+              let html = body.replace(/\r/g, '');
+
+                    // Simple markdown to HTML converter
+                    // Headers
+                    html = html.replace(/^### (.*?)$/gm, '<h3>$1</h3>');
+                    html = html.replace(/^## (.*?)$/gm, '<h2>$1</h2>');
+                    html = html.replace(/^# (.*?)$/gm, '<h1>$1</h1>');
+
+                    // Code blocks
+                    html = highlightCodeSyntax(html);
+
+                    // Blockquotes
+                    html = convertMarkdownBlockquotes(html);
+
+                    // Lists
+                    html = convertMarkdownLists(html);
+
+                    // Horizontal rules (***, ---, ___ on a line by themselves) — must run before bold/italic
+                    html = html.replace(/^[ \t]*(?:\*{3,}|-{3,}|_{3,})[ \t]*$/gm, '<hr>');
+
+                    // Strikethrough
+                    html = html.replace(/~~(.*?)~~/g, '<del>$1</del>');
+
+                    // Bold and italic
+                    html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                    html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+
+                    // Images - update paths to include blog folder and support shared images/ references
+                    html = html.replace(/!\[(.*?)\]\((.*?)\)/g, (match, alt, src) => {
+                        let imageSrc;
+                        if (src.startsWith('/') || src.startsWith('http')) {
+                          imageSrc = src;
+                        } else if (/^\.\.\/images\//.test(src)) {
+                          imageSrc = src.replace(/^\.\.\//, '/');
+                        } else {
+                          imageSrc = new URL(src, `${location.origin}/blogs/${postId}/`).pathname;
+                        }
+                        return `<img src="${imageSrc}" alt="${alt}">`;
+                    });
+
+                    // Links
+                    html = html.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2">$1</a>');
+
+                    // Inline code
+                    html = html.replace(/`(.*?)`/g, '<code>$1</code>');
+
+                    // Preserve raw HTML and pre blocks while wrapping paragraphs
+                    const placeholders = [];
+                    const preserveBlock = (pattern, tag, normalize = block => block) => {
+                      html = html.replace(new RegExp(pattern, 'gi'), block => {
+                        const index = placeholders.length;
+                        placeholders.push({ block: normalize(block), tag });
+                        return `<${tag} data-raw-block-index="${index}"></${tag}>`;
+                      });
+                    };
+                    preserveBlock('<pre>[\s\S]*?<\/pre>', 'pre');
+                    preserveBlock('<blockquote>[\s\S]*?<\/blockquote>', 'blockquote', block => block.replace(/\n{2,}/g, '\n'));
+                    preserveBlock('<details>[\s\S]*?<\/details>', 'details', block => block.replace(/\n{2,}/g, '\n'));
+
+                    // Paragraphs
+                    html = html.split(/\n{2,}/).map(para => para.trim()).filter(Boolean).map(para => {
+                      const trimmed = para.trim();
+                      if (/^(<(?:h[1-3]|ul|ol|blockquote|pre|img|hr|details|summary|figure|div|table|section|aside))/i.test(trimmed)) {
+                        return trimmed;
+                      }
+                      return `<p>${trimmed}</p>`;
+                    }).join('');
+
+                    placeholders.forEach(({ block, tag }, index) => {
+                      const placeholder = `<${tag} data-raw-block-index="${index}"></${tag}>`;
+                      html = html.split(placeholder).join(block);
+                    });
+                    html = html.replace(/<p>\s*(<img[\s\S]*?)>\s*<\/p>/gi, '<img$1>');
+                    html = html.replace(/<p>\s*<figure[\s\S]*?<\/figure>\s*<\/p>/gi, m => m.replace(/^<p>\s*/i, '').replace(/\s*<\/p>$/i, ''));
+                    html = html.replace(/<p>(<blockquote>[\s\S]*?<\/blockquote>)<\/p>/g, '$1');
+                    html = html.replace(/<p>(<ul>[\s\S]*?<\/ul>)<\/p>/g, '$1');
+                    html = html.replace(/<p>(<ol>[\s\S]*?<\/ol>)<\/p>/g, '$1');
+                    html = html.replace(/<p>(<pre>[\s\S]*?<\/pre>)<\/p>/g, '$1');
+                    html = html.replace(/<p>\s*<h([1-3])>([\s\S]*?)<\/h\1>\s*<\/p>/g, '<h$1>$2</h$1>');
+                    html = html.replace(/<p>\s*<\/p>/g, '');
+
+                    const readTimeSpan = blogMeta && blogMeta.read_time_min
+                        ? `<span class="meta-readtime" title="${blogMeta.word_count || ''} words"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> ${formatReadTime(blogMeta.read_time_min)}</span>`
+                        : '';
+                    const authorSpan = meta.author ? `<span>By ${escapeHtml(meta.author)}</span>` : '';
+                    const authorLine = (authorSpan || readTimeSpan) ? `<div class="blog-meta">${authorSpan}${readTimeSpan}</div>` : '';
+                    const titleLine = meta.title ? `<h1 class="blog-title">${escapeHtml(meta.title)}</h1>` : '';
+                    const updatedAbs = blogMeta && blogMeta.last_updated ? formatUpdated(blogMeta.last_updated) : '';
+                    const updatedLine = updatedAbs ? `<p class="blog-updated" title="${escapeHtml(blogMeta.last_updated)}">Last updated on ${updatedAbs}</p>` : '';
+
+                    document.getElementById('blog-content').innerHTML = `${titleLine}${authorLine}${updatedLine}${html}`;
+
+                    if (window.hljs) {
+                        document.querySelectorAll('#blog-content pre code').forEach(block => {
+                            window.hljs.highlightElement(block);
+                        });
+                    }
+                })
+                .catch(err => {
+                    document.getElementById('blog-content').innerHTML = 'Post not found';
+                    console.error(err);
+                });
+        }
+    </script>
+</body>
+</html>

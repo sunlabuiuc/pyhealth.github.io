@@ -11,5 +11,18 @@
     "read_time_min": 2,
     "file": "text.md",
     "url": "/blogs/2026-05-12-how-to-actually-work-with-us-on-healthcare-ai-research/"
+  },
+  {
+    "id": "2026-05-30-why-pyhealth-tasks",
+    "title": "Faster, Cleaner Healthcare Data Preprocessing with PyHealth",
+    "author": "John Wu",
+    "preview": "pyhealth.tasks separates static data loading from dynamic transformation logic, so you can iterate on preprocessing pipelines quickly without re-loading gigabytes of data every time.",
+    "date": "2026-05-30",
+    "date_display": "May 30, 2026",
+    "last_updated": "2026-05-30T12:00:00",
+    "word_count": 788,
+    "read_time_min": 4,
+    "file": "text.md",
+    "url": "/blogs/2026-05-30-why-pyhealth-tasks/"
   }
 ]
