@@ -105,7 +105,7 @@ A few things fall out of this structure:
 
 If you want to see the real, untrimmed code, here are the full files: [mortality prediction](https://github.com/sunlabuiuc/PyHealth/blob/master/pyhealth/tasks/mortality_prediction.py), [drug recommendation](https://github.com/sunlabuiuc/PyHealth/blob/master/pyhealth/tasks/drug_recommendation.py), the [base task class](https://github.com/sunlabuiuc/PyHealth/blob/master/pyhealth/tasks/base_task.py), and [`set_task`](https://github.com/sunlabuiuc/PyHealth/blob/master/pyhealth/datasets/base_dataset.py) where the parallelization happens.
 
-Want the whole thing end to end? See the [runnable example](https://github.com/sunlabuiuc/PyHealth/blob/master/examples/drug_recommendation_mimic4_retain.py), or keep reading below for docs and guides.
+Want the whole thing end to end? Try the [runnable Colab notebook](https://colab.research.google.com/drive/1QB0acnGb-wOuK53UNSgHxjCW74QeYjUl?usp=sharing), or keep reading below for docs and guides.
 
 ---
 
