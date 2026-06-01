@@ -32,7 +32,11 @@ PyHealth makes this split explicit:
 1. **`pyhealth.datasets`**: Describes your raw data as a collection, what patients are in it, what events exist, and where it lives (and how to read it, if it's not already tabular). All the complexity behind actually working with that data, file I/O, memory management, caching, is handled by PyHealth automatically. You just tell us what's there.
 2. **`pyhealth.tasks`**: Defines how you use that data to do something. This is where your research decisions live: inclusion and exclusion criteria, which features go in, what the output label is, how you window time-series events. Every design choice that turns raw records into a model-ready sample belongs here.
 
-Once defined, a dataset stays static. Everything downstream (labels, features, time windows, cohort logic) lives in your task, where it belongs.
+To make this concrete, say you want to predict diabetes. Your `pyhealth.datasets` step is just declaring what's in your pool of EHR records: which patients are there, their demographics like age and gender, their weight, and their glucose lab results, along with where those records actually live. You're not deciding what matters yet, only describing what exists.
+
+Once defined, that dataset stays static. Nothing below this point changes how the data is read or stored. Everything downstream now lives in your `pyhealth.tasks` step.
+
+So how do we actually decide which features to use? That question is the whole job of `pyhealth.tasks`. You pick the features you want, say glucose, age, gender, and weight, and you define the label: does this patient go on to develop diabetes? And because a task is just an object, those choices become simple parameters. You can flip features on and off with boolean flags right in the task, so a whole feature ablation study (glucose only, glucose plus weight, all of them) is just a handful of one-line task definitions you can run and cross-compare at once. One task might use a single glucose value, another might reframe glucose as a sequence of readings over time and turn the whole thing into a time-series problem. The underlying pool of records never moves; you're just asking sharper questions of the same static dataset.
 
 ---
 
