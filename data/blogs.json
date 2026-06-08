@@ -20,9 +20,35 @@
     "date": "2026-05-30",
     "date_display": "May 30, 2026",
     "last_updated": "2026-05-30T12:00:00",
-    "word_count": 788,
+    "word_count": 789,
     "read_time_min": 4,
     "file": "text.md",
     "url": "/blogs/2026-05-30-why-pyhealth-tasks/"
+  },
+  {
+    "id": "2026-06-07-fhir-dataset-support",
+    "title": "FHIR Data Loading Comes to PyHealth",
+    "author": "John Wu",
+    "preview": "PyHealth now loads FHIR data natively, starting with MIMIC-IV-on-FHIR and an EHRMamba pipeline. It is early, so we want your bug reports.",
+    "date": "2026-06-07",
+    "date_display": "Jun 7, 2026",
+    "last_updated": "2026-06-07T12:00:00",
+    "word_count": 207,
+    "read_time_min": 1,
+    "file": "text.md",
+    "url": "/blogs/2026-06-07-fhir-dataset-support/"
+  },
+  {
+    "id": "2026-06-07-generative-ehr-module",
+    "title": "Generate Synthetic Patients with PyHealth",
+    "author": "John Wu & Andy Gao",
+    "preview": "PyHealth now ships a synthetic EHR generation module, five generators behind one API plus a privacy and utility evaluation suite, and we need your help testing it.",
+    "date": "2026-06-07",
+    "date_display": "Jun 7, 2026",
+    "last_updated": "2026-06-07T12:00:00",
+    "word_count": 251,
+    "read_time_min": 2,
+    "file": "text.md",
+    "url": "/blogs/2026-06-07-generative-ehr-module/"
   }
 ]
