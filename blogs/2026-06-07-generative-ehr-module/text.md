@@ -21,11 +21,16 @@ Synthetic patient generation is now built directly into PyHealth. You can train 
 
 You get five generators behind a single, consistent API:
 
-- **HALO**, a hierarchical autoregressive transformer over visits and codes
-- **GPT-2**, a decoder-only baseline over flattened visit streams
+### Sequential Case
+Patients can have multiple visits, and each visit has multiple ICD codes
+- [**HALO**](https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.HALO.html), a hierarchical autoregressive transformer over visits and codes 
+- [**GPT-2**](https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.GPT2.html), a decoder-only baseline over flattened visit streams
 - [**PromptEHR**](https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.PromptEHR.html), a BART denoising autoencoder with learnable soft prompts
-- **MedGAN**, a bag-of-codes generative adversarial network
-- **CorGAN**, a CNN-based Wasserstein GAN variant
+
+### Flat Case
+Patients are represented only by ICD codes (treated as a single visit)
+- [**MedGAN**](https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.MedGAN.html), a bag-of-codes generative adversarial network
+- [**CorGAN**](https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.CorGAN.html), a CNN-based Wasserstein GAN variant
 
 On the evaluation side, `evaluate_synthetic_ehr()` scores your synthetic data along two axes: privacy (nearest-neighbor acceptance, membership inference) and utility (train-real-test-real versus train-synthetic-test-real, plus code-prevalence similarity). See the [generative metrics documentation](https://pyhealth.readthedocs.io/en/latest/api/metrics/pyhealth.metrics.generative.html) for the full list.
 
