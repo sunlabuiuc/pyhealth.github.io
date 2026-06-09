@@ -5,7 +5,7 @@ author: "John Wu & Andy Gao"
 updated: "2026-06-07"
 ---
 
-**TL;DR:** PyHealth can now generate synthetic patients, and evaluate how good they are. Five generators sit behind one unified API, with a matching evaluation suite for privacy and utility. It is new, so please help us find the rough edges.
+**TL;DR:** PyHealth can now generate synthetic patients and evaluate how good they are. Five generators sit behind one unified API, with a matching evaluation suite for privacy and utility. It is new, so please help us find the rough edges.
 
 ---
 
