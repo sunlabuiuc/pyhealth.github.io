@@ -65,3 +65,5 @@ Swap `HALO` for `GPT2`, `PromptEHR`, `MedGAN`, or `CorGAN` and the rest barely c
 We merged this in fast because we would rather get it into your hands than sit on it. That also means there are bugs and awkward corners we have not found yet.
 
 If you hit something strange, a confusing error, a model that will not train, a metric that looks off, please post it in the [generative modeling bug thread](https://github.com/sunlabuiuc/PyHealth/issues/1156). Every report makes the module better for the next person.
+
+Prefer to talk it through? [Join our Discord community](https://discord.gg/mpb835EHaX) for direct support and feedback. We are happy to help you get started or dig into whatever you run into.

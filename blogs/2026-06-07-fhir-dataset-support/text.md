@@ -11,7 +11,7 @@ updated: "2026-06-07"
 
 ## What's new
 
-FHIR is the standard healthcare data exchanges actually speak, and until now PyHealth could not read it directly. That changes today.
+FHIR is the language healthcare systems use to exchange data, and until now PyHealth could not read it directly. That changes today.
 
 [`FHIRDataset`](https://pyhealth.readthedocs.io/en/latest/api/datasets/pyhealth.datasets.FHIRDataset.html) streams NDJSON FHIR resources from disk and flattens each resource type into a tidy table, all controlled by one declarative YAML config. On top of it, `MIMIC4FHIR` is the first ready-to-use loader: point it at a MIMIC-IV-on-FHIR export and it handles the rest, with the same caching, parallelism, and `set_task` flow you already use everywhere else in PyHealth.
 
@@ -128,6 +128,8 @@ This is just the start. The big one on our list is faster FHIR parsing, the curr
 ## Hit a bug?
 
 If you try the FHIR loader on your own data, or push it past mortality prediction, you will probably find something broken. Please tell us. Post anything you run into in the [FHIR bug thread](https://github.com/sunlabuiuc/PyHealth/issues/1157) so we can fix it and broaden support faster.
+
+Prefer to talk it through? [Join our Discord community](https://discord.gg/mpb835EHaX) for direct support and feedback. It is the fastest way to reach us and shape where FHIR support goes next.
 
 ---
 
