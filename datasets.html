@@ -229,7 +229,7 @@
       margin-top: auto;
       padding-top: 0.3rem;
     }
-    .colab-link, .docs-link {
+    .colab-link, .docs-link, .example-link {
       font-size: 0.8rem;
       font-weight: 500;
       text-decoration: none;
@@ -237,7 +237,7 @@
       border-radius: 6px;
       transition: opacity 0.15s;
     }
-    .colab-link:hover, .docs-link:hover { opacity: 0.8; }
+    .colab-link:hover, .docs-link:hover, .example-link:hover { opacity: 0.8; }
     .colab-link {
       background: rgba(234,88,12,0.1);
       color: #c95f26;
@@ -247,6 +247,11 @@
       background: rgba(59,130,246,0.08);
       color: #2563eb;
       border: 1px solid rgba(59,130,246,0.2);
+    }
+    .example-link {
+      background: rgba(16,185,129,0.08);
+      color: #059669;
+      border: 1px solid rgba(16,185,129,0.2);
     }
 
     /* ── Count badge ── */
@@ -337,6 +342,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">MIMIC3Dataset</span>(
 )</pre>
           <div class="dataset-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets/pyhealth.datasets.MIMIC3Dataset.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/mortality_prediction/mortality_mimic3_rnn.py" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -353,6 +359,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">MIMIC4Dataset</span>(
 )</pre>
           <div class="dataset-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets/pyhealth.datasets.MIMIC4Dataset.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/mortality_prediction/mortality_mimic4_transformer.py" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -366,6 +373,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">MIMIC4Dataset</span>(
 dataset <span class="tok-op">=</span> <span class="tok-cl">MIMIC4FHIR</span>(root<span class="tok-op">=</span><span class="tok-str">"data/mimic-iv-fhir/"</span>)</pre>
           <div class="dataset-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets/pyhealth.datasets.MIMIC4FHIR.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/mimic4fhir_mpf_ehrmamba.py" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -398,6 +406,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">eICUDataset</span>(
 )</pre>
           <div class="dataset-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets/pyhealth.datasets.eICUDataset.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/mortality_prediction/mortality_prediction_eicu_rnn.py" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -414,6 +423,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">OMOPDataset</span>(
 )</pre>
           <div class="dataset-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets/pyhealth.datasets.OMOPDataset.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/omop_dataset_demo.py" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -444,6 +454,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">EHRShotDataset</span>
 )</pre>
           <div class="dataset-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets/pyhealth.datasets.EHRShotDataset.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/benchmark_ehrshot_xgboost.ipynb" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -459,6 +470,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">Support2Dataset</span
 )</pre>
           <div class="dataset-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets/pyhealth.datasets.Support2Dataset.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/survival_preprocess_support2_demo.py" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -476,6 +488,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">CardiologyDataset</sp
 )</pre>
           <div class="dataset-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets/pyhealth.datasets.CardiologyDataset.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/cardiology_detection_isAR_SparcNet.py" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -491,6 +504,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">ISRUCDataset</span>(
 )</pre>
           <div class="dataset-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets/pyhealth.datasets.ISRUCDataset.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/eeg/sleep_staging/sleep_staging_ISRUC_SparcNet.py" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -506,6 +520,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">DREAMTDataset</span>(
 )</pre>
           <div class="dataset-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets/pyhealth.datasets.DREAMTDataset.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/datasets_overview.ipynb" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -521,6 +536,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">SHHSDataset</span>(
 )</pre>
           <div class="dataset-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets/pyhealth.datasets.SHHSDataset.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/eeg/sleep_staging/sleep_staging_shhs_contrawr.py" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -536,6 +552,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">SleepEDFDataset</span
 )</pre>
           <div class="dataset-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets/pyhealth.datasets.SleepEDFDataset.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/eeg/sleep_staging/sleep_staging_sleepEDF_contrawr.py" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -566,6 +583,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">TUABDataset</span>(
 )</pre>
           <div class="dataset-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets/pyhealth.datasets.TUABDataset.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/eeg/tuh_eeg/tuab_abnormal_detection.ipynb" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -581,6 +599,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">TUEVDataset</span>(
 )</pre>
           <div class="dataset-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets/pyhealth.datasets.TUEVDataset.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/eeg/tuh_eeg/tuev_eeg_event_classification.ipynb" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -598,6 +617,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">COVID19CXRDataset</sp
 )</pre>
           <div class="dataset-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets/pyhealth.datasets.COVID19CXRDataset.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/cxr/covid19cxr_tutorial.py" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -613,6 +633,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">ChestXray14Dataset</s
 )</pre>
           <div class="dataset-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets/pyhealth.datasets.ChestXray14Dataset.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/cxr/chestxray14_binary_classification.py" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 

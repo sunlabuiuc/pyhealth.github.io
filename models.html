@@ -232,7 +232,7 @@
       margin-top: auto;
       padding-top: 0.3rem;
     }
-    .colab-link, .docs-link {
+    .colab-link, .docs-link, .example-link {
       font-size: 0.8rem;
       font-weight: 500;
       text-decoration: none;
@@ -240,7 +240,7 @@
       border-radius: 6px;
       transition: opacity 0.15s;
     }
-    .colab-link:hover, .docs-link:hover { opacity: 0.8; }
+    .colab-link:hover, .docs-link:hover, .example-link:hover { opacity: 0.8; }
     .colab-link {
       background: rgba(234,88,12,0.1);
       color: #c95f26;
@@ -250,6 +250,11 @@
       background: rgba(59,130,246,0.08);
       color: #2563eb;
       border: 1px solid rgba(59,130,246,0.2);
+    }
+    .example-link {
+      background: rgba(16,185,129,0.08);
+      color: #059669;
+      border: 1px solid rgba(16,185,129,0.2);
     }
 
     /* ── Count badge ── */
@@ -330,20 +335,20 @@
     <section class="page-section fade-up">
       <div style="display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
         <h2 style="margin:0; font-size:clamp(1.1rem,2vw,1.4rem);">
-          All Models <span class="count-badge" id="visibleCount">40</span>
+          All Models <span class="count-badge" id="visibleCount">39</span>
         </h2>
         <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" target="_blank" rel="noopener" style="font-size:0.85rem; color:var(--accent); text-decoration:none; font-weight:500;">Full API reference →</a>
       </div>
 
       <div class="filter-bar" role="group" aria-label="Filter by category">
-        <button class="filter-btn active" onclick="filterModels('all', this)">All <span style="opacity:0.65;">(40)</span></button>
+        <button class="filter-btn active" onclick="filterModels('all', this)">All <span style="opacity:0.65;">(39)</span></button>
         <button class="filter-btn" onclick="filterModels('ehr', this)">EHR <span style="opacity:0.65;">(15)</span></button>
         <button class="filter-btn" onclick="filterModels('drug', this)">Drug Rec <span style="opacity:0.65;">(4)</span></button>
         <button class="filter-btn" onclick="filterModels('signal', this)">Signal <span style="opacity:0.65;">(4)</span></button>
         <button class="filter-btn" onclick="filterModels('graph', this)">Graph <span style="opacity:0.65;">(2)</span></button>
         <button class="filter-btn" onclick="filterModels('image', this)">Image <span style="opacity:0.65;">(4)</span></button>
         <button class="filter-btn" onclick="filterModels('text', this)">Text <span style="opacity:0.65;">(3)</span></button>
-        <button class="filter-btn" onclick="filterModels('multimodal', this)">Multimodal <span style="opacity:0.65;">(3)</span></button>
+        <button class="filter-btn" onclick="filterModels('multimodal', this)">Multimodal <span style="opacity:0.65;">(2)</span></button>
         <button class="filter-btn" onclick="filterModels('generative', this)">Generative <span style="opacity:0.65;">(5)</span></button>
       </div>
 
@@ -361,6 +366,7 @@
 model <span class="tok-op">=</span> <span class="tok-cl">RNN</span>(dataset<span class="tok-op">=</span>samples, rnn_type<span class="tok-op">=</span><span class="tok-str">"GRU"</span>)</pre>
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.RNN.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/mortality_prediction/mortality_mimic3_rnn.py" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -374,6 +380,7 @@ model <span class="tok-op">=</span> <span class="tok-cl">RNN</span>(dataset<span
 model <span class="tok-op">=</span> <span class="tok-cl">Transformer</span>(dataset<span class="tok-op">=</span>samples)</pre>
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.Transformer.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/mortality_prediction/mortality_mimic4_transformer.py" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -387,6 +394,7 @@ model <span class="tok-op">=</span> <span class="tok-cl">Transformer</span>(data
 model <span class="tok-op">=</span> <span class="tok-cl">MLP</span>(dataset<span class="tok-op">=</span>samples, hidden_dim<span class="tok-op">=</span><span class="tok-num">256</span>)</pre>
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.MLP.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/smart_processor_clinical_text_tutorial.ipynb" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -413,6 +421,7 @@ model <span class="tok-op">=</span> <span class="tok-cl">LogisticRegression</spa
 model <span class="tok-op">=</span> <span class="tok-cl">RETAIN</span>(dataset<span class="tok-op">=</span>samples)</pre>
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.RETAIN.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/drug_recommendation/drug_recommendation_mimic4_retain.py" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -426,19 +435,21 @@ model <span class="tok-op">=</span> <span class="tok-cl">RETAIN</span>(dataset<s
 model <span class="tok-op">=</span> <span class="tok-cl">StageNet</span>(dataset<span class="tok-op">=</span>samples)</pre>
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.StageNet.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/mortality_prediction/mortality_mimic3_stagenet.py" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
         <div class="model-card" data-category="ehr">
           <div class="model-card-header">
-            <span class="model-classname">StageNetMHA</span>
+            <span class="model-classname">StageAttentionNet</span>
             <span class="category-tag cat-ehr">EHR</span>
           </div>
           <p class="model-desc">StageNet variant with multi-head attention over clinical stages for richer temporal modeling of disease trajectories.</p>
-          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">StageNetMHA</span>
-model <span class="tok-op">=</span> <span class="tok-cl">StageNetMHA</span>(dataset<span class="tok-op">=</span>samples)</pre>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">StageAttentionNet</span>
+model <span class="tok-op">=</span> <span class="tok-cl">StageAttentionNet</span>(dataset<span class="tok-op">=</span>samples)</pre>
           <div class="model-card-footer">
-            <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.StageAttentionNet.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/mortality_prediction/mortality_mimic4_stageattn.py" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -452,6 +463,7 @@ model <span class="tok-op">=</span> <span class="tok-cl">StageNetMHA</span>(data
 model <span class="tok-op">=</span> <span class="tok-cl">AdaCare</span>(dataset<span class="tok-op">=</span>samples)</pre>
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.AdaCare.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/drug_recommendation/drug_recommendation_mimic4_adacare.py" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -465,6 +477,7 @@ model <span class="tok-op">=</span> <span class="tok-cl">AdaCare</span>(dataset<
 model <span class="tok-op">=</span> <span class="tok-cl">ConCare</span>(dataset<span class="tok-op">=</span>samples)</pre>
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.ConCare.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/mortality_prediction/mortality_mimic3_concare.py" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -478,6 +491,7 @@ model <span class="tok-op">=</span> <span class="tok-cl">ConCare</span>(dataset<
 model <span class="tok-op">=</span> <span class="tok-cl">Agent</span>(dataset<span class="tok-op">=</span>samples)</pre>
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.Agent.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/mortality_prediction/mortality_mimic3_agent.py" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -491,6 +505,7 @@ model <span class="tok-op">=</span> <span class="tok-cl">Agent</span>(dataset<sp
 model <span class="tok-op">=</span> <span class="tok-cl">GRASP</span>(dataset<span class="tok-op">=</span>samples)</pre>
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.GRASP.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/mortality_prediction/mortality_mimic3_grasp.py" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -504,6 +519,7 @@ model <span class="tok-op">=</span> <span class="tok-cl">GRASP</span>(dataset<sp
 model <span class="tok-op">=</span> <span class="tok-cl">Deepr</span>(dataset<span class="tok-op">=</span>samples)</pre>
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.Deepr.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/deepr_mimic4.ipynb" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -517,6 +533,7 @@ model <span class="tok-op">=</span> <span class="tok-cl">Deepr</span>(dataset<sp
 model <span class="tok-op">=</span> <span class="tok-cl">EHRMamba</span>(dataset<span class="tok-op">=</span>samples)</pre>
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.EHRMamba.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/length_of_stay/length_of_stay_mimic4_ehrmamba.py" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -530,6 +547,7 @@ model <span class="tok-op">=</span> <span class="tok-cl">EHRMamba</span>(dataset
 model <span class="tok-op">=</span> <span class="tok-cl">EHRMambaCEHR</span>(dataset<span class="tok-op">=</span>samples, vocab_size<span class="tok-op">=</span>vocab_size)</pre>
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.EHRMambaCEHR.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/mimic4fhir_mpf_ehrmamba.py" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -558,6 +576,7 @@ model <span class="tok-op">=</span> <span class="tok-cl">JambaEHR</span>(dataset
 model <span class="tok-op">=</span> <span class="tok-cl">SafeDrug</span>(dataset<span class="tok-op">=</span>samples)</pre>
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.SafeDrug.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/drug_recommendation/drug_recommendation_mimic3_safedrug.py" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -571,6 +590,7 @@ model <span class="tok-op">=</span> <span class="tok-cl">SafeDrug</span>(dataset
 model <span class="tok-op">=</span> <span class="tok-cl">GAMENet</span>(dataset<span class="tok-op">=</span>samples)</pre>
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.GAMENet.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/drug_recommendation/drug_recommendation_mimic3_gamenet.py" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -584,6 +604,7 @@ model <span class="tok-op">=</span> <span class="tok-cl">GAMENet</span>(dataset<
 model <span class="tok-op">=</span> <span class="tok-cl">MICRON</span>(dataset<span class="tok-op">=</span>samples)</pre>
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.MICRON.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/drug_recommendation/drug_recommendation_mimic3_micron.py" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -597,6 +618,7 @@ model <span class="tok-op">=</span> <span class="tok-cl">MICRON</span>(dataset<s
 model <span class="tok-op">=</span> <span class="tok-cl">MoleRec</span>(dataset<span class="tok-op">=</span>samples)</pre>
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.MoleRec.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/drug_recommendation/drug_recommendation_mimic3_molerec.py" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -612,6 +634,7 @@ model <span class="tok-op">=</span> <span class="tok-cl">MoleRec</span>(dataset<
 model <span class="tok-op">=</span> <span class="tok-cl">SparcNet</span>(dataset<span class="tok-op">=</span>samples)</pre>
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.SparcNet.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/eeg/eeg_models/SparcNet_eeg_abnormal_classification.py" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -625,6 +648,7 @@ model <span class="tok-op">=</span> <span class="tok-cl">SparcNet</span>(dataset
 model <span class="tok-op">=</span> <span class="tok-cl">BIOT</span>(dataset<span class="tok-op">=</span>samples)</pre>
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.BIOT.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/eeg/eeg_models/BIOT_tuev_eeg_event_classification.ipynb" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -638,6 +662,7 @@ model <span class="tok-op">=</span> <span class="tok-cl">BIOT</span>(dataset<spa
 model <span class="tok-op">=</span> <span class="tok-cl">ContraWR</span>(dataset<span class="tok-op">=</span>samples)</pre>
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.ContraWR.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/eeg/sleep_staging/sleep_staging_sleepEDF_contrawr.py" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -651,6 +676,7 @@ model <span class="tok-op">=</span> <span class="tok-cl">ContraWR</span>(dataset
 model <span class="tok-op">=</span> <span class="tok-cl">TCN</span>(dataset<span class="tok-op">=</span>samples)</pre>
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.TCN.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/mortality_prediction/mortality_mimic3_tcn.py" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -666,6 +692,7 @@ model <span class="tok-op">=</span> <span class="tok-cl">TCN</span>(dataset<span
 model <span class="tok-op">=</span> <span class="tok-cl">GNN</span>(dataset<span class="tok-op">=</span>samples, conv_type<span class="tok-op">=</span><span class="tok-str">"GAT"</span>)</pre>
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.GNN.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/gat_mimic4.ipynb" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -679,6 +706,7 @@ model <span class="tok-op">=</span> <span class="tok-cl">GNN</span>(dataset<span
 model <span class="tok-op">=</span> <span class="tok-cl">GraphCare</span>(dataset<span class="tok-op">=</span>samples)</pre>
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.GraphCare.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/graphcare_tutorial.ipynb" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -694,6 +722,7 @@ model <span class="tok-op">=</span> <span class="tok-cl">GraphCare</span>(datase
 model <span class="tok-op">=</span> <span class="tok-cl">CNN</span>(dataset<span class="tok-op">=</span>samples)</pre>
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.CNN.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/cxr/chestxray14_binary_classification.py" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -708,6 +737,7 @@ model <span class="tok-op">=</span> <span class="tok-cl">TorchvisionModel</span>
     backbone<span class="tok-op">=</span><span class="tok-str">"resnet50"</span>)</pre>
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/cxr/covid19cxr_tutorial.py" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -721,6 +751,7 @@ model <span class="tok-op">=</span> <span class="tok-cl">TorchvisionModel</span>
 model <span class="tok-op">=</span> <span class="tok-cl">VAE</span>(dataset<span class="tok-op">=</span>samples, latent_dim<span class="tok-op">=</span><span class="tok-num">128</span>)</pre>
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.VAE.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/cxr/chextXray_image_generation_VAE.py" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -734,6 +765,7 @@ model <span class="tok-op">=</span> <span class="tok-cl">VAE</span>(dataset<span
 model <span class="tok-op">=</span> <span class="tok-cl">GAN</span>(dataset<span class="tok-op">=</span>samples)</pre>
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.GAN.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/cxr/ChestXray-image-generation-GAN.ipynb" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -750,51 +782,39 @@ model <span class="tok-op">=</span> <span class="tok-cl">TransformersModel</span
     model_name<span class="tok-op">=</span><span class="tok-str">"emilyalsentzer/Bio_ClinicalBERT"</span>)</pre>
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.TransformersModel.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/medical_coding_mimic3.ipynb" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
         <div class="model-card" data-category="text">
           <div class="model-card-header">
-            <span class="model-classname">TextEmbeddingModel</span>
+            <span class="model-classname">TextEmbedding</span>
             <span class="category-tag cat-text">Text</span>
           </div>
           <p class="model-desc">Extracts fixed-size text embeddings from clinical notes using a HuggingFace encoder, feeding downstream PyHealth models.</p>
-          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">TextEmbeddingModel</span>
-model <span class="tok-op">=</span> <span class="tok-cl">TextEmbeddingModel</span>(dataset<span class="tok-op">=</span>samples,
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">TextEmbedding</span>
+model <span class="tok-op">=</span> <span class="tok-cl">TextEmbedding</span>(dataset<span class="tok-op">=</span>samples,
     model_name<span class="tok-op">=</span><span class="tok-str">"bert-base-uncased"</span>)</pre>
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.text_embedding_docs.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/text_embedding_tutorial.ipynb" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
         <div class="model-card" data-category="text">
           <div class="model-card-header">
-            <span class="model-classname">SDOH</span>
+            <span class="model-classname">SdohClassifier</span>
             <span class="category-tag cat-text">Text</span>
           </div>
           <p class="model-desc">Social determinants of health model that extracts SDOH factors from unstructured clinical notes and integrates them into risk prediction.</p>
-          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">SDOH</span>
-model <span class="tok-op">=</span> <span class="tok-cl">SDOH</span>(dataset<span class="tok-op">=</span>samples)</pre>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">SdohClassifier</span>
+model <span class="tok-op">=</span> <span class="tok-cl">SdohClassifier</span>(dataset<span class="tok-op">=</span>samples)</pre>
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.SDOH.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
           </div>
         </div>
 
-        <!-- ───────────── Multimodal / Utility (3) ───────────── -->
-
-        <div class="model-card" data-category="multimodal">
-          <div class="model-card-header">
-            <span class="model-classname">UnifiedMultimodalEmbeddingModel</span>
-            <span class="category-tag cat-multimodal">Multimodal</span>
-          </div>
-          <p class="model-desc">Unified temporal embedding model for simultaneous EHR codes, clinical text, medical images, and biosignals — the backbone of PyHealth 2.0's multimodal API.</p>
-          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">UnifiedMultimodalEmbeddingModel</span>
-model <span class="tok-op">=</span> <span class="tok-cl">UnifiedMultimodalEmbeddingModel</span>(
-    dataset<span class="tok-op">=</span>samples)</pre>
-          <div class="model-card-footer">
-            <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.unified_multimodal_embedding_docs.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
-          </div>
-        </div>
+        <!-- ───────────── Multimodal / Utility (2) ───────────── -->
 
         <div class="model-card" data-category="multimodal">
           <div class="model-card-header">
@@ -807,6 +827,7 @@ model <span class="tok-op">=</span> <span class="tok-cl">VisionEmbeddingModel</s
     backbone<span class="tok-op">=</span><span class="tok-str">"vit_b_16"</span>)</pre>
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.vision_embedding_model_docs.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/vision_embedding_tutorial.ipynb" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -820,6 +841,7 @@ model <span class="tok-op">=</span> <span class="tok-cl">VisionEmbeddingModel</s
 model <span class="tok-op">=</span> <span class="tok-cl">MedLink</span>(dataset<span class="tok-op">=</span>samples)</pre>
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.MedLink.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/patient_linkage_mimic3_medlink.py" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
@@ -835,6 +857,7 @@ model <span class="tok-op">=</span> <span class="tok-cl">MedLink</span>(dataset<
 model <span class="tok-op">=</span> <span class="tok-cl">HALO</span>(dataset<span class="tok-op">=</span>samples)</pre>
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.HALO.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/halo_mimic3.py" class="example-link" target="_blank" rel="noopener">Example →</a>
           </div>
         </div>
 
