@@ -15,6 +15,17 @@
     /* Wider canvas than the personal site */
     :root { --maxw: 1140px; }
 
+    /* Highlighted "Join Us" nav call-to-action */
+    .nav a.nav-cta {
+      background: var(--accent);
+      color: #fff;
+      padding: 0.34rem 0.9rem;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: filter 0.15s, transform 0.1s;
+    }
+    .nav a.nav-cta:hover { filter: brightness(1.08); transform: translateY(-1px); }
+
     .landing-card {
       border-radius: 20px;
       overflow: hidden;
@@ -610,9 +621,8 @@
         <a href="tasks.html">Tasks</a>
         <a href="models.html">Models</a>
         <a href="roadmap.html">Roadmap</a>
-        <a href="research.html">Research</a>
-        <a href="blog_list.html">Blog Posts</a>
-        <a href="https://pyhealth.readthedocs.io/en/latest/how_to_contribute.html" target="_blank" rel="noopener">Contribute</a>
+        <a href="blog_list.html">Blog</a>
+        <a href="research.html" class="nav-cta">Join Us</a>
       </nav>
     </div>
   </header>
@@ -679,7 +689,7 @@
         <div class="stat-label">Clinical<br>Tasks</div>
       </a>
       <a href="models.html" class="stat-card">
-        <div class="stat-number">33+</div>
+        <div class="stat-number">39+</div>
         <div class="stat-label">ML<br>Models</div>
       </a>
       <a href="https://discord.gg/mpb835EHaX" class="stat-card" target="_blank" rel="noopener">
@@ -953,7 +963,7 @@
         <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="pipeline-card" target="_blank" rel="noopener">
           <div class="pipeline-step">05</div>
           <div class="pipeline-name">pyhealth.models</div>
-          <p class="pipeline-desc">33+ clinical ML models across EHR, signals, and imaging.</p>
+          <p class="pipeline-desc">39+ clinical ML models across EHR, signals, imaging, and generation.</p>
         </a>
         <a href="https://pyhealth.readthedocs.io/en/latest/api/trainer.html" class="pipeline-card" target="_blank" rel="noopener">
           <div class="pipeline-step">06</div>

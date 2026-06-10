@@ -451,14 +451,24 @@
               const { meta, body } = parseFrontmatter(text);
               let html = body.replace(/\r/g, '');
 
+                    // Extract fenced code blocks FIRST, before any other markdown
+                    // transform runs. This keeps headers (#), emphasis, lists, and
+                    // paragraph splitting from ever touching code, and preserves the
+                    // exact whitespace (including blank lines) inside snippets.
+                    const codeBlocks = [];
+                    html = html.replace(/```([\w+\-#.]+)?\s*\n?([\s\S]*?)```/g, (match, lang, code) => {
+                      const escapedCode = escapeHtml(code.replace(/\n$/, ''));
+                      const langClass = lang ? ` class="language-${lang.toLowerCase()}"` : '';
+                      const idx = codeBlocks.length;
+                      codeBlocks.push(`<pre><code${langClass}>${escapedCode}</code></pre>`);
+                      return `\n\nCODEBLOCKPLACEHOLDER${idx}\n\n`;
+                    });
+
                     // Simple markdown to HTML converter
                     // Headers
                     html = html.replace(/^### (.*?)$/gm, '<h3>$1</h3>');
                     html = html.replace(/^## (.*?)$/gm, '<h2>$1</h2>');
                     html = html.replace(/^# (.*?)$/gm, '<h1>$1</h1>');
-
-                    // Code blocks
-                    html = highlightCodeSyntax(html);
 
                     // Blockquotes
                     html = convertMarkdownBlockquotes(html);
@@ -504,9 +514,8 @@
                         return `<${tag} data-raw-block-index="${index}"></${tag}>`;
                       });
                     };
-                    preserveBlock('<pre>[\s\S]*?<\/pre>', 'pre');
-                    preserveBlock('<blockquote>[\s\S]*?<\/blockquote>', 'blockquote', block => block.replace(/\n{2,}/g, '\n'));
-                    preserveBlock('<details>[\s\S]*?<\/details>', 'details', block => block.replace(/\n{2,}/g, '\n'));
+                    preserveBlock('<blockquote>[\\s\\S]*?</blockquote>', 'blockquote', block => block.replace(/\n{2,}/g, '\n'));
+                    preserveBlock('<details>[\\s\\S]*?</details>', 'details', block => block.replace(/\n{2,}/g, '\n'));
 
                     // Paragraphs
                     html = html.split(/\n{2,}/).map(para => para.trim()).filter(Boolean).map(para => {
@@ -520,6 +529,12 @@
                     placeholders.forEach(({ block, tag }, index) => {
                       const placeholder = `<${tag} data-raw-block-index="${index}"></${tag}>`;
                       html = html.split(placeholder).join(block);
+                    });
+
+                    // Restore fenced code blocks extracted at the top.
+                    codeBlocks.forEach((block, index) => {
+                      html = html.split(`<p>CODEBLOCKPLACEHOLDER${index}</p>`).join(block);
+                      html = html.split(`CODEBLOCKPLACEHOLDER${index}`).join(block);
                     });
                     html = html.replace(/<p>\s*(<img[\s\S]*?)>\s*<\/p>/gi, '<img$1>');
                     html = html.replace(/<p>\s*<figure[\s\S]*?<\/figure>\s*<\/p>/gi, m => m.replace(/^<p>\s*/i, '').replace(/\s*<\/p>$/i, ''));

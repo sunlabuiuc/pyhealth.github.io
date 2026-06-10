@@ -228,6 +228,7 @@ def merge_tasks(existing, discovered):
             "source_file":   auto["source_file"],
             "colab_url":     None,
             "docs_url":      None,
+            "example_url":   None,
         })
 
     return updated

@@ -201,6 +201,7 @@
     .out-multilabel { background: rgba(139,92,246,0.12); color: #7c3aed; }
     .out-regression { background: rgba(245,158,11,0.12); color: #d97706; }
     .out-recommend  { background: rgba(236,72,153,0.12); color: #db2777; }
+    .out-generative { background: rgba(201,95,38,0.12); color: #c2410c; }
 
     /* Dataset pill */
     .dataset-pill {
@@ -276,7 +277,7 @@
       margin-top: auto;
       padding-top: 0.3rem;
     }
-    .colab-link, .docs-link {
+    .colab-link, .docs-link, .example-link {
       font-size: 0.8rem;
       font-weight: 500;
       text-decoration: none;
@@ -284,7 +285,7 @@
       border-radius: 6px;
       transition: opacity 0.15s;
     }
-    .colab-link:hover, .docs-link:hover { opacity: 0.8; }
+    .colab-link:hover, .docs-link:hover, .example-link:hover { opacity: 0.8; }
     .colab-link {
       background: rgba(234,88,12,0.1);
       color: #c95f26;
@@ -294,6 +295,11 @@
       background: rgba(59,130,246,0.08);
       color: #2563eb;
       border: 1px solid rgba(59,130,246,0.2);
+    }
+    .example-link {
+      background: rgba(16,185,129,0.08);
+      color: #059669;
+      border: 1px solid rgba(16,185,129,0.2);
     }
 
     /* Count badge */
@@ -408,6 +414,7 @@
       multilabel: { label: 'Multilabel',     cls: 'out-multilabel' },
       regression: { label: 'Regression',     cls: 'out-regression' },
       recommend:  { label: 'Recommendation', cls: 'out-recommend' },
+      generative: { label: 'Generative',     cls: 'out-generative' },
     };
 
     // ── Modality display config ─────────────────────────────────────────────
@@ -461,6 +468,7 @@
           <div class="task-card-footer">
             ${task.colab_url ? `<a href="${esc(task.colab_url)}" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>` : ''}
             <a href="${esc(task.docs_url || 'https://pyhealth.readthedocs.io/en/latest/api/tasks.html')}" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            ${task.example_url ? `<a href="${esc(task.example_url)}" class="example-link" target="_blank" rel="noopener">Example →</a>` : ''}
           </div>
         </div>`;
     }
@@ -480,6 +488,7 @@
         ['multilabel', 'Multilabel'],
         ['recommend',  'Recommendation'],
         ['regression', 'Regression'],
+        ['generative', 'Generative'],
       ];
 
       return buttons

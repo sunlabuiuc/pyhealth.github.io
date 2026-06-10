@@ -22,7 +22,8 @@
     "modality": [
       "ehr"
     ],
-    "output_type": "binary"
+    "output_type": "binary",
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/mortality_prediction/mortality_mimic3_rnn.py"
   },
   {
     "class_name": "InHospitalMortalityMIMIC4",
@@ -45,7 +46,8 @@
     "modality": [
       "timeseries"
     ],
-    "output_type": "binary"
+    "output_type": "binary",
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/mortality_prediction/mortality_mimic4_transformer.py"
   },
   {
     "class_name": "ReadmissionPredictionMIMIC3",
@@ -60,7 +62,8 @@
     "description": "Predict whether a patient will be readmitted within 30 days of hospital discharge.",
     "colab_url": "https://colab.research.google.com/drive/1h0pAymUlPQfkLFryI9QI37-HAW1tRxGZ?usp=sharing",
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html",
-    "output_type": null
+    "output_type": null,
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/readmission/readmission_mimic3_rnn.py"
   },
   {
     "class_name": "DKAPredictionMIMIC4",
@@ -75,7 +78,8 @@
     "description": "Predict onset of diabetic ketoacidosis (DKA) from clinical event sequences in ICU patients.",
     "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html",
-    "output_type": null
+    "output_type": null,
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/clinical_tasks/dka_mimic4_stagenet.py"
   },
   {
     "class_name": "EEGAbnormalTUAB",
@@ -90,7 +94,8 @@
     "description": "Classify clinical EEG recordings as normal or abnormal using deep signal models.",
     "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html",
-    "output_type": null
+    "output_type": null,
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/eeg/tuh_eeg/tuab_abnormal_detection.ipynb"
   },
   {
     "class_name": "COVID19CXRClassification",
@@ -113,7 +118,8 @@
     "source_file": "pyhealth/tasks/covid19_cxr_classification.py",
     "modality": [
       "image"
-    ]
+    ],
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/cxr/covid19cxr_tutorial.py"
   },
   {
     "class_name": "MutationPathogenicityPrediction",
@@ -158,7 +164,8 @@
     ],
     "description": "Determine whether two clinical records belong to the same patient across fragmented health systems.",
     "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
-    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html"
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html",
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/patient_linkage_mimic3_medlink.py"
   },
   {
     "class_name": "LengthOfStayPredictionMIMIC3",
@@ -173,7 +180,8 @@
     "description": "Predict ICU length of stay as one of multiple duration buckets from admission data.",
     "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html",
-    "output_type": null
+    "output_type": null,
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/length_of_stay/length_of_stay_mimic3_rnn.py"
   },
   {
     "class_name": "SleepStagingSleepEDF",
@@ -192,7 +200,8 @@
     "output_schema": null,
     "task_name": "SleepStaging",
     "source_file": "pyhealth/tasks/sleep_staging_v2.py",
-    "output_type": null
+    "output_type": null,
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/eeg/sleep_staging/sleep_staging_sleepEDF_contrawr.py"
   },
   {
     "class_name": "SleepStagingSHHS",
@@ -207,7 +216,8 @@
     ],
     "description": "5-class sleep staging on the large-scale Sleep Heart Health Study polysomnography dataset.",
     "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
-    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html"
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html",
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/eeg/sleep_staging/sleep_staging_shhs_contrawr.py"
   },
   {
     "class_name": "SleepStagingISRUC",
@@ -222,7 +232,8 @@
     ],
     "description": "Sleep stage classification on the ISRUC dataset including patients with sleep disorders.",
     "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
-    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html"
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html",
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/eeg/sleep_staging/sleep_staging_ISRUC_SparcNet.py"
   },
   {
     "class_name": "EEGEventsTUEV",
@@ -237,7 +248,8 @@
     "description": "Classify EEG events into six types including spike-wave complexes, periodic discharges, and artifacts.",
     "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html",
-    "output_type": null
+    "output_type": null,
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/eeg/tuh_eeg/tuev_eeg_event_classification.ipynb"
   },
   {
     "class_name": "COVID19CXRClassification",
@@ -260,7 +272,8 @@
     "source_file": "pyhealth/tasks/covid19_cxr_classification.py",
     "modality": [
       "image"
-    ]
+    ],
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/cxr/covid19cxr_tutorial.py"
   },
   {
     "class_name": "MedicalTranscriptionsClassification",
@@ -302,7 +315,8 @@
     "input_schema": null,
     "output_schema": null,
     "task_name": "BenchmarkEHRShot",
-    "source_file": "pyhealth/tasks/benchmark_ehrshot.py"
+    "source_file": "pyhealth/tasks/benchmark_ehrshot.py",
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/benchmark_ehrshot_xgboost.ipynb"
   },
   {
     "class_name": "DrugRecommendationMIMIC3",
@@ -317,7 +331,8 @@
     "description": "Recommend a safe set of medications for a patient visit given their diagnosis and procedure history.",
     "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html",
-    "output_type": null
+    "output_type": null,
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/drug_recommendation/drug_recommendation_mimic3_safedrug.py"
   },
   {
     "class_name": "MIMIC3ICD9Coding",
@@ -340,7 +355,8 @@
     },
     "task_name": "mimic3_icd9_coding",
     "source_file": "pyhealth/tasks/medical_coding.py",
-    "output_type": null
+    "output_type": null,
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/medical_coding_mimic3.ipynb"
   },
   {
     "class_name": "CardiologyDetect",
@@ -355,7 +371,8 @@
     ],
     "description": "Detect multiple cardiac arrhythmia types simultaneously from 12-lead ECG recordings.",
     "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
-    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html"
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html",
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/cardiology_detection_isAR_SparcNet.py"
   },
   {
     "class_name": "BMDHSDiseaseClassification",
@@ -385,7 +402,8 @@
     "description": "Multi-label classification of 14 thoracic diseases from frontal chest X-ray images.",
     "colab_url": "https://colab.research.google.com/drive/18vK23gyI1LjWbTgkq4f99yDZA3A7Pxp9?usp=sharing",
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html",
-    "output_type": null
+    "output_type": null,
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/cxr/chestxray14_multilabel_classification.py"
   },
   {
     "class_name": "VariantClassificationClinVar",
@@ -415,7 +433,8 @@
     ],
     "description": "Recommend medication combinations that minimize drug-drug interaction (DDI) risk for a patient visit.",
     "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
-    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html"
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html",
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/drug_recommendation/drug_recommendation_mimic3_safedrug.py"
   },
   {
     "class_name": "DrugRecommendationEICU",
@@ -430,7 +449,8 @@
     ],
     "description": "Medication recommendation from multi-center ICU data with cross-site generalization evaluation.",
     "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
-    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html"
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html",
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/drug_recommendation/drug_recommendation_eicu_transformer.py"
   },
   {
     "class_name": "CancerMutationBurden",
@@ -468,7 +488,8 @@
     ],
     "source_file": "pyhealth/tasks/mortality_prediction.py",
     "colab_url": null,
-    "docs_url": null
+    "docs_url": null,
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/mortality_prediction/mortality_prediction_eicu_rnn.py"
   },
   {
     "class_name": "MortalityPredictionEICU2",
@@ -490,7 +511,8 @@
     ],
     "source_file": "pyhealth/tasks/mortality_prediction.py",
     "colab_url": null,
-    "docs_url": null
+    "docs_url": null,
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/mortality_prediction/mortality_prediction_eicu_rnn.py"
   },
   {
     "class_name": "MortalityPredictionMIMIC4",
@@ -513,7 +535,8 @@
     ],
     "source_file": "pyhealth/tasks/mortality_prediction.py",
     "colab_url": null,
-    "docs_url": null
+    "docs_url": null,
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/mortality_prediction/mortality_mimic4_transformer.py"
   },
   {
     "class_name": "MortalityPredictionOMOP",
@@ -536,7 +559,8 @@
     ],
     "source_file": "pyhealth/tasks/mortality_prediction.py",
     "colab_url": null,
-    "docs_url": null
+    "docs_url": null,
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/omop_dataset_demo.py"
   },
   {
     "class_name": "MortalityPredictionStageNetMIMIC4",
@@ -559,7 +583,8 @@
     ],
     "source_file": "pyhealth/tasks/mortality_prediction_stagenet_mimic4.py",
     "colab_url": null,
-    "docs_url": null
+    "docs_url": null,
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/mortality_prediction/mortality_mimic4_stagenet_v2.py"
   },
   {
     "class_name": "Readmission30DaysMIMIC4",
@@ -582,6 +607,51 @@
     ],
     "source_file": "pyhealth/tasks/readmission_30days_mimic4.py",
     "colab_url": null,
-    "docs_url": null
+    "docs_url": null,
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/readmission/readmission_mimic4_rnn.py"
+  },
+  {
+    "class_name": "EHRGenerationMIMIC3",
+    "display_name": "EHR Generation (MIMIC-III)",
+    "display_class": "EHRGenerationMIMIC3",
+    "datasets": [
+      "MIMIC-III"
+    ],
+    "description": "Extract per-patient visit sequences of medical codes for training generative models (HALO, GPT2, PromptEHR, MedGAN, CorGAN) to synthesize realistic EHR data.",
+    "colab_url": null,
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.generate_ehr.html",
+    "input_schema": {
+      "visits": "nested_sequence"
+    },
+    "output_schema": {},
+    "task_name": "EHRGenerationMIMIC3",
+    "source_file": "pyhealth/tasks/generate_ehr.py",
+    "modality": [
+      "ehr"
+    ],
+    "output_type": "generative",
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/halo_mimic3.py"
+  },
+  {
+    "class_name": "EHRGenerationMIMIC4",
+    "display_name": "EHR Generation (MIMIC-IV)",
+    "display_class": "EHRGenerationMIMIC4",
+    "datasets": [
+      "MIMIC-IV"
+    ],
+    "description": "Extract per-patient visit sequences of medical codes for training generative models (HALO, GPT2, PromptEHR, MedGAN, CorGAN) to synthesize realistic EHR data.",
+    "colab_url": null,
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.generate_ehr.html",
+    "input_schema": {
+      "visits": "nested_sequence"
+    },
+    "output_schema": {},
+    "task_name": "EHRGenerationMIMIC4",
+    "source_file": "pyhealth/tasks/generate_ehr.py",
+    "modality": [
+      "ehr"
+    ],
+    "output_type": "generative",
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/halo_mimic3.py"
   }
 ]
