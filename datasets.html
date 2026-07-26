@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PyHealth Datasets — 21 Clinical Datasets</title>
-  <meta name="description" content="Browse all 21 clinical datasets supported by PyHealth across EHR, biosignals, medical imaging, genomics, and clinical text.">
+  <title>PyHealth Datasets — 27 Clinical Datasets</title>
+  <meta name="description" content="Browse all 27 clinical datasets supported by PyHealth across EHR, biosignals, medical imaging, genomics, and clinical text.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
@@ -312,22 +312,22 @@
     <!-- ── Filter + Grid ── -->
     <section class="page-section fade-up">
       <div style="display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.2rem;">
-        <h2 class="section-h2" style="margin:0;">Browse Datasets <span class="count-badge" id="visibleCount">23</span></h2>
+        <h2 class="section-h2" style="margin:0;">Browse Datasets <span class="count-badge" id="visibleCount">27</span></h2>
         <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets.html" target="_blank" rel="noopener" style="font-size:0.85rem; color:var(--accent); text-decoration:none; font-weight:500;">Full API reference →</a>
       </div>
 
       <div class="filter-bar" role="group" aria-label="Filter by modality">
-        <button class="filter-btn active" onclick="filterDatasets('all', this)">All <span style="opacity:0.65;">(23)</span></button>
-        <button class="filter-btn" onclick="filterDatasets('ehr', this)">EHR <span style="opacity:0.65;">(9)</span></button>
+        <button class="filter-btn active" onclick="filterDatasets('all', this)">All <span style="opacity:0.65;">(27)</span></button>
+        <button class="filter-btn" onclick="filterDatasets('ehr', this)">EHR <span style="opacity:0.65;">(10)</span></button>
         <button class="filter-btn" onclick="filterDatasets('signal', this)">Biosignal <span style="opacity:0.65;">(8)</span></button>
-        <button class="filter-btn" onclick="filterDatasets('image', this)">Image <span style="opacity:0.65;">(2)</span></button>
+        <button class="filter-btn" onclick="filterDatasets('image', this)">Image <span style="opacity:0.65;">(3)</span></button>
         <button class="filter-btn" onclick="filterDatasets('genomics', this)">Genomics <span style="opacity:0.65;">(3)</span></button>
-        <button class="filter-btn" onclick="filterDatasets('text', this)">Text <span style="opacity:0.65;">(1)</span></button>
+        <button class="filter-btn" onclick="filterDatasets('text', this)">Text <span style="opacity:0.65;">(3)</span></button>
       </div>
 
       <div class="dataset-grid" id="datasetGrid">
 
-        <!-- ───────────── EHR (7) ───────────── -->
+        <!-- ───────────── EHR (10) ───────────── -->
 
         <div class="dataset-card" data-modality="ehr">
           <div class="dataset-card-header">
@@ -365,6 +365,67 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">MIMIC4Dataset</span>(
 
         <div class="dataset-card" data-modality="ehr">
           <div class="dataset-card-header">
+            <span class="dataset-classname">MIMIC4EHRDataset</span>
+            <span class="modality-tag mod-ehr">EHR</span>
+          </div>
+          <p class="dataset-desc">The structured half of MIMIC-IV on its own — patients, admissions, ICU stays, diagnoses, procedures, and lab events, without pulling in notes or imaging.</p>
+          <pre class="dataset-code"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">MIMIC4EHRDataset</span>
+dataset <span class="tok-op">=</span> <span class="tok-cl">MIMIC4EHRDataset</span>(
+    root<span class="tok-op">=</span><span class="tok-str">"data/mimic-iv/2.2"</span>,
+    tables<span class="tok-op">=</span>[<span class="tok-str">"diagnoses_icd"</span>, <span class="tok-str">"labevents"</span>],
+)</pre>
+          <div class="dataset-card-footer">
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets/pyhealth.datasets.MIMIC4Dataset.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="dataset-card" data-modality="text">
+          <div class="dataset-card-header">
+            <span class="dataset-classname">MIMIC4NoteDataset</span>
+            <span class="modality-tag mod-text">Text</span>
+          </div>
+          <p class="dataset-desc">MIMIC-IV-Note: discharge summaries and radiology reports as a standalone text dataset, joinable back to the structured EHR by admission.</p>
+          <pre class="dataset-code"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">MIMIC4NoteDataset</span>
+dataset <span class="tok-op">=</span> <span class="tok-cl">MIMIC4NoteDataset</span>(
+    root<span class="tok-op">=</span><span class="tok-str">"data/mimic-iv-note/2.2"</span>,
+    tables<span class="tok-op">=</span>[<span class="tok-str">"discharge"</span>, <span class="tok-str">"radiology"</span>],
+)</pre>
+          <div class="dataset-card-footer">
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets/pyhealth.datasets.MIMIC4Dataset.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="dataset-card" data-modality="image">
+          <div class="dataset-card-header">
+            <span class="dataset-classname">MIMIC4CXRDataset</span>
+            <span class="modality-tag mod-image">Image</span>
+          </div>
+          <p class="dataset-desc">MIMIC-CXR chest radiographs with study metadata and CheXpert labels — pairs with the EHR and note datasets for multimodal MIMIC-IV modelling.</p>
+          <pre class="dataset-code"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">MIMIC4CXRDataset</span>
+dataset <span class="tok-op">=</span> <span class="tok-cl">MIMIC4CXRDataset</span>(
+    root<span class="tok-op">=</span><span class="tok-str">"data/mimic-cxr/2.0.0"</span>,
+    tables<span class="tok-op">=</span>[<span class="tok-str">"metadata"</span>, <span class="tok-str">"chexpert"</span>],
+)</pre>
+          <div class="dataset-card-footer">
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets/pyhealth.datasets.MIMIC4Dataset.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="dataset-card" data-modality="text">
+          <div class="dataset-card-header">
+            <span class="dataset-classname">PhysioNetDeIDDataset</span>
+            <span class="modality-tag mod-text">Text</span>
+          </div>
+          <p class="dataset-desc">PhysioNet de-identification corpus — clinical notes paired with gold PHI annotations, for training and benchmarking de-identification models.</p>
+          <pre class="dataset-code"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">PhysioNetDeIDDataset</span>
+dataset <span class="tok-op">=</span> <span class="tok-cl">PhysioNetDeIDDataset</span>(root<span class="tok-op">=</span><span class="tok-str">"data/physionet_deid/"</span>)</pre>
+          <div class="dataset-card-footer">
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets/pyhealth.datasets.PhysioNetDeIDDataset.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="dataset-card" data-modality="ehr">
+          <div class="dataset-card-header">
             <span class="dataset-classname">MIMIC4FHIR</span>
             <span class="modality-tag mod-ehr">EHR</span>
           </div>
@@ -383,7 +444,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">MIMIC4FHIR</span>(roo
             <span class="modality-tag mod-ehr">EHR</span>
           </div>
           <p class="dataset-desc">Generic FHIR loader: a single YAML config describes any NDJSON FHIR export, and PyHealth handles the streaming, flattening, and caching.</p>
-          <pre class="dataset-code"><span class="tok-kw">from</span> pyhealth.datasets.fhir <span class="tok-kw">import</span> <span class="tok-cl">FHIRDataset</span>
+          <pre class="dataset-code"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">FHIRDataset</span>
 dataset <span class="tok-op">=</span> <span class="tok-cl">FHIRDataset</span>(
     root<span class="tok-op">=</span><span class="tok-str">"data/export/"</span>,
     config_path<span class="tok-op">=</span><span class="tok-str">"my_fhir.yaml"</span>,
@@ -603,7 +664,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">TUEVDataset</span>(
           </div>
         </div>
 
-        <!-- ───────────── Image (2) ───────────── -->
+        <!-- ───────────── Image (3) ───────────── -->
 
         <div class="dataset-card" data-modality="image">
           <div class="dataset-card-header">
@@ -684,7 +745,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">TCGAPRADDataset</span
           </div>
         </div>
 
-        <!-- ───────────── Text (1) ───────────── -->
+        <!-- ───────────── Text (3) ───────────── -->
 
         <div class="dataset-card" data-modality="text">
           <div class="dataset-card-header">

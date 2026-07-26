@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>What Makes a Good PyHealth PR — PyHealth</title>
+  <meta name="description" content="A quick-start guide to contributing high-quality, review-ready pull requests to PyHealth.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    .ph-hero {
+      background: linear-gradient(140deg, #1c2b3a 0%, #28425e 60%, #1e3348 100%);
+      border-radius: 16px;
+      padding: 3rem 2.4rem 2.8rem;
+      color: white;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.07);
+      box-shadow: 0 20px 48px rgba(22,33,31,0.18);
+      animation: rise 420ms ease;
+    }
+    .ph-hero::before {
+      content: "";
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 340px; height: 340px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,95,38,0.22) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .ph-eyebrow {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(201,95,38,0.9);
+      margin: 0 0 0.6rem;
+    }
+    .ph-hero h1 {
+      color: white;
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      margin: 0 0 0.5rem;
+      letter-spacing: -0.01em;
+    }
+    .ph-tagline {
+      color: rgba(255,255,255,0.72);
+      font-size: 1.05rem;
+      line-height: 1.55;
+      max-width: 640px;
+      margin: 0 0 1.8rem;
+    }
+    .ph-cta-row {
+      display: flex;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+    .ph-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      border-radius: 10px;
+      padding: 0.64rem 1.15rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      font-family: "IBM Plex Sans", sans-serif;
+      transition: filter 0.15s, transform 0.1s;
+    }
+    .ph-btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+    .ph-btn.primary {
+      background: var(--accent);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 4px 12px rgba(201,95,38,0.35);
+    }
+    .ph-btn.outline {
+      background: rgba(255,255,255,0.09);
+      color: rgba(255,255,255,0.9);
+      border: 1px solid rgba(255,255,255,0.22);
+      backdrop-filter: blur(6px);
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.94rem;
+      padding: 0.35rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: color 0.12s, background 0.12s, border-color 0.12s;
+    }
+    .back-link:hover {
+      color: var(--accent);
+      border-color: var(--line);
+      background: var(--paper);
+    }
+    .research-section {
+      margin-top: 2.5rem;
+      animation: rise 500ms ease;
+    }
+    .section-h2 {
+      font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+      margin: 0 0 0.35rem;
+    }
+    .section-sub {
+      color: var(--muted);
+      font-size: 1rem;
+      margin: 0 0 1.4rem;
+      line-height: 1.5;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 0.85rem;
+    }
+    .info-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1.5rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      transition: border-color 0.15s, box-shadow 0.15s, transform 0.1s;
+    }
+    .info-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 6px 20px rgba(201,95,38,0.09);
+      transform: translateY(-2px);
+    }
+    .info-card h3 {
+      font-size: 1.02rem;
+      margin: 0;
+      color: var(--ink);
+    }
+    .info-card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.45;
+    }
+    .info-card .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      color: var(--accent);
+      font-size: 0.88rem;
+      font-weight: 500;
+      text-decoration: none;
+      margin-top: auto;
+      padding-top: 0.4rem;
+    }
+    .info-card .card-link:hover { text-decoration: underline; }
+    .checklist {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1.5rem 1.8rem;
+      list-style: none;
+      margin: 0;
+    }
+    .checklist li {
+      position: relative;
+      padding: 0.5rem 0 0.5rem 1.9rem;
+      font-size: 0.96rem;
+      color: var(--ink);
+      line-height: 1.5;
+      border-bottom: 1px solid var(--line);
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .checklist li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 0.5rem;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .checklist li strong { color: var(--ink); }
+    .apply-callout {
+      margin-top: 2rem;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1.5rem 1.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .apply-callout p { margin: 0.2rem 0 0; color: var(--muted); font-size: 0.95rem; }
+    .apply-callout h3 { margin: 0; font-size: 1.1rem; }
+    .callout-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      text-decoration: none;
+      background: var(--accent);
+      color: white;
+      border-radius: 10px;
+      padding: 0.6rem 1.1rem;
+      font-size: 0.93rem;
+      font-weight: 500;
+      font-family: "IBM Plex Sans", sans-serif;
+      white-space: nowrap;
+      transition: filter 0.15s, transform 0.1s;
+    }
+    .callout-btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="site-wrap header-inner">
+      <nav class="nav" aria-label="Main navigation">
+        <a href="research.html" class="back-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          Research
+        </a>
+      </nav>
+      <span style="color: var(--muted); font-size: 0.88rem; font-weight: 500;">Contribute</span>
+    </div>
+  </header>
+
+  <main class="site-wrap" style="padding: 2.2rem 0 3.5rem;">
+
+    <!-- ── Hero ── -->
+    <section class="ph-hero">
+      <p class="ph-eyebrow">Open to Everyone</p>
+      <h1>What Makes a Good PyHealth PR</h1>
+      <p class="ph-tagline">Anyone can contribute a model, dataset, task, or fix to PyHealth — no need to join the Research Initiative. This is a quick-start guide to making your pull request complete and review-ready. For the full walkthrough — dev setup, data access, and per-type file checklists — see the documentation.</p>
+      <div class="ph-cta-row">
+        <a href="https://pyhealth.readthedocs.io/en/latest/how_to_contribute.html" class="ph-btn primary" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          Full Contribution Docs
+        </a>
+        <a href="https://docs.google.com/presentation/d/1WQiCGVjBM2MSyWN6Vmcygf0kNwXDPhXO2VjT1CsghFA/edit?usp=sharing" class="ph-btn outline" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          View Slide Deck
+        </a>
+      </div>
+    </section>
+
+    <!-- ── Example PRs ── -->
+    <section class="research-section">
+      <h2 class="section-h2">Learn From Example PRs</h2>
+      <p class="section-sub">The best way to understand our expectations is to study contributions that got it right. Both include complete implementations, synthetic-data tests, docs, and clear PR descriptions.</p>
+      <div class="card-grid">
+        <div class="info-card">
+          <h3>ChestX-ray14 Dataset + Classification Tasks</h3>
+          <p>An exemplary dataset contribution: full implementation, binary and multilabel tasks, synthetic-data tests, API docs, and example notebooks — with a clear PR description and file guide.</p>
+          <a href="https://github.com/sunlabuiuc/PyHealth/pull/392/files" class="card-link" target="_blank" rel="noopener">
+            View PR #392
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+        <div class="info-card">
+          <h3>Model Compatibility Updates (PyHealth 2.0)</h3>
+          <p>A great example of maintaining the library: systematic updates across multiple models, backward compatibility where possible, clear documentation of breaking changes, and updated examples and tests.</p>
+          <a href="https://github.com/sunlabuiuc/PyHealth/pull/610" class="card-link" target="_blank" rel="noopener">
+            View PR #610
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Review Criteria ── -->
+    <section class="research-section">
+      <h2 class="section-h2">How PRs Are Evaluated</h2>
+      <p class="section-sub">Every contribution is reviewed against three criteria.</p>
+      <div class="card-grid">
+        <div class="info-card">
+          <h3>Completeness</h3>
+          <p>Production-ready code: synthetic-data tests, Google-style docstrings, proper base-class inheritance, and working examples.</p>
+        </div>
+        <div class="info-card">
+          <h3>Relevance to Healthcare</h3>
+          <p>Addresses a healthcare-specific problem or dataset. Grounding in a peer-reviewed publication strengthens the case.</p>
+        </div>
+        <div class="info-card">
+          <h3>Relevance to the Package</h3>
+          <p>Adds functionality others will reuse, integrates with existing components, and follows established patterns — growing PyHealth thoughtfully.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Quick checklist ── -->
+    <section class="research-section">
+      <h2 class="section-h2">Quick Checklist</h2>
+      <p class="section-sub">Before opening your PR, make sure you have:</p>
+      <ul class="checklist">
+        <li><strong>Implementation file</strong> inheriting from the right base class (dataset / task / model), with type hints and Google-style docstrings.</li>
+        <li><strong>Documentation</strong> — a new <code>.rst</code> file under <code>docs/api/…</code> and an update to the matching index so it appears in the docs.</li>
+        <li><strong>Fast tests</strong> in <code>tests/core/</code> using small synthetic data (2–5 patients, no real datasets, no network) that run in milliseconds.</li>
+        <li><strong>PR description</strong> covering who you are (NetID if UIUC), contribution type, a high-level description, and a file guide.</li>
+        <li><strong>Rebased</strong> on the latest <code>sunlabuiuc</code> <code>main</code>, targeting <code>main</code>, with maintainer edits enabled.</li>
+      </ul>
+    </section>
+
+    <!-- ── Full guide callout ── -->
+    <div class="apply-callout">
+      <div>
+        <h3>Want the full walkthrough?</h3>
+        <p>Dev environment setup, MIMIC data access, code style, and detailed per-type file checklists live in the documentation.</p>
+      </div>
+      <a href="https://pyhealth.readthedocs.io/en/latest/how_to_contribute.html" class="callout-btn" target="_blank" rel="noopener">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        Read the Full Guide
+      </a>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-wrap" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+      <span>Copyright <span id="year"></span> John Wu</span>
+      <a href="research.html" style="color:var(--accent); text-decoration:none; font-size:0.9rem;">← Back to Research</a>
+    </div>
+  </footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+</body>
+</html>

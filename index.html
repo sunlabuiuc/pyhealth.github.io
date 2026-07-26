@@ -570,6 +570,8 @@
       transition: width 1.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .perf-bar-fill.pyhealth2   { background: var(--accent); }
+    .perf-bar-fill.laptop-m2   { background: #e8a06a; }
+    .perf-bar-fill.laptop-g16  { background: #e8a06a; }
     .perf-bar-fill.pyhealth116 { background: #5a9fd4; }
     .perf-bar-fill.meds        { background: #a0aec0; }
     .perf-bar-fill.pandas      {
@@ -689,7 +691,7 @@
         <div class="stat-label">Clinical<br>Tasks</div>
       </a>
       <a href="models.html" class="stat-card">
-        <div class="stat-number">39+</div>
+        <div class="stat-number">50+</div>
         <div class="stat-label">ML<br>Models</div>
       </a>
       <a href="https://discord.gg/mpb835EHaX" class="stat-card" target="_blank" rel="noopener">
@@ -766,7 +768,7 @@
     <!-- ── Performance ── -->
     <section class="page-section fade-up" id="perfSection">
       <h2 class="section-h2">Built for Scale — Efficient by Design</h2>
-      <p class="section-sub">Benchmarked on MIMIC-IV at 4 parallel workers. PyHealth 2.0 uses a memory-mapped architecture that dynamically adapts to your hardware — whether you have 2 cores or 64, it scales without manual memory management so you can focus on the ML, not the infrastructure. Pandas values shown at 1 worker only (†) as it could not scale beyond single-threaded execution.</p>
+      <p class="section-sub">Benchmarked on MIMIC-IV at 4 parallel workers. PyHealth 2.0 uses a memory-mapped architecture that dynamically adapts to your hardware — whether you have 2 cores or 64, it scales without manual memory management so you can focus on the ML, not the infrastructure. Pandas values shown at 1 worker only (†) as it could not scale beyond single-threaded execution. PyHealth 2.0 even runs the full in-hospital mortality task on a consumer laptop in roughly 5 GB of memory.</p>
       <div class="perf-charts">
 
         <div class="perf-panel">
@@ -874,9 +876,19 @@
           <p class="perf-metric-label">Wall Time (hours · lower is better)</p>
           <div class="bar-group">
             <div class="bar-row">
-              <span class="bar-name">PyHealth 2.0</span>
+              <span class="bar-name">PyHealth 2.0 Workstation</span>
               <div class="perf-bar-track"><div class="perf-bar-fill pyhealth2" data-frac="0.049"></div></div>
               <span class="bar-val">1.28h</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-name">PyHealth 2.0 M2 Pro laptop</span>
+              <div class="perf-bar-track"><div class="perf-bar-fill laptop-m2" data-frac="0.021"></div></div>
+              <span class="bar-val">0.56h</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-name">PyHealth 2.0 G16 laptop</span>
+              <div class="perf-bar-track"><div class="perf-bar-fill laptop-g16" data-frac="0.028"></div></div>
+              <span class="bar-val">0.73h</span>
             </div>
             <div class="bar-row">
               <span class="bar-name">MEDS</span>
@@ -897,9 +909,19 @@
           <p class="perf-metric-label">Peak Memory (GB · lower is better)</p>
           <div class="bar-group">
             <div class="bar-row">
-              <span class="bar-name">PyHealth 2.0</span>
+              <span class="bar-name">PyHealth 2.0 Workstation</span>
               <div class="perf-bar-track"><div class="perf-bar-fill pyhealth2" data-frac="0.125"></div></div>
               <span class="bar-val">23.4 GB</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-name">PyHealth 2.0 M2 Pro laptop</span>
+              <div class="perf-bar-track"><div class="perf-bar-fill laptop-m2" data-frac="0.028"></div></div>
+              <span class="bar-val">5.3 GB</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-name">PyHealth 2.0 G16 laptop</span>
+              <div class="perf-bar-track"><div class="perf-bar-fill laptop-g16" data-frac="0.102"></div></div>
+              <span class="bar-val">19.2 GB</span>
             </div>
             <div class="bar-row">
               <span class="bar-name">MEDS</span>
@@ -921,12 +943,13 @@
 
       </div>
       <div class="perf-legend">
-        <span class="perf-legend-item"><span class="perf-legend-dot" style="background:var(--accent)"></span>PyHealth 2.0</span>
+        <span class="perf-legend-item"><span class="perf-legend-dot" style="background:var(--accent)"></span>PyHealth 2.0 (workstation)</span>
+        <span class="perf-legend-item"><span class="perf-legend-dot" style="background:#e8a06a"></span>PyHealth 2.0 (laptop)</span>
         <span class="perf-legend-item"><span class="perf-legend-dot" style="background:#5a9fd4"></span>PyHealth 1.16</span>
         <span class="perf-legend-item"><span class="perf-legend-dot" style="background:#a0aec0"></span>MEDS</span>
         <span class="perf-legend-item"><span class="perf-legend-dot" style="background:repeating-linear-gradient(45deg,#b0bec5,#b0bec5 3px,#dde3e8 3px,#dde3e8 7px)"></span>Pandas † (1 worker only)</span>
       </div>
-      <p class="perf-footnote">† Pandas measured at 1 worker; failed beyond single-threaded execution. All other methods at 4 workers on MIMIC-IV. Full benchmark in the <a href="https://arxiv.org/pdf/2601.16414" class="inline-link" target="_blank" rel="noopener">PyHealth 2.0 paper</a>.</p>
+      <p class="perf-footnote">† Pandas measured at 1 worker; failed beyond single-threaded execution. All other methods at 4 workers on MIMIC-IV. Laptop rows are PyHealth 2.0 on a MacBook Pro M2 Pro and an ASUS Zephyrus G16 at 4 workers, benchmarked for in-hospital mortality. Full benchmark in the <a href="https://arxiv.org/pdf/2601.16414" class="inline-link" target="_blank" rel="noopener">PyHealth 2.0 paper</a>.</p>
     </section>
 
     <!-- ── Pipeline ── -->
@@ -963,7 +986,7 @@
         <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="pipeline-card" target="_blank" rel="noopener">
           <div class="pipeline-step">05</div>
           <div class="pipeline-name">pyhealth.models</div>
-          <p class="pipeline-desc">39+ clinical ML models across EHR, signals, imaging, and generation.</p>
+          <p class="pipeline-desc">50+ clinical ML models across EHR, signals, imaging, and generation.</p>
         </a>
         <a href="https://pyhealth.readthedocs.io/en/latest/api/trainer.html" class="pipeline-card" target="_blank" rel="noopener">
           <div class="pipeline-step">06</div>
