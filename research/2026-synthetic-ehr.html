@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Test-Time Adaptation for EEG Foundation Models — PyHealth Research</title>
-  <meta name="description" content="A systematic study of test-time adaptation for EEG foundation models under real-world distribution shifts.">
+  <title>Accelerating Reproducible Research in Synthetic EHR Generation — PyHealth Research</title>
+  <meta name="description" content="A lightweight, end-to-end benchmarking framework for reproducible synthetic EHR evaluation.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
@@ -80,6 +80,11 @@
       background: rgba(255,255,255,0.1);
       color: rgba(255,255,255,0.8);
       border: 1px solid rgba(255,255,255,0.18);
+    }
+    .badge-review {
+      background: color-mix(in srgb, #f4a56a 18%, rgba(0,0,0,0));
+      color: #f4a56a;
+      border: 1px solid rgba(244,165,106,0.35);
     }
     .ph-cta-row {
       display: flex;
@@ -217,14 +222,14 @@
   <main class="site-wrap" style="padding: 2.2rem 0 3.5rem;">
 
     <section class="ph-hero">
-      <p class="ph-eyebrow">PyHealth Research Initiative · MLHC 2026</p>
+      <p class="ph-eyebrow">PyHealth Research Initiative · Under Review</p>
       <div class="badge-row">
         <span class="badge badge-year">2026</span>
-        <span class="badge badge-venue">MLHC 2026</span>
+        <span class="badge badge-review">Under Review</span>
       </div>
-      <h1 class="hero-title">Test-Time Adaptation for EEG Foundation Models: A Systematic Study under Real-World Distribution Shifts</h1>
+      <h1 class="hero-title">Accelerating Reproducible Research in Synthetic EHR Generation</h1>
       <div class="ph-cta-row">
-        <a href="https://arxiv.org/abs/2604.16926" class="ph-btn primary" target="_blank" rel="noopener">
+        <a href="https://arxiv.org/abs/2606.06990" class="ph-btn primary" target="_blank" rel="noopener">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
           Read on arXiv
         </a>
@@ -236,11 +241,11 @@
       <div class="paper-meta">
         <div class="meta-item">
           <label>Authors</label>
-          <span>Gabriel Jason Lee, Jathurshan Pradeepkumar, Jimeng Sun</span>
+          <span>Jalen Jiang, Chufan Gao, Ethan Rasmussen, Stephen Z. Xie, Jimeng Sun</span>
         </div>
         <div class="meta-item">
           <label>Venue</label>
-          <span>MLHC 2026</span>
+          <span>Under Review</span>
         </div>
         <div class="meta-item">
           <label>Year</label>
@@ -248,17 +253,17 @@
         </div>
         <div class="meta-item">
           <label>Modality</label>
-          <span>Physiological Signals (EEG)</span>
+          <span>Synthetic Data (EHR / ICD codes)</span>
         </div>
       </div>
 
       <div class="abstract-section">
         <h2>Abstract</h2>
-        <p>EEG foundation models trained on large-scale recordings exhibit strong performance on standard benchmarks, but their deployment in clinical settings exposes a critical gap: real-world EEG data frequently undergoes distribution shift from the training domain due to differences in hardware, electrode placement, patient population, and recording protocol. This paper presents a systematic study of test-time adaptation strategies for EEG foundation models under such shifts. We evaluate multiple TTA approaches across diverse distribution shift scenarios and propose practical guidelines for adapting large pretrained models to new clinical sites without requiring access to labeled target data or costly retraining.</p>
+        <p>Reproducibility remains a major barrier in synthetic Electronic Health Record (EHR) generation, where inconsistent data processing, training, and evaluation protocols make results difficult to compare and build upon. We introduce a lightweight, end-to-end benchmarking framework for reproducible synthetic EHR evaluation that standardizes data processing, model training, and evaluation. The framework reimplements baseline generators — MedGAN, CorGAN, PromptEHR, and HALO — and adds a GPT-2 baseline, and provides an architecture-agnostic privacy-utility evaluation suite applicable to both GAN- and transformer-based generators, reporting confidence intervals across metrics. By lowering the engineering barrier to entry, the framework aims to facilitate community-driven reproducibility in synthetic EHR research, with a current focus on longitudinal ICD diagnosis code generation.</p>
       </div>
 
       <div class="links-section">
-        <a href="https://arxiv.org/abs/2604.16926" class="link-btn primary" target="_blank" rel="noopener">
+        <a href="https://arxiv.org/abs/2606.06990" class="link-btn primary" target="_blank" rel="noopener">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
           Read Paper (arXiv)
         </a>

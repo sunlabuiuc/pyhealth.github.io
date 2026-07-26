@@ -570,6 +570,8 @@
       transition: width 1.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .perf-bar-fill.pyhealth2   { background: var(--accent); }
+    .perf-bar-fill.laptop-m2   { background: #e8a06a; }
+    .perf-bar-fill.laptop-g16  { background: #e8a06a; }
     .perf-bar-fill.pyhealth116 { background: #5a9fd4; }
     .perf-bar-fill.meds        { background: #a0aec0; }
     .perf-bar-fill.pandas      {
@@ -580,6 +582,33 @@
         #dde3e8 3px,
         #dde3e8 7px
       );
+    }
+    .perf-highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 0 0 1.6rem;
+    }
+    .perf-highlight {
+      flex: 1;
+      min-width: 160px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1.2rem 1.4rem;
+      text-align: center;
+    }
+    .perf-highlight-number {
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 600;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .perf-highlight-label {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-top: 0.4rem;
     }
     .bar-val {
       font-size: 0.83rem;
@@ -689,24 +718,16 @@
         <div class="stat-label">Clinical<br>Tasks</div>
       </a>
       <a href="models.html" class="stat-card">
-        <div class="stat-number">39+</div>
+        <div class="stat-number">50+</div>
         <div class="stat-label">ML<br>Models</div>
       </a>
       <a href="https://discord.gg/mpb835EHaX" class="stat-card" target="_blank" rel="noopener">
         <div class="stat-number">400+</div>
         <div class="stat-label">Discord<br>Members</div>
       </a>
-      <a href="https://pyhealth.readthedocs.io/en/latest/research_initiative.html" class="stat-card" target="_blank" rel="noopener">
+      <a href="research.html" class="stat-card">
         <div class="stat-number">10+</div>
         <div class="stat-label">Active<br>Researchers</div>
-      </a>
-      <a href="https://pyhealth.readthedocs.io/en/latest/why_pyhealth.html" class="stat-card" target="_blank" rel="noopener" title="39x faster data loading vs pandas-based approaches">
-        <div class="stat-number">39×</div>
-        <div class="stat-label">Faster than<br>pandas</div>
-      </a>
-      <a href="https://pyhealth.readthedocs.io/en/latest/why_pyhealth.html" class="stat-card" target="_blank" rel="noopener" title="20x less peak memory vs pandarallel-based solutions">
-        <div class="stat-number">20×</div>
-        <div class="stat-label">Less memory than<br>pandarallel</div>
       </a>
     </section>
 
@@ -766,7 +787,17 @@
     <!-- ── Performance ── -->
     <section class="page-section fade-up" id="perfSection">
       <h2 class="section-h2">Built for Scale — Efficient by Design</h2>
-      <p class="section-sub">Benchmarked on MIMIC-IV at 4 parallel workers. PyHealth 2.0 uses a memory-mapped architecture that dynamically adapts to your hardware — whether you have 2 cores or 64, it scales without manual memory management so you can focus on the ML, not the infrastructure. Pandas values shown at 1 worker only (†) as it could not scale beyond single-threaded execution.</p>
+      <p class="section-sub">Benchmarked on MIMIC-IV at 4 parallel workers. PyHealth 2.0 uses a memory-mapped architecture that dynamically adapts to your hardware — whether you have 2 cores or 64, it scales without manual memory management so you can focus on the ML, not the infrastructure. Pandas values shown at 1 worker only (†) as it could not scale beyond single-threaded execution. PyHealth 2.0 even runs the full in-hospital mortality task on a consumer laptop in roughly 5 GB of memory.</p>
+      <div class="perf-highlights">
+        <div class="perf-highlight">
+          <div class="perf-highlight-number">39×</div>
+          <div class="perf-highlight-label">Faster than pandas</div>
+        </div>
+        <div class="perf-highlight">
+          <div class="perf-highlight-number">20×</div>
+          <div class="perf-highlight-label">Less memory than pandarallel</div>
+        </div>
+      </div>
       <div class="perf-charts">
 
         <div class="perf-panel">
@@ -779,9 +810,9 @@
               <span class="bar-val">0.23h</span>
             </div>
             <div class="bar-row">
-              <span class="bar-name">MEDS</span>
-              <div class="perf-bar-track"><div class="perf-bar-fill meds" data-frac="1.0"></div></div>
-              <span class="bar-val">2.91h</span>
+              <span class="bar-name">PyHealth 1.16</span>
+              <div class="perf-bar-track"><div class="perf-bar-fill pyhealth116" data-frac="0.094"></div></div>
+              <span class="bar-val">0.27h</span>
             </div>
             <div class="bar-row">
               <span class="bar-name">Pandas †</span>
@@ -789,9 +820,9 @@
               <span class="bar-val">1.31h</span>
             </div>
             <div class="bar-row">
-              <span class="bar-name">PyHealth 1.16</span>
-              <div class="perf-bar-track"><div class="perf-bar-fill pyhealth116" data-frac="0.094"></div></div>
-              <span class="bar-val">0.27h</span>
+              <span class="bar-name">MEDS</span>
+              <div class="perf-bar-track"><div class="perf-bar-fill meds" data-frac="1.0"></div></div>
+              <span class="bar-val">2.91h</span>
             </div>
           </div>
           <p class="perf-metric-label">Peak Memory (GB · lower is better)</p>
@@ -802,14 +833,14 @@
               <span class="bar-val">8.9 GB</span>
             </div>
             <div class="bar-row">
-              <span class="bar-name">MEDS</span>
-              <div class="perf-bar-track"><div class="perf-bar-fill meds" data-frac="0.741"></div></div>
-              <span class="bar-val">61.7 GB</span>
-            </div>
-            <div class="bar-row">
               <span class="bar-name">Pandas †</span>
               <div class="perf-bar-track"><div class="perf-bar-fill pandas" data-frac="0.125"></div></div>
               <span class="bar-val">10.4 GB</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-name">MEDS</span>
+              <div class="perf-bar-track"><div class="perf-bar-fill meds" data-frac="0.741"></div></div>
+              <span class="bar-val">61.7 GB</span>
             </div>
             <div class="bar-row">
               <span class="bar-name">PyHealth 1.16</span>
@@ -824,14 +855,14 @@
           <p class="perf-metric-label">Wall Time (hours · lower is better)</p>
           <div class="bar-group">
             <div class="bar-row">
+              <span class="bar-name">PyHealth 1.16</span>
+              <div class="perf-bar-track"><div class="perf-bar-fill pyhealth116" data-frac="0.194"></div></div>
+              <span class="bar-val">0.64h</span>
+            </div>
+            <div class="bar-row">
               <span class="bar-name">PyHealth 2.0</span>
               <div class="perf-bar-track"><div class="perf-bar-fill pyhealth2" data-frac="0.208"></div></div>
               <span class="bar-val">0.69h</span>
-            </div>
-            <div class="bar-row">
-              <span class="bar-name">MEDS</span>
-              <div class="perf-bar-track"><div class="perf-bar-fill meds" data-frac="1.0"></div></div>
-              <span class="bar-val">3.32h</span>
             </div>
             <div class="bar-row">
               <span class="bar-name">Pandas †</span>
@@ -839,9 +870,9 @@
               <span class="bar-val">2.85h</span>
             </div>
             <div class="bar-row">
-              <span class="bar-name">PyHealth 1.16</span>
-              <div class="perf-bar-track"><div class="perf-bar-fill pyhealth116" data-frac="0.194"></div></div>
-              <span class="bar-val">0.64h</span>
+              <span class="bar-name">MEDS</span>
+              <div class="perf-bar-track"><div class="perf-bar-fill meds" data-frac="1.0"></div></div>
+              <span class="bar-val">3.32h</span>
             </div>
           </div>
           <p class="perf-metric-label">Peak Memory (GB · lower is better)</p>
@@ -852,14 +883,14 @@
               <span class="bar-val">8.5 GB</span>
             </div>
             <div class="bar-row">
-              <span class="bar-name">MEDS</span>
-              <div class="perf-bar-track"><div class="perf-bar-fill meds" data-frac="0.764"></div></div>
-              <span class="bar-val">61.8 GB</span>
-            </div>
-            <div class="bar-row">
               <span class="bar-name">Pandas †</span>
               <div class="perf-bar-track"><div class="perf-bar-fill pandas" data-frac="0.141"></div></div>
               <span class="bar-val">11.4 GB</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-name">MEDS</span>
+              <div class="perf-bar-track"><div class="perf-bar-fill meds" data-frac="0.764"></div></div>
+              <span class="bar-val">61.8 GB</span>
             </div>
             <div class="bar-row">
               <span class="bar-name">PyHealth 1.16</span>
@@ -874,7 +905,22 @@
           <p class="perf-metric-label">Wall Time (hours · lower is better)</p>
           <div class="bar-group">
             <div class="bar-row">
-              <span class="bar-name">PyHealth 2.0</span>
+              <span class="bar-name">MacBook M2 Pro</span>
+              <div class="perf-bar-track"><div class="perf-bar-fill laptop-m2" data-frac="0.021"></div></div>
+              <span class="bar-val">0.56h</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-name">ASUS G16</span>
+              <div class="perf-bar-track"><div class="perf-bar-fill laptop-g16" data-frac="0.028"></div></div>
+              <span class="bar-val">0.73h</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-name">PyHealth 1.16</span>
+              <div class="perf-bar-track"><div class="perf-bar-fill pyhealth116" data-frac="0.034"></div></div>
+              <span class="bar-val">0.88h</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-name">Server WS</span>
               <div class="perf-bar-track"><div class="perf-bar-fill pyhealth2" data-frac="0.049"></div></div>
               <span class="bar-val">1.28h</span>
             </div>
@@ -888,28 +934,33 @@
               <div class="perf-bar-track"><div class="perf-bar-fill pandas" data-frac="1.0"></div></div>
               <span class="bar-val">26.03h</span>
             </div>
-            <div class="bar-row">
-              <span class="bar-name">PyHealth 1.16</span>
-              <div class="perf-bar-track"><div class="perf-bar-fill pyhealth116" data-frac="0.034"></div></div>
-              <span class="bar-val">0.88h</span>
-            </div>
           </div>
           <p class="perf-metric-label">Peak Memory (GB · lower is better)</p>
           <div class="bar-group">
             <div class="bar-row">
-              <span class="bar-name">PyHealth 2.0</span>
-              <div class="perf-bar-track"><div class="perf-bar-fill pyhealth2" data-frac="0.125"></div></div>
-              <span class="bar-val">23.4 GB</span>
+              <span class="bar-name">MacBook M2 Pro</span>
+              <div class="perf-bar-track"><div class="perf-bar-fill laptop-m2" data-frac="0.028"></div></div>
+              <span class="bar-val">5.3 GB</span>
             </div>
             <div class="bar-row">
-              <span class="bar-name">MEDS</span>
-              <div class="perf-bar-track"><div class="perf-bar-fill meds" data-frac="0.320"></div></div>
-              <span class="bar-val">60.0 GB</span>
+              <span class="bar-name">ASUS G16</span>
+              <div class="perf-bar-track"><div class="perf-bar-fill laptop-g16" data-frac="0.102"></div></div>
+              <span class="bar-val">19.2 GB</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-name">Server WS</span>
+              <div class="perf-bar-track"><div class="perf-bar-fill pyhealth2" data-frac="0.125"></div></div>
+              <span class="bar-val">23.4 GB</span>
             </div>
             <div class="bar-row">
               <span class="bar-name">Pandas †</span>
               <div class="perf-bar-track"><div class="perf-bar-fill pandas" data-frac="0.263"></div></div>
               <span class="bar-val">49.2 GB</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-name">MEDS</span>
+              <div class="perf-bar-track"><div class="perf-bar-fill meds" data-frac="0.320"></div></div>
+              <span class="bar-val">60.0 GB</span>
             </div>
             <div class="bar-row">
               <span class="bar-name">PyHealth 1.16</span>
@@ -921,12 +972,13 @@
 
       </div>
       <div class="perf-legend">
-        <span class="perf-legend-item"><span class="perf-legend-dot" style="background:var(--accent)"></span>PyHealth 2.0</span>
+        <span class="perf-legend-item"><span class="perf-legend-dot" style="background:var(--accent)"></span>PyHealth 2.0 (workstation)</span>
+        <span class="perf-legend-item"><span class="perf-legend-dot" style="background:#e8a06a"></span>PyHealth 2.0 (laptop)</span>
         <span class="perf-legend-item"><span class="perf-legend-dot" style="background:#5a9fd4"></span>PyHealth 1.16</span>
         <span class="perf-legend-item"><span class="perf-legend-dot" style="background:#a0aec0"></span>MEDS</span>
         <span class="perf-legend-item"><span class="perf-legend-dot" style="background:repeating-linear-gradient(45deg,#b0bec5,#b0bec5 3px,#dde3e8 3px,#dde3e8 7px)"></span>Pandas † (1 worker only)</span>
       </div>
-      <p class="perf-footnote">† Pandas measured at 1 worker; failed beyond single-threaded execution. All other methods at 4 workers on MIMIC-IV. Full benchmark in the <a href="https://arxiv.org/pdf/2601.16414" class="inline-link" target="_blank" rel="noopener">PyHealth 2.0 paper</a>.</p>
+      <p class="perf-footnote">† Pandas measured at 1 worker; failed beyond single-threaded execution. All other methods at 4 workers on MIMIC-IV. Laptop rows are PyHealth 2.0 on a MacBook Pro M2 Pro and an ASUS Zephyrus G16 at 4 workers, benchmarked for in-hospital mortality. Full benchmark in the <a href="https://arxiv.org/pdf/2601.16414" class="inline-link" target="_blank" rel="noopener">PyHealth 2.0 paper</a>.</p>
     </section>
 
     <!-- ── Pipeline ── -->
@@ -963,7 +1015,7 @@
         <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="pipeline-card" target="_blank" rel="noopener">
           <div class="pipeline-step">05</div>
           <div class="pipeline-name">pyhealth.models</div>
-          <p class="pipeline-desc">39+ clinical ML models across EHR, signals, imaging, and generation.</p>
+          <p class="pipeline-desc">50+ clinical ML models across EHR, signals, imaging, and generation.</p>
         </a>
         <a href="https://pyhealth.readthedocs.io/en/latest/api/trainer.html" class="pipeline-card" target="_blank" rel="noopener">
           <div class="pipeline-step">06</div>

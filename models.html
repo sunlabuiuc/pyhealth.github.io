@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PyHealth Models — 33+ Clinical ML Models</title>
+  <title>PyHealth Models — 50 Clinical ML Models</title>
   <meta name="description" content="Browse all clinical machine learning models supported by PyHealth across EHR, drug recommendation, biosignals, graph, imaging, and text modalities.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -335,26 +335,26 @@
     <section class="page-section fade-up">
       <div style="display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
         <h2 style="margin:0; font-size:clamp(1.1rem,2vw,1.4rem);">
-          All Models <span class="count-badge" id="visibleCount">39</span>
+          All Models <span class="count-badge" id="visibleCount">50</span>
         </h2>
         <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" target="_blank" rel="noopener" style="font-size:0.85rem; color:var(--accent); text-decoration:none; font-weight:500;">Full API reference →</a>
       </div>
 
       <div class="filter-bar" role="group" aria-label="Filter by category">
-        <button class="filter-btn active" onclick="filterModels('all', this)">All <span style="opacity:0.65;">(39)</span></button>
-        <button class="filter-btn" onclick="filterModels('ehr', this)">EHR <span style="opacity:0.65;">(15)</span></button>
+        <button class="filter-btn active" onclick="filterModels('all', this)">All <span style="opacity:0.65;">(50)</span></button>
+        <button class="filter-btn" onclick="filterModels('ehr', this)">EHR <span style="opacity:0.65;">(20)</span></button>
         <button class="filter-btn" onclick="filterModels('drug', this)">Drug Rec <span style="opacity:0.65;">(4)</span></button>
-        <button class="filter-btn" onclick="filterModels('signal', this)">Signal <span style="opacity:0.65;">(4)</span></button>
-        <button class="filter-btn" onclick="filterModels('graph', this)">Graph <span style="opacity:0.65;">(2)</span></button>
+        <button class="filter-btn" onclick="filterModels('signal', this)">Signal <span style="opacity:0.65;">(5)</span></button>
+        <button class="filter-btn" onclick="filterModels('graph', this)">Graph <span style="opacity:0.65;">(4)</span></button>
         <button class="filter-btn" onclick="filterModels('image', this)">Image <span style="opacity:0.65;">(4)</span></button>
-        <button class="filter-btn" onclick="filterModels('text', this)">Text <span style="opacity:0.65;">(3)</span></button>
-        <button class="filter-btn" onclick="filterModels('multimodal', this)">Multimodal <span style="opacity:0.65;">(2)</span></button>
+        <button class="filter-btn" onclick="filterModels('text', this)">Text <span style="opacity:0.65;">(4)</span></button>
+        <button class="filter-btn" onclick="filterModels('multimodal', this)">Multimodal <span style="opacity:0.65;">(4)</span></button>
         <button class="filter-btn" onclick="filterModels('generative', this)">Generative <span style="opacity:0.65;">(5)</span></button>
       </div>
 
       <div class="model-grid" id="modelGrid">
 
-        <!-- ───────────── EHR Sequence (14) ───────────── -->
+        <!-- ───────────── EHR Sequence (20) ───────────── -->
 
         <div class="model-card" data-category="ehr">
           <div class="model-card-header">
@@ -564,6 +564,72 @@ model <span class="tok-op">=</span> <span class="tok-cl">JambaEHR</span>(dataset
           </div>
         </div>
 
+        <div class="model-card" data-category="ehr">
+          <div class="model-card-header">
+            <span class="model-classname">MultimodalRNN</span>
+            <span class="category-tag cat-ehr">EHR</span>
+          </div>
+          <p class="model-desc">RNN that mixes modalities — sequential features go through the recurrent layers while multi-hot and tensor features bypass them and are embedded directly.</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">MultimodalRNN</span>
+model <span class="tok-op">=</span> <span class="tok-cl">MultimodalRNN</span>(dataset<span class="tok-op">=</span>samples)</pre>
+          <div class="model-card-footer">
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.RNN.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="model-card" data-category="ehr">
+          <div class="model-card-header">
+            <span class="model-classname">MultimodalRETAIN</span>
+            <span class="category-tag cat-ehr">EHR</span>
+          </div>
+          <p class="model-desc">RETAIN's two-level attention extended to mixed input modalities, keeping visit- and code-level interpretability over heterogeneous features.</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">MultimodalRETAIN</span>
+model <span class="tok-op">=</span> <span class="tok-cl">MultimodalRETAIN</span>(dataset<span class="tok-op">=</span>samples)</pre>
+          <div class="model-card-footer">
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.RETAIN.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="model-card" data-category="ehr">
+          <div class="model-card-header">
+            <span class="model-classname">MultimodalAdaCare</span>
+            <span class="category-tag cat-ehr">EHR</span>
+          </div>
+          <p class="model-desc">AdaCare's dilated-convolution feature recalibration applied to mixed modalities, surfacing which clinical variables drive each prediction.</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">MultimodalAdaCare</span>
+model <span class="tok-op">=</span> <span class="tok-cl">MultimodalAdaCare</span>(dataset<span class="tok-op">=</span>samples)</pre>
+          <div class="model-card-footer">
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.AdaCare.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="model-card" data-category="ehr">
+          <div class="model-card-header">
+            <span class="model-classname">CaliForest</span>
+            <span class="category-tag cat-ehr">EHR</span>
+          </div>
+          <p class="model-desc">Calibrated random forest for tabular clinical risk — out-of-bag isotonic calibration yields probabilities you can threshold meaningfully.</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">CaliForest</span>
+model <span class="tok-op">=</span> <span class="tok-cl">CaliForest</span>(dataset<span class="tok-op">=</span>samples,
+    n_estimators<span class="tok-op">=</span><span class="tok-num">100</span>, calibration<span class="tok-op">=</span><span class="tok-str">"isotonic"</span>)</pre>
+          <div class="model-card-footer">
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="model-card" data-category="ehr">
+          <div class="model-card-header">
+            <span class="model-classname">EmbeddingModel</span>
+            <span class="category-tag cat-ehr">EHR</span>
+          </div>
+          <p class="model-desc">Shared embedding layer that maps every processor type in a sample dataset to a common dimension — the building block the other EHR models sit on, and usable standalone with pre-trained code embeddings.</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">EmbeddingModel</span>
+model <span class="tok-op">=</span> <span class="tok-cl">EmbeddingModel</span>(dataset<span class="tok-op">=</span>samples, embedding_dim<span class="tok-op">=</span><span class="tok-num">128</span>)</pre>
+          <div class="model-card-footer">
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
         <!-- ───────────── Drug Recommendation (4) ───────────── -->
 
         <div class="model-card" data-category="drug">
@@ -622,7 +688,7 @@ model <span class="tok-op">=</span> <span class="tok-cl">MoleRec</span>(dataset<
           </div>
         </div>
 
-        <!-- ───────────── Biosignal / EEG (4) ───────────── -->
+        <!-- ───────────── Biosignal / EEG (5) ───────────── -->
 
         <div class="model-card" data-category="signal">
           <div class="model-card-header">
@@ -680,19 +746,61 @@ model <span class="tok-op">=</span> <span class="tok-cl">TCN</span>(dataset<span
           </div>
         </div>
 
-        <!-- ───────────── Graph (2) ───────────── -->
+        <div class="model-card" data-category="signal">
+          <div class="model-card-header">
+            <span class="model-classname">TFMTokenizer</span>
+            <span class="category-tag cat-signal">Signal</span>
+          </div>
+          <p class="model-desc">VQ-VAE transformer tokenizer for EEG — turns raw signal plus STFT into a discrete token vocabulary that downstream classifiers or language models can consume.</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">TFMTokenizer</span>
+model <span class="tok-op">=</span> <span class="tok-cl">TFMTokenizer</span>(dataset<span class="tok-op">=</span>samples,
+    emb_size<span class="tok-op">=</span><span class="tok-num">64</span>, code_book_size<span class="tok-op">=</span><span class="tok-num">8192</span>)</pre>
+          <div class="model-card-footer">
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <!-- ───────────── Graph (4) ───────────── -->
 
         <div class="model-card" data-category="graph">
           <div class="model-card-header">
-            <span class="model-classname">GNN</span>
+            <span class="model-classname">GAT</span>
             <span class="category-tag cat-graph">Graph</span>
           </div>
-          <p class="model-desc">General-purpose graph neural network for clinical knowledge graphs, patient similarity networks, and drug interaction graphs.</p>
-          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">GNN</span>
-model <span class="tok-op">=</span> <span class="tok-cl">GNN</span>(dataset<span class="tok-op">=</span>samples, conv_type<span class="tok-op">=</span><span class="tok-str">"GAT"</span>)</pre>
+          <p class="model-desc">Graph attention network over clinical knowledge graphs and patient similarity networks — learns per-neighbour attention weights across multiple heads.</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">GAT</span>
+model <span class="tok-op">=</span> <span class="tok-cl">GAT</span>(dataset<span class="tok-op">=</span>samples, nhid<span class="tok-op">=</span><span class="tok-num">64</span>, nheads<span class="tok-op">=</span><span class="tok-num">1</span>)</pre>
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.GNN.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
             <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/gat_mimic4.ipynb" class="example-link" target="_blank" rel="noopener">Example →</a>
+          </div>
+        </div>
+
+        <div class="model-card" data-category="graph">
+          <div class="model-card-header">
+            <span class="model-classname">GCN</span>
+            <span class="category-tag cat-graph">Graph</span>
+          </div>
+          <p class="model-desc">Graph convolutional network for clinical graphs — spectral neighbourhood aggregation over drug interaction and patient similarity structures.</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">GCN</span>
+model <span class="tok-op">=</span> <span class="tok-cl">GCN</span>(dataset<span class="tok-op">=</span>samples, nhid<span class="tok-op">=</span><span class="tok-num">64</span>, num_layers<span class="tok-op">=</span><span class="tok-num">2</span>)</pre>
+          <div class="model-card-footer">
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.GNN.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/gat_mimic4.ipynb" class="example-link" target="_blank" rel="noopener">Example →</a>
+          </div>
+        </div>
+
+        <div class="model-card" data-category="graph">
+          <div class="model-card-header">
+            <span class="model-classname">Graph_TorchvisionModel</span>
+            <span class="category-tag cat-graph">Graph</span>
+          </div>
+          <p class="model-desc">Torchvision image backbone with a graph convolution head — propagates label co-occurrence structure over CNN features for multi-label imaging tasks.</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">Graph_TorchvisionModel</span>
+model <span class="tok-op">=</span> <span class="tok-cl">Graph_TorchvisionModel</span>(dataset<span class="tok-op">=</span>samples,
+    feature_keys<span class="tok-op">=</span>[<span class="tok-str">"image"</span>], label_key<span class="tok-op">=</span><span class="tok-str">"labels"</span>)</pre>
+          <div class="model-card-footer">
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
           </div>
         </div>
 
@@ -769,7 +877,7 @@ model <span class="tok-op">=</span> <span class="tok-cl">GAN</span>(dataset<span
           </div>
         </div>
 
-        <!-- ───────────── Text / NLP (3) ───────────── -->
+        <!-- ───────────── Text / NLP (4) ───────────── -->
 
         <div class="model-card" data-category="text">
           <div class="model-card-header">
@@ -814,7 +922,21 @@ model <span class="tok-op">=</span> <span class="tok-cl">SdohClassifier</span>(d
           </div>
         </div>
 
-        <!-- ───────────── Multimodal / Utility (2) ───────────── -->
+        <div class="model-card" data-category="text">
+          <div class="model-card-header">
+            <span class="model-classname">TransformerDeID</span>
+            <span class="category-tag cat-text">Text</span>
+          </div>
+          <p class="model-desc">Token-classification transformer for de-identifying clinical notes — tags PHI spans (names, dates, IDs) on top of any HuggingFace encoder.</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">TransformerDeID</span>
+model <span class="tok-op">=</span> <span class="tok-cl">TransformerDeID</span>(dataset<span class="tok-op">=</span>samples,
+    model_name<span class="tok-op">=</span><span class="tok-str">"bert-base-uncased"</span>)</pre>
+          <div class="model-card-footer">
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.TransformerDeID.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <!-- ───────────── Multimodal / Utility (4) ───────────── -->
 
         <div class="model-card" data-category="multimodal">
           <div class="model-card-header">
@@ -842,6 +964,34 @@ model <span class="tok-op">=</span> <span class="tok-cl">MedLink</span>(dataset<
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.MedLink.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
             <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/patient_linkage_mimic3_medlink.py" class="example-link" target="_blank" rel="noopener">Example →</a>
+          </div>
+        </div>
+
+        <div class="model-card" data-category="multimodal">
+          <div class="model-card-header">
+            <span class="model-classname">MedFuse</span>
+            <span class="category-tag cat-multimodal">Multimodal</span>
+          </div>
+          <p class="model-desc">LSTM fusion of clinical time series with chest X-rays that tolerates partially missing imaging — trains on all patients, not just the fully paired subset (Hayat et al., 2022).</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">MedFuse</span>
+model <span class="tok-op">=</span> <span class="tok-cl">MedFuse</span>(dataset<span class="tok-op">=</span>samples,
+    cxr_backbone<span class="tok-op">=</span><span class="tok-str">"resnet34"</span>)</pre>
+          <div class="model-card-footer">
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.MedFuse.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="model-card" data-category="multimodal">
+          <div class="model-card-header">
+            <span class="model-classname">UnifiedMultimodalEmbeddingModel</span>
+            <span class="category-tag cat-multimodal">Multimodal</span>
+          </div>
+          <p class="model-desc">Single embedding space for codes, text, images, and irregular time series, with sinusoidal time embeddings — the shared front end for building custom multimodal models.</p>
+          <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">UnifiedMultimodalEmbeddingModel</span>
+model <span class="tok-op">=</span> <span class="tok-cl">UnifiedMultimodalEmbeddingModel</span>(
+    processors<span class="tok-op">=</span>samples.input_processors, embedding_dim<span class="tok-op">=</span><span class="tok-num">128</span>)</pre>
+          <div class="model-card-footer">
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
           </div>
         </div>
 
