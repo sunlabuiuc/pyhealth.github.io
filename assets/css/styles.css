@@ -301,6 +301,50 @@ li {
   font-size: 0.93rem;
 }
 
+.site-brand {
+  color: var(--ink);
+  font-size: 0.98rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* Highlighted call-to-action at the end of the nav */
+.nav a.nav-cta {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  border-color: transparent;
+  transition: filter 0.15s, transform 0.1s;
+}
+
+.nav a.nav-cta:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.5rem;
+}
+
+.site-footer a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: var(--accent);
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+}
+
 .fade-up {
   animation: rise 540ms ease;
 }
@@ -317,9 +361,15 @@ li {
 }
 
 @media (max-width: 760px) {
+  /* The wrapped nav is several rows tall; don't pin it over the content. */
+  .site-header {
+    position: static;
+  }
+
   .header-inner {
     flex-direction: column;
     align-items: flex-start;
+    gap: 0.5rem;
   }
 
   .card-head {

@@ -217,17 +217,23 @@
 </head>
 <body>
 
+  <!-- site-header:start -->
   <header class="site-header">
     <div class="site-wrap header-inner">
+      <a href="index.html" class="site-brand">PyHealth</a>
       <nav class="nav" aria-label="Main navigation">
-        <a href="research.html" class="back-link">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-          Research
-        </a>
+        <a href="datasets.html">Datasets</a>
+        <a href="tasks.html">Tasks</a>
+        <a href="models.html">Models</a>
+        <a href="blog_list.html">Blog</a>
+        <a href="research.html">Research</a>
+        <a aria-current="page" href="how_to_contribute.html" class="active">Contribute</a>
+        <a href="https://github.com/sunlabuiuc/PyHealth" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://pyhealth.readthedocs.io/en/latest/" class="nav-cta" target="_blank" rel="noopener">Docs</a>
       </nav>
-      <span style="color: var(--muted); font-size: 0.88rem; font-weight: 500;">Contribute</span>
     </div>
   </header>
+  <!-- site-header:end -->
 
   <main class="site-wrap" style="padding: 2.2rem 0 3.5rem;">
 
@@ -319,14 +325,23 @@
 
   </main>
 
+  <!-- site-footer:start -->
   <footer class="site-footer">
-    <div class="site-wrap" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
-      <span>Copyright <span id="year"></span> John Wu</span>
-      <a href="research.html" style="color:var(--accent); text-decoration:none; font-size:0.9rem;">← Back to Research</a>
+    <div class="site-wrap footer-inner">
+      <span>PyHealth · built by <a href="https://github.com/sunlabuiuc" target="_blank" rel="noopener">SunLab at UIUC</a> and community contributors</span>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="https://pyhealth.readthedocs.io/en/latest/" target="_blank" rel="noopener">Docs</a>
+        <a href="https://github.com/sunlabuiuc/PyHealth" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://pypi.org/project/pyhealth/" target="_blank" rel="noopener">PyPI</a>
+        <a href="https://discord.gg/mpb835EHaX" target="_blank" rel="noopener">Discord</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="blog_list.html">Blog</a>
+        <a href="how_to_contribute.html">Contribute</a>
+      </nav>
     </div>
   </footer>
+  <!-- site-footer:end -->
 
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 
 </body>
 </html>

@@ -15,16 +15,6 @@
     /* Wider canvas than the personal site */
     :root { --maxw: 1140px; }
 
-    /* Highlighted "Join Us" nav call-to-action */
-    .nav a.nav-cta {
-      background: var(--accent);
-      color: #fff;
-      padding: 0.34rem 0.9rem;
-      border-radius: 8px;
-      font-weight: 600;
-      transition: filter 0.15s, transform 0.1s;
-    }
-    .nav a.nav-cta:hover { filter: brightness(1.08); transform: translateY(-1px); }
 
     .landing-card {
       border-radius: 20px;
@@ -642,19 +632,23 @@
 </head>
 <body>
 
+  <!-- site-header:start -->
   <header class="site-header">
     <div class="site-wrap header-inner">
-      <span style="color: var(--ink); font-size: 0.95rem; font-weight: 600;">PyHealth</span>
+      <a href="index.html" class="site-brand">PyHealth</a>
       <nav class="nav" aria-label="Main navigation">
         <a href="datasets.html">Datasets</a>
         <a href="tasks.html">Tasks</a>
         <a href="models.html">Models</a>
-        <a href="roadmap.html">Roadmap</a>
         <a href="blog_list.html">Blog</a>
-        <a href="research.html" class="nav-cta">Join Us</a>
+        <a href="research.html">Research</a>
+        <a href="how_to_contribute.html">Contribute</a>
+        <a href="https://github.com/sunlabuiuc/PyHealth" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://pyhealth.readthedocs.io/en/latest/" class="nav-cta" target="_blank" rel="noopener">Docs</a>
       </nav>
     </div>
   </header>
+  <!-- site-header:end -->
 
   <main class="site-wrap" style="padding: 2.2rem 0 3.5rem;">
 
@@ -1098,14 +1092,24 @@
 
   </main>
 
+  <!-- site-footer:start -->
   <footer class="site-footer">
-    <div class="site-wrap" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
-      <span>Copyright <span id="year"></span> John Wu</span>
+    <div class="site-wrap footer-inner">
+      <span>PyHealth · built by <a href="https://github.com/sunlabuiuc" target="_blank" rel="noopener">SunLab at UIUC</a> and community contributors</span>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="https://pyhealth.readthedocs.io/en/latest/" target="_blank" rel="noopener">Docs</a>
+        <a href="https://github.com/sunlabuiuc/PyHealth" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://pypi.org/project/pyhealth/" target="_blank" rel="noopener">PyPI</a>
+        <a href="https://discord.gg/mpb835EHaX" target="_blank" rel="noopener">Discord</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="blog_list.html">Blog</a>
+        <a href="how_to_contribute.html">Contribute</a>
+      </nav>
     </div>
   </footer>
+  <!-- site-footer:end -->
 
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
 
     let exploreRevealed = false;
     function revealExplore(fromScroll) {
