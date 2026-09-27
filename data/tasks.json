@@ -72,7 +72,8 @@
     },
     "output_schema": {
       "readmission": "binary"
-    }
+    },
+    "task_name": "ReadmissionPredictionMIMIC3"
   },
   {
     "class_name": "DKAPredictionMIMIC4",
@@ -96,7 +97,8 @@
     },
     "output_schema": {
       "label": "binary"
-    }
+    },
+    "task_name": "DKAPredictionMIMIC4"
   },
   {
     "class_name": "EEGAbnormalTUAB",
@@ -120,7 +122,8 @@
     },
     "output_schema": {
       "label": "multiclass"
-    }
+    },
+    "task_name": "EEG_abnormal"
   },
   {
     "class_name": "COVID19CXRClassification",
@@ -168,7 +171,8 @@
     },
     "output_schema": {
       "fathmm_prediction": "binary"
-    }
+    },
+    "task_name": "MutationPathogenicityPrediction"
   },
   {
     "class_name": "CancerSurvivalPrediction",
@@ -192,7 +196,8 @@
     },
     "output_schema": {
       "vital_status": "binary"
-    }
+    },
+    "task_name": "CancerSurvivalPrediction"
   },
   {
     "class_name": "PatientLinkageMIMIC3Task",
@@ -212,20 +217,21 @@
     "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/patient_linkage_mimic3_medlink.py",
     "input_schema": {
       "conditions": "sequence",
-      "age": "integer",
-      "identifiers": "string",
-      "visit_id": "string",
-      "timestamp": "datetime",
+      "age": "raw",
+      "identifiers": "raw",
+      "visit_id": "raw",
+      "timestamp": "raw",
       "d_conditions": "sequence",
-      "d_age": "integer",
-      "d_identifiers": "string",
-      "d_visit_id": "string",
-      "d_timestamp": "datetime",
-      "patient_id": "string",
-      "time_gap_days": "integer",
-      "d_visit_ids": "string"
+      "d_age": "raw",
+      "d_identifiers": "raw",
+      "d_visit_id": "raw",
+      "d_timestamp": "raw",
+      "patient_id": "raw",
+      "time_gap_days": "raw",
+      "d_visit_ids": "raw"
     },
-    "output_schema": {}
+    "output_schema": {},
+    "task_name": "patient_linkage_mimic3"
   },
   {
     "class_name": "LengthOfStayPredictionMIMIC3",
@@ -250,7 +256,8 @@
     },
     "output_schema": {
       "los": "multiclass"
-    }
+    },
+    "task_name": "LengthOfStayPredictionMIMIC3"
   },
   {
     "class_name": "SleepStagingSleepEDF",
@@ -298,7 +305,8 @@
     },
     "output_schema": {
       "label": "multiclass"
-    }
+    },
+    "task_name": "EEG_events"
   },
   {
     "class_name": "COVID19CXRClassification",
@@ -394,7 +402,8 @@
     },
     "output_schema": {
       "drugs": "multilabel"
-    }
+    },
+    "task_name": "DrugRecommendationMIMIC3"
   },
   {
     "class_name": "MIMIC3ICD9Coding",
@@ -451,7 +460,8 @@
     },
     "output_schema": {
       "diagnosis": "multilabel"
-    }
+    },
+    "task_name": "BMDHSDiseaseClassification"
   },
   {
     "class_name": "ChestXray14MultilabelClassification",
@@ -474,7 +484,8 @@
     },
     "output_schema": {
       "labels": "multilabel"
-    }
+    },
+    "task_name": "ChestXray14MultilabelClassification"
   },
   {
     "class_name": "VariantClassificationClinVar",
@@ -498,7 +509,8 @@
     },
     "output_schema": {
       "clinical_significance": "multiclass"
-    }
+    },
+    "task_name": "VariantClassificationClinVar"
   },
   {
     "class_name": "DrugRecommendationEICU",
@@ -523,7 +535,8 @@
     },
     "output_schema": {
       "drugs": "multilabel"
-    }
+    },
+    "task_name": "DrugRecommendationEICU"
   },
   {
     "class_name": "CancerMutationBurden",
@@ -546,7 +559,8 @@
     },
     "output_schema": {
       "high_tmb": "binary"
-    }
+    },
+    "task_name": "CancerMutationBurden"
   },
   {
     "class_name": "MortalityPredictionEICU",
@@ -688,10 +702,10 @@
     "colab_url": null,
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.generate_ehr.html",
     "input_schema": {
-      "visits": "nested_sequence"
+      "visits": "NestedMultiHotProcessor"
     },
     "output_schema": {},
-    "task_name": "EHRGenerationMIMIC3",
+    "task_name": "ehr_generation_mimic3",
     "source_file": "pyhealth/tasks/generate_ehr.py",
     "modality": [
       "ehr"
@@ -710,10 +724,10 @@
     "colab_url": null,
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.generate_ehr.html",
     "input_schema": {
-      "visits": "nested_sequence"
+      "visits": "NestedMultiHotProcessor"
     },
     "output_schema": {},
-    "task_name": "EHRGenerationMIMIC4",
+    "task_name": "ehr_generation_mimic4",
     "source_file": "pyhealth/tasks/generate_ehr.py",
     "modality": [
       "ehr"
@@ -1028,12 +1042,12 @@
     "description": "Token-level named-entity recognition to locate and label protected health information in clinical notes.",
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.DeIDNERTask.html",
     "input_schema": {
-      "text": "text"
+      "text": "TextProcessor"
     },
     "output_schema": {
-      "labels": "text"
+      "labels": "TextProcessor"
     },
-    "task_name": "DeIDNERTask",
+    "task_name": "DeIDNER",
     "source_file": "pyhealth/tasks/deid_ner.py",
     "modality": [
       "text"
@@ -1093,5 +1107,193 @@
       "ehr"
     ],
     "output_type": "binary"
+  },
+  {
+    "class_name": "DrugRecommendationOMOP",
+    "display_name": "Drug Recommendation (OMOP)",
+    "display_class": "DrugRecommendationOMOP",
+    "task_name": "DrugRecommendationOMOP",
+    "description": "Recommend a medication set for the current visit from a patient's condition, procedure, and drug history in an OMOP CDM database.",
+    "datasets": [
+      "OMOP"
+    ],
+    "input_schema": {
+      "conditions": "nested_sequence",
+      "procedures": "nested_sequence",
+      "drugs_hist": "nested_sequence"
+    },
+    "output_schema": {
+      "drugs": "multilabel"
+    },
+    "output_type": "recommend",
+    "modality": [
+      "ehr"
+    ],
+    "source_file": "pyhealth/tasks/drug_recommendation.py",
+    "colab_url": null,
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.drug_recommendation.html",
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/drug_recommendation/drug_recommendation_omop.py"
+  },
+  {
+    "class_name": "EEGBCIPatternDiscovery",
+    "display_name": "EEG Pattern Discovery (EEGBCI)",
+    "display_class": "EEGBCIPatternDiscovery",
+    "task_name": "EEGBCI_pattern_discovery",
+    "description": "Motor-imagery samples enriched with band-power features and exploratory signal-pattern annotations (descriptive, not clinical diagnoses).",
+    "datasets": [
+      "EEGBCI"
+    ],
+    "input_schema": {
+      "signal": "tensor",
+      "stft": "tensor"
+    },
+    "output_schema": {
+      "label": "multiclass"
+    },
+    "output_type": "multiclass",
+    "modality": [
+      "signal"
+    ],
+    "source_file": "pyhealth/tasks/eegbci.py",
+    "colab_url": null,
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.eegbci.html",
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/eeg/eegbci/eegbci_pattern_discovery.py"
+  },
+  {
+    "class_name": "EEGMotorImageryEEGBCI",
+    "display_name": "EEG Motor Imagery (EEGBCI)",
+    "display_class": "EEGMotorImageryEEGBCI",
+    "task_name": "EEGBCI_motor_imagery",
+    "description": "Classify fixed-length EEG windows into rest, executed, or imagined fist and foot movements from PhysioNet's Motor Movement/Imagery recordings.",
+    "datasets": [
+      "EEGBCI"
+    ],
+    "input_schema": {
+      "signal": "tensor",
+      "stft": "tensor"
+    },
+    "output_schema": {
+      "label": "multiclass"
+    },
+    "output_type": "multiclass",
+    "modality": [
+      "signal"
+    ],
+    "source_file": "pyhealth/tasks/eegbci.py",
+    "colab_url": null,
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.eegbci.html",
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/eeg/eegbci/eegbci_pattern_discovery.py"
+  },
+  {
+    "class_name": "EHRCodeSetGenerationMIMIC3",
+    "display_name": "EHR Code-Set Generation (MIMIC-III)",
+    "display_class": "EHRCodeSetGenerationMIMIC3",
+    "task_name": "ehr_codeset_generation_mimic3",
+    "description": "One pooled ICD-9 code set per patient, the bag-of-codes input for training MedGAN and CorGAN synthetic-EHR generators.",
+    "datasets": [
+      "MIMIC-III"
+    ],
+    "input_schema": {
+      "visits": "MultiHotProcessor"
+    },
+    "output_schema": {},
+    "output_type": "generative",
+    "modality": [
+      "ehr"
+    ],
+    "source_file": "pyhealth/tasks/generate_ehr.py",
+    "colab_url": null,
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.generate_ehr.html",
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/medgan_mimic3.py"
+  },
+  {
+    "class_name": "EHRCodeSetGenerationMIMIC4",
+    "display_name": "EHR Code-Set Generation (MIMIC-IV)",
+    "display_class": "EHRCodeSetGenerationMIMIC4",
+    "task_name": "ehr_codeset_generation_mimic4",
+    "description": "One pooled ICD code set per MIMIC-IV patient, the bag-of-codes input for training MedGAN and CorGAN synthetic-EHR generators.",
+    "datasets": [
+      "MIMIC-IV"
+    ],
+    "input_schema": {
+      "visits": "MultiHotProcessor"
+    },
+    "output_schema": {},
+    "output_type": "generative",
+    "modality": [
+      "ehr"
+    ],
+    "source_file": "pyhealth/tasks/generate_ehr.py",
+    "colab_url": null,
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.generate_ehr.html",
+    "example_url": null
+  },
+  {
+    "class_name": "EHRSequenceGenerationMIMIC3",
+    "display_name": "EHR Sequence Generation (MIMIC-III)",
+    "display_class": "EHRSequenceGenerationMIMIC3",
+    "task_name": "ehr_sequence_generation_mimic3",
+    "description": "Per-visit ICD-9 code sequences for each patient, the input for training autoregressive generators such as GPT2 and PromptEHR.",
+    "datasets": [
+      "MIMIC-III"
+    ],
+    "input_schema": {
+      "visits": "NestedSequenceProcessor"
+    },
+    "output_schema": {},
+    "output_type": "generative",
+    "modality": [
+      "ehr"
+    ],
+    "source_file": "pyhealth/tasks/generate_ehr.py",
+    "colab_url": null,
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.generate_ehr.html",
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/gpt2_mimic3.py"
+  },
+  {
+    "class_name": "EHRSequenceGenerationMIMIC4",
+    "display_name": "EHR Sequence Generation (MIMIC-IV)",
+    "display_class": "EHRSequenceGenerationMIMIC4",
+    "task_name": "ehr_sequence_generation_mimic4",
+    "description": "Per-visit ICD code sequences for each MIMIC-IV patient, the input for training autoregressive generators such as GPT2 and PromptEHR.",
+    "datasets": [
+      "MIMIC-IV"
+    ],
+    "input_schema": {
+      "visits": "NestedSequenceProcessor"
+    },
+    "output_schema": {},
+    "output_type": "generative",
+    "modality": [
+      "ehr"
+    ],
+    "source_file": "pyhealth/tasks/generate_ehr.py",
+    "colab_url": null,
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.generate_ehr.html",
+    "example_url": null
+  },
+  {
+    "class_name": "InHospitalMortalityMEDS",
+    "display_name": "In-Hospital Mortality (MEDS)",
+    "display_class": "InHospitalMortalityMEDS",
+    "task_name": "InHospitalMortalityMEDS",
+    "description": "Predict whether a hospital stay ends in death from the MEDS codes observed between admission and prediction time, on any MEDS-formatted dataset.",
+    "datasets": [
+      "MEDS"
+    ],
+    "input_schema": {
+      "codes": "sequence"
+    },
+    "output_schema": {
+      "mortality": "binary"
+    },
+    "output_type": "binary",
+    "modality": [
+      "ehr"
+    ],
+    "source_file": "pyhealth/tasks/in_hospital_mortality_meds.py",
+    "colab_url": null,
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.InHospitalMortalityMEDS.html",
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/verify_meds_mortality.py"
   }
 ]
