@@ -426,7 +426,7 @@
     "modality": [
       "text"
     ],
-    "output_type": "multiclass",
+    "output_type": "multilabel",
     "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/medical_coding_mimic3.ipynb"
   },
   {
