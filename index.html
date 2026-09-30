@@ -695,7 +695,7 @@
         </a>
       </div>
       <div class="ph-badges">
-        <a href="https://github.com/sunlabuiuc/pyhealth/stargazers" target="_blank" rel="noopener">
+        <a href="https://github.com/sunlabuiuc/PyHealth" target="_blank" rel="noopener">
           <img src="https://img.shields.io/github/stars/sunlabuiuc/pyhealth.svg?style=flat-square&labelColor=1c2b3a&color=c95f26&label=Stars" alt="GitHub stars">
         </a>
         <a href="https://pypi.org/project/pyhealth/" target="_blank" rel="noopener">
@@ -710,11 +710,11 @@
     <!-- ── Stats ── -->
     <section class="stats-row">
       <a href="datasets.html" class="stat-card">
-        <div class="stat-number">20+</div>
+        <div class="stat-number">25+</div>
         <div class="stat-label">Clinical<br>Datasets</div>
       </a>
       <a href="tasks.html" class="stat-card">
-        <div class="stat-number">26+</div>
+        <div class="stat-number">40+</div>
         <div class="stat-label">Clinical<br>Tasks</div>
       </a>
       <a href="models.html" class="stat-card">
@@ -722,7 +722,7 @@
         <div class="stat-label">ML<br>Models</div>
       </a>
       <a href="https://discord.gg/mpb835EHaX" class="stat-card" target="_blank" rel="noopener">
-        <div class="stat-number">400+</div>
+        <div class="stat-number">750+</div>
         <div class="stat-label">Discord<br>Members</div>
       </a>
       <a href="research.html" class="stat-card">
@@ -775,6 +775,8 @@
     <span class="tok-cm"># 2. Split &amp; load</span>
     train_ds, val_ds, test_ds <span class="tok-op">=</span> <span class="tok-fn">split_by_patient</span>(samples, [<span class="tok-num">0.8</span>, <span class="tok-num">0.1</span>, <span class="tok-num">0.1</span>])
     train_loader <span class="tok-op">=</span> <span class="tok-fn">get_dataloader</span>(train_ds, batch_size<span class="tok-op">=</span><span class="tok-num">32</span>, shuffle<span class="tok-op">=</span><span class="tok-num">True</span>)
+    val_loader <span class="tok-op">=</span> <span class="tok-fn">get_dataloader</span>(val_ds, batch_size<span class="tok-op">=</span><span class="tok-num">32</span>, shuffle<span class="tok-op">=</span><span class="tok-num">False</span>)
+    test_loader <span class="tok-op">=</span> <span class="tok-fn">get_dataloader</span>(test_ds, batch_size<span class="tok-op">=</span><span class="tok-num">32</span>, shuffle<span class="tok-op">=</span><span class="tok-num">False</span>)
 
     <span class="tok-cm"># 3. Train</span>
     model <span class="tok-op">=</span> <span class="tok-cl">Transformer</span>(dataset<span class="tok-op">=</span>samples)
@@ -997,7 +999,7 @@
         <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets.html" class="pipeline-card" target="_blank" rel="noopener">
           <div class="pipeline-step">02</div>
           <div class="pipeline-name">pyhealth.datasets</div>
-          <p class="pipeline-desc">Loaders for MIMIC-III/IV, eICU, OMOP, and 17+ more.</p>
+          <p class="pipeline-desc">Loaders for MIMIC-III/IV, eICU, OMOP, and 20+ more.</p>
         </a>
         <a href="https://pyhealth.readthedocs.io/en/latest/api/tasks.html" class="pipeline-card" target="_blank" rel="noopener">
           <div class="pipeline-step">03</div>
@@ -1074,7 +1076,7 @@
             <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.055 20.03 20.03 0 0 0 5.993 3.029.078.078 0 0 0 .084-.026 13.83 13.83 0 0 0 1.185-1.93.076.076 0 0 0-.041-.106 13.201 13.201 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.184 1.929a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.029.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
           </div>
           <h3>Discord Community</h3>
-          <p>Join 400+ members to ask questions, share research, and collaborate on healthcare AI projects.</p>
+          <p>Join 750+ members to ask questions, share research, and collaborate on healthcare AI projects.</p>
           <span class="lc-arrow">Join the server
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </span>
@@ -1181,6 +1183,8 @@ samples = dataset.set_task(MortalityPredictionMIMIC3())
 # 2. Split & load
 train_ds, val_ds, test_ds = split_by_patient(samples, [0.8, 0.1, 0.1])
 train_loader = get_dataloader(train_ds, batch_size=32, shuffle=True)
+val_loader = get_dataloader(val_ds, batch_size=32, shuffle=False)
+test_loader = get_dataloader(test_ds, batch_size=32, shuffle=False)
 
 # 3. Train
 model = Transformer(dataset=samples)
