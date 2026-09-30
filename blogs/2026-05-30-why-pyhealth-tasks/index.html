@@ -22,6 +22,7 @@
     <meta name="twitter:title" content="Faster, Cleaner Healthcare Data Preprocessing with PyHealth">
     <meta name="twitter:description" content="pyhealth.tasks separates static data loading from dynamic transformation logic, so you can iterate on preprocessing pipelines quickly without re-loading gigabytes of data every time.">
     <meta name="twitter:image" content="https://pyhealth.dev/images/pyhealth-logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
@@ -56,7 +57,7 @@
       ::-webkit-scrollbar-corner {
         background: transparent;
       }
-      .site-wrap {
+      main.site-wrap {
         width: min(100% - 2rem, 760px);
         margin: 0 auto;
         padding: 2.5rem 0 4rem;
@@ -258,7 +259,7 @@
       }
       @media (max-width: 720px) {
         .blog-card { padding: 2rem 1.5rem 2.2rem; border-radius: 16px; }
-        .site-wrap { padding: 1.2rem 0 2.5rem; }
+        main.site-wrap { padding: 1.2rem 0 2.5rem; }
         .blog-content { font-size: 1.02rem; line-height: 1.65; }
         .blog-content h2 { margin-top: 1.9rem; }
         .blog-content h3 { margin-top: 1.5rem; }
@@ -266,12 +267,47 @@
     </style>
 </head>
 <body>
-  <div class="site-wrap">
+
+  <!-- site-header:start -->
+  <header class="site-header">
+    <div class="site-wrap header-inner">
+      <a href="/index.html" class="site-brand">PyHealth</a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="/datasets.html">Datasets</a>
+        <a href="/tasks.html">Tasks</a>
+        <a href="/models.html">Models</a>
+        <a aria-current="page" href="/blog_list.html" class="active">Blog</a>
+        <a href="/research.html">Research</a>
+        <a href="/how_to_contribute.html">Contribute</a>
+        <a href="https://github.com/sunlabuiuc/PyHealth" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://pyhealth.readthedocs.io/en/latest/" class="nav-cta" target="_blank" rel="noopener">Docs</a>
+      </nav>
+    </div>
+  </header>
+  <!-- site-header:end -->
+  <main class="site-wrap">
     <a href="/blog_list.html" class="back-link">← Back to Blog List</a>
     <article class="blog-card">
       <div id="blog-content" class="blog-content">Loading...</div>
     </article>
-  </div>
+  </main>
+
+  <!-- site-footer:start -->
+  <footer class="site-footer">
+    <div class="site-wrap footer-inner">
+      <span>PyHealth · built by <a href="https://github.com/sunlabuiuc" target="_blank" rel="noopener">SunLab at UIUC</a> and community contributors</span>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="https://pyhealth.readthedocs.io/en/latest/" target="_blank" rel="noopener">Docs</a>
+        <a href="https://github.com/sunlabuiuc/PyHealth" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://pypi.org/project/pyhealth/" target="_blank" rel="noopener">PyPI</a>
+        <a href="https://discord.gg/mpb835EHaX" target="_blank" rel="noopener">Discord</a>
+        <a href="/roadmap.html">Roadmap</a>
+        <a href="/blog_list.html">Blog</a>
+        <a href="/how_to_contribute.html">Contribute</a>
+      </nav>
+    </div>
+  </footer>
+  <!-- site-footer:end -->
 
     <script>
     function parseFrontmatter(text) {

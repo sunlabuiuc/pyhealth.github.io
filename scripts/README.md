@@ -1,5 +1,24 @@
 # Website Scripts
 
+## sync_site_chrome.py
+
+Single source for the site-wide header (nav) and footer. Every page carries a
+static copy between `<!-- site-header:start/end -->` and
+`<!-- site-footer:start/end -->` markers; edit the links or templates in the
+script, then:
+
+```bash
+python scripts/sync_site_chrome.py          # rewrite all pages
+python scripts/build_blog_index.py          # blog posts are generated from blog.html
+python scripts/sync_site_chrome.py --check  # verify nothing drifted (exit 1 if so)
+```
+
+New top-level or `research/` pages are picked up automatically once they have
+the markers (or a `<header class="site-header">` / `<footer class="site-footer">`
+the script can replace); add other new pages to `PAGES` in the script.
+
+---
+
 ## extract_metadata.py
 
 Imports task classes from the installed `pyhealth` package and writes
