@@ -93,10 +93,13 @@ def _serialize_schema(schema):
     """Convert a schema dict to a JSON-safe form (class references become their name)."""
     if not isinstance(schema, dict):
         return None
-    return {
-        k: (v.__name__ if inspect.isclass(v) else str(v))
-        for k, v in schema.items()
-    }
+    def _name(v):
+        # Processor specs may be ("image", {...kwargs}) tuples; keep the type.
+        if isinstance(v, tuple) and v:
+            v = v[0]
+        return v.__name__ if inspect.isclass(v) else str(v)
+
+    return {k: _name(v) for k, v in schema.items()}
 
 
 def _infer_modality(input_schema):
@@ -196,8 +199,12 @@ def merge_tasks(existing, discovered):
 
         # Always refresh from code
         new_entry["task_name"]     = auto["task_name"]
-        new_entry["input_schema"]  = auto["input_schema"]
-        new_entry["output_schema"] = auto["output_schema"]
+        # Schemas set in __init__ can't be read from the class; keep the
+        # previously recorded schema rather than overwriting it with null.
+        if auto["input_schema"] is not None:
+            new_entry["input_schema"] = auto["input_schema"]
+        if auto["output_schema"] is not None:
+            new_entry["output_schema"] = auto["output_schema"]
         new_entry["source_file"]   = auto["source_file"]
 
         # Fill from code only when the hand-authored field is absent/empty

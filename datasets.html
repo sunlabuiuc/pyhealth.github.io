@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PyHealth Datasets — 27 Clinical Datasets</title>
+  <title>PyHealth Datasets — 29 Clinical Datasets</title>
   <meta name="description" content="Browse all 27 clinical datasets supported by PyHealth across EHR, biosignals, medical imaging, genomics, and clinical text.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -291,7 +291,7 @@
     <!-- ── Hero ── -->
     <section class="ph-hero">
       <p class="ph-eyebrow">PyHealth Datasets</p>
-      <h1>27 Clinical Datasets</h1>
+      <h1><span id="heroCount">29</span> Clinical Datasets</h1>
       <p class="ph-tagline">A unified API for loading healthcare data across electronic health records, physiological signals, medical imaging, genomics, and clinical text — all ready for machine learning.</p>
       <div class="ph-cta-row">
         <a href="https://colab.research.google.com/drive/1voSx7wEfzXfEf2sIfW6b-8p1KqMyuWxK?usp=sharing" class="ph-btn primary" target="_blank" rel="noopener">
@@ -312,14 +312,14 @@
     <!-- ── Filter + Grid ── -->
     <section class="page-section fade-up">
       <div style="display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.2rem;">
-        <h2 class="section-h2" style="margin:0;">Browse Datasets <span class="count-badge" id="visibleCount">27</span></h2>
+        <h2 class="section-h2" style="margin:0;">Browse Datasets <span class="count-badge" id="visibleCount">29</span></h2>
         <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets.html" target="_blank" rel="noopener" style="font-size:0.85rem; color:var(--accent); text-decoration:none; font-weight:500;">Full API reference →</a>
       </div>
 
       <div class="filter-bar" role="group" aria-label="Filter by modality">
-        <button class="filter-btn active" onclick="filterDatasets('all', this)">All <span style="opacity:0.65;">(27)</span></button>
-        <button class="filter-btn" onclick="filterDatasets('ehr', this)">EHR <span style="opacity:0.65;">(10)</span></button>
-        <button class="filter-btn" onclick="filterDatasets('signal', this)">Biosignal <span style="opacity:0.65;">(8)</span></button>
+        <button class="filter-btn active" onclick="filterDatasets('all', this)">All <span style="opacity:0.65;">(29)</span></button>
+        <button class="filter-btn" onclick="filterDatasets('ehr', this)">EHR <span style="opacity:0.65;">(11)</span></button>
+        <button class="filter-btn" onclick="filterDatasets('signal', this)">Biosignal <span style="opacity:0.65;">(9)</span></button>
         <button class="filter-btn" onclick="filterDatasets('image', this)">Image <span style="opacity:0.65;">(3)</span></button>
         <button class="filter-btn" onclick="filterDatasets('genomics', this)">Genomics <span style="opacity:0.65;">(3)</span></button>
         <button class="filter-btn" onclick="filterDatasets('text', this)">Text <span style="opacity:0.65;">(3)</span></button>
@@ -327,7 +327,7 @@
 
       <div class="dataset-grid" id="datasetGrid">
 
-        <!-- ───────────── EHR (10) ───────────── -->
+        <!-- ───────────── EHR ───────────── -->
 
         <div class="dataset-card" data-modality="ehr">
           <div class="dataset-card-header">
@@ -535,7 +535,24 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">Support2Dataset</span
           </div>
         </div>
 
-        <!-- ───────────── Biosignal (8) ───────────── -->
+        <div class="dataset-card" data-modality="ehr">
+          <div class="dataset-card-header">
+            <span class="dataset-classname">MEDSDataset</span>
+            <span class="modality-tag mod-ehr">EHR</span>
+          </div>
+          <p class="dataset-desc">Any dataset in the Medical Event Data Standard (MEDS): sharded Parquet event streams with the canonical train / tuning / held-out split loadable as a filter.</p>
+          <pre class="dataset-code"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">MEDSDataset</span>
+dataset <span class="tok-op">=</span> <span class="tok-cl">MEDSDataset</span>(
+    root<span class="tok-op">=</span><span class="tok-str">"data/meds/"</span>,
+    subset<span class="tok-op">=</span><span class="tok-str">"train"</span>,
+)</pre>
+          <div class="dataset-card-footer">
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets/pyhealth.datasets.MEDSDataset.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/meds_demo.py" class="example-link" target="_blank" rel="noopener">Example →</a>
+          </div>
+        </div>
+
+        <!-- ───────────── Biosignal ───────────── -->
 
         <div class="dataset-card" data-modality="signal">
           <div class="dataset-card-header">
@@ -664,7 +681,25 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">TUEVDataset</span>(
           </div>
         </div>
 
-        <!-- ───────────── Image (3) ───────────── -->
+        <div class="dataset-card" data-modality="signal">
+          <div class="dataset-card-header">
+            <span class="dataset-classname">EEGBCIDataset</span>
+            <span class="modality-tag mod-signal">Biosignal</span>
+          </div>
+          <p class="dataset-desc">PhysioNet EEG Motor Movement/Imagery recordings of executed and imagined hand and foot movements — openly licensed, so it can download itself.</p>
+          <pre class="dataset-code"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">EEGBCIDataset</span>
+dataset <span class="tok-op">=</span> <span class="tok-cl">EEGBCIDataset</span>(
+    root<span class="tok-op">=</span><span class="tok-str">"data/eegbci/"</span>,
+    subjects<span class="tok-op">=</span>[<span class="tok-num">1</span>, <span class="tok-num">2</span>, <span class="tok-num">3</span>],
+    download<span class="tok-op">=</span><span class="tok-num">True</span>,
+)</pre>
+          <div class="dataset-card-footer">
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets/pyhealth.datasets.EEGBCIDataset.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/eeg/eegbci/eegbci_pattern_discovery.py" class="example-link" target="_blank" rel="noopener">Example →</a>
+          </div>
+        </div>
+
+        <!-- ───────────── Image ───────────── -->
 
         <div class="dataset-card" data-modality="image">
           <div class="dataset-card-header">
@@ -698,7 +733,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">ChestXray14Dataset</s
           </div>
         </div>
 
-        <!-- ───────────── Genomics (3) ───────────── -->
+        <!-- ───────────── Genomics ───────────── -->
 
         <div class="dataset-card" data-modality="genomics">
           <div class="dataset-card-header">
@@ -745,7 +780,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">TCGAPRADDataset</span
           </div>
         </div>
 
-        <!-- ───────────── Text (3) ───────────── -->
+        <!-- ───────────── Text ───────────── -->
 
         <div class="dataset-card" data-modality="text">
           <div class="dataset-card-header">
@@ -810,6 +845,19 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">MedicalTranscriptions
 
       document.getElementById('visibleCount').textContent = visible;
     }
+
+    // Keep every count on the page in step with the cards actually listed.
+    (function syncCounts() {
+      const cards = [...document.querySelectorAll('#datasetGrid .dataset-card')];
+      document.getElementById('heroCount').textContent = cards.length;
+      document.getElementById('visibleCount').textContent = cards.length;
+      document.title = document.title.replace(/\d+/, cards.length);
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        const key = btn.getAttribute('onclick').match(/filterDatasets\('([^']+)'/)[1];
+        const n = key === 'all' ? cards.length : cards.filter(c => c.dataset.modality === key).length;
+        btn.querySelector('span').textContent = `(${n})`;
+      });
+    })();
   </script>
 
 </body>

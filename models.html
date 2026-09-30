@@ -313,7 +313,7 @@
     <!-- ── Hero ── -->
     <section class="ph-hero">
       <p class="ph-eyebrow">PyHealth Models</p>
-      <h1>50 Clinical ML Models</h1>
+      <h1><span id="heroCount">50</span> Clinical ML Models</h1>
       <p class="ph-tagline">Production-ready models spanning EHR sequence learning, drug recommendation, biosignal analysis, graph neural networks, medical imaging, and clinical NLP — all with a unified training API.</p>
       <div class="ph-cta-row">
         <a href="https://colab.research.google.com/drive/1LcXZlu7ZUuqepf269X3FhXuhHeRvaJX5?usp=sharing" class="ph-btn primary" target="_blank" rel="noopener">
@@ -1109,6 +1109,19 @@ model <span class="tok-op">=</span> <span class="tok-cl">CorGAN</span>(dataset<s
 
       document.getElementById('visibleCount').textContent = visible;
     }
+
+    // Keep every count on the page in step with the cards actually listed.
+    (function syncCounts() {
+      const cards = [...document.querySelectorAll('#modelGrid .model-card')];
+      document.getElementById('heroCount').textContent = cards.length;
+      document.getElementById('visibleCount').textContent = cards.length;
+      document.title = document.title.replace(/\d+/, cards.length);
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        const key = btn.getAttribute('onclick').match(/filterModels\('([^']+)'/)[1];
+        const n = key === 'all' ? cards.length : cards.filter(c => c.dataset.category === key).length;
+        btn.querySelector('span').textContent = `(${n})`;
+      });
+    })();
   </script>
 
 </body>
