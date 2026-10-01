@@ -83,7 +83,7 @@
       "MIMIC-IV"
     ],
     "description": "Predict onset of diabetic ketoacidosis (DKA) from clinical event sequences in ICU patients.",
-    "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
+    "colab_url": "https://colab.research.google.com/drive/1QB0acnGb-wOuK53UNSgHxjCW74QeYjUl?usp=sharing",
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.dka.html",
     "source_file": "pyhealth/tasks/dka.py",
     "modality": [
@@ -108,7 +108,7 @@
       "TUAB"
     ],
     "description": "Classify clinical EEG recordings as normal or abnormal using deep signal models.",
-    "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
+    "colab_url": "https://colab.research.google.com/drive/1QB0acnGb-wOuK53UNSgHxjCW74QeYjUl?usp=sharing",
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.temple_university_EEG_tasks.html",
     "source_file": "pyhealth/tasks/temple_university_EEG_tasks.py",
     "modality": [
@@ -157,7 +157,7 @@
       "COSMIC"
     ],
     "description": "Classify genomic variants as pathogenic or benign using sequence-based features.",
-    "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
+    "colab_url": "https://colab.research.google.com/drive/1QB0acnGb-wOuK53UNSgHxjCW74QeYjUl?usp=sharing",
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.MutationPathogenicityPrediction.html",
     "source_file": "pyhealth/tasks/variant_classification.py",
     "modality": [
@@ -182,7 +182,7 @@
       "TCGA-PRAD"
     ],
     "description": "Predict 5-year survival of prostate cancer patients from multi-omics profiles.",
-    "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
+    "colab_url": "https://colab.research.google.com/drive/1QB0acnGb-wOuK53UNSgHxjCW74QeYjUl?usp=sharing",
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.CancerSurvivalPrediction.html",
     "source_file": "pyhealth/tasks/cancer_survival.py",
     "modality": [
@@ -207,7 +207,7 @@
       "MIMIC-III"
     ],
     "description": "Determine whether two clinical records belong to the same patient across fragmented health systems.",
-    "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
+    "colab_url": "https://colab.research.google.com/drive/1QB0acnGb-wOuK53UNSgHxjCW74QeYjUl?usp=sharing",
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks.html",
     "source_file": "pyhealth/tasks/patient_linkage_mimic3.py",
     "modality": [
@@ -241,7 +241,7 @@
       "MIMIC-III"
     ],
     "description": "Predict ICU length of stay as one of multiple duration buckets from admission data.",
-    "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
+    "colab_url": "https://colab.research.google.com/drive/1QB0acnGb-wOuK53UNSgHxjCW74QeYjUl?usp=sharing",
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.length_of_stay_prediction.html",
     "source_file": "pyhealth/tasks/length_of_stay_prediction.py",
     "modality": [
@@ -267,7 +267,7 @@
       "SleepEDF"
     ],
     "description": "Classify 30-second EEG epochs into Wake, N1, N2, N3, or REM sleep stages.",
-    "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
+    "colab_url": "https://colab.research.google.com/drive/1QB0acnGb-wOuK53UNSgHxjCW74QeYjUl?usp=sharing",
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.SleepStagingSleepEDF.html",
     "input_schema": {
       "signal": "tensor"
@@ -291,7 +291,7 @@
       "TUEV"
     ],
     "description": "Classify EEG events into six types including spike-wave complexes, periodic discharges, and artifacts.",
-    "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
+    "colab_url": "https://colab.research.google.com/drive/1QB0acnGb-wOuK53UNSgHxjCW74QeYjUl?usp=sharing",
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.temple_university_EEG_tasks.html",
     "source_file": "pyhealth/tasks/temple_university_EEG_tasks.py",
     "modality": [
@@ -363,7 +363,7 @@
       "EHRShot"
     ],
     "description": "15-task few-shot benchmark suite for evaluating clinical foundation models on real-world EHR prediction challenges.",
-    "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
+    "colab_url": "https://colab.research.google.com/drive/1QB0acnGb-wOuK53UNSgHxjCW74QeYjUl?usp=sharing",
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.benchmark_ehrshot.html",
     "input_schema": {
       "feature": "sequence"
@@ -387,7 +387,7 @@
       "MIMIC-III"
     ],
     "description": "Recommend a safe set of medications for a patient visit given their diagnosis and procedure history.",
-    "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
+    "colab_url": "https://colab.research.google.com/drive/1QB0acnGb-wOuK53UNSgHxjCW74QeYjUl?usp=sharing",
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.drug_recommendation.html",
     "source_file": "pyhealth/tasks/drug_recommendation.py",
     "modality": [
@@ -437,7 +437,7 @@
       "BMDHS"
     ],
     "description": "Classify cardiac valve disease conditions from phonocardiogram (PCG) heart sound recordings.",
-    "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
+    "colab_url": "https://colab.research.google.com/drive/1QB0acnGb-wOuK53UNSgHxjCW74QeYjUl?usp=sharing",
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.bmd_hs_disease_classification.html",
     "source_file": "pyhealth/tasks/bmd_hs_disease_classification.py",
     "modality": [
@@ -495,7 +495,7 @@
       "COSMIC"
     ],
     "description": "Predict functional impact and cancer driver gene status of somatic mutations.",
-    "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
+    "colab_url": "https://colab.research.google.com/drive/1QB0acnGb-wOuK53UNSgHxjCW74QeYjUl?usp=sharing",
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.VariantClassificationClinVar.html",
     "source_file": "pyhealth/tasks/variant_classification.py",
     "modality": [
@@ -520,7 +520,7 @@
       "eICU"
     ],
     "description": "Medication recommendation from multi-center ICU data with cross-site generalization evaluation.",
-    "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
+    "colab_url": "https://colab.research.google.com/drive/1QB0acnGb-wOuK53UNSgHxjCW74QeYjUl?usp=sharing",
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.drug_recommendation.html",
     "source_file": "pyhealth/tasks/drug_recommendation.py",
     "modality": [
@@ -546,7 +546,7 @@
       "TCGA-PRAD"
     ],
     "description": "Predict tumor mutation burden (TMB) as a continuous value from multi-omics cancer profiles.",
-    "colab_url": "https://colab.research.google.com/drive/1kKkkBVS_GclHoYTbnOtjyYnSee79hsyT?usp=sharing",
+    "colab_url": "https://colab.research.google.com/drive/1QB0acnGb-wOuK53UNSgHxjCW74QeYjUl?usp=sharing",
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.CancerMutationBurden.html",
     "source_file": "pyhealth/tasks/cancer_survival.py",
     "modality": [
