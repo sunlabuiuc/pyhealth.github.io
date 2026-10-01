@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PyHealth Tutorials</title>
+  <meta name="description" content="Hands-on Colab notebooks for learning PyHealth: core API tutorials for every module and end-to-end clinical ML pipelines.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    /* ── Hero ── */
+    .ph-hero {
+      background: linear-gradient(140deg, #1c2b3a 0%, #28425e 60%, #1e3348 100%);
+      border-radius: 16px;
+      padding: 3rem 2.4rem 2.8rem;
+      color: white;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.07);
+      box-shadow: 0 20px 48px rgba(22, 33, 31, 0.18);
+      animation: rise 420ms ease;
+    }
+    .ph-hero::before {
+      content: "";
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 340px; height: 340px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,95,38,0.22) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .ph-hero::after {
+      content: "";
+      position: absolute;
+      bottom: -100px; left: -60px;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(90,160,230,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .ph-eyebrow {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(201,95,38,0.9);
+      margin: 0 0 0.6rem;
+    }
+    .ph-hero h1 {
+      color: white;
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      margin: 0 0 0.5rem;
+      letter-spacing: -0.01em;
+    }
+    .ph-tagline {
+      color: rgba(255,255,255,0.72);
+      font-size: 1.05rem;
+      line-height: 1.55;
+      max-width: 620px;
+      margin: 0 0 1.8rem;
+    }
+    .ph-cta-row {
+      display: flex;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+    .ph-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      border-radius: 10px;
+      padding: 0.64rem 1.15rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      font-family: "IBM Plex Sans", sans-serif;
+      transition: filter 0.15s, transform 0.1s;
+    }
+    .ph-btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+    .ph-btn.primary {
+      background: var(--accent);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 4px 12px rgba(201,95,38,0.35);
+    }
+    .ph-btn.outline {
+      background: rgba(255,255,255,0.09);
+      color: rgba(255,255,255,0.9);
+      border: 1px solid rgba(255,255,255,0.22);
+      backdrop-filter: blur(6px);
+    }
+
+    /* ── Back nav ── */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.94rem;
+      padding: 0.35rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: color 0.12s, background 0.12s, border-color 0.12s;
+    }
+    .back-link:hover {
+      color: var(--accent);
+      border-color: var(--line);
+      background: var(--paper);
+    }
+
+
+    /* ── Sections ── */
+    .tut-section {
+      margin-top: 2.4rem;
+      animation: rise 500ms ease;
+    }
+    .tut-section h2 {
+      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+      margin: 0 0 0.4rem;
+    }
+    .tut-section-intro {
+      color: var(--muted);
+      font-size: 1rem;
+      margin: 0 0 1.4rem;
+      max-width: 720px;
+    }
+
+    /* ── Cards ── */
+    .tut-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 1rem;
+    }
+    .tut-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1.3rem 1.4rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      transition: border-color 0.15s, box-shadow 0.15s, transform 0.12s;
+    }
+    .tut-card:hover {
+      border-color: rgba(201,95,38,0.35);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+      transform: translateY(-2px);
+    }
+    .tut-card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .tut-card-header.spread {
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+    .tut-num {
+      flex-shrink: 0;
+      width: 2.1rem;
+      height: 2.1rem;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .tut-title {
+      margin: 0;
+      font-size: 1.02rem;
+      line-height: 1.3;
+    }
+    .tut-module {
+      font-family: "IBM Plex Mono", "Menlo", monospace;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+    .tut-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin: 0;
+    }
+    .tut-desc code, .tut-stack code {
+      font-family: "IBM Plex Mono", "Menlo", monospace;
+      font-size: 0.8em;
+      color: var(--ink);
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 0.05rem 0.3rem;
+    }
+    .tut-stack {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .modality-tag {
+      flex-shrink: 0;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.2rem 0.55rem;
+      border-radius: 100px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .mod-ehr   { background: rgba(59,130,246,0.12); color: #2563eb; }
+    .mod-image { background: rgba(236,72,153,0.12); color: #db2777; }
+    .mod-text  { background: rgba(245,158,11,0.12); color: #b45309; }
+
+    /* ── Card footer links ── */
+    .tut-card-footer {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-top: auto;
+      padding-top: 0.3rem;
+    }
+    .colab-link, .docs-link, .example-link, .video-link {
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-decoration: none;
+      padding: 0.28rem 0.7rem;
+      border-radius: 6px;
+      transition: opacity 0.15s;
+    }
+    .colab-link:hover, .docs-link:hover, .example-link:hover, .video-link:hover { opacity: 0.8; }
+    .colab-link {
+      background: rgba(234,88,12,0.1);
+      color: #c95f26;
+      border: 1px solid rgba(201,95,38,0.25);
+    }
+    .docs-link {
+      background: rgba(59,130,246,0.08);
+      color: #2563eb;
+      border: 1px solid rgba(59,130,246,0.2);
+    }
+    .example-link {
+      background: rgba(16,185,129,0.08);
+      color: #047857;
+      border: 1px solid rgba(16,185,129,0.2);
+    }
+    .video-link {
+      background: rgba(139,92,246,0.08);
+      color: #6d28d9;
+      border: 1px solid rgba(139,92,246,0.2);
+    }
+
+    .tut-note {
+      margin: 1rem 0 0;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 500px) {
+      .tut-grid { grid-template-columns: 1fr; }
+      .ph-hero { padding: 2.2rem 1.4rem 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="site-wrap header-inner">
+      <nav class="nav" aria-label="Main navigation">
+        <a href="index.html" class="back-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          PyHealth
+        </a>
+      </nav>
+      <span style="color: var(--muted); font-size: 0.88rem; font-weight: 500;">Tutorials</span>
+    </div>
+  </header>
+
+  <main class="site-wrap" style="padding: 2.2rem 0 3.5rem;">
+
+    <!-- ── Hero ── -->
+    <section class="ph-hero">
+      <p class="ph-eyebrow">PyHealth Tutorials</p>
+      <h1>Learn PyHealth in Colab</h1>
+      <p class="ph-tagline">Runnable notebooks that walk through each PyHealth module, then put them together into complete clinical ML pipelines. Most run on public or synthetic data, so you can start without credentialed access.</p>
+      <div class="ph-cta-row">
+        <a href="https://colab.research.google.com/drive/17nOzjIjKiAbC8bsntZ3h9xy2Vq4bKpuv?usp=sharing" class="ph-btn primary" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Start with Tutorial 0
+        </a>
+        <a href="https://www.youtube.com/playlist?list=PLR3CNIF8DDHJUl8RLhyOVpX_kT4bxulEV" class="ph-btn outline" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+          Video Playlist
+        </a>
+        <a href="https://pyhealth.readthedocs.io/en/latest/tutorials.html" class="ph-btn outline" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          Tutorials in the Docs
+        </a>
+      </div>
+    </section>
+
+    <!-- ── Core API tutorials ── -->
+    <section class="tut-section" id="core">
+      <h2>Core API Tutorials</h2>
+      <p class="tut-section-intro">One notebook per module, in the order data flows through PyHealth: data → datasets → tasks → models → trainer → metrics.</p>
+      <div class="tut-grid">
+        <article class="tut-card">
+          <div class="tut-card-header">
+            <span class="tut-num">0</span>
+            <div>
+              <h3 class="tut-title">Patients &amp; Events</h3>
+              <span class="tut-module">pyhealth.data</span>
+            </div>
+          </div>
+          <p class="tut-desc">How a longitudinal record is modeled: build <code>Event</code> and <code>Patient</code> objects and query a history with <code>get_events()</code> filters.</p>
+          <div class="tut-card-footer">
+            <a href="https://colab.research.google.com/drive/17nOzjIjKiAbC8bsntZ3h9xy2Vq4bKpuv?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://www.youtube.com/watch?v=Nk1itBoLOX8&list=PLR3CNIF8DDHJUl8RLhyOVpX_kT4bxulEV" class="video-link" target="_blank" rel="noopener">Video →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/data.html" class="docs-link" target="_blank" rel="noopener">API Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/tutorials/tutorial_pyhealth_data.ipynb" class="example-link" target="_blank" rel="noopener">Source →</a>
+          </div>
+        </article>
+        <article class="tut-card">
+          <div class="tut-card-header">
+            <span class="tut-num">1</span>
+            <div>
+              <h3 class="tut-title">Loading Datasets</h3>
+              <span class="tut-module">pyhealth.datasets</span>
+            </div>
+          </div>
+          <p class="tut-desc">Load MIMIC-III and COVID19-CXR, explore events efficiently, and see how to define and contribute your own dataset with a YAML config.</p>
+          <div class="tut-card-footer">
+            <a href="https://colab.research.google.com/drive/1vI_oljc7rU5ocsC26ITM7HUgD5SGZkFE?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://www.youtube.com/watch?v=c1InKqFJbsI&list=PLR3CNIF8DDHJUl8RLhyOVpX_kT4bxulEV" class="video-link" target="_blank" rel="noopener">Video →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets.html" class="docs-link" target="_blank" rel="noopener">API Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/tutorials/orig_tutorial_pyhealth_datasets.ipynb" class="example-link" target="_blank" rel="noopener">Source →</a>
+          </div>
+        </article>
+        <article class="tut-card">
+          <div class="tut-card-header">
+            <span class="tut-num">2</span>
+            <div>
+              <h3 class="tut-title">Defining Tasks</h3>
+              <span class="tut-module">pyhealth.tasks</span>
+            </div>
+          </div>
+          <p class="tut-desc">Write your own <code>BaseTask</code> to turn a dataset into model-ready samples, with medical coding and chest X-ray examples.</p>
+          <div class="tut-card-footer">
+            <a href="https://colab.research.google.com/drive/1QB0acnGb-wOuK53UNSgHxjCW74QeYjUl?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://www.youtube.com/watch?v=CxESe1gYWU4&list=PLR3CNIF8DDHJUl8RLhyOVpX_kT4bxulEV" class="video-link" target="_blank" rel="noopener">Video →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/tasks.html" class="docs-link" target="_blank" rel="noopener">API Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/tutorials/orig_tutorial_pyhealth_tasks.ipynb" class="example-link" target="_blank" rel="noopener">Source →</a>
+          </div>
+        </article>
+        <article class="tut-card">
+          <div class="tut-card-header">
+            <span class="tut-num">3</span>
+            <div>
+              <h3 class="tut-title">Models: RNN Deep Dive</h3>
+              <span class="tut-module">pyhealth.models</span>
+            </div>
+          </div>
+          <p class="tut-desc">The <code>BaseModel</code> contract, synthetic data with <code>create_sample_dataset()</code>, and how <code>RNN</code> and <code>MultimodalRNN</code> work inside.</p>
+          <div class="tut-card-footer">
+            <a href="https://colab.research.google.com/drive/1cUTSfFL1wLUXDBtJGTAWntolvcmxrDGo?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://www.youtube.com/watch?v=fRc0ncbTgZA&list=PLR3CNIF8DDHJUl8RLhyOVpX_kT4bxulEV" class="video-link" target="_blank" rel="noopener">Video →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">API Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/tutorials/tutorial_pyhealth_model.ipynb" class="example-link" target="_blank" rel="noopener">Source →</a>
+          </div>
+        </article>
+        <article class="tut-card">
+          <div class="tut-card-header">
+            <span class="tut-num">4</span>
+            <div>
+              <h3 class="tut-title">Training End to End</h3>
+              <span class="tut-module">pyhealth.trainer</span>
+            </div>
+          </div>
+          <p class="tut-desc">Train an RNN for mortality prediction on synthetic MIMIC-III (no credentials needed): splits, early stopping, checkpoints, and inference.</p>
+          <div class="tut-card-footer">
+            <a href="https://colab.research.google.com/drive/1up_SL0BxxHPO9pmjKQ98w1GbpiB7LySp?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://www.youtube.com/watch?v=5Hyw3of5pO4&list=PLR3CNIF8DDHJUl8RLhyOVpX_kT4bxulEV" class="video-link" target="_blank" rel="noopener">Video →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/trainer.html" class="docs-link" target="_blank" rel="noopener">API Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/tutorials/tutorial_pyhealth_trainer.ipynb" class="example-link" target="_blank" rel="noopener">Source →</a>
+          </div>
+        </article>
+        <article class="tut-card">
+          <div class="tut-card-header">
+            <span class="tut-num">5</span>
+            <div>
+              <h3 class="tut-title">Evaluation Metrics</h3>
+              <span class="tut-module">pyhealth.metrics</span>
+            </div>
+          </div>
+          <p class="tut-desc">Binary, multiclass, and multilabel metrics, plus fairness metrics such as disparate impact, and how to get raw predictions from the trainer.</p>
+          <div class="tut-card-footer">
+            <a href="https://colab.research.google.com/drive/1bO0h5BR62_kQ7zFOgzQmt5vb8jqJ0rV-?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://www.youtube.com/watch?v=d-Kx_xCwre4&list=PLR3CNIF8DDHJUl8RLhyOVpX_kT4bxulEV" class="video-link" target="_blank" rel="noopener">Video →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/metrics.html" class="docs-link" target="_blank" rel="noopener">API Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/tutorials/tutorial_pyhealth_metrics.ipynb" class="example-link" target="_blank" rel="noopener">Source →</a>
+          </div>
+        </article>
+        <article class="tut-card">
+          <div class="tut-card-header">
+            <span class="tut-num">6</span>
+            <div>
+              <h3 class="tut-title">Tokenizing Codes</h3>
+              <span class="tut-module">pyhealth.tokenizer</span>
+            </div>
+          </div>
+          <p class="tut-desc">Build a <code>Vocabulary</code> and <code>Tokenizer</code>, then encode flat code lists (2D) and visit-level histories (3D) with padding and truncation.</p>
+          <div class="tut-card-footer">
+            <a href="https://colab.research.google.com/drive/1jhJ11MLUafhflQAz8HSrWiOEYlIhhvc_?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://www.youtube.com/watch?v=CeXJtf0lfs0&list=PLR3CNIF8DDHJUl8RLhyOVpX_kT4bxulEV" class="video-link" target="_blank" rel="noopener">Video →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/tokenizer.html" class="docs-link" target="_blank" rel="noopener">API Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/tutorials/tutorial_pyhealth_tokenizer.ipynb" class="example-link" target="_blank" rel="noopener">Source →</a>
+          </div>
+        </article>
+        <article class="tut-card">
+          <div class="tut-card-header">
+            <span class="tut-num">7</span>
+            <div>
+              <h3 class="tut-title">Medical Code Ontologies</h3>
+              <span class="tut-module">pyhealth.medcode</span>
+            </div>
+          </div>
+          <p class="tut-desc">Look up ICD, ATC, and CCS codes, walk code hierarchies with <code>InnerMap</code>, and translate between systems with <code>CrossMap</code>.</p>
+          <div class="tut-card-footer">
+            <a href="https://colab.research.google.com/drive/1Tw1AUS53fotH1EYr4Abp7qYN3zDBeUbC?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://www.youtube.com/watch?v=MmmfU6_xkYg&list=PLR3CNIF8DDHJUl8RLhyOVpX_kT4bxulEV" class="video-link" target="_blank" rel="noopener">Video →</a>
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/medcode.html" class="docs-link" target="_blank" rel="noopener">API Docs →</a>
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/tutorials/tutorial_pyhealth_medcode.ipynb" class="example-link" target="_blank" rel="noopener">Source →</a>
+          </div>
+        </article>
+      </div>
+      <p class="tut-note">The videos are recordings from PyHealth Live sessions on the earlier 1.x API. The concepts carry over, but follow the notebooks for current code.</p>
+    </section>
+
+    <!-- ── Pipelines ── -->
+    <section class="tut-section" id="pipelines">
+      <h2>End-to-End Pipelines</h2>
+      <p class="tut-section-intro">Complete workflows that load a dataset, define a task, train a model, and evaluate it. Each one runs on public Kaggle data, an open MIMIC demo, or synthetic MIMIC-III, so no credentialed access is needed to try them.</p>
+      <div class="tut-grid">
+        <article class="tut-card">
+          <div class="tut-card-header spread">
+            <h3 class="tut-title">Chest X-ray Classification</h3>
+            <span class="modality-tag mod-image">Image</span>
+          </div>
+          <p class="tut-desc">Classify chest X-rays from the public COVID-19 Radiography Database, from download through training and evaluation.</p>
+          <div class="tut-stack"><code>COVID19CXRDataset</code><span aria-hidden="true">→</span><code>TorchvisionModel</code></div>
+          <div class="tut-card-footer">
+            <a href="https://colab.research.google.com/drive/18vK23gyI1LjWbTgkq4f99yDZA3A7Pxp9?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+          </div>
+        </article>
+        <article class="tut-card">
+          <div class="tut-card-header spread">
+            <h3 class="tut-title">Medical Coding</h3>
+            <span class="modality-tag mod-text">Text</span>
+          </div>
+          <p class="tut-desc">Predict ICD-9 codes from clinical notes in synthetic MIMIC-III, fine-tuning Bio_ClinicalBERT.</p>
+          <div class="tut-stack"><code>MIMIC3Dataset</code><span aria-hidden="true">→</span><code>TransformersModel</code></div>
+          <div class="tut-card-footer">
+            <a href="https://colab.research.google.com/drive/1ThYP_5ng5xPQwscv5XztefkkoTruhjeK?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+          </div>
+        </article>
+        <article class="tut-card">
+          <div class="tut-card-header spread">
+            <h3 class="tut-title">Medical Transcription Classification</h3>
+            <span class="modality-tag mod-text">Text</span>
+          </div>
+          <p class="tut-desc">Classify Kaggle medical transcriptions by specialty with a pretrained transformer.</p>
+          <div class="tut-stack"><code>MedicalTranscriptionsDataset</code><span aria-hidden="true">→</span><code>TransformersModel</code></div>
+          <div class="tut-card-footer">
+            <a href="https://colab.research.google.com/drive/1bjk_IArc2ZmXGR6u6Qzyf7kh70RdiY9c?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+          </div>
+        </article>
+        <article class="tut-card">
+          <div class="tut-card-header spread">
+            <h3 class="tut-title">Mortality Prediction</h3>
+            <span class="modality-tag mod-ehr">EHR</span>
+          </div>
+          <p class="tut-desc">Predict mortality on the open MIMIC-III demo from diagnosis, procedure, and drug codes across visits.</p>
+          <div class="tut-stack"><code>MIMIC3Dataset</code><span aria-hidden="true">→</span><code>RNN</code></div>
+          <div class="tut-card-footer">
+            <a href="https://colab.research.google.com/drive/1b9xRbxUz-HLzxsrvxdsdJ868ajGQCY6U?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+          </div>
+        </article>
+        <article class="tut-card">
+          <div class="tut-card-header spread">
+            <h3 class="tut-title">Readmission Prediction</h3>
+            <span class="modality-tag mod-ehr">EHR</span>
+          </div>
+          <p class="tut-desc">Predict 30-day readmission on the public MIMIC-IV demo with <code>Readmission30DaysMIMIC4</code>.</p>
+          <div class="tut-stack"><code>MIMIC4Dataset</code><span aria-hidden="true">→</span><code>RNN</code></div>
+          <div class="tut-card-footer">
+            <a href="https://colab.research.google.com/drive/1h0pAymUlPQfkLFryI9QI37-HAW1tRxGZ?usp=sharing" class="colab-link" target="_blank" rel="noopener">Open in Colab →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ── More ── -->
+    <section class="tut-section" id="more">
+      <h2>Go Further</h2>
+      <div class="tut-grid">
+        <article class="tut-card">
+          <h3 class="tut-title">Multimodal &amp; Smart Processors</h3>
+          <p class="tut-desc">Put a HuggingFace tokenizer inside <code>TupleTimeTextProcessor</code> and train <code>MLP</code>, <code>Transformer</code>, and <code>RNN</code> models on mixed codes and clinical text.</p>
+          <div class="tut-card-footer">
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/smart_processor_clinical_text_tutorial.ipynb" class="example-link" target="_blank" rel="noopener">Notebook on GitHub →</a>
+          </div>
+        </article>
+        <article class="tut-card">
+          <h3 class="tut-title">Example Scripts by Task</h3>
+          <p class="tut-desc">Mortality, readmission, drug recommendation, sleep staging, chest X-ray, interpretability, and more. Not every script has been updated for PyHealth 2.0 yet.</p>
+          <div class="tut-card-footer">
+            <a href="https://github.com/sunlabuiuc/PyHealth/tree/master/examples" class="example-link" target="_blank" rel="noopener">Browse examples/ →</a>
+          </div>
+        </article>
+        <article class="tut-card">
+          <h3 class="tut-title">Getting Data Access</h3>
+          <p class="tut-desc">Which datasets are public, which need PhysioNet credentialing, and how to download each one.</p>
+          <div class="tut-card-footer">
+            <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/datasets_overview.ipynb" class="example-link" target="_blank" rel="noopener">Datasets overview notebook →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-wrap" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+      <span>Copyright <span id="year"></span> John Wu</span>
+      <a href="index.html" style="color:var(--accent); text-decoration:none; font-size:0.9rem;">← Back to PyHealth</a>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
