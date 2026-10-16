@@ -424,6 +424,8 @@
       overflow-x: auto;
       white-space: pre;
     }
+    .cite-stack { display: grid; gap: 1rem; }
+    .cite-stack .ph-code { white-space: pre-wrap; overflow-wrap: anywhere; }
     .tok-kw  { color: #89b4fa; }
     .tok-cl  { color: #cba6f7; }
     .tok-fn  { color: #89dceb; }
@@ -689,9 +691,9 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
           Research Initiative
         </a>
-        <a href="https://arxiv.org/pdf/2601.16414" class="ph-btn outline" target="_blank" rel="noopener">
+        <a href="https://openreview.net/forum?id=gMLVFN9hl8" class="ph-btn outline" target="_blank" rel="noopener">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-          Read the Paper
+          ICML 2026 Paper
         </a>
       </div>
       <div class="ph-badges">
@@ -980,7 +982,7 @@
         <span class="perf-legend-item"><span class="perf-legend-dot" style="background:#a0aec0"></span>MEDS</span>
         <span class="perf-legend-item"><span class="perf-legend-dot" style="background:repeating-linear-gradient(45deg,#b0bec5,#b0bec5 3px,#dde3e8 3px,#dde3e8 7px)"></span>Pandas † (1 worker only)</span>
       </div>
-      <p class="perf-footnote">† Pandas measured at 1 worker; failed beyond single-threaded execution. All other methods at 4 workers on MIMIC-IV. Laptop rows are PyHealth 2.0 on a MacBook Pro M2 Pro and an ASUS Zephyrus G16 at 4 workers, benchmarked for in-hospital mortality. Full benchmark in the <a href="https://arxiv.org/pdf/2601.16414" class="inline-link" target="_blank" rel="noopener">PyHealth 2.0 paper</a>.</p>
+      <p class="perf-footnote">† Pandas measured at 1 worker; failed beyond single-threaded execution. All other methods at 4 workers on MIMIC-IV. Laptop rows are PyHealth 2.0 on a MacBook Pro M2 Pro and an ASUS Zephyrus G16 at 4 workers, benchmarked for in-hospital mortality. Full benchmark in the <a href="https://openreview.net/forum?id=gMLVFN9hl8" class="inline-link" target="_blank" rel="noopener">PyHealth 2.0 paper (ICML 2026)</a>.</p>
     </section>
 
     <!-- ── Pipeline ── -->
@@ -1094,6 +1096,53 @@
       </div>
     </section>
 
+    <!-- ── Cite ── -->
+    <section class="page-section fade-up" id="cite">
+      <h2 class="section-h2">Cite PyHealth</h2>
+      <p class="section-sub">If PyHealth helps your research, please cite the PyHealth 2.0 paper (ICML 2026). If you use the 1.x releases, cite the KDD 2023 paper.</p>
+      <div class="cite-stack">
+        <div class="ph-quickstart">
+          <div class="ph-quickstart-header">
+            <h3>PyHealth 2.0 · ICML 2026</h3>
+            <div class="ph-quickstart-actions">
+              <button class="ph-quickstart-copy" onclick="copyCite(this, 'citeIcml')" aria-label="Copy PyHealth 2.0 BibTeX">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                Copy
+              </button>
+              <a href="https://openreview.net/forum?id=gMLVFN9hl8" class="colab-inline-link" target="_blank" rel="noopener">OpenReview →</a>
+            </div>
+          </div>
+<pre class="ph-code" id="citeIcml">@inproceedings{wu2026pyhealth,
+  title={PyHealth 2.0: A Comprehensive Open-Source Toolkit for Accessible and Reproducible Clinical Deep Learning},
+  author={John Wu and Yongda Fan and Zhenbang Wu and Paul Landes and Eric Schrock and Sayeed Sajjad Razin and Arjun Chatterjee and Naveen Baskaran and Joshua Steier and Andrea Fitzpatrick and Bilal Arif and Rian Atri and Jathurshan Pradeepkumar and Siddhartha Laghuvarapu and Junyi Gao and Adam Richard Cross and Jimeng Sun},
+  booktitle={Forty-third International Conference on Machine Learning},
+  year={2026},
+  url={https://openreview.net/forum?id=gMLVFN9hl8}
+}</pre>
+        </div>
+        <div class="ph-quickstart">
+          <div class="ph-quickstart-header">
+            <h3>PyHealth 1.0 · KDD 2023</h3>
+            <div class="ph-quickstart-actions">
+              <button class="ph-quickstart-copy" onclick="copyCite(this, 'citeKdd')" aria-label="Copy PyHealth 1.0 BibTeX">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                Copy
+              </button>
+              <a href="https://doi.org/10.1145/3580305.3599178" class="colab-inline-link" target="_blank" rel="noopener">ACM DL →</a>
+            </div>
+          </div>
+<pre class="ph-code" id="citeKdd">@inproceedings{pyhealth2023yang,
+  author={Yang, Chaoqi and Wu, Zhenbang and Jiang, Patrick and Lin, Zhen and Gao, Junyi and Danek, Benjamin P. and Sun, Jimeng},
+  title={{PyHealth}: A Deep Learning Toolkit for Healthcare Applications},
+  booktitle={Proceedings of the 29th ACM SIGKDD Conference on Knowledge Discovery and Data Mining},
+  pages={5788--5789},
+  year={2023},
+  doi={10.1145/3580305.3599178}
+}</pre>
+        </div>
+      </div>
+    </section>
+
     </div> <!-- /exploreContent -->
 
   </main>
@@ -1192,6 +1241,17 @@ trainer = Trainer(model=model)
 trainer.train(train_loader, val_loader, epochs=50, monitor="pr_auc")
 trainer.evaluate(test_loader)`;
       navigator.clipboard.writeText(code).then(() => {
+        btn.classList.add('copied');
+        btn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied!';
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          btn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy';
+        }, 2000);
+      });
+    }
+
+    function copyCite(btn, id) {
+      navigator.clipboard.writeText(document.getElementById(id).textContent).then(() => {
         btn.classList.add('copied');
         btn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied!';
         setTimeout(() => {
