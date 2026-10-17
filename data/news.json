@@ -1,5 +1,19 @@
 [
   {
+    "id": "2026-11-02-join-the-pyhealth-benchmark",
+    "date": "2026-11-02",
+    "tag": "Blog",
+    "title": "Join the PyHealth Benchmark",
+    "summary": "How to bring your method, task or dataset into the PyHealth clinical prediction benchmark, and how our team helps. The last of three posts.",
+    "points": [],
+    "links": [
+      [
+        "Read the post",
+        "blogs/2026-11-02-join-the-pyhealth-benchmark/"
+      ]
+    ]
+  },
+  {
     "id": "2026-10-26-make-your-work-easy-to-build-on",
     "date": "2026-10-26",
     "tag": "Blog",
