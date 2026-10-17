@@ -6,7 +6,7 @@
     "datasets": [
       "MIMIC-III"
     ],
-    "description": "Predict in-hospital mortality from ICU visit sequences of diagnoses and procedures.",
+    "description": "Predict death in hospital during the patient's next admission, from the diagnosis, procedure and drug codes of the current admission.",
     "colab_url": "https://colab.research.google.com/drive/1KXloapcMeYubw4dT_fPJKTY1pepH2vvl",
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.mortality_prediction.html",
     "input_schema": {
@@ -622,7 +622,7 @@
     "datasets": [
       "MIMIC-IV"
     ],
-    "description": "Task for predicting mortality using MIMIC-IV EHR data only.",
+    "description": "Predict death in hospital during the patient's next admission, from the codes of the current admission (MIMIC-IV EHR).",
     "colab_url": null,
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.mortality_prediction.html",
     "input_schema": {
