@@ -497,12 +497,47 @@
       <p class="ph-tagline">Nine hands-on notebooks for PyHealth 2.1, from your first clinical prediction model to calibration, interpretability, clinical text and contributing. Every notebook runs on a free Colab runtime with synthetic or public data, so no credentials are needed.</p>
       <div class="ph-cta-row">
         <a href="https://colab.research.google.com/drive/1KXloapcMeYubw4dT_fPJKTY1pepH2vvl" class="ph-btn primary" target="_blank" rel="noopener">Start with the Quickstart →</a>
+        <a href="#whats-new" class="ph-btn outline">What's new in 2.1</a>
         <a href="https://pyhealth.readthedocs.io/en/latest/" class="ph-btn outline" target="_blank" rel="noopener">Documentation</a>
       </div>
     </section>
 
+    <section class="research-section" id="whats-new">
+      <h2 class="section-h2">What's new in 2.1</h2>
+      <p class="tut-note">Already using PyHealth? Three short notebooks, about 10 minutes each, show every 2.1 change on runnable examples: the pitfall it fixes, the new API, and how to read the output. See also the <a href="https://github.com/sunlabuiuc/PyHealth/releases/tag/v2.1.0" target="_blank" rel="noopener">release notes</a>.</p>
+      <div class="tut-list">
+      <article class="tut-card">
+        <div class="tut-num">1</div>
+        <div class="tut-body">
+          <h3>Splits you can trust, runs you can repeat</h3>
+          <ul><li><code>set_task(task, split=PatientSplit(...))</code>: why fitting vocabularies on all patients leaks test information, measured on real numbers</li><li>Four-way splits with a calibration set</li><li>Reproducible training from <code>torch.manual_seed</code> alone, and seeded loaders</li><li>The one action item for 2.0 users: rebuild caches made with more than 10 workers</li></ul>
+          <p class="tut-meta">about 10 minutes on a free Colab CPU runtime · Before this: the Quickstart, or any PyHealth 2.0 experience</p>
+        </div>
+        <a class="ph-btn primary tut-btn" href="https://colab.research.google.com/drive/1yqgMaVuGWw6IGjDi6L_S7MHp087A2fWg" target="_blank" rel="noopener">Open in Colab →</a>
+      </article>
+      <article class="tut-card">
+        <div class="tut-num">2</div>
+        <div class="tut-body">
+          <h3>Calibration, confidence intervals and imbalanced outcomes</h3>
+          <ul><li><code>set_pos_weight</code>, including <code>"balanced"</code>, and what weighting does to calibration</li><li>Brier score, observed/expected ratio, calibration slope and intercept</li><li>Patient-level <code>bootstrap_ci</code> and <code>paired_bootstrap_diff</code>: is model A really better than B?</li></ul>
+          <p class="tut-meta">about 10 minutes on a free Colab CPU runtime · Before this: the Quickstart, or any PyHealth 2.0 experience</p>
+        </div>
+        <a class="ph-btn primary tut-btn" href="https://colab.research.google.com/drive/1uzdKvu8Gf5snQI5uURh9iBJojGFduc3F" target="_blank" rel="noopener">Open in Colab →</a>
+      </article>
+      <article class="tut-card">
+        <div class="tut-num">3</div>
+        <div class="tut-body">
+          <h3>XGBoost with exact explanations, medical-code translation and new processors</h3>
+          <ul><li><code>XGBoostModel</code>: a strong baseline in four lines that works with <code>Trainer.evaluate</code></li><li>Exact TreeSHAP explanations with <code>mean_abs_shap</code> and <code>explain</code></li><li>ICD-9 ↔ ICD-10 translation and CCSR groupings in <code>CrossMap</code>, with unmapped codes reported</li><li>The compact <code>nested_multihot</code> encoding and <code>TensorProcessor.size()</code></li></ul>
+          <p class="tut-meta">about 10 minutes on a free Colab CPU runtime · Before this: the Quickstart, or any PyHealth 2.0 experience</p>
+        </div>
+        <a class="ph-btn primary tut-btn" href="https://colab.research.google.com/drive/1rx6J10qVlXbLphG-sn3yhddWXT21uZXK" target="_blank" rel="noopener">Open in Colab →</a>
+      </article>
+      </div>
+    </section>
+
     <section class="research-section">
-      <h2 class="section-h2">The series</h2>
+      <h2 class="section-h2">The full series</h2>
       <p class="tut-note">Open a notebook and choose <strong>Runtime &gt; Run all</strong>. The first cell installs <code>pyhealth==2.1.0</code>. Each tutorial lists what it assumes, so you can also jump straight to the topic you need. Tested end to end on Colab with PyHealth 2.1.0.</p>
       <div class="tut-list">
       <article class="tut-card">
