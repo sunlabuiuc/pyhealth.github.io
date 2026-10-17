@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="940" viewBox="0 0 1440 940" role="img" aria-labelledby="title desc">
+<title id="title">Turn a clinical question into tensors</title><desc id="desc">A task maps one patient to zero or more samples. A schema chooses a processor for each field. Define the sample and prediction time first; then choose how each field is encoded.</desc>
+<rect x="0" y="0" width="1440" height="940" rx="0" fill="#F5F8FA"/>
+<rect x="0" y="0" width="12" height="940" rx="0" fill="#007F7A"/>
+<text x="48" y="49" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" text-anchor="start" fill="#132B3A">PyHealth</text>
+<text x="1392" y="47" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700" text-anchor="end" fill="#007F7A">TUTORIAL 02</text>
+<text x="48" y="116" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="700" text-anchor="start" fill="#132B3A">Turn a clinical question into tensors</text>
+<text x="48" y="158" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400" text-anchor="start" fill="#526977">A task maps one patient to zero or more samples. A schema chooses a processor for each field.</text>
+<line x1="48" y1="201" x2="1392" y2="201" stroke="#D7E2E8" stroke-width="2"/>
+<rect x="48" y="823" width="1344" height="66" rx="14" fill="#E5F4F1"/>
+<text x="68" y="862" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" text-anchor="start" fill="#007F7A">Define the sample and prediction time first; then choose how each field is encoded.</text>
+<text x="48" y="920" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" text-anchor="start" fill="#526977">PYHEALTH 2.1  /  COLAB VISUAL GUIDE</text>
+<text x="1392" y="920" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" text-anchor="end" fill="#526977">Concepts and toy examples • no measured model results</text>
+<rect x="48" y="233" width="340" height="147" rx="16" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<text x="68" y="270" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" text-anchor="start" fill="#007F7A">Patient timeline</text>
+<text x="68" y="306" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#526977">Task.__call__(patient)</text>
+<text x="68" y="337" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#526977">→ list of sample dictionaries</text>
+<line x1="402" y1="307" x2="444" y2="307" stroke="#526977" stroke-width="2.5"/>
+<polygon points="444,307 434.3465918192059,312.2736809246462 434.3465918192059,301.7263190753538" fill="#526977"/>
+<rect x="458" y="233" width="934" height="147" rx="16" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<text x="478" y="270" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" text-anchor="start" fill="#2864C5">One sample = inputs + label</text>
+<text x="478" y="306" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#526977">Keep patient_id with each sample so all of a patient’s admissions can stay together.</text>
+<rect x="48" y="407" width="1344" height="270" rx="18" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<rect x="48" y="407" width="6" height="270" rx="3" fill="#2864C5"/>
+<text x="72" y="447" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" text-anchor="start" fill="#2864C5">Read the schema as a conversion table</text>
+<text x="76" y="488" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" text-anchor="start" fill="#2864C5">RAW FIELD</text>
+<text x="510" y="488" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" text-anchor="start" fill="#2864C5">PROCESSOR</text>
+<text x="974" y="488" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" text-anchor="start" fill="#2864C5">MODEL INPUT</text>
+<text x="76" y="525" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#132B3A">Codes: [I10, E11]</text>
+<text x="510" y="525" font-family="Menlo, monospace" font-size="22" font-weight="400" text-anchor="start" fill="#007F7A">sequence</text>
+<line x1="870" y1="517" x2="936" y2="517" stroke="#526977" stroke-width="2.5"/>
+<polygon points="936,517 926.3465918192059,522.2736809246462 926.3465918192059,511.7263190753538" fill="#526977"/>
+<text x="974" y="525" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#132B3A">Integer token IDs</text>
+<text x="76" y="567" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#132B3A">Visits: [[I10], [E11, N18]]</text>
+<text x="510" y="567" font-family="Menlo, monospace" font-size="22" font-weight="400" text-anchor="start" fill="#007F7A">nested_sequence</text>
+<line x1="870" y1="559" x2="936" y2="559" stroke="#526977" stroke-width="2.5"/>
+<polygon points="936,559 926.3465918192059,564.2736809246462 926.3465918192059,553.7263190753538" fill="#526977"/>
+<text x="974" y="567" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#132B3A">Padded visit × code IDs</text>
+<text x="76" y="609" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#132B3A">Categories: [female, smoker]</text>
+<text x="510" y="609" font-family="Menlo, monospace" font-size="22" font-weight="400" text-anchor="start" fill="#007F7A">multi_hot</text>
+<line x1="870" y1="601" x2="936" y2="601" stroke="#526977" stroke-width="2.5"/>
+<polygon points="936,601 926.3465918192059,606.2736809246462 926.3465918192059,595.7263190753538" fill="#526977"/>
+<text x="974" y="609" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#132B3A">0/1 category vector</text>
+<text x="76" y="651" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#132B3A">Numbers: [1.2, 140] / label: 1</text>
+<text x="510" y="651" font-family="Menlo, monospace" font-size="22" font-weight="400" text-anchor="start" fill="#007F7A">tensor / binary</text>
+<line x1="870" y1="643" x2="936" y2="643" stroke="#526977" stroke-width="2.5"/>
+<polygon points="936,643 926.3465918192059,648.2736809246462 926.3465918192059,637.7263190753538" fill="#526977"/>
+<text x="974" y="651" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#132B3A">Float vector / [1.0]</text>
+<rect x="48" y="704" width="1344" height="92" rx="14" fill="#FFF2DF"/>
+<text x="70" y="739" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" text-anchor="start" fill="#B76718">CHECK THE PREDICTION TIME</text>
+<text x="70" y="772" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" text-anchor="start" fill="#132B3A">The long-stay task predicts at admission: it uses earlier admissions’ diagnoses, not this stay’s codes dated at discharge.</text>
+</svg>

@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="940" viewBox="0 0 1440 940" role="img" aria-labelledby="title desc">
+<title id="title">Look up, translate, and group medical codes</title><desc id="desc">InnerMap explores one vocabulary. CrossMap moves between vocabularies before the processor encodes them. Record the mapping direction, inspect unmapped codes, and measure the effect of grouping.</desc>
+<rect x="0" y="0" width="1440" height="940" rx="0" fill="#F5F8FA"/>
+<rect x="0" y="0" width="12" height="940" rx="0" fill="#007F7A"/>
+<text x="48" y="49" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" text-anchor="start" fill="#132B3A">PyHealth</text>
+<text x="1392" y="47" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700" text-anchor="end" fill="#007F7A">TUTORIAL 06</text>
+<text x="48" y="116" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="700" text-anchor="start" fill="#132B3A">Look up, translate, and group medical codes</text>
+<text x="48" y="158" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400" text-anchor="start" fill="#526977">InnerMap explores one vocabulary. CrossMap moves between vocabularies before the processor encodes them.</text>
+<line x1="48" y1="201" x2="1392" y2="201" stroke="#D7E2E8" stroke-width="2"/>
+<rect x="48" y="823" width="1344" height="66" rx="14" fill="#E5F4F1"/>
+<text x="68" y="862" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" text-anchor="start" fill="#007F7A">Record the mapping direction, inspect unmapped codes, and measure the effect of grouping.</text>
+<text x="48" y="920" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" text-anchor="start" fill="#526977">PYHEALTH 2.1  /  COLAB VISUAL GUIDE</text>
+<text x="1392" y="920" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" text-anchor="end" fill="#526977">Concepts and toy examples • no measured model results</text>
+<rect x="48" y="233" width="424" height="427" rx="18" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<rect x="48" y="233" width="6" height="427" rx="3" fill="#007F7A"/>
+<text x="72" y="273" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" text-anchor="start" fill="#007F7A">Within a system</text>
+<text x="72" y="313" font-family="Menlo, monospace" font-size="22" font-weight="400" text-anchor="start" fill="#007F7A">InnerMap.load(&quot;ICD9CM&quot;)</text>
+<rect x="152" y="347" width="210" height="48" rx="10" fill="#E5F4F1"/>
+<text x="257.0" y="378" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#007F7A">428</text>
+<line x1="257" y1="395" x2="257" y2="419" stroke="#007F7A" stroke-width="2"/>
+<line x1="160" y1="419" x2="358" y2="419" stroke="#007F7A" stroke-width="2"/>
+<line x1="160" y1="419" x2="160" y2="437" stroke="#007F7A" stroke-width="2.5"/>
+<polygon points="160,437 154.72631907535376,427.3465918192059 165.27368092464624,427.3465918192059" fill="#007F7A"/>
+<line x1="358" y1="419" x2="358" y2="437" stroke="#007F7A" stroke-width="2.5"/>
+<polygon points="358,437 352.7263190753538,427.3465918192059 363.2736809246462,427.3465918192059" fill="#007F7A"/>
+<rect x="74" y="441" width="173" height="48" rx="10" fill="#E5F4F1"/>
+<text x="160.5" y="472" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#007F7A">428.0</text>
+<rect x="270" y="441" width="175" height="48" rx="10" fill="#E5F4F1"/>
+<text x="357.5" y="472" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#007F7A">428.2</text>
+<line x1="358" y1="495" x2="358" y2="521" stroke="#007F7A" stroke-width="2.5"/>
+<polygon points="358,521 352.7263190753538,511.3465918192059 363.2736809246462,511.3465918192059" fill="#007F7A"/>
+<rect x="270" y="534" width="175" height="48" rx="10" fill="#E5F4F1"/>
+<text x="357.5" y="565" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#007F7A">428.22</text>
+<text x="72" y="623" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#132B3A">Names, ancestors, descendants</text>
+<rect x="508" y="233" width="424" height="427" rx="18" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<rect x="508" y="233" width="6" height="427" rx="3" fill="#2864C5"/>
+<text x="532" y="273" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" text-anchor="start" fill="#2864C5">Across systems</text>
+<text x="532" y="313" font-family="Menlo, monospace" font-size="21" font-weight="400" text-anchor="start" fill="#2864C5">CrossMap(source, target)</text>
+<text x="532" y="364" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" text-anchor="start" fill="#2864C5">Translate</text>
+<rect x="532" y="383" width="150" height="48" rx="10" fill="#EAF1FC"/>
+<text x="607.0" y="414" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#2864C5">250.00</text>
+<line x1="690" y1="407" x2="740" y2="407" stroke="#2864C5" stroke-width="2.5"/>
+<polygon points="740,407 730.3465918192059,412.2736809246462 730.3465918192059,401.7263190753538" fill="#2864C5"/>
+<rect x="752" y="383" width="154" height="48" rx="10" fill="#EAF1FC"/>
+<text x="829.0" y="414" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#2864C5">E11.9</text>
+<text x="532" y="482" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" text-anchor="start" fill="#2864C5">Group</text>
+<rect x="532" y="501" width="150" height="48" rx="10" fill="#EAF1FC"/>
+<text x="607.0" y="532" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#2864C5">428.0</text>
+<line x1="690" y1="525" x2="740" y2="525" stroke="#2864C5" stroke-width="2.5"/>
+<polygon points="740,525 730.3465918192059,530.2736809246462 730.3465918192059,519.7263190753538" fill="#2864C5"/>
+<rect x="752" y="501" width="154" height="48" rx="10" fill="#EAF1FC"/>
+<text x="829.0" y="532" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#2864C5">CCS 108</text>
+<text x="532" y="600" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#526977">Translation may lose detail and may</text>
+<text x="532" y="631" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#526977">not reverse to the original code.</text>
+<rect x="968" y="233" width="424" height="427" rx="18" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<rect x="968" y="233" width="6" height="427" rx="3" fill="#7553B7"/>
+<text x="992" y="273" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" text-anchor="start" fill="#7553B7">Inside a task</text>
+<rect x="992" y="304" width="376" height="48" rx="10" fill="#F1ECFA"/>
+<text x="1180.0" y="335" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#7553B7">Raw code</text>
+<line x1="1180" y1="359" x2="1180" y2="392" stroke="#7553B7" stroke-width="2.5"/>
+<polygon points="1180,392 1174.7263190753538,382.3465918192059 1185.2736809246462,382.3465918192059" fill="#7553B7"/>
+<rect x="992" y="405" width="376" height="48" rx="10" fill="#F1ECFA"/>
+<text x="1180.0" y="436" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#7553B7">Mapped category</text>
+<line x1="1180" y1="460" x2="1180" y2="493" stroke="#7553B7" stroke-width="2.5"/>
+<polygon points="1180,493 1174.7263190753538,483.3465918192059 1185.2736809246462,483.3465918192059" fill="#7553B7"/>
+<rect x="992" y="506" width="376" height="48" rx="10" fill="#F1ECFA"/>
+<text x="1180.0" y="537" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#7553B7">Vocabulary → token ID</text>
+<text x="992" y="623" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#132B3A">Fewer categories, less detail</text>
+<rect x="48" y="689" width="1344" height="107" rx="14" fill="#FFF2DF"/>
+<text x="72" y="727" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" text-anchor="start" fill="#B76718">UNMAPPED CODES</text>
+<text x="72" y="763" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#132B3A">A lookup can return []. SequenceProcessor keeps the raw code when no target exists; inspect unmapped_codes for ICD translation.</text>
+</svg>

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="940" viewBox="0 0 1440 940" role="img" aria-labelledby="title desc">
+<title id="title">One text input, two kinds of prediction</title><desc id="desc">TextProcessor keeps the string; TransformersModel tokenizes it and adds a head that matches the label schema. Compare on the same split, inspect label quality, and report metrics suited to the task.</desc>
+<rect x="0" y="0" width="1440" height="940" rx="0" fill="#F5F8FA"/>
+<rect x="0" y="0" width="12" height="940" rx="0" fill="#2864C5"/>
+<text x="48" y="49" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" text-anchor="start" fill="#132B3A">PyHealth</text>
+<text x="1392" y="47" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700" text-anchor="end" fill="#2864C5">TUTORIAL 07</text>
+<text x="48" y="116" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="700" text-anchor="start" fill="#132B3A">One text input, two kinds of prediction</text>
+<text x="48" y="158" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400" text-anchor="start" fill="#526977">TextProcessor keeps the string; TransformersModel tokenizes it and adds a head that matches the label schema.</text>
+<line x1="48" y1="201" x2="1392" y2="201" stroke="#D7E2E8" stroke-width="2"/>
+<rect x="48" y="823" width="1344" height="66" rx="14" fill="#EAF1FC"/>
+<text x="68" y="862" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" text-anchor="start" fill="#2864C5">Compare on the same split, inspect label quality, and report metrics suited to the task.</text>
+<text x="48" y="920" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" text-anchor="start" fill="#526977">PYHEALTH 2.1  /  COLAB VISUAL GUIDE</text>
+<text x="1392" y="920" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" text-anchor="end" fill="#526977">Concepts and toy examples • no measured model results</text>
+<rect x="48" y="233" width="1344" height="187" rx="18" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<rect x="48" y="233" width="6" height="187" rx="3" fill="#2864C5"/>
+<text x="72" y="273" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" text-anchor="start" fill="#2864C5">Shared language-model path</text>
+<rect x="72" y="307" width="230" height="48" rx="10" fill="#EAF1FC"/>
+<text x="187.0" y="338" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#2864C5">Note text</text>
+<line x1="309" y1="331" x2="332" y2="331" stroke="#2864C5" stroke-width="2.5"/>
+<polygon points="332,331 322.3465918192059,336.2736809246462 322.3465918192059,325.7263190753538" fill="#2864C5"/>
+<rect x="342" y="307" width="280" height="48" rx="10" fill="#EAF1FC"/>
+<text x="482.0" y="338" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#2864C5">First 256 tokens</text>
+<line x1="629" y1="331" x2="652" y2="331" stroke="#2864C5" stroke-width="2.5"/>
+<polygon points="652,331 642.3465918192059,336.2736809246462 642.3465918192059,325.7263190753538" fill="#2864C5"/>
+<rect x="662" y="307" width="270" height="48" rx="10" fill="#EAF1FC"/>
+<text x="797.0" y="338" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#2864C5">BERT encoder</text>
+<line x1="939" y1="331" x2="962" y2="331" stroke="#2864C5" stroke-width="2.5"/>
+<polygon points="962,331 952.3465918192059,336.2736809246462 952.3465918192059,325.7263190753538" fill="#2864C5"/>
+<rect x="972" y="307" width="334" height="48" rx="10" fill="#EAF1FC"/>
+<text x="1139.0" y="338" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#2864C5">Task-specific head</text>
+<text x="72" y="391" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#526977">GPU: Bio_ClinicalBERT • CPU: smaller BERT • fine-tune through Trainer</text>
+<rect x="48" y="449" width="644" height="347" rx="18" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<rect x="48" y="449" width="6" height="347" rx="3" fill="#007F7A"/>
+<text x="72" y="489" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" text-anchor="start" fill="#007F7A">A. Report → one specialty</text>
+<rect x="72" y="509" width="149.03125" height="33" rx="9" fill="#E5F4F1"/>
+<text x="86" y="532" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700" text-anchor="start" fill="#007F7A">MULTICLASS</text>
+<text x="72" y="582" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">MTSamples: one report per sample.</text>
+<text x="72" y="614" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">Split by sample.</text>
+<text x="72" y="646" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">Accuracy • macro F1 • weighted F1</text>
+<rect x="72" y="709" width="596" height="61" rx="10" fill="#E5F4F1"/>
+<text x="93" y="748" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" text-anchor="start" fill="#007F7A">Baseline: TF-IDF + logistic regression</text>
+<rect x="716" y="449" width="676" height="347" rx="18" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<rect x="716" y="449" width="6" height="347" rx="3" fill="#7553B7"/>
+<text x="740" y="489" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" text-anchor="start" fill="#7553B7">B. Admission notes → several ICD codes</text>
+<rect x="740" y="509" width="147.96875" height="33" rx="9" fill="#F1ECFA"/>
+<text x="754" y="532" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700" text-anchor="start" fill="#7553B7">MULTILABEL</text>
+<text x="740" y="582" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">MIMIC3ICD9Coding joins notes per admission.</text>
+<text x="740" y="614" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">Split by patient across all admissions.</text>
+<text x="740" y="646" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">Micro F1 • macro F1 • sample PR-AUC</text>
+<rect x="740" y="709" width="628" height="61" rx="10" fill="#F1ECFA"/>
+<text x="761" y="748" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" text-anchor="start" fill="#7553B7">Many possible labels; several can be true.</text>
+</svg>

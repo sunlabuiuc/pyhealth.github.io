@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="940" viewBox="0 0 1440 940" role="img" aria-labelledby="title desc">
+<title id="title">From patient records to a prediction</title><desc id="desc">The notebook follows five steps on synthetic MIMIC-III data. One patient stays in one split. The label comes from that patient’s next admission.</desc>
+<rect x="0" y="0" width="1440" height="940" rx="0" fill="#F5F8FA"/>
+<rect x="0" y="0" width="12" height="940" rx="0" fill="#007F7A"/>
+<text x="48" y="49" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" text-anchor="start" fill="#132B3A">PyHealth</text>
+<text x="1392" y="47" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700" text-anchor="end" fill="#007F7A">TUTORIAL 00</text>
+<text x="48" y="116" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="700" text-anchor="start" fill="#132B3A">From patient records to a prediction</text>
+<text x="48" y="158" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400" text-anchor="start" fill="#526977">The notebook follows five steps on synthetic MIMIC-III data.</text>
+<line x1="48" y1="201" x2="1392" y2="201" stroke="#D7E2E8" stroke-width="2"/>
+<rect x="48" y="823" width="1344" height="66" rx="14" fill="#E5F4F1"/>
+<text x="68" y="862" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" text-anchor="start" fill="#007F7A">One patient stays in one split. The label comes from that patient’s next admission.</text>
+<text x="48" y="920" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" text-anchor="start" fill="#526977">PYHEALTH 2.1  /  COLAB VISUAL GUIDE</text>
+<text x="1392" y="920" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" text-anchor="end" fill="#526977">Concepts and toy examples • no measured model results</text>
+<rect x="48" y="232" width="248" height="187" rx="16" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<circle cx="77" cy="262" r="15" fill="#E5F4F1"/>
+<text x="77" y="268" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" text-anchor="middle" fill="#007F7A">1</text>
+<text x="68" y="307" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" text-anchor="start" fill="#007F7A">Load</text>
+<text x="68" y="343" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#526977">MIMIC3Dataset</text>
+<text x="68" y="374" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#526977">Patients + events</text>
+<line x1="298" y1="327" x2="318" y2="327" stroke="#526977" stroke-width="2.5"/>
+<polygon points="318,327 308.3465918192059,332.2736809246462 308.3465918192059,321.7263190753538" fill="#526977"/>
+<rect x="322" y="232" width="248" height="187" rx="16" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<circle cx="351" cy="262" r="15" fill="#E5F4F1"/>
+<text x="351" y="268" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" text-anchor="middle" fill="#007F7A">2</text>
+<text x="342" y="307" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" text-anchor="start" fill="#007F7A">Define task</text>
+<text x="342" y="343" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#526977">Current codes +</text>
+<text x="342" y="374" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#526977">next-admission label</text>
+<line x1="572" y1="327" x2="592" y2="327" stroke="#526977" stroke-width="2.5"/>
+<polygon points="592,327 582.3465918192059,332.2736809246462 582.3465918192059,321.7263190753538" fill="#526977"/>
+<rect x="596" y="232" width="248" height="187" rx="16" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<circle cx="625" cy="262" r="15" fill="#EAF1FC"/>
+<text x="625" y="268" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" text-anchor="middle" fill="#2864C5">3</text>
+<text x="616" y="307" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" text-anchor="start" fill="#2864C5">Split</text>
+<text x="616" y="343" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#526977">PatientSplit 70/10/20</text>
+<text x="616" y="374" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#526977">fit on train only</text>
+<line x1="846" y1="327" x2="866" y2="327" stroke="#526977" stroke-width="2.5"/>
+<polygon points="866,327 856.3465918192059,332.2736809246462 856.3465918192059,321.7263190753538" fill="#526977"/>
+<rect x="870" y="232" width="248" height="187" rx="16" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<circle cx="899" cy="262" r="15" fill="#F1ECFA"/>
+<text x="899" y="268" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" text-anchor="middle" fill="#7553B7">4</text>
+<text x="890" y="307" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" text-anchor="start" fill="#7553B7">Train</text>
+<text x="890" y="343" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#526977">RNN + Trainer</text>
+<text x="890" y="374" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#526977">Validate each epoch</text>
+<line x1="1120" y1="327" x2="1140" y2="327" stroke="#526977" stroke-width="2.5"/>
+<polygon points="1140,327 1130.346591819206,332.2736809246462 1130.346591819206,321.7263190753538" fill="#526977"/>
+<rect x="1144" y="232" width="248" height="187" rx="16" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<circle cx="1173" cy="262" r="15" fill="#FFF2DF"/>
+<text x="1173" y="268" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" text-anchor="middle" fill="#B76718">5</text>
+<text x="1164" y="307" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" text-anchor="start" fill="#B76718">Evaluate</text>
+<text x="1164" y="343" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#526977">Held-out patients</text>
+<text x="1164" y="374" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#526977">PR-AUC +</text>
+<text x="1164" y="405" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#526977">ROC-AUC</text>
+<rect x="48" y="453" width="846" height="228" rx="18" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<rect x="48" y="453" width="6" height="228" rx="3" fill="#007F7A"/>
+<text x="72" y="493" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" text-anchor="start" fill="#007F7A">What is one sample?</text>
+<rect x="76" y="520" width="315" height="48" rx="10" fill="#E5F4F1"/>
+<text x="233.5" y="551" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#007F7A">Admission t: codes</text>
+<rect x="529" y="520" width="335" height="48" rx="10" fill="#FFF2DF"/>
+<text x="696.5" y="551" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#B76718">Admission t+1: outcome</text>
+<line x1="403" y1="545" x2="512" y2="545" stroke="#526977" stroke-width="2.5"/>
+<polygon points="512,545 502.3465918192059,550.2736809246462 502.3465918192059,539.7263190753538" fill="#526977"/>
+<text x="76" y="603" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#526977">Diagnoses • procedures • drugs</text>
+<text x="529" y="603" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#526977">mortality = 0 or 1</text>
+<text x="529" y="634" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#526977">Last admission has no future</text>
+<text x="529" y="665" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#526977">label.</text>
+<rect x="918" y="453" width="474" height="228" rx="18" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<rect x="918" y="453" width="6" height="228" rx="3" fill="#B76718"/>
+<text x="942" y="493" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" text-anchor="start" fill="#B76718">How to read the scores</text>
+<text x="942" y="524" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">ROC-AUC: ranking of positive and</text>
+<text x="942" y="556" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">negative cases.</text>
+<text x="942" y="588" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">PR-AUC: compare with the test set’s</text>
+<text x="942" y="620" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">positive rate.</text>
+<rect x="48" y="708" width="1344" height="88" rx="14" fill="#EAF1FC"/>
+<text x="70" y="741" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" text-anchor="start" fill="#2864C5">SPLIT BEFORE FITTING</text>
+<text x="70" y="772" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#132B3A">set_task(task, split=PatientSplit(...)) learns the code vocabulary from training patients only.</text>
+</svg>

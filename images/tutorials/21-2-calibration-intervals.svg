@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="940" viewBox="0 0 1440 940" role="img" aria-labelledby="title desc">
+<title id="title">Good rankings need calibrated probabilities</title><desc id="desc">Compare plain and class-weighted MLPs on the heart-failure task, then quantify uncertainty. Inspect ranking, probability accuracy, and paired patient-level intervals together.</desc>
+<rect x="0" y="0" width="1440" height="940" rx="0" fill="#F5F8FA"/>
+<rect x="0" y="0" width="12" height="940" rx="0" fill="#B76718"/>
+<text x="48" y="49" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" text-anchor="start" fill="#132B3A">PyHealth</text>
+<text x="1392" y="47" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700" text-anchor="end" fill="#B76718">WHAT’S NEW 2</text>
+<text x="48" y="116" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="700" text-anchor="start" fill="#132B3A">Good rankings need calibrated probabilities</text>
+<text x="48" y="158" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400" text-anchor="start" fill="#526977">Compare plain and class-weighted MLPs on the heart-failure task, then quantify uncertainty.</text>
+<line x1="48" y1="201" x2="1392" y2="201" stroke="#D7E2E8" stroke-width="2"/>
+<rect x="48" y="823" width="1344" height="66" rx="14" fill="#FFF2DF"/>
+<text x="68" y="862" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" text-anchor="start" fill="#B76718">Inspect ranking, probability accuracy, and paired patient-level intervals together.</text>
+<text x="48" y="920" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" text-anchor="start" fill="#526977">PYHEALTH 2.1  /  COLAB VISUAL GUIDE</text>
+<text x="1392" y="920" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" text-anchor="end" fill="#526977">Concepts and toy examples • no measured model results</text>
+<rect x="48" y="233" width="416" height="563" rx="18" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<rect x="48" y="233" width="6" height="563" rx="3" fill="#B76718"/>
+<text x="72" y="273" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" text-anchor="start" fill="#B76718">1. Weight positives</text>
+<text x="72" y="315" font-family="Menlo, monospace" font-size="23" font-weight="700" text-anchor="start" fill="#B76718">set_pos_weight</text>
+<text x="72" y="354" font-family="Menlo, monospace" font-size="20" font-weight="400" text-anchor="start" fill="#B76718">(&quot;balanced&quot;, train_ds)</text>
+<text x="72" y="415" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">Training negatives ÷ positives</text>
+<text x="72" y="447" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">sets the positive-class weight.</text>
+<circle cx="93" cy="518" r="19" fill="#B76718"/>
+<circle cx="162" cy="518" r="19" fill="#B76718"/>
+<circle cx="231" cy="518" r="19" fill="#D7E2E8"/>
+<circle cx="300" cy="518" r="19" fill="#D7E2E8"/>
+<circle cx="369" cy="518" r="19" fill="#D7E2E8"/>
+<circle cx="93" cy="584" r="19" fill="#D7E2E8"/>
+<circle cx="162" cy="584" r="19" fill="#D7E2E8"/>
+<circle cx="231" cy="584" r="19" fill="#D7E2E8"/>
+<circle cx="300" cy="584" r="19" fill="#D7E2E8"/>
+<circle cx="369" cy="584" r="19" fill="#D7E2E8"/>
+<text x="72" y="661" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">Toy class mix: 8 negative,</text>
+<text x="72" y="693" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">2 positive → weight 4.</text>
+<text x="72" y="725" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">Weighting can raise predicted</text>
+<text x="72" y="757" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">risks.</text>
+<rect x="512" y="233" width="416" height="563" rx="18" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<rect x="512" y="233" width="6" height="563" rx="3" fill="#2864C5"/>
+<text x="536" y="273" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" text-anchor="start" fill="#2864C5">2. Check probabilities</text>
+<text x="536" y="314" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" text-anchor="start" fill="#2864C5">Predicted vs observed</text>
+<line x1="560" y1="581" x2="870" y2="581" stroke="#132B3A" stroke-width="2"/>
+<line x1="560" y1="581" x2="560" y2="374" stroke="#132B3A" stroke-width="2"/>
+<line x1="560" y1="581" x2="870" y2="374" stroke="#007F7A" stroke-width="3" stroke-dasharray="7 6"/>
+<path d="M 560 581 Q 720 563 870 430" fill="none" stroke="#B76718" stroke-width="4"/>
+<text x="715" y="615" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="400" text-anchor="middle" fill="#526977">Predicted risk</text>
+<text x="570" y="365" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="400" text-anchor="start" fill="#526977">Observed rate</text>
+<text x="536" y="664" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#526977">Dashed: perfect calibration.</text>
+<text x="536" y="695" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#526977">Curve below it: overprediction.</text>
+<text x="536" y="726" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#526977">Check Brier, O/E, slope, intercept.</text>
+<rect x="976" y="233" width="416" height="563" rx="18" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<rect x="976" y="233" width="6" height="563" rx="3" fill="#7553B7"/>
+<text x="1000" y="273" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" text-anchor="start" fill="#7553B7">3. Resample patients</text>
+<rect x="1000" y="304" width="368" height="48" rx="10" fill="#F1ECFA"/>
+<text x="1184.0" y="335" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#7553B7">p1: visits a + b</text>
+<rect x="1000" y="368" width="368" height="48" rx="10" fill="#F1ECFA"/>
+<text x="1184.0" y="399" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#7553B7">p2: visit c</text>
+<rect x="1000" y="432" width="368" height="48" rx="10" fill="#F1ECFA"/>
+<text x="1184.0" y="463" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#7553B7">p1: visits a + b</text>
+<text x="1000" y="538" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">Whole patients, with replacement.</text>
+<text x="1000" y="570" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">Use the same resample for both</text>
+<text x="1000" y="602" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">models.</text>
+<line x1="1012" y1="689" x2="1356" y2="689" stroke="#D7E2E8" stroke-width="4"/>
+<line x1="1184" y1="662" x2="1184" y2="714" stroke="#526977" stroke-width="2" stroke-dasharray="7 6"/>
+<line x1="1083" y1="689" x2="1302" y2="689" stroke="#7553B7" stroke-width="6"/>
+<circle cx="1219" cy="689" r="8" fill="#7553B7"/>
+<text x="1184" y="741" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" text-anchor="middle" fill="#526977">0: no difference</text>
+<text x="1000" y="776" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="400" text-anchor="start" fill="#132B3A">Illustrative interval includes zero.</text>
+</svg>

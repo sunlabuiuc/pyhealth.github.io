@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="940" viewBox="0 0 1440 940" role="img" aria-labelledby="title desc">
+<title id="title">Explain a prediction, then check the explanation</title><desc id="desc">TreeSHAP explains tree outputs. Integrated Gradients attributes neural predictions to input positions. Attributions describe model behavior. Check faithfulness before drawing conclusions.</desc>
+<rect x="0" y="0" width="1440" height="940" rx="0" fill="#F5F8FA"/>
+<rect x="0" y="0" width="12" height="940" rx="0" fill="#7553B7"/>
+<text x="48" y="49" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" text-anchor="start" fill="#132B3A">PyHealth</text>
+<text x="1392" y="47" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700" text-anchor="end" fill="#7553B7">TUTORIAL 05</text>
+<text x="48" y="116" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="700" text-anchor="start" fill="#132B3A">Explain a prediction, then check the explanation</text>
+<text x="48" y="158" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400" text-anchor="start" fill="#526977">TreeSHAP explains tree outputs. Integrated Gradients attributes neural predictions to input positions.</text>
+<line x1="48" y1="201" x2="1392" y2="201" stroke="#D7E2E8" stroke-width="2"/>
+<rect x="48" y="823" width="1344" height="66" rx="14" fill="#F1ECFA"/>
+<text x="68" y="862" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" text-anchor="start" fill="#7553B7">Attributions describe model behavior. Check faithfulness before drawing conclusions.</text>
+<text x="48" y="920" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" text-anchor="start" fill="#526977">PYHEALTH 2.1  /  COLAB VISUAL GUIDE</text>
+<text x="1392" y="920" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" text-anchor="end" fill="#526977">Concepts and toy examples • no measured model results</text>
+<rect x="48" y="233" width="424" height="563" rx="18" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<rect x="48" y="233" width="6" height="563" rx="3" fill="#007F7A"/>
+<text x="72" y="273" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" text-anchor="start" fill="#007F7A">Global: what matters overall?</text>
+<text x="72" y="316" font-family="Menlo, monospace" font-size="22" font-weight="400" text-anchor="start" fill="#007F7A">mean_abs_shap(data)</text>
+<text x="72" y="358" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">Average absolute contributions</text>
+<text x="72" y="390" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">across samples.</text>
+<text x="72" y="439" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#132B3A">Feature A</text>
+<rect x="72" y="454" width="227" height="20" rx="5" fill="#007F7A"/>
+<text x="72" y="509" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#132B3A">Feature B</text>
+<rect x="72" y="524" width="159" height="20" rx="5" fill="#007F7A"/>
+<text x="72" y="579" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#132B3A">Feature C</text>
+<rect x="72" y="594" width="88" height="20" rx="5" fill="#007F7A"/>
+<text x="72" y="709" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">Bar lengths are illustrative.</text>
+<text x="72" y="741" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">Magnitude has no sign.</text>
+<rect x="508" y="233" width="424" height="563" rx="18" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<rect x="508" y="233" width="6" height="563" rx="3" fill="#7553B7"/>
+<text x="532" y="273" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" text-anchor="start" fill="#7553B7">Local: why this admission?</text>
+<text x="532" y="316" font-family="Menlo, monospace" font-size="21" font-weight="400" text-anchor="start" fill="#7553B7">xgb.explain(**batch)</text>
+<text x="532" y="358" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">TreeSHAP contributions add on the</text>
+<text x="532" y="390" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">log-odds scale.</text>
+<text x="532" y="462" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400" text-anchor="start" fill="#132B3A">Bias</text>
+<text x="898" y="462" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" text-anchor="end" fill="#526977">−1.0</text>
+<text x="532" y="518" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400" text-anchor="start" fill="#132B3A">Feature A</text>
+<text x="898" y="518" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" text-anchor="end" fill="#007F7A">+0.8</text>
+<text x="532" y="574" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400" text-anchor="start" fill="#132B3A">Feature B</text>
+<text x="898" y="574" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" text-anchor="end" fill="#B76718">−0.2</text>
+<line x1="532" y1="604" x2="908" y2="604" stroke="#D7E2E8" stroke-width="2"/>
+<text x="532" y="646" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400" text-anchor="start" fill="#132B3A">Log-odds</text>
+<text x="898" y="646" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="700" text-anchor="end" fill="#7553B7">−0.4</text>
+<text x="532" y="709" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#526977">sigmoid(−0.4) ≈ 0.40</text>
+<text x="532" y="740" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#526977">Toy arithmetic, not a patient result.</text>
+<rect x="968" y="233" width="424" height="563" rx="18" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<rect x="968" y="233" width="6" height="563" rx="3" fill="#2864C5"/>
+<text x="992" y="273" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" text-anchor="start" fill="#2864C5">Neural: does removal matter?</text>
+<text x="992" y="316" font-family="Menlo, monospace" font-size="21" font-weight="400" text-anchor="start" fill="#2864C5">IntegratedGradients</text>
+<text x="992" y="358" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">Compare the code embeddings with</text>
+<text x="992" y="390" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">an unknown-token baseline.</text>
+<rect x="992" y="444" width="376" height="48" rx="10" fill="#EAF1FC"/>
+<text x="1180.0" y="475" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#2864C5">Baseline → input</text>
+<line x1="1180" y1="503" x2="1180" y2="534" stroke="#2864C5" stroke-width="2.5"/>
+<polygon points="1180,534 1174.7263190753538,524.3465918192059 1185.2736809246462,524.3465918192059" fill="#2864C5"/>
+<rect x="992" y="548" width="376" height="48" rx="10" fill="#EAF1FC"/>
+<text x="1180.0" y="579" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#2864C5">One score per input position</text>
+<text x="992" y="650" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">Remove top-ranked inputs.</text>
+<text x="992" y="682" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">Compare prediction changes with</text>
+<text x="992" y="714" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">equal-sized random removals.</text>
+</svg>

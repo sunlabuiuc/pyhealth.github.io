@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="940" viewBox="0 0 1440 940" role="img" aria-labelledby="title desc">
+<title id="title">Split patients before fitting the vocabulary</title><desc id="desc">PyHealth 2.1 lets set_task split first, then reuse the training-fitted processors for every part. Keep patients together and fit preprocessing on train; fix seeds for repeatable experiments.</desc>
+<rect x="0" y="0" width="1440" height="940" rx="0" fill="#F5F8FA"/>
+<rect x="0" y="0" width="12" height="940" rx="0" fill="#2864C5"/>
+<text x="48" y="49" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" text-anchor="start" fill="#132B3A">PyHealth</text>
+<text x="1392" y="47" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700" text-anchor="end" fill="#2864C5">WHAT’S NEW 1</text>
+<text x="48" y="116" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="700" text-anchor="start" fill="#132B3A">Split patients before fitting the vocabulary</text>
+<text x="48" y="158" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400" text-anchor="start" fill="#526977">PyHealth 2.1 lets set_task split first, then reuse the training-fitted processors for every part.</text>
+<line x1="48" y1="201" x2="1392" y2="201" stroke="#D7E2E8" stroke-width="2"/>
+<rect x="48" y="823" width="1344" height="66" rx="14" fill="#EAF1FC"/>
+<text x="68" y="862" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" text-anchor="start" fill="#2864C5">Keep patients together and fit preprocessing on train; fix seeds for repeatable experiments.</text>
+<text x="48" y="920" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" text-anchor="start" fill="#526977">PYHEALTH 2.1  /  COLAB VISUAL GUIDE</text>
+<text x="1392" y="920" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" text-anchor="end" fill="#526977">Concepts and toy examples • no measured model results</text>
+<rect x="48" y="233" width="644" height="293" rx="18" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<rect x="48" y="233" width="6" height="293" rx="3" fill="#B76718"/>
+<text x="72" y="273" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" text-anchor="start" fill="#B76718">Earlier pattern</text>
+<rect x="72" y="303" width="596" height="48" rx="10" fill="#FFF2DF"/>
+<text x="370.0" y="334" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#B76718">All patients → fit vocabulary</text>
+<line x1="370" y1="359" x2="370" y2="391" stroke="#B76718" stroke-width="2.5"/>
+<polygon points="370,391 364.7263190753538,381.3465918192059 375.2736809246462,381.3465918192059" fill="#B76718"/>
+<rect x="72" y="404" width="596" height="48" rx="10" fill="#FFF2DF"/>
+<text x="370.0" y="435" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#B76718">Then split train / validation / test</text>
+<text x="72" y="494" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#132B3A">Held-out codes already shaped the vocabulary.</text>
+<rect x="716" y="233" width="676" height="293" rx="18" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<rect x="716" y="233" width="6" height="293" rx="3" fill="#007F7A"/>
+<text x="740" y="273" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" text-anchor="start" fill="#007F7A">PyHealth 2.1 pattern</text>
+<rect x="740" y="303" width="628" height="48" rx="10" fill="#E5F4F1"/>
+<text x="1054.0" y="334" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#007F7A">PatientSplit → separate patients</text>
+<line x1="1053" y1="359" x2="1053" y2="391" stroke="#007F7A" stroke-width="2.5"/>
+<polygon points="1053,391 1047.7263190753538,381.3465918192059 1058.2736809246462,381.3465918192059" fill="#007F7A"/>
+<rect x="740" y="404" width="628" height="48" rx="10" fill="#E5F4F1"/>
+<text x="1054.0" y="435" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#007F7A">Fit on train → transform every part</text>
+<text x="740" y="494" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#132B3A">A code unseen in training becomes &lt;unk&gt;.</text>
+<rect x="48" y="555" width="826" height="241" rx="18" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<rect x="48" y="555" width="6" height="241" rx="3" fill="#2864C5"/>
+<text x="72" y="595" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" text-anchor="start" fill="#2864C5">Optional calibration split</text>
+<rect x="72" y="627" width="464" height="68" rx="8" fill="#E5F4F1"/>
+<text x="304.0" y="654" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" text-anchor="middle" fill="#007F7A">Train</text>
+<text x="304.0" y="680" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" text-anchor="middle" fill="#007F7A">60%</text>
+<rect x="540" y="627" width="74" height="68" rx="8" fill="#EAF1FC"/>
+<text x="577.0" y="654" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" text-anchor="middle" fill="#2864C5">Val</text>
+<text x="577.0" y="680" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" text-anchor="middle" fill="#2864C5">10%</text>
+<rect x="618" y="627" width="74" height="68" rx="8" fill="#F1ECFA"/>
+<text x="655.0" y="654" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" text-anchor="middle" fill="#7553B7">Cal</text>
+<text x="655.0" y="680" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" text-anchor="middle" fill="#7553B7">10%</text>
+<rect x="696" y="627" width="152" height="68" rx="8" fill="#FFF2DF"/>
+<text x="772.0" y="654" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" text-anchor="middle" fill="#B76718">Test</text>
+<text x="772.0" y="680" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" text-anchor="middle" fill="#B76718">20%</text>
+<text x="72" y="739" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#526977">Train learns • validation selects • calibration adjusts</text>
+<text x="72" y="770" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#526977">Test patients measure final performance.</text>
+<rect x="898" y="555" width="494" height="241" rx="18" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<rect x="898" y="555" width="6" height="241" rx="3" fill="#7553B7"/>
+<text x="922" y="595" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" text-anchor="start" fill="#7553B7">Seed the experiment</text>
+<text x="922" y="638" font-family="Menlo, monospace" font-size="22" font-weight="400" text-anchor="start" fill="#7553B7">torch.manual_seed(0)</text>
+<text x="922" y="687" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">Repeat with the same setup.</text>
+<text x="922" y="719" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">Also seed the split and loader; report</text>
+<text x="922" y="751" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">variation across seeds.</text>
+</svg>

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="940" viewBox="0 0 1440 940" role="img" aria-labelledby="title desc">
+<title id="title">Compare model assumptions on the same task</title><desc id="desc">Heart-failure phenotyping: drugs + procedures from one admission → a 428.x diagnosis label. Reuse the same patient split and evaluation; compare score, uncertainty, and training cost.</desc>
+<rect x="0" y="0" width="1440" height="940" rx="0" fill="#F5F8FA"/>
+<rect x="0" y="0" width="12" height="940" rx="0" fill="#7553B7"/>
+<text x="48" y="49" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" text-anchor="start" fill="#132B3A">PyHealth</text>
+<text x="1392" y="47" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700" text-anchor="end" fill="#7553B7">TUTORIAL 04</text>
+<text x="48" y="116" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="700" text-anchor="start" fill="#132B3A">Compare model assumptions on the same task</text>
+<text x="48" y="158" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400" text-anchor="start" fill="#526977">Heart-failure phenotyping: drugs + procedures from one admission → a 428.x diagnosis label.</text>
+<line x1="48" y1="201" x2="1392" y2="201" stroke="#D7E2E8" stroke-width="2"/>
+<rect x="48" y="823" width="1344" height="66" rx="14" fill="#F1ECFA"/>
+<text x="68" y="862" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" text-anchor="start" fill="#7553B7">Reuse the same patient split and evaluation; compare score, uncertainty, and training cost.</text>
+<text x="48" y="920" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" text-anchor="start" fill="#526977">PYHEALTH 2.1  /  COLAB VISUAL GUIDE</text>
+<text x="1392" y="920" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" text-anchor="end" fill="#526977">Concepts and toy examples • no measured model results</text>
+<rect x="48" y="233" width="1344" height="74" rx="14" fill="#EAF1FC"/>
+<text x="720" y="279" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" text-anchor="middle" fill="#2864C5">One task  →  one PatientSplit  →  one fitted vocabulary  →  shared validation and test patients</text>
+<rect x="48" y="338" width="424" height="300" rx="18" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<rect x="48" y="338" width="6" height="300" rx="3" fill="#007F7A"/>
+<text x="72" y="378" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" text-anchor="start" fill="#007F7A">Pooled codes</text>
+<text x="72" y="420" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" text-anchor="start" fill="#132B3A">LogisticRegression / MLP</text>
+<text x="72" y="495" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">Pool code embeddings;</text>
+<text x="72" y="527" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">order is discarded.</text>
+<text x="72" y="599" font-family="Menlo, monospace" font-size="20" font-weight="400" text-anchor="start" fill="#007F7A">Trainer.train(...)</text>
+<rect x="508" y="338" width="424" height="300" rx="18" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<rect x="508" y="338" width="6" height="300" rx="3" fill="#2864C5"/>
+<text x="532" y="378" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" text-anchor="start" fill="#2864C5">Sequences</text>
+<text x="532" y="420" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" text-anchor="start" fill="#132B3A">RNN / Transformer / RETAIN</text>
+<text x="532" y="495" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">Model ordered code inputs;</text>
+<text x="532" y="527" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">check what their order means.</text>
+<text x="532" y="599" font-family="Menlo, monospace" font-size="20" font-weight="400" text-anchor="start" fill="#2864C5">Trainer.train(...)</text>
+<rect x="968" y="338" width="424" height="300" rx="18" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<rect x="968" y="338" width="6" height="300" rx="3" fill="#7553B7"/>
+<text x="992" y="378" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" text-anchor="start" fill="#7553B7">Code counts</text>
+<text x="992" y="420" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" text-anchor="start" fill="#132B3A">XGBoostModel</text>
+<text x="992" y="495" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">One column per code;</text>
+<text x="992" y="527" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">repeated codes add to counts.</text>
+<text x="992" y="599" font-family="Menlo, monospace" font-size="20" font-weight="400" text-anchor="start" fill="#7553B7">model.fit(train, val)</text>
+<rect x="48" y="667" width="1344" height="129" rx="18" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<rect x="48" y="667" width="6" height="129" rx="3" fill="#B76718"/>
+<text x="72" y="707" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" text-anchor="start" fill="#B76718">A fair comparison includes cost</text>
+<text x="72" y="746" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">PR-AUC vs prevalence • ROC-AUC • paired intervals • multiple seeds • seconds and model size</text>
+</svg>
