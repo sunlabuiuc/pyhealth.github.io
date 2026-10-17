@@ -63,5 +63,18 @@
     "read_time_min": 3,
     "file": "text.md",
     "url": "/blogs/2026-10-19-your-paper-is-not-your-impact/"
+  },
+  {
+    "id": "2026-10-26-make-your-work-easy-to-build-on",
+    "title": "Make Your Work the Easy One to Build On",
+    "author": "Jimeng Sun & PyHealth Team",
+    "preview": "Reproducibility is not a chore for reviewers. It is how your method earns its next hundred users, and PyHealth makes it the default.",
+    "date": "2026-10-26",
+    "date_display": "Oct 26, 2026",
+    "last_updated": "2026-10-26T12:00:00",
+    "word_count": 513,
+    "read_time_min": 3,
+    "file": "text.md",
+    "url": "/blogs/2026-10-26-make-your-work-easy-to-build-on/"
   }
 ]
