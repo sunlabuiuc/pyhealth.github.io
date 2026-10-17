@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PyHealth Tutorials</title>
+  <meta name="description" content="Nine Colab notebooks that teach PyHealth 2.1, from a 15-minute quickstart to calibration, interpretability, clinical text and contributing.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    /* ── Hero ── */
+    .ph-hero {
+      background: linear-gradient(140deg, #1c2b3a 0%, #28425e 60%, #1e3348 100%);
+      border-radius: 16px;
+      padding: 3rem 2.4rem 2.8rem;
+      color: white;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.07);
+      box-shadow: 0 20px 48px rgba(22,33,31,0.18);
+      animation: rise 420ms ease;
+    }
+    .ph-hero::before {
+      content: "";
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 340px; height: 340px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,95,38,0.22) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .ph-hero::after {
+      content: "";
+      position: absolute;
+      bottom: -100px; left: -60px;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(90,160,230,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .ph-eyebrow {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(201,95,38,0.9);
+      margin: 0 0 0.6rem;
+    }
+    .ph-hero h1 {
+      color: white;
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      margin: 0 0 0.5rem;
+      letter-spacing: -0.01em;
+    }
+    .ph-tagline {
+      color: rgba(255,255,255,0.72);
+      font-size: 1.05rem;
+      line-height: 1.55;
+      max-width: 620px;
+      margin: 0 0 1.8rem;
+    }
+    .ph-cta-row {
+      display: flex;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+    .ph-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      border-radius: 10px;
+      padding: 0.64rem 1.15rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      font-family: "IBM Plex Sans", sans-serif;
+      transition: filter 0.15s, transform 0.1s;
+    }
+    .ph-btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+    .ph-btn.primary {
+      background: var(--accent);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 4px 12px rgba(201,95,38,0.35);
+    }
+    .ph-btn.outline {
+      background: rgba(255,255,255,0.09);
+      color: rgba(255,255,255,0.9);
+      border: 1px solid rgba(255,255,255,0.22);
+      backdrop-filter: blur(6px);
+    }
+
+    /* ── Back nav ── */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.94rem;
+      padding: 0.35rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: color 0.12s, background 0.12s, border-color 0.12s;
+    }
+    .back-link:hover {
+      color: var(--accent);
+      border-color: var(--line);
+      background: var(--paper);
+    }
+
+    /* ── Section layout ── */
+    .research-section {
+      margin-top: 2.5rem;
+      animation: rise 500ms ease;
+    }
+    .section-h2 {
+      font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+      margin: 0 0 0.35rem;
+    }
+    .section-sub {
+      color: var(--muted);
+      font-size: 1rem;
+      margin: 0 0 1.4rem;
+      line-height: 1.5;
+    }
+
+    /* ── Core tenets ── */
+    .tenets-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.85rem;
+    }
+    .tenet-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1.6rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      transition: border-color 0.15s, box-shadow 0.15s, transform 0.1s;
+    }
+    .tenet-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 6px 20px rgba(201,95,38,0.09);
+      transform: translateY(-2px);
+    }
+    .tenet-icon {
+      font-size: 1.5rem;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .tenet-card h3 {
+      font-size: 1.05rem;
+      margin: 0;
+      color: var(--ink);
+    }
+    .tenet-card p {
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.45;
+    }
+
+    /* ── Terms table ── */
+    .terms-table-wrap {
+      overflow-x: auto;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      box-shadow: 0 4px 16px rgba(22,33,31,0.06);
+    }
+    .terms-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--paper);
+      font-size: 0.97rem;
+    }
+    .terms-table thead tr {
+      background: var(--bg);
+      border-bottom: 1px solid var(--line);
+    }
+    .terms-table th {
+      text-align: left;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+      padding: 0.85rem 1.4rem;
+    }
+    .terms-table td {
+      padding: 1rem 1.4rem;
+      border-bottom: 1px solid var(--line);
+      vertical-align: middle;
+    }
+    .terms-table tbody tr:last-child td { border-bottom: none; }
+    .terms-table tbody tr:hover td {
+      background: color-mix(in srgb, var(--accent-soft) 30%, transparent);
+    }
+    .terms-table a { color: var(--accent); text-decoration: none; }
+    .terms-table a:hover { text-decoration: underline; }
+    .term-name { font-weight: 600; color: var(--ink); }
+
+    /* ── Filter row ── */
+    .filter-row {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.2rem;
+      align-items: center;
+    }
+    .filter-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+    .filter-pills {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+    .filter-pill {
+      border: 1px solid var(--line);
+      background: var(--paper);
+      color: var(--muted);
+      border-radius: 100px;
+      padding: 0.3rem 0.85rem;
+      font-size: 0.84rem;
+      font-weight: 500;
+      font-family: "IBM Plex Sans", sans-serif;
+      cursor: pointer;
+      transition: border-color 0.12s, background 0.12s, color 0.12s;
+    }
+    .filter-pill:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .filter-pill.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+    .filter-divider {
+      width: 1px;
+      height: 18px;
+      background: var(--line);
+      margin: 0 0.2rem;
+    }
+
+    /* ── Paper cards ── */
+    .papers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+    .paper-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1.5rem 1.5rem 1.3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      transition: border-color 0.15s, box-shadow 0.15s, transform 0.1s;
+      animation: rise 500ms ease;
+    }
+    .paper-card:not(.hidden):hover {
+      border-color: var(--accent);
+      box-shadow: 0 6px 20px rgba(201,95,38,0.1);
+      transform: translateY(-2px);
+    }
+    .paper-card.hidden { display: none; }
+    .badge-row {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.15rem;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.18rem 0.55rem;
+      border-radius: 100px;
+      letter-spacing: 0.03em;
+    }
+    .badge-year {
+      background: color-mix(in srgb, var(--accent) 12%, transparent);
+      color: var(--accent);
+      border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+    }
+    .badge-venue {
+      background: var(--bg);
+      color: var(--muted);
+      border: 1px solid var(--line);
+    }
+    .badge-review {
+      background: color-mix(in srgb, #a16207 10%, transparent);
+      color: #a16207;
+      border: 1px solid color-mix(in srgb, #a16207 25%, transparent);
+    }
+    .paper-title {
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.4;
+      margin: 0;
+    }
+    .paper-authors {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.4;
+    }
+    .paper-actions {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: auto;
+      padding-top: 0.5rem;
+    }
+    .paper-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      text-decoration: none;
+      font-size: 0.84rem;
+      font-weight: 500;
+      font-family: "IBM Plex Sans", sans-serif;
+      border-radius: 8px;
+      padding: 0.38rem 0.75rem;
+      transition: filter 0.12s, transform 0.1s;
+    }
+    .paper-btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+    .paper-btn.read {
+      background: var(--accent);
+      color: white;
+      border: 1px solid rgba(201,95,38,0.2);
+      box-shadow: 0 2px 8px rgba(201,95,38,0.25);
+    }
+    .paper-btn.details {
+      background: var(--bg);
+      color: var(--muted);
+      border: 1px solid var(--line);
+    }
+    .paper-btn.details:hover { color: var(--accent); border-color: var(--accent); }
+    .no-results {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--muted);
+      font-size: 0.97rem;
+    }
+
+    /* ── Apply steps ── */
+    .apply-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .apply-step {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1.6rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      transition: border-color 0.15s, box-shadow 0.15s, transform 0.1s;
+      animation: rise 560ms ease;
+    }
+    .apply-step:hover {
+      border-color: var(--accent);
+      box-shadow: 0 6px 20px rgba(201,95,38,0.09);
+      transform: translateY(-2px);
+    }
+    .step-num {
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.1rem;
+      opacity: 0.85;
+    }
+    .apply-step h3 {
+      font-size: 1.05rem;
+      margin: 0;
+      color: var(--ink);
+    }
+    .apply-step p {
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.45;
+    }
+    .apply-step-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      color: var(--accent);
+      font-size: 0.88rem;
+      font-weight: 500;
+      text-decoration: none;
+      margin-top: auto;
+      padding-top: 0.5rem;
+    }
+    .apply-step-link:hover { text-decoration: underline; }
+
+    /* ── Callout banner ── */
+    .apply-callout {
+      margin-top: 2rem;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1.5rem 1.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .apply-callout p {
+      margin: 0.2rem 0 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .apply-callout h3 { margin: 0; font-size: 1.1rem; }
+    .callout-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      text-decoration: none;
+      background: var(--accent);
+      color: white;
+      border-radius: 10px;
+      padding: 0.6rem 1.1rem;
+      font-size: 0.93rem;
+      font-weight: 500;
+      font-family: "IBM Plex Sans", sans-serif;
+      white-space: nowrap;
+      transition: filter 0.15s, transform 0.1s;
+    }
+    .callout-btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+
+    @media (max-width: 600px) {
+      .papers-grid { grid-template-columns: 1fr; }
+      .apply-steps { grid-template-columns: 1fr; }
+      .tenets-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 380px) {
+      .tenets-grid { grid-template-columns: 1fr; }
+    }
+
+    .tut-list { display: grid; gap: 0.9rem; margin-top: 1rem; }
+    .tut-card { display: grid; grid-template-columns: auto 1fr auto; gap: 1rem 1.2rem; align-items: start; background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 1.1rem 1.2rem; }
+    .tut-card:hover { border-color: var(--accent); }
+    .tut-num { font-family: "Source Serif 4", Georgia, serif; font-size: 1.9rem; font-weight: 600; color: var(--accent); line-height: 1; min-width: 2.2rem; }
+    .tut-body { min-width: 0; }
+    .tut-body h3 { margin: 0 0 0.35rem; font-size: 1.05rem; color: var(--ink); }
+    .tut-body ul { margin: 0; padding-left: 1.1rem; color: var(--muted); font-size: 0.9rem; line-height: 1.55; }
+    .tut-meta { margin: 0.45rem 0 0; font-size: 0.82rem; color: var(--muted); }
+    .tut-btn { white-space: nowrap; align-self: center; }
+    .tut-note { color: var(--muted); font-size: 0.9rem; max-width: 720px; }
+    .tut-note code { background: var(--bg); border: 1px solid var(--line); border-radius: 5px; padding: 0.05rem 0.35rem; font-size: 0.85rem; }
+    @media (max-width: 640px) { .tut-card { grid-template-columns: auto 1fr; } .tut-btn { grid-column: 1 / -1; justify-self: start; } }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="site-wrap header-inner">
+      <nav class="nav" aria-label="Main navigation">
+        <a href="index.html" class="back-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          PyHealth
+        </a>
+      </nav>
+      <span style="color: var(--muted); font-size: 0.88rem; font-weight: 500;">Tutorials</span>
+    </div>
+  </header>
+
+  <main class="site-wrap" style="padding: 2.2rem 0 3.5rem;">
+
+    <section class="ph-hero">
+      <p class="ph-eyebrow">PyHealth Tutorials</p>
+      <h1>Learn PyHealth in Colab</h1>
+      <p class="ph-tagline">Nine hands-on notebooks for PyHealth 2.1, from your first clinical prediction model to calibration, interpretability, clinical text and contributing. Every notebook runs on a free Colab runtime with synthetic or public data, so no credentials are needed.</p>
+      <div class="ph-cta-row">
+        <a href="https://colab.research.google.com/drive/1KXloapcMeYubw4dT_fPJKTY1pepH2vvl" class="ph-btn primary" target="_blank" rel="noopener">Start with the Quickstart →</a>
+        <a href="https://pyhealth.readthedocs.io/en/latest/" class="ph-btn outline" target="_blank" rel="noopener">Documentation</a>
+      </div>
+    </section>
+
+    <section class="research-section">
+      <h2 class="section-h2">The series</h2>
+      <p class="tut-note">Open a notebook and choose <strong>Runtime &gt; Run all</strong>. The first cell installs <code>pyhealth==2.1.0</code>. Each tutorial lists what it assumes, so you can also jump straight to the topic you need. Tested end to end on Colab with PyHealth 2.1.0.</p>
+      <div class="tut-list">
+      <article class="tut-card">
+        <div class="tut-num">00</div>
+        <div class="tut-body">
+          <h3>Quickstart: your first clinical prediction model</h3>
+          <ul><li>The five steps every PyHealth project follows: dataset, task, split, model, evaluation</li><li>How to predict in-hospital mortality from diagnosis, procedure and drug codes</li><li>How to read the results, and why PR-AUC matters for rare outcomes</li></ul>
+          <p class="tut-meta">about 15 minutes on a free Colab CPU runtime · Before this: nothing. This is the place to start</p>
+        </div>
+        <a class="ph-btn primary tut-btn" href="https://colab.research.google.com/drive/1KXloapcMeYubw4dT_fPJKTY1pepH2vvl" target="_blank" rel="noopener">Open in Colab →</a>
+      </article>
+      <article class="tut-card">
+        <div class="tut-num">01</div>
+        <div class="tut-body">
+          <h3>Datasets: patients, events and your own data</h3>
+          <ul><li>The difference between a dataset and a task, and why PyHealth keeps them apart</li><li>How to explore patients and their events, filter by type, time or admission</li><li>What the YAML config does, and how caching works</li><li>How to load your own CSV files with a short config, no new class needed</li></ul>
+          <p class="tut-meta">about 20 minutes on a free Colab CPU runtime · Before this: Tutorial 00 (Quickstart) is helpful but not required</p>
+        </div>
+        <a class="ph-btn primary tut-btn" href="https://colab.research.google.com/drive/1azBqFS_vrJxoYMxP4M_dAIDcrU92uNDv" target="_blank" rel="noopener">Open in Colab →</a>
+      </article>
+      <article class="tut-card">
+        <div class="tut-num">02</div>
+        <div class="tut-body">
+          <h3>Tasks and processors: from patients to model-ready samples</h3>
+          <ul><li>What a task is: a function from one patient to a list of samples</li><li>How input and output schemas pick a processor for each field</li><li>What each common processor produces (sequence, nested sequence, multi-hot, tensor, labels)</li><li>How to write your own task, filter patients early, and use it with any model</li></ul>
+          <p class="tut-meta">about 25 minutes on a free Colab CPU runtime · Before this: Tutorial 01 (Datasets)</p>
+        </div>
+        <a class="ph-btn primary tut-btn" href="https://colab.research.google.com/drive/1ndi6HGnC_l_1s23LUmzcICPgfc-cJn2N" target="_blank" rel="noopener">Open in Colab →</a>
+      </article>
+      <article class="tut-card">
+        <div class="tut-num">03</div>
+        <div class="tut-body">
+          <h3>Training and evaluating models properly</h3>
+          <ul><li>How to split so that nothing about the test patients leaks into training</li><li>How to control training: epochs, early stopping, learning rate, checkpoints</li><li>How to handle a rare outcome with a positive-class weight, and what it costs</li><li>How to report discrimination and calibration with patient-level confidence intervals</li></ul>
+          <p class="tut-meta">about 25 minutes on a free Colab CPU runtime · Before this: Tutorials 00 and 02</p>
+        </div>
+        <a class="ph-btn primary tut-btn" href="https://colab.research.google.com/drive/1dCOzL7JVmxgXqNw4wLny3L3z_L0ivyXi" target="_blank" rel="noopener">Open in Colab →</a>
+      </article>
+      <article class="tut-card">
+        <div class="tut-num">04</div>
+        <div class="tut-body">
+          <h3>Choosing a model: from logistic regression to XGBoost</h3>
+          <ul><li>What the main PyHealth models assume about the data, and when to pick each</li><li>How to compare several models fairly on the same patients</li><li>How to add a gradient-boosted tree baseline (XGBoost) to a PyHealth benchmark</li></ul>
+          <p class="tut-meta">about 15 minutes on a free Colab CPU runtime · Before this: Tutorial 03. A GPU runtime adds the sequence models</p>
+        </div>
+        <a class="ph-btn primary tut-btn" href="https://colab.research.google.com/drive/1hHJ1Ll6lQIq95EnRzn3jC9V2XeP-0lU2" target="_blank" rel="noopener">Open in Colab →</a>
+      </article>
+      <article class="tut-card">
+        <div class="tut-num">05</div>
+        <div class="tut-body">
+          <h3>Interpreting predictions</h3>
+          <ul><li>Which inputs drive a model overall (global importance) and for one patient (local explanation)</li><li>Exact TreeSHAP for XGBoost, and Integrated Gradients for neural models</li><li>How to check whether an explanation is faithful to the model, not just plausible</li></ul>
+          <p class="tut-meta">about 20 minutes on a free Colab CPU runtime · Before this: Tutorial 04 (we reuse its heart-failure task)</p>
+        </div>
+        <a class="ph-btn primary tut-btn" href="https://colab.research.google.com/drive/1sS0kvQ51NUue_f4p1mFlsKV6pvhdc_AD" target="_blank" rel="noopener">Open in Colab →</a>
+      </article>
+      <article class="tut-card">
+        <div class="tut-num">06</div>
+        <div class="tut-body">
+          <h3>Medical codes: lookups, mappings and groupers</h3>
+          <ul><li>What the common code systems are (ICD-9, ICD-10, CCS, ATC, NDC) and how they relate</li><li>How to look up a code&#x27;s name, parents and children</li><li>How to translate between ICD-9 and ICD-10 and group codes into broader categories</li><li>How to use a grouping inside a task to shrink the vocabulary a model must learn</li></ul>
+          <p class="tut-meta">about 15 minutes on a free Colab CPU runtime · Before this: Tutorial 02 (processors and vocabularies)</p>
+        </div>
+        <a class="ph-btn primary tut-btn" href="https://colab.research.google.com/drive/1P_yEVCeza0SRtvI800fOdfLlhEwg1Wsh" target="_blank" rel="noopener">Open in Colab →</a>
+      </article>
+      <article class="tut-card">
+        <div class="tut-num">07</div>
+        <div class="tut-body">
+          <h3>Clinical text: classification and medical coding</h3>
+          <ul><li>How to fine-tune a Hugging Face language model on clinical notes with PyHealth</li><li>Multiclass text classification: which specialty wrote this report?</li><li>Multilabel medical coding: which ICD codes does this note support?</li><li>Why a simple TF-IDF baseline belongs next to every language model</li></ul>
+          <p class="tut-meta">about 25 minutes on a free Colab CPU runtime · Before this: Tutorials 00 and 02. A GPU runtime (Runtime &gt; Change runtime type &gt; T4 GPU) makes training much faster</p>
+        </div>
+        <a class="ph-btn primary tut-btn" href="https://colab.research.google.com/drive/1Q9TrbXxitZ8Cr1R9G2XyWTolooQYq-lg" target="_blank" rel="noopener">Open in Colab →</a>
+      </article>
+      <article class="tut-card">
+        <div class="tut-num">08</div>
+        <div class="tut-body">
+          <h3>Contributing a dataset or task to PyHealth</h3>
+          <ul><li>Whether your idea is a dataset, a task, or both</li><li>How a dataset class is built: config, default tables, per-table preprocessing, a default task</li><li>How to handle data that is not a table (files on disk)</li><li>How to test it with tiny synthetic data, and what a PR needs to pass review</li></ul>
+          <p class="tut-meta">about 25 minutes on a free Colab CPU runtime · Before this: Tutorials 01 and 02</p>
+        </div>
+        <a class="ph-btn primary tut-btn" href="https://colab.research.google.com/drive/1tuiooZgK-rR50NdCG9Ylq5HNgqSUBwvE" target="_blank" rel="noopener">Open in Colab →</a>
+      </article>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-wrap" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+      <span>Copyright <span id="year"></span> John Wu</span>
+      <a href="index.html" style="color:var(--accent); text-decoration:none; font-size:0.9rem;">← Back to PyHealth</a>
+    </div>
+  </footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
