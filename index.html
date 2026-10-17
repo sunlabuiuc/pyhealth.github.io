@@ -495,6 +495,44 @@
       padding: 1.5rem 2rem;
     }
 
+    /* ── Used by ── */
+    .used-by {
+      background: var(--bg);
+      border-top: 1px solid var(--line);
+      padding: 1.3rem 2rem 1.5rem;
+      text-align: center;
+    }
+    .used-by-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 0.7rem;
+    }
+    .used-by-names {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.35rem 1.1rem;
+      margin: 0 auto 0.8rem;
+      max-width: 860px;
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: 0.98rem;
+      color: var(--ink);
+    }
+    .used-by-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .used-by-link:hover { text-decoration: underline; }
+    @media (max-width: 600px) { .used-by { padding: 1.2rem 1rem 1.3rem; } }
+
     /* ── Linkable stat cards ── */
     a.stat-card {
       text-decoration: none;
@@ -730,6 +768,27 @@
       <a href="research.html" class="stat-card">
         <div class="stat-number">10+</div>
         <div class="stat-label">Active<br>Researchers</div>
+      </a>
+    </section>
+
+    <!-- ── Used by (from data/citations.json; institutions with a paper that uses PyHealth) ── -->
+    <section class="used-by">
+      <p class="used-by-label">Used in published research by teams at</p>
+      <p class="used-by-names">
+        <span>Stanford University</span><span>Harvard University</span><span>Cornell University</span>
+        <span>Weill Cornell Medicine</span><span>University of Pennsylvania</span><span>Duke University</span>
+        <span>Emory University</span><span>The Ohio State University</span><span>Georgia Tech</span>
+        <span>UNC Chapel Hill</span><span>Washington University in St. Louis</span>
+        <span>Cincinnati Children's Hospital</span><span>Oak Ridge National Laboratory</span>
+        <span>AstraZeneca</span><span>King's College London</span><span>Heidelberg University</span>
+        <span>Inserm</span><span>Tsinghua University</span><span>Peking University</span>
+        <span>Chinese Academy of Sciences</span><span>University of Hong Kong</span>
+        <span>Nanyang Technological University</span><span>Korea University</span>
+        <span>Ben-Gurion University of the Negev</span>
+      </p>
+      <a href="citations.html" class="used-by-link">
+        and 42 more institutions · 81 papers using or citing PyHealth
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
     </section>
 

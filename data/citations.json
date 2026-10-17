@@ -1,0 +1,2649 @@
+{
+ "topics": {
+  "ehr": "EHR predictive modeling (diagnosis, risk, outcomes)",
+  "drug": "Drug & medication recommendation, drug–drug interactions",
+  "llm": "LLMs, agents & knowledge-augmented reasoning",
+  "signal": "Biosignals & EEG",
+  "infra": "Toolkits, benchmarks, data standards & reproducibility",
+  "trust": "Synthetic data, fairness, robustness & uncertainty",
+  "other": "Other domains (trials, molecules, imaging)"
+ },
+ "papers": [
+  {
+   "id": 0,
+   "title": "A Language‐Guided Multimodal Foundation Model for Zero‐Shot and Multi‐Task Brain Signal Analysis",
+   "authors": "Mingzhi Chen, Yiyu Gui, Guibo Luo, Yuchao Yang",
+   "year": 2026,
+   "venue": "Advanced Intelligent Systems",
+   "url": "https://doi.org/10.1002/aisy.70486",
+   "topic": "signal",
+   "tier": "uses",
+   "self": false,
+   "quote": "The software stack includes Python 3.11.7, PyTorch 2.0.1 with CUDA 12.2,NumPy1.26.3,SciPy1.10.1,Transformers4.41.2,einops 0.8.0, and pyhealth 1.1.4.",
+   "orgs": [
+    "Chinese Institute for Brain Research",
+    "Peking University"
+   ]
+  },
+  {
+   "id": 1,
+   "title": "A Practical Guide Towards Interpreting Time-Series Deep Clinical Predictive Models: A Reproducibility Study",
+   "authors": "Yongda Fan, John Wu, Andrea Fitzpatrick, Naveen Baskaran, Jimeng Sun, Adam Cross",
+   "year": 2026,
+   "venue": "arXiv (Cornell University)",
+   "url": "https://doi.org/10.48550/arxiv.2603.24828",
+   "topic": "infra",
+   "tier": "uses",
+   "self": true,
+   "quote": "To support reproducibility and extensibility, we provide our implementations via PyHealth, a well-documented open-source framework: https://github.com/sunlabuiuc/PyHealth.",
+   "orgs": [
+    "University of Illinois Chicago",
+    "University of Illinois Urbana-Champaign"
+   ]
+  },
+  {
+   "id": 2,
+   "title": "Accelerating Reproducible Research in Synthetic EHR Generation",
+   "authors": "Jalen Jiang, Chu-Fan Gao, E. Rasmussen, Stephen Z. Xie, Ji-Meng Sun",
+   "year": 2026,
+   "venue": "arXiv.org",
+   "url": "https://doi.org/10.48550/arXiv.2606.06990",
+   "topic": "trust",
+   "tier": "uses",
+   "self": true,
+   "quote": "Our current implementation targets the generation of longitudinal ICD diagnosis codes–the most commonly studied modality in this literature–and is built on the community-maintained PyHealth library.",
+   "orgs": [
+    "University of Illinois Urbana-Champaign"
+   ]
+  },
+  {
+   "id": 3,
+   "title": "AgentEHR: Advancing Autonomous Clinical Decision-Making via Retrospective Summarization",
+   "authors": "Yusheng Liao, Chuan Xuan, Yutong Cai, Lina Yang, Zhe Chen, Yanfeng Wang, Yu Wang",
+   "year": 2026,
+   "venue": "arXiv (Cornell University)",
+   "url": "https://doi.org/10.48550/arxiv.2601.13918",
+   "topic": "llm",
+   "tier": "cites",
+   "self": false,
+   "quote": null,
+   "orgs": [
+    "Shanghai University",
+    "Shanghai University of Engineering Science"
+   ]
+  },
+  {
+   "id": 4,
+   "title": "An empirical study of machine learning robustness and scalability for imbalanced tabular clinical data in emergency and critical care",
+   "authors": "Yusuf Brima, Marcellin Atemkeng",
+   "year": 2026,
+   "venue": "Scientific Reports",
+   "url": "https://doi.org/10.1038/s41598-026-56413-9",
+   "topic": "ehr",
+   "tier": "uses",
+   "self": false,
+   "quote": "0 / ) , and PyHealth v1.1.6 ( https://pyhealth.readthedocs.io/).",
+   "orgs": [
+    "Osnabrück University",
+    "Rhodes University"
+   ]
+  },
+  {
+   "id": 5,
+   "title": "Bridging the Reproducibility Divide: Open Source Software's Role in Standardizing Healthcare AI",
+   "authors": "John Wu, Zhenbang Wu, Ji-Meng Sun",
+   "year": 2026,
+   "venue": "arXiv.org",
+   "url": "https://doi.org/10.48550/arXiv.2603.03367",
+   "topic": "infra",
+   "tier": "discusses",
+   "self": true,
+   "quote": "In AI4H, open-source software likePyHealth[75], MonAI [7],YAIB[70], RENOIR[2], MEDS [1] and open source initiatives like OHDSI [30] become increasingly valuable for reproducibility.",
+   "orgs": [
+    "University of Illinois Urbana-Champaign"
+   ]
+  },
+  {
+   "id": 6,
+   "title": "ChainCare: Clinical prediction via bidirectional monitoring event chains and multi-event time series modeling",
+   "authors": "Shifeng Mu, Qizheng Sun, Shihui Zhang",
+   "year": 2026,
+   "venue": "Information Processing & Management",
+   "url": "https://doi.org/10.1016/j.ipm.2026.104739",
+   "topic": "ehr",
+   "tier": "cites",
+   "self": false,
+   "quote": null,
+   "orgs": [
+    "Yanshan University"
+   ]
+  },
+  {
+   "id": 7,
+   "title": "Chronic Disease Prediction Using Temporal Convolutional and Attention-Guided LSTM Networks",
+   "authors": "T. Thamaraiselvan, K. Saravanan, S. Nithyanandam",
+   "year": 2026,
+   "venue": "Journal of Intelligent Decision Making and Information Science",
+   "url": "https://doi.org/10.59543/jidmis.v3.2228",
+   "topic": "ehr",
+   "tier": "discusses",
+   "self": false,
+   "quote": "A healthcare deep learning library, PyHealth, was developed to streamline the creation and validation of AI pipelines.",
+   "orgs": [
+    "PRIST University"
+   ]
+  },
+  {
+   "id": 8,
+   "title": "Comparing machine and deep learning models for pediatric anxiety classification using structured EHRs and area-based measures of health data",
+   "authors": "Eric Wonhee Lee, Sanghyun Choo, Dakotah Maguire, Abhishek Shivanna, Daniel Santel, Surbhi Bhatnagar, Ian Goethert, Kelly Patterson, Jay Gholap, Heidi A. Hanson, Mayanka Chandrashekar, Robert T. Ammerman, John P Pestian, Tracy A. Glauser, Cole Brokamp, Jeffrey Robert Strawn, Anuj Kapadia, Greeshma A. Agasthya",
+   "year": 2026,
+   "venue": "PLoS ONE",
+   "url": "https://doi.org/10.1371/journal.pone.0324673",
+   "topic": "ehr",
+   "tier": "uses",
+   "self": false,
+   "quote": null,
+   "orgs": [
+    "Cincinnati Children's Hospital Medical Center",
+    "Georgia Institute of Technology",
+    "Kumoh National Institute of Technology",
+    "Oak Ridge National Laboratory",
+    "University of Cincinnati"
+   ]
+  },
+  {
+   "id": 9,
+   "title": "Coverage-Aware Reasoning with Medical Tokens for Diagnosis Prediction",
+   "authors": "Kai-Song Zhang, Hao-Tian Fang, Jun-Meng Zhou, Hang Lv, Yu-Lan Pan, Yan-Chao Tan",
+   "year": 2026,
+   "venue": "arXiv (Cornell University)",
+   "url": "https://doi.org/10.48550/arxiv.2610.10641",
+   "topic": "ehr",
+   "tier": "uses",
+   "self": false,
+   "quote": "To ground the description, each prompt includes metadata from the PyHealth ICD-9-CM ontology (Yang et al., 2023a) and the 2015 Clinical Classifications Software (CCS) and Chronic Condition Indicator (CCI) released by the AHRQ Healthcare Cost and Utilization Project (Agency for Healthcare Research and Quality, 2015b;a).",
+   "orgs": [
+    "Beihang University",
+    "Fuzhou University",
+    "Shanghai Jiao Tong University"
+   ]
+  },
+  {
+   "id": 10,
+   "title": "EHRBench: An Automated and Reliable EHR-based Benchmark for Clinical Decision Making with LLMs",
+   "authors": "Yuzhang Xie, Keqi Han, Yunpeng Xiao, Hejie Cui, Guanchen Wu, Ziyang Zhang, Kai Shu, Jiaying Lu, Hu, Xiao, Carl Yang",
+   "year": 2026,
+   "venue": "arXiv (Cornell University)",
+   "url": "https://arxiv.org/abs/2605.30637",
+   "topic": "llm",
+   "tier": "uses",
+   "self": false,
+   "quote": "We mainly usePyHealth[ 113] to extract information from raw EHRs and perform preprocessing.",
+   "orgs": [
+    "Emory University",
+    "Stanford University"
+   ]
+  },
+  {
+   "id": 11,
+   "title": "Exploring Accurate and Transparent Domain Adaptation in Predictive Healthcare via Concept-Grounded Orthogonal Inference",
+   "authors": "Peng-Fei Hu, Chang Lu, Fei-Fan Liu, Yue Ning",
+   "year": 2026,
+   "venue": "arXiv.org",
+   "url": "https://doi.org/10.48550/arXiv.2602.12542",
+   "topic": "ehr",
+   "tier": "uses",
+   "self": false,
+   "quote": "Specifically, we follow the implementation adapted from PyHealth (Yang et al., 2023b), consisting of three layers with a hidden size of 64, 4 attention heads, and a dropout rate of 0.2.",
+   "orgs": [
+    "Stevens Institute of Technology",
+    "University of Massachusetts Amherst"
+   ]
+  },
+  {
+   "id": 14,
+   "title": "HazardFlow: Enhancing Health Status Representations via Score-based Energy Modeling",
+   "authors": "Qianyu Chen, Xin Li, Yonggang Zhang, Ming-Zhong Wang",
+   "year": 2026,
+   "venue": "Proceedings of the 32nd ACM SIGKDD Conference on Knowledge Discovery and Data Mining V.2",
+   "url": "https://doi.org/10.1145/3770855.3817616",
+   "topic": "ehr",
+   "tier": "cites",
+   "self": false,
+   "quote": null,
+   "orgs": [
+    "Beijing Institute of Technology",
+    "Jilin University",
+    "University of the Sunshine Coast"
+   ]
+  },
+  {
+   "id": 15,
+   "title": "HieraMed: A hierarchical representation framework for next-visit diagnosis prediction from longitudinal electronic health records",
+   "authors": "Feifei Ke, De-Li Hua, Kaichao Yang",
+   "year": 2026,
+   "venue": "MethodsX",
+   "url": "https://doi.org/10.1016/j.mex.2026.104087",
+   "topic": "ehr",
+   "tier": "cites",
+   "self": false,
+   "quote": null,
+   "orgs": [
+    "Wenzhou Medical University"
+   ]
+  },
+  {
+   "id": 16,
+   "title": "Hierarchy-aware graph neural network and inverse-variance reinforcement learning for drug recommendation",
+   "authors": "Wei Hou, Xian-Xing Liu, Lin-Xiao Li, Chunling Fu",
+   "year": 2026,
+   "venue": "Neurocomputing",
+   "url": "https://doi.org/10.1016/j.neucom.2026.132989",
+   "topic": "drug",
+   "tier": "cites",
+   "self": false,
+   "quote": null,
+   "orgs": [
+    "Henan University",
+    "Huzhou College"
+   ]
+  },
+  {
+   "id": 17,
+   "title": "LUNG-KGMM: Knowledge-Guided Multimodal Learning for Lung Cancer Incidence Prediction",
+   "authors": "Chun-Lei Yang, Shuyan Li, Zhong Cao",
+   "year": 2026,
+   "venue": "arXiv (Cornell University)",
+   "url": "https://doi.org/10.48550/arxiv.2608.14657",
+   "topic": "ehr",
+   "tier": "uses",
+   "self": false,
+   "quote": "Models were trained using the PyHealth Trainer and PyTorch.",
+   "orgs": [
+    "Chinese Academy of Medical Sciences & Peking Union Medical College",
+    "Heidelberg University",
+    "Tsinghua University"
+   ]
+  },
+  {
+   "id": 18,
+   "title": "M2G-LLM: Enhancing Clinical Prediction via Multimodal Graph Reasoning and LLM Context Injection",
+   "authors": "Inyoung Choi, Sukwon Yun, Jia-Yi Xin, Jie Peng, Tianlong Chen, Qi Long",
+   "year": 2026,
+   "venue": "arXiv (Cornell University)",
+   "url": "https://doi.org/10.48550/arxiv.2609.21164",
+   "topic": "ehr",
+   "tier": "uses",
+   "self": false,
+   "quote": "To extract these modalities, we use the PyHealth package, which automatically retrieves patient demographics, hospital admission records, and ICD-9 coded data for prescriptions and diagnoses [28].",
+   "orgs": [
+    "University of North Carolina at Chapel Hill",
+    "University of Pennsylvania"
+   ]
+  },
+  {
+   "id": 20,
+   "title": "Making Conformal Predictors Robust in Healthcare Settings: a Case Study on EEG Classification",
+   "authors": "Arjun Chatterjee, Sayeed Sajjad Razin, John Wu, Siddhartha Laghuvarapu, Jathurshan Pradeepkumar, Jimeng Sun",
+   "year": 2026,
+   "venue": "arXiv (Cornell University)",
+   "url": "https://doi.org/10.48550/arxiv.2602.19483",
+   "topic": "signal",
+   "tier": "uses",
+   "self": true,
+   "quote": "Our implementation is available via PyHealth, an open-source healthcare AI framework: https://github.com/sunlabuiuc/PyHealth.",
+   "orgs": [
+    "Bangladesh University of Engineering and Technology",
+    "University of Illinois Urbana-Champaign"
+   ]
+  },
+  {
+   "id": 21,
+   "title": "MiGHT-EHR: A Multi-task Graph Transformer for Heterogeneous Temporal Electronic Health Records",
+   "authors": "Anirudh Rayas, Yuan Wang, P. Turaga",
+   "year": 2026,
+   "venue": "arXiv (Cornell University)",
+   "url": "https://doi.org/10.48550/arxiv.2608.06430",
+   "topic": "ehr",
+   "tier": "uses",
+   "self": false,
+   "quote": "2019) for graph operations andPyHealth(Zhao et al. 2021)forEHRprocessingandbaselinebenchmarking.Models are trained for1000epochs using Adam with learning rates of3×10 −4 (MIMIC-III) and5×10 −4 (MIMIC-IV), weight decay1×10 −5, and dropout0.3.",
+   "orgs": [
+    "Arizona State University",
+    "University of South Carolina"
+   ]
+  },
+  {
+   "id": 24,
+   "title": "Personalised Drug Recommender Systems based on Electronic Health Records: Reproducibility and External Validity",
+   "authors": "Archie Carpenter, Dietmar Jannach",
+   "year": 2026,
+   "venue": "Proceedings of the 20th ACM Conference on Recommender Systems",
+   "url": "https://doi.org/10.1145/3773078.3831844",
+   "topic": "drug",
+   "tier": "cites",
+   "self": false,
+   "quote": null,
+   "orgs": [
+    "University of Klagenfurt"
+   ]
+  },
+  {
+   "id": 23,
+   "title": "PMVGD: Progressive multi-view graph distillation for health event prediction",
+   "authors": "Yu-Fei Tian, Han-Ji Qiu",
+   "year": 2026,
+   "venue": "Information Sciences",
+   "url": "https://doi.org/10.1016/j.ins.2026.124266",
+   "topic": "ehr",
+   "tier": "cites",
+   "self": false,
+   "quote": null,
+   "orgs": [
+    "University of Electronic Science and Technology of China"
+   ]
+  },
+  {
+   "id": 25,
+   "title": "RASPER: Reward-Aligned Summarization of Clinical Notes for EHR Outcome Prediction",
+   "authors": "Arya Hadizadeh Moghaddam, M. Kerdabadi, Chen Chen, Dong-Jie Wang, Zi-Jun Yao",
+   "year": 2026,
+   "venue": "arXiv (Cornell University)",
+   "url": "https://doi.org/10.48550/arxiv.2610.02979",
+   "topic": "llm",
+   "tier": "uses",
+   "self": false,
+   "quote": "RASPER is also fully compatible with the PyHealth framework (Yang et al., 2023), which we use for imple1Code:https://github.com/aryahm1375/RASPER.",
+   "orgs": [
+    "University of Kansas"
+   ]
+  },
+  {
+   "id": 26,
+   "title": "RePrompT: Recurrent Prompt Tuning for Integrating Structured EHR Encoders with Large Language Models",
+   "authors": "Arya Hadizadeh Moghaddam, Drew Ross, Mohsen Nayebi Kerdabadi, Dongjie Wang, Zijun Yao",
+   "year": 2026,
+   "venue": "arXiv (Cornell University)",
+   "url": "https://doi.org/10.18653/v1/2026.findings-acl.1334",
+   "topic": "llm",
+   "tier": "uses",
+   "self": false,
+   "quote": "In addition, RePrompT is fully compatible with the PyHealth framework (Yang et al., 2023), from which we use EHR baselines implementations.",
+   "orgs": [
+    "University of Kansas"
+   ]
+  },
+  {
+   "id": 27,
+   "title": "ReToP: Learning to Rewrite Electronic Health Records for Clinical Prediction",
+   "authors": "Jesús Lovón-Melgarejo, José G. Moreno, Christine Damase‐Michel, Lynda Tamine",
+   "year": 2026,
+   "venue": "arXiv (Cornell University)",
+   "url": "https://doi.org/10.1145/3773966.3777969",
+   "topic": "llm",
+   "tier": "uses",
+   "self": false,
+   "quote": "To implement the baselines, we use PyHealth 1.1.6 framework [53] when available.",
+   "orgs": [
+    "CERPOP, Toulouse",
+    "Inserm",
+    "Institut de Recherche en Informatique de Toulouse",
+    "Université de Toulouse"
+   ]
+  },
+  {
+   "id": 28,
+   "title": "Robust drug recommendation based on patient status awareness and unbiased prediction",
+   "authors": "Gang-Feng Ma, Xilin Wen, Xu-Hua Yang, Yanbo Zhou, Wei Huang, Xiao-Xin Li, Peng Jiang",
+   "year": 2026,
+   "venue": "Information Processing & Management",
+   "url": "https://doi.org/10.1016/j.ipm.2026.104698",
+   "topic": "drug",
+   "tier": "cites",
+   "self": false,
+   "quote": null,
+   "orgs": [
+    "Hangzhou Normal University",
+    "Zhejiang Normal University",
+    "Zhejiang University of Technology"
+   ]
+  },
+  {
+   "id": 29,
+   "title": "Self-supervised Hierarchical Representation for Medication Recommendation",
+   "authors": "Yuliang Liang, Yuting Liu, Yizhou Dang, Enneng Yang, Guibing Guo, Wei Cai, Jianzhe Zhao, X. Wang",
+   "year": 2026,
+   "venue": "Lecture notes in computer science",
+   "url": "https://doi.org/10.1007/978-981-95-4155-3_9",
+   "topic": "drug",
+   "tier": "uses",
+   "self": false,
+   "quote": "The implementation is based on the Pyhealth framework [22].",
+   "orgs": [
+    "Neusoft",
+    "Northeastern University (China)"
+   ]
+  },
+  {
+   "id": 30,
+   "title": "Temporal graph transformer for next visit diagnosis prediction on electronic health records",
+   "authors": "Hua Zhang, Yuxing Shi, Shumin Zhang, Zhongheng Jian, Minsi Liang, Shuhong Zhang, Junchao Liang, Qiang Li",
+   "year": 2026,
+   "venue": "Scientific Reports",
+   "url": "https://doi.org/10.1038/s41598-026-66714-8",
+   "topic": "ehr",
+   "tier": "uses",
+   "self": false,
+   "quote": "In the experiments, the PyHealth toolkit is used to complete the parsing, code mapping and structured processing of raw data, ensuring the consistency and reproducibility of data representation.",
+   "orgs": [
+    "Inner Mongolia University of Technology",
+    "Nanyang Technological University",
+    "Sichuan Polytechnic University"
+   ]
+  },
+  {
+   "id": 32,
+   "title": "Towards Unified Multi-task EEG Analysis with Low-Rank Adaptation",
+   "authors": "Sicheng Dai, Kai Chen, Hongwang Xiao, Shan Yu, Qiwei Ye",
+   "year": 2026,
+   "venue": "arXiv (Cornell University)",
+   "url": "https://doi.org/10.48550/arxiv.2604.25131",
+   "topic": "signal",
+   "tier": "uses",
+   "self": false,
+   "quote": "The implementation of all the metrics are based on PyHealth [34].",
+   "orgs": [
+    "Beijing Academy of Artificial Intelligence",
+    "Chinese Academy of Sciences",
+    "Institute of Automation, Chinese Academy of Sciences",
+    "Peking University"
+   ]
+  },
+  {
+   "id": 33,
+   "title": "Trajectory-Aware Clinical Risk Prediction via Severity-Grounded Knowledge Graphs and Retrieval-Augmented Generation",
+   "authors": "Kyunghoon Jeon, Youmin Ko, Woohwan Jung, Hyunjoon Kim",
+   "year": 2026,
+   "venue": "arXiv (Cornell University)",
+   "url": "https://arxiv.org/abs/2607.18270",
+   "topic": "ehr",
+   "tier": "uses",
+   "self": false,
+   "quote": "A.1 Errors in Implementation of Label Definition: We discovered critical errors in the preprocessing modules implemented in the PyHealth framework, which were used by several baselines such as KARE and GraphCare.",
+   "orgs": [
+    "Hanyang University",
+    "Korea University"
+   ]
+  },
+  {
+   "id": 35,
+   "title": "When Does Multimodal Learning Help in Healthcare? A Benchmark on EHR and Chest X-Ray Fusion",
+   "authors": "Kejing Yin, Hai-Ping Xu, Wenfang Yao, Chen Liu, Zijie Chen, Y. Cheung, William K. Cheung, Jing Qin",
+   "year": 2026,
+   "venue": "arXiv.org",
+   "url": "https://doi.org/10.48550/arXiv.2602.23614",
+   "topic": "infra",
+   "tier": "discusses",
+   "self": false,
+   "quote": "PyHealth (Yang et al., 2023) provided a comprehensive deep learning toolkit covering EHR, waveforms, text, and imaging; however, it does not provide standardized performance comparisons 2 A Benchmark on EHR and Chest X-Ray FusionA PREPRINT across models.",
+   "orgs": [
+    "Hong Kong Baptist University",
+    "Hong Kong Polytechnic University",
+    "Lingnan University"
+   ]
+  },
+  {
+   "id": 38,
+   "title": "Beyond Sequential Patterns: Rethinking Healthcare Predictions with Contextual Insights",
+   "authors": "Chuang Zhao, Hui Tang, Hong-Ke Zhao, Xiaomeng Li",
+   "year": 2025,
+   "venue": "ACM Trans. Inf. Syst.",
+   "url": "https://doi.org/10.1145/3733234",
+   "topic": "ehr",
+   "tier": "cites",
+   "self": false,
+   "quote": null,
+   "orgs": [
+    "Hong Kong University of Science and Technology",
+    "Tianjin University"
+   ]
+  },
+  {
+   "id": 39,
+   "title": "Democratizing Large Language Model-Based Graph Data Augmentation via Latent Knowledge Graphs",
+   "authors": "Yushi Feng, Tsai Hor Chan, Guosheng Yin, Lequan Yu",
+   "year": 2025,
+   "venue": "Neural Networks",
+   "url": "https://doi.org/10.48550/arXiv.2502.13555",
+   "topic": "llm",
+   "tier": "uses",
+   "self": false,
+   "quote": "15 We use the dgl library to perform graph-related operations, and pyhealth [77] to benchmark SOTA methods and perform EHR-related operations.",
+   "orgs": [
+    "University of Hong Kong"
+   ]
+  },
+  {
+   "id": 40,
+   "title": "Diffmv: A Unified Diffusion Framework for Healthcare Predictions with Random Missing Views and View Laziness",
+   "authors": "Chuang Zhao, Hui Tang, Hong-Ke Zhao, Xiaomeng Li",
+   "year": 2025,
+   "venue": "Knowledge Discovery and Data Mining",
+   "url": "https://doi.org/10.1145/3711896.3736908",
+   "topic": "ehr",
+   "tier": "cites",
+   "self": false,
+   "quote": null,
+   "orgs": [
+    "Hong Kong University of Science and Technology",
+    "Tianjin University"
+   ]
+  },
+  {
+   "id": 41,
+   "title": "Discovering Hierarchy-Grounded Domains with Adaptive Granularity for Clinical Domain Generalization",
+   "authors": "Peng-Fei Hu, Xiaoxue Han, Fei Wang, Yue Ning",
+   "year": 2025,
+   "venue": "arXiv (Cornell University)",
+   "url": "https://doi.org/10.1145/3799682.3840625",
+   "topic": "ehr",
+   "tier": "uses",
+   "self": false,
+   "quote": "We use the Adam optimizer for training, and all remaining hyperparameters follow the settings in PyHealth.",
+   "orgs": [
+    "Cornell University",
+    "Stevens Institute of Technology",
+    "Weill Cornell Medicine"
+   ]
+  },
+  {
+   "id": 42,
+   "title": "Dual-Pathway Fusion of EHRs and Knowledge Graphs for Predicting Unseen Drug-Drug Interactions",
+   "authors": "Franklin Lee, T. Ma",
+   "year": 2025,
+   "venue": "arXiv.org",
+   "url": "https://doi.org/10.48550/arXiv.2511.06662",
+   "topic": "drug",
+   "tier": "uses",
+   "self": false,
+   "quote": "Per-drug EHR embeddings are computed from∼200M de-identified TriNetX (learn more about TriNetX at trinetx.com) events via PyHealth.",
+   "orgs": [
+    "La Jolla Infectious Disease Institute",
+    "Stony Brook University"
+   ]
+  },
+  {
+   "id": 46,
+   "title": "Gram: A Large General EEG Model for Raw Data Classification and Restoration",
+   "authors": "Ziyi Li, Wei‐Long Zheng, Jiwen Xu, Yong Lu, Bao‐Liang Lu",
+   "year": 2025,
+   "venue": "IEEE Transactions on Affective Computing",
+   "url": "https://doi.org/10.1109/taffc.2025.3638592",
+   "topic": "signal",
+   "tier": "cites",
+   "self": false,
+   "quote": null,
+   "orgs": [
+    "Ruijin Hospital",
+    "Shanghai Jiao Tong University"
+   ]
+  },
+  {
+   "id": 47,
+   "title": "Grounded by Experience: Generative Healthcare Prediction Augmented with Hierarchical Agentic Retrieval",
+   "authors": "Chuang Zhao, Hui Tang, Hong-Ke Zhao, Xiao-Fang Zhou, Xiaomeng Li",
+   "year": 2025,
+   "venue": "arXiv.org",
+   "url": "https://doi.org/10.48550/arXiv.2511.13293",
+   "topic": "llm",
+   "tier": "cites",
+   "self": false,
+   "quote": null,
+   "orgs": []
+  },
+  {
+   "id": 50,
+   "title": "Improving medical machine learning models with generative balancing for equity and excellence",
+   "authors": "Brandon Theodorou, Benjamin P. Danek, V. Tummala, Shivam Kumar, B. Malin, Ji-Meng Sun",
+   "year": 2025,
+   "venue": "npj Digital Medicine",
+   "url": "https://doi.org/10.1038/s41746-025-01438-z",
+   "topic": "trust",
+   "tier": "uses",
+   "self": true,
+   "quote": "Code availability We make our code for all experiments available within the open-source machine learning package for healthcare PyHealth in the pyhealth.synthetic.halo module63.",
+   "orgs": [
+    "University of Illinois Urbana-Champaign",
+    "Vanderbilt University",
+    "Vanderbilt University Medical Center"
+   ]
+  },
+  {
+   "id": 51,
+   "title": "Incomplete Multi-View Drug Recommendation via Multi-Level Representation Learning and Curriculum Learning",
+   "authors": "Ning Liu, Yunsen Tang, Hai-Tao Yuan, Hong-Tao Lv, Lili Jiang, Zhen Li, Wei Zhang, Jianyong Wang",
+   "year": 2025,
+   "venue": "Knowledge Discovery and Data Mining",
+   "url": "https://doi.org/10.1145/3711896.3737236",
+   "topic": "drug",
+   "tier": "cites",
+   "self": false,
+   "quote": null,
+   "orgs": [
+    "East China Normal University",
+    "Nanyang Technological University",
+    "Qilu Hospital of Shandong University",
+    "Shandong University",
+    "Tsinghua University",
+    "Umeå University"
+   ]
+  },
+  {
+   "id": 52,
+   "title": "IntelliCare: Improving healthcare analysis with patient-level knowledge from large language models",
+   "authors": "Zhihao Yu, Yujie Jin, Yongxin Xu, Xiao-Yun Zhang, Ya-Sha Wang",
+   "year": 2025,
+   "venue": "Knowledge-Based Systems",
+   "url": "https://doi.org/10.1016/j.knosys.2025.114191",
+   "topic": "llm",
+   "tier": "cites",
+   "self": false,
+   "quote": null,
+   "orgs": [
+    "Peking University"
+   ]
+  },
+  {
+   "id": 53,
+   "title": "KAT-GNN: A Knowledge-Augmented Temporal Graph Neural Network for Risk Prediction in Electronic Health Records",
+   "authors": "Kun-Wei Lin, Yu-Chen Kuo, Hsin-Yao Wang, Yi-Ju Tseng",
+   "year": 2025,
+   "venue": "arXiv.org",
+   "url": "https://doi.org/10.48550/arXiv.2511.01249",
+   "topic": "ehr",
+   "tier": "uses",
+   "self": false,
+   "quote": "Baselines We compare our framework against several established models for clinical prediction, implemented using PyHealth [31]: •Transformer[32]: applies multi-head self-attention over visit sequences.",
+   "orgs": [
+    "National Yang Ming Chiao Tung University"
+   ]
+  },
+  {
+   "id": 56,
+   "title": "RHealth: A R Toolkit for Deep Learning in Healthcare",
+   "authors": "J. Song, Zhi-Xiang Ren, Zhenbang Wu, John Wu, Chaoqi Yang, Yinghao Zhu, Wen Tang, Ji-Meng Sun, Ewen M. Harrison, Liantao Ma, Jun-Yi Gao",
+   "year": 2025,
+   "venue": "IEEE International Conference on Bioinformatics and Biomedicine",
+   "url": "https://doi.org/10.1109/BIBM66473.2025.11356917",
+   "topic": "infra",
+   "tier": "cites",
+   "self": true,
+   "quote": null,
+   "orgs": [
+    "Peking University",
+    "Peking University Third Hospital",
+    "University of Edinburgh",
+    "University of Illinois Urbana-Champaign"
+   ]
+  },
+  {
+   "id": 57,
+   "title": "Self-Explaining Hypergraph Neural Networks for Diagnosis Prediction",
+   "authors": "Leisheng Yu, Yanxiao Cai, Minxing Zhang, Xia Hu",
+   "year": 2025,
+   "venue": "ACM Conference on Health, Inference, and Learning",
+   "url": "https://doi.org/10.48550/arXiv.2502.10689",
+   "topic": "ehr",
+   "tier": "uses",
+   "self": false,
+   "quote": "Baseline models are implemented using the original authors’ code or through PyHealth (Zhao et al., 2021).",
+   "orgs": [
+    "Duke University",
+    "Rice University"
+   ]
+  },
+  {
+   "id": 58,
+   "title": "StructCare: Dynamic graph structure learning for enhancing context-aware healthcare",
+   "authors": "Qizheng Sun, Xiang Li, C. Duan, Chen Li, Shun-Pan Liang",
+   "year": 2025,
+   "venue": "Expert systems with applications",
+   "url": "https://doi.org/10.1016/j.eswa.2025.129942",
+   "topic": "ehr",
+   "tier": "cites",
+   "self": false,
+   "quote": null,
+   "orgs": [
+    "Xinjiang University of Science and Technology",
+    "Yanshan University"
+   ]
+  },
+  {
+   "id": 59,
+   "title": "Structure-aware Hypergraph Transformer for Diagnosis Prediction in Electronic Health Records",
+   "authors": "Hai-Yan Wang, Ye Yuan",
+   "year": 2025,
+   "venue": "IEEE International Conference on Systems, Man and Cybernetics",
+   "url": "https://doi.org/10.1109/SMC58881.2025.11343341",
+   "topic": "ehr",
+   "tier": "cites",
+   "self": false,
+   "quote": null,
+   "orgs": [
+    "Southwest University"
+   ]
+  },
+  {
+   "id": 61,
+   "title": "Towards Unveiling Predictive Uncertainty Vulnerabilities in the Context of the Right to Be Forgotten",
+   "authors": "Wei Qian, Chenxu Zhao, Yangyi Li, Wenqian Ye, Mengdi Huai",
+   "year": 2025,
+   "venue": "International Conference on Information and Knowledge Management",
+   "url": "https://doi.org/10.1145/3746252.3760964",
+   "topic": "trust",
+   "tier": "cites",
+   "self": false,
+   "quote": null,
+   "orgs": [
+    "Iowa State University",
+    "University of Virginia"
+   ]
+  },
+  {
+   "id": 63,
+   "title": "Unveiling Discrete Clues: Superior Healthcare Predictions for Rare Diseases",
+   "authors": "Chuang Zhao, Hui Tang, Ji-Heng Zhang, Xiaomeng Li",
+   "year": 2025,
+   "venue": "The Web Conference",
+   "url": "https://doi.org/10.1145/3696410.3714831",
+   "topic": "ehr",
+   "tier": "cites",
+   "self": false,
+   "quote": null,
+   "orgs": [
+    "Hong Kong University of Science and Technology"
+   ]
+  },
+  {
+   "id": 66,
+   "title": "ACES: Automatic Cohort Extraction System for Event-Stream Datasets",
+   "authors": "Justin Xu, J. Gallifant, Alistair Johnson, Matthew B. A. McDermott",
+   "year": 2024,
+   "venue": "International Conference on Learning Representations",
+   "url": "https://doi.org/10.48550/arXiv.2406.19653",
+   "topic": "infra",
+   "tier": "discusses",
+   "self": false,
+   "quote": "Lastly, ACES can be used in conjunction with various health data management tools, such as TemporAI (Saveliev & van der Schaar, 2023), PyHealth (Yang et al., 2023), OMOP-learn (Kodialam et al., 2021), and DPM360 (Suryanarayanan et al., 2021).",
+   "orgs": [
+    "Harvard University",
+    "Massachusetts Institute of Technology",
+    "University of Oxford",
+    "University of Toronto"
+   ]
+  },
+  {
+   "id": 69,
+   "title": "CBraMod: A Criss-Cross Brain Foundation Model for EEG Decoding",
+   "authors": "Jiquan Wang, Sha Zhao, Zhiling Luo, Yangxuan Zhou, Haiteng Jiang, Shijian Li, Tao Li, Gang Pan",
+   "year": 2024,
+   "venue": "arXiv (Cornell University)",
+   "url": "https://doi.org/10.48550/arxiv.2412.07236",
+   "topic": "signal",
+   "tier": "cites",
+   "self": false,
+   "quote": null,
+   "orgs": [
+    "Alibaba Group",
+    "Center for Excellence in Brain Science and Intelligence Technology",
+    "Zhejiang Lab",
+    "Zhejiang University"
+   ]
+  },
+  {
+   "id": 70,
+   "title": "ClinicalBench: Can LLMs Beat Traditional ML Models in Clinical Prediction?",
+   "authors": "Canyu Chen, Jian Yu, Shan Chen, Che Liu, Zhongwei Wan, Shuang Zhou, Yuan Luo, Rui Zhang, D. Bitterman, Fei Wang, Kai Shu",
+   "year": 2024,
+   "venue": "Proceedings of the 32nd ACM SIGKDD Conference on Knowledge Discovery and Data Mining V.2",
+   "url": "https://doi.org/10.1145/3770855.3818831",
+   "topic": "llm",
+   "tier": "discusses",
+   "self": false,
+   "quote": "Following PyHealth [79], each task requires models to make predictions based on patients’ demographic features (e.g., gender and age) and clinical information including diagnosis, medical procedures, medications and drugs for the current visit.",
+   "orgs": [
+    "Boston Children's Hospital",
+    "Cornell University",
+    "Emory University",
+    "Harvard University",
+    "Imperial College London",
+    "Mass General Brigham",
+    "Massachusetts General Hospital",
+    "Northwestern University",
+    "The Ohio State University",
+    "The University of Texas at Austin",
+    "University of Minnesota",
+    "Weill Cornell Medicine"
+   ]
+  },
+  {
+   "id": 71,
+   "title": "Contrastive Learning on Medical Intents for Sequential Prescription Recommendation",
+   "authors": "Arya Hadizadeh Moghaddam, Mohsen Nayebi Kerdabadi, Mei Liu, Zijun Yao",
+   "year": 2024,
+   "venue": "ACM International Conference on Information and Knowledge Management (CIKM)",
+   "url": "https://doi.org/10.1145/3627673.3679836",
+   "topic": "drug",
+   "tier": "uses",
+   "self": false,
+   "quote": "Furthermore, ARCI is compatible with PyHealth [36] framework, and we employ its baseline implementations.",
+   "orgs": [
+    "University of Florida",
+    "University of Kansas"
+   ]
+  },
+  {
+   "id": 72,
+   "title": "Customized treatment plan using GenAI for cardiological diseases",
+   "authors": "Chirag Mittal, Saptaparna Debnath, S. Prabakeran",
+   "year": 2024,
+   "venue": "CRC Press eBooks",
+   "url": "https://doi.org/10.1201/9781003559092-15",
+   "topic": "llm",
+   "tier": "discusses",
+   "self": false,
+   "quote": "In [10], Yue Zhao,et al., introduce PyHealth, a Python toolbox addressing healthcare AI reproducibility and benchmarking.",
+   "orgs": [
+    "SRM Institute of Science and Technology"
+   ]
+  },
+  {
+   "id": 74,
+   "title": "EHRFlow : A Large Language Model-Driven Iterative Multi-Agent Electronic Health Record Data Analysis Workflow",
+   "authors": "Hao Wu, Yinghao Zhu, Zi-Xiang Wang, Xiao-Chen Zheng, Ling Wang, Ewen M. Harrison, JunyiGao, LiantaoMa",
+   "year": 2024,
+   "venue": "Edinburgh Research Explorer (University of Edinburgh)",
+   "url": "https://www.semanticscholar.org/paper/c7a512999b699d67f02c3644ac1eab22e3ac344c",
+   "topic": "llm",
+   "tier": "cites",
+   "self": false,
+   "quote": null,
+   "orgs": [
+    "Beihang University",
+    "ETH Zurich",
+    "Peking University",
+    "Peking University Third Hospital",
+    "Xuzhou Medical College"
+   ]
+  },
+  {
+   "id": 75,
+   "title": "Fairness-Optimized Synthetic EHR Generation for Arbitrary Downstream Predictive Tasks",
+   "authors": "Mirza Farhan Bin Tarek, Raphael Poulain, Rahmatollah Beheshti",
+   "year": 2024,
+   "venue": "arXiv (Cornell University)",
+   "url": "https://doi.org/10.48550/arxiv.2406.02510",
+   "topic": "trust",
+   "tier": "uses",
+   "self": false,
+   "quote": "All of our experiments were run using the built-in ML models, specifically a transformer-based model, from the PyHealth library.",
+   "orgs": [
+    "University of Delaware"
+   ]
+  },
+  {
+   "id": 77,
+   "title": "Graph learning with label attention and hyperbolic embedding for temporal event prediction in healthcare",
+   "authors": "Usman Naseem, Surendrabikram Thapa, Qi Zhang, Shoujin Wang, Junaid Rashid, Liang Hu, Amir Hussain",
+   "year": 2024,
+   "venue": "Neurocomputing",
+   "url": "https://doi.org/10.1016/j.neucom.2024.127736",
+   "topic": "ehr",
+   "tier": "uses",
+   "self": false,
+   "quote": "The Deepr implementation was done using pyhealth package.",
+   "orgs": [
+    "Edinburgh Napier University",
+    "James Cook University",
+    "Sejong University",
+    "Tongji University",
+    "University of Technology Sydney",
+    "Virginia Tech"
+   ]
+  },
+  {
+   "id": 76,
+   "title": "Graph Neural Networks for Heart Failure Prediction on an EHR-Based Patient Similarity Graph",
+   "authors": "Heloísa Oss Boll, Ali Amirahmadi, Amira Soliman, Stefan Byttner, Mariana Recamonde-Mendoza",
+   "year": 2024,
+   "venue": "Anais Estendidos do XXV Simpósio Brasileiro de Computação Aplicada à Saúde (SBCAS 2025)",
+   "url": "https://doi.org/10.5753/sbcas_estendido.2025.7013",
+   "topic": "ehr",
+   "tier": "uses",
+   "self": false,
+   "quote": "Patient data were processed using Pandas and the PyHealth library [30], which organized the EHR information into a structured dictionary format.",
+   "orgs": [
+    "Halmstad University",
+    "Universidade Federal do Rio Grande do Sul"
+   ]
+  },
+  {
+   "id": 79,
+   "title": "LAMRec: Label-aware Multi-view Drug Recommendation",
+   "authors": "Yunsen Tang, Ning Liu, Hai-Tao Yuan, Yonghe Yan, Lei Liu, Weixing Tan, Li-Zhen Cui",
+   "year": 2024,
+   "venue": "International Conference on Information and Knowledge Management",
+   "url": "https://doi.org/10.1145/3627673.3679656",
+   "topic": "drug",
+   "tier": "cites",
+   "self": false,
+   "quote": null,
+   "orgs": [
+    "Nanyang Technological University",
+    "Shandong University"
+   ]
+  },
+  {
+   "id": 81,
+   "title": "MedConceptsQA: Open source medical concepts QA benchmark",
+   "authors": "Ofir Ben Shoham, Nadav Rappoport",
+   "year": 2024,
+   "venue": "Computers in Biology and Medicine",
+   "url": "https://doi.org/10.1016/j.compbiomed.2024.109089",
+   "topic": "infra",
+   "tier": "uses",
+   "self": false,
+   "quote": "2.1 Difficulty Levels Creation We represent the medical code vocabulary hierarchy as an undirected graph using PyHealth [19].",
+   "orgs": [
+    "Ben-Gurion University of the Negev"
+   ]
+  },
+  {
+   "id": 80,
+   "title": "MEDS-Tab: Automated tabularization and baseline methods for MEDS datasets",
+   "authors": "Nassim Oufattole, Teya S. Bergamaschi, Aleksia Kolo, Hyewon Jeong, Hanna Gaggin, Collin M. Stultz, Matthew B. A. McDermott",
+   "year": 2024,
+   "venue": "arXiv.org",
+   "url": "https://doi.org/10.48550/arXiv.2411.00200",
+   "topic": "infra",
+   "tier": "discusses",
+   "self": false,
+   "quote": "In terms of toolkits that offer a wide range of machine learning architectures, PyHealth [57] provides access to over 30 state-of-the-art models, making it a robust choice for healthcare predictive modeling; however, its focus on providing a broad array of models rather than automated processes means that users may…",
+   "orgs": [
+    "Harvard University",
+    "Massachusetts General Hospital",
+    "Massachusetts Institute of Technology"
+   ]
+  },
+  {
+   "id": 90,
+   "title": "meds_reader: A fast and efficient EHR processing library",
+   "authors": "Ethan Steinberg, Michael Wornow, Suhana Bedi, Jason Fries, Matthew B. A. McDermott, Nigam Haresh Shah",
+   "year": 2024,
+   "venue": "arXiv (Cornell University)",
+   "url": "https://doi.org/10.48550/arxiv.2409.09095",
+   "topic": "infra",
+   "tier": "uses",
+   "self": false,
+   "quote": "The simple structure of MEDS makes it straightforward to write custom code for these ETLs, which we do as part of our benchmarks on PyHealth and MIMIC-IV Data Pipeline (see Appendix A).",
+   "orgs": [
+    "Harvard University",
+    "Stanford Health Care",
+    "Stanford Medicine",
+    "Stanford University"
+   ]
+  },
+  {
+   "id": 82,
+   "title": "Multi-task heterogeneous graph learning on electronic health records",
+   "authors": "Tsai Hor Chan, Guosheng Yin, K. Bae, Lequan Yu",
+   "year": 2024,
+   "venue": "Neural Networks",
+   "url": "https://doi.org/10.1016/j.neunet.2024.106644",
+   "topic": "ehr",
+   "tier": "uses",
+   "self": false,
+   "quote": "We use the dgl library to perform graph-related operations, and pyhealth [49] to benchmark SOTA methods and perform EHR-related operations.",
+   "orgs": [
+    "University of Hong Kong"
+   ]
+  },
+  {
+   "id": 83,
+   "title": "Predicting Future Disorders via Temporal Knowledge Graphs and Medical Ontologies",
+   "authors": "M. Postiglione, D. Bean, Zeljko Kraljevic, R. Dobson, Vincenzo Moscato",
+   "year": 2024,
+   "venue": "IEEE journal of biomedical and health informatics",
+   "url": "https://doi.org/10.1109/JBHI.2024.3390419",
+   "topic": "ehr",
+   "tier": "uses",
+   "self": false,
+   "quote": "We refer to PyHealth [54] for the implementations of baseline methods.",
+   "orgs": [
+    "AstraZeneca",
+    "Consorzio Interuniversitario Nazionale per l'Informatica",
+    "King's College London",
+    "University of Naples Federico II"
+   ]
+  },
+  {
+   "id": 84,
+   "title": "Predictive Modeling with Temporal Graphical Representation on Electronic Health Records",
+   "authors": "Jiayuan Chen, Changchang Yin, Yuanlong Wang, Ping Zhang",
+   "year": 2024,
+   "venue": "",
+   "url": "https://doi.org/10.24963/ijcai.2024/637",
+   "topic": "ehr",
+   "tier": "uses",
+   "self": false,
+   "quote": "We use PyHealth [Yang et al., 2023a] for parsing and preprocessing the dataset.",
+   "orgs": [
+    "The Ohio State University"
+   ]
+  },
+  {
+   "id": 86,
+   "title": "Reasoning-Enhanced Healthcare Predictions with Knowledge Graph Community Retrieval",
+   "authors": "Pengcheng Jiang, Cao Xiao, Jiang, Minhao, Parminder Bhatia, Taha Kass‐Hout, Jimeng Sun, Jiawei Han",
+   "year": 2024,
+   "venue": "arXiv (Cornell University)",
+   "url": "https://doi.org/10.48550/arxiv.2410.04585",
+   "topic": "llm",
+   "tier": "uses",
+   "self": true,
+   "quote": "We utilize the publicly available MIMIC-III (Johnson et al., 2016) (v1.4) and MIMIC-IV (Johnson et al., 2020) (v2.0) EHR datasets, and use PyHealth (Yang et al., 2023a) for preprocessing.",
+   "orgs": [
+    "University of Illinois Urbana-Champaign"
+   ]
+  },
+  {
+   "id": 87,
+   "title": "Revisiting Drug Recommendation From a Causal Perspective",
+   "authors": "Junjie Zhang, Xuan Zang, Hao Chen, Xiaowei Yan, Buzhou Tang",
+   "year": 2024,
+   "venue": "IEEE Journal of Biomedical and Health Informatics",
+   "url": "https://doi.org/10.1109/jbhi.2024.3471637",
+   "topic": "drug",
+   "tier": "cites",
+   "self": false,
+   "quote": null,
+   "orgs": [
+    "Harbin Institute of Technology"
+   ]
+  },
+  {
+   "id": 91,
+   "title": "An Iterative Self-Learning Framework for Medical Domain Generalization",
+   "authors": "Zhenbang Wu, Huaxiu Yao, D. Liebovitz, Ji-Meng Sun",
+   "year": 2023,
+   "venue": "Neural Information Processing Systems",
+   "url": "https://doi.org/10.52202/075280-2393",
+   "topic": "ehr",
+   "tier": "cites",
+   "self": true,
+   "quote": null,
+   "orgs": []
+  },
+  {
+   "id": 92,
+   "title": "BIOT: Cross-data Biosignal Learning in the Wild",
+   "authors": "Chaoqi Yang, Michael Brandon Westover, Jimeng Sun",
+   "year": 2023,
+   "venue": "arXiv (Cornell University)",
+   "url": "https://doi.org/10.48550/arxiv.2305.10351",
+   "topic": "signal",
+   "tier": "uses",
+   "self": true,
+   "quote": "Below, we provide the deﬁnition of each metric used in the paper, and we use pyhealth.metrics 17 Yang et al.",
+   "orgs": [
+    "Beth Israel Deaconess Medical Center",
+    "Harvard University",
+    "University of Illinois Urbana-Champaign"
+   ]
+  },
+  {
+   "id": 94,
+   "title": "CPLLM: Clinical prediction with large language models",
+   "authors": "Ofir Ben Shoham, Nadav Rappoport",
+   "year": 2023,
+   "venue": "PLOS Digital Health",
+   "url": "https://doi.org/10.1371/journal.pdig.0000680",
+   "topic": "llm",
+   "tier": "uses",
+   "self": false,
+   "quote": "We follow the definition of X as specified by the PyHealth benchmark Yang et al.",
+   "orgs": [
+    "Ben-Gurion University of the Negev"
+   ]
+  },
+  {
+   "id": 95,
+   "title": "FrESCO: Framework for Exploring Scalable Computational Oncology",
+   "authors": "Adam Spannaus, J. Gounley, Mayanka Chandra Shekar, Z. Fox, J. Mohd-Yusof, Noah Schaefferkoetter, Heidi A. Hanson",
+   "year": 2023,
+   "venue": "Journal of Open Source Software",
+   "url": "https://doi.org/10.21105/joss.05345",
+   "topic": "infra",
+   "tier": "discusses",
+   "self": false,
+   "quote": "Most similar to FrESCO is PyHealth ( Zhao et al., 2021 ) though it is more broadly scoped, focusing on MIMIC (Medical Information Mart for Intensive Care), electronic intensive care unit (eICU), and observational medical outcomes partnership common data model (OMOP-CDM) databases.",
+   "orgs": [
+    "Los Alamos National Laboratory",
+    "Oak Ridge National Laboratory"
+   ]
+  },
+  {
+   "id": 96,
+   "title": "FuseMedML: a framework for accelerated discovery in machine learning based biomedicine",
+   "authors": "Alexander M. Golts, Moshe Raboh, Yoel Shoshan, Sagi Polaczek, S. Rabinovici-Cohen, Efrat Hexter",
+   "year": 2023,
+   "venue": "Journal of Open Source Software",
+   "url": "https://doi.org/10.21105/joss.04943",
+   "topic": "infra",
+   "tier": "discusses",
+   "self": false,
+   "quote": "Two examples of such prominent libraries are MONAI ( Cardoso et al., 2022 ) and PyHealth ( Zhao et al., 2021 ).",
+   "orgs": [
+    "IBM Research - Haifa"
+   ]
+  },
+  {
+   "id": 98,
+   "title": "GraphCare: Enhancing Healthcare Predictions with Personalized Knowledge Graphs",
+   "authors": "Pengcheng Jiang, Cao Xiao, A. Cross, Ji-Meng Sun",
+   "year": 2023,
+   "venue": "International Conference on Learning Representations",
+   "url": "https://doi.org/10.48550/arxiv.2305.12788",
+   "topic": "ehr",
+   "tier": "uses",
+   "self": true,
+   "quote": "Both datasets are under PhysioNet Credentialed Health Data License 1.5.0 2 We employ PyHealth (Yang et al., 2023a) to process these two datasets.",
+   "orgs": [
+    "OSF HealthCare",
+    "University of Illinois Urbana-Champaign"
+   ]
+  },
+  {
+   "id": 100,
+   "title": "ManyDG: Many-domain Generalization for Healthcare Applications",
+   "authors": "Chaoqi Yang, Michael Brandon Westover, Jimeng Sun",
+   "year": 2023,
+   "venue": "arXiv (Cornell University)",
+   "url": "https://doi.org/10.48550/arxiv.2301.08834",
+   "topic": "ehr",
+   "tier": "uses",
+   "self": true,
+   "quote": "We integrated the data cleaning and processing pipeline into PyHealth Yang et al.",
+   "orgs": [
+    "Beth Israel Deaconess Medical Center",
+    "Harvard University",
+    "University of Illinois Urbana-Champaign"
+   ]
+  },
+  {
+   "id": 101,
+   "title": "MoleRec: Combinatorial Drug Recommendation with Substructure-Aware Molecular Representation Learning",
+   "authors": "Nianzu Yang, Kaipeng Zeng, Qitian Wu, Junchi Yan",
+   "year": 2023,
+   "venue": "ACM Web Conference (WWW)",
+   "url": "https://doi.org/10.1145/3543507.3583872",
+   "topic": "drug",
+   "tier": "cites",
+   "self": false,
+   "quote": null,
+   "orgs": [
+    "Shanghai Jiao Tong University"
+   ]
+  },
+  {
+   "id": 102,
+   "title": "Multi-modal Graph Learning over UMLS Knowledge Graphs",
+   "authors": "Burger, Manuel, Gunnar Rätsch, Rita Kuznetsova",
+   "year": 2023,
+   "venue": "arXiv (Cornell University)",
+   "url": "https://doi.org/10.48550/arxiv.2307.04461",
+   "topic": "llm",
+   "tier": "cites",
+   "self": false,
+   "quote": null,
+   "orgs": [
+    "ETH Zurich"
+   ]
+  },
+  {
+   "id": 103,
+   "title": "Synthesize high-dimensional longitudinal electronic health records via hierarchical autoregressive language model",
+   "authors": "Brandon Theodorou, Cao Xiao, Ji-Meng Sun",
+   "year": 2023,
+   "venue": "Nature Communications",
+   "url": "https://doi.org/10.1038/s41467-023-41093-0",
+   "topic": "trust",
+   "tier": "discusses",
+   "self": true,
+   "quote": "PyHealth: A deep learning toolkit for healthcare predictive modeling (2022).",
+   "orgs": [
+    "University of Illinois Urbana-Champaign"
+   ]
+  },
+  {
+   "id": 104,
+   "title": "Ten Topics to Get Started in Medical Informatics Research",
+   "authors": "Markus Wolfien, Najia Ahmadi, Kai Fitzer, Sophia Grummt, Kilian-Ludwig Heine, Ian-C. Jung, Dagmar Krefting, Andreas Kühn, Yuan Peng, Ines Reinecke, Julia Scheel, Tobias Schmidt, Paul Schmücker, Christina Schüttler, Dagmar Waltemath, Michéle Zoch, Martin Sedlmayr",
+   "year": 2023,
+   "venue": "Journal of Medical Internet Research",
+   "url": "https://doi.org/10.2196/45948",
+   "topic": "infra",
+   "tier": "discusses",
+   "self": false,
+   "quote": "Like R, Python offers dif ferent libraries for data science tasks (eg, open mined [123]) in addition to a library specifically for health predictive models, namely PyHealth [124].",
+   "orgs": [
+    "Center for Scalable Data Analytics and Artificial Intelligence",
+    "Friedrich-Alexander-Universität Erlangen-Nürnberg",
+    "Technische Hochschule Mannheim",
+    "Technische Universität Dresden",
+    "University of Göttingen",
+    "University of Rostock",
+    "Universität Greifswald",
+    "Universitätsklinikum Erlangen",
+    "Universitätsmedizin Greifswald",
+    "Universitätsmedizin Göttingen"
+   ]
+  },
+  {
+   "id": 109,
+   "title": "Flexible-Window Predictions on Electronic Health Records",
+   "authors": "Mehak Gupta, Raphael Poulain, T. Phan, H. Bunnell, Rahmatollah Beheshti",
+   "year": 2022,
+   "venue": "AAAI Conference on Artificial Intelligence",
+   "url": "https://doi.org/10.1609/aaai.v36i11.21520",
+   "topic": "ehr",
+   "tier": "cites",
+   "self": false,
+   "quote": null,
+   "orgs": [
+    "Nemours Children's Health System",
+    "University of Delaware"
+   ]
+  },
+  {
+   "id": 115,
+   "title": "HINT: Hierarchical interaction network for clinical-trial-outcome predictions",
+   "authors": "Tianfan Fu, Kexin Huang, Cao Xiao, Lucas Glass, Ji-Meng Sun",
+   "year": 2021,
+   "venue": "Patterns",
+   "url": "https://doi.org/10.1016/j.patter.2022.100445",
+   "topic": "other",
+   "tier": "cites",
+   "self": true,
+   "quote": null,
+   "orgs": [
+    "Georgia Institute of Technology",
+    "IQVIA",
+    "Stanford University",
+    "Temple University",
+    "University of Illinois Urbana-Champaign"
+   ]
+  },
+  {
+   "id": 117,
+   "title": "Temporal Clustering with External Memory Network for Disease Progression Modeling",
+   "authors": "Zi-Cong Zhang, Chang-Chang Yin, Ping Zhang",
+   "year": 2021,
+   "venue": "Industrial Conference on Data Mining",
+   "url": "https://doi.org/10.1109/ICDM51629.2021.00107",
+   "topic": "ehr",
+   "tier": "uses",
+   "self": false,
+   "quote": "We adopt implementations from Pyhealth [34] for RETAIN, Dipole, and StageNet.",
+   "orgs": [
+    "The Ohio State University"
+   ]
+  },
+  {
+   "id": 118,
+   "title": "Transformer-based Multi-target Regression on Electronic Health Records for Primordial Prevention of Cardiovascular Disease",
+   "authors": "Raphael Poulain, Mehak Gupta, Randi E. Foraker, Rahmatollah Beheshti",
+   "year": 2021,
+   "venue": "IEEE International Conference on Bioinformatics and Biomedicine (BIBM)",
+   "url": "https://doi.org/10.1109/bibm52615.2021.9669441",
+   "topic": "ehr",
+   "tier": "uses",
+   "self": false,
+   "quote": "We have used PyHealth library’s implementation of 3 different models [ 25 ], namely RETAIN [ 26 ], Dipole [ 15 ], and StageNet [ 27 ].",
+   "orgs": [
+    "University of Delaware",
+    "Washington University in St. Louis"
+   ]
+  },
+  {
+   "id": 119,
+   "title": "UNITE: Uncertainty-based Health Risk Prediction Leveraging Multi-sourced Data",
+   "authors": "Chacha Chen, Junjie Liang, Fenglong Ma, Lucas M. Glass, Jimeng Sun, Cao Xiao",
+   "year": 2021,
+   "venue": "",
+   "url": "https://doi.org/10.1145/3442381.3450087",
+   "topic": "ehr",
+   "tier": "discusses",
+   "self": true,
+   "quote": "(3) Area Under the Precision-Recall Curve (PR-AUC): PR-AUC = 𝑛∑︁ 𝑘=1 Prec(𝑘)ΔRec(𝑘), 4https://github.com/easyfan327/Pytorch-RETAIN 5https://github.com/yzhao062/PyHealth 6https://github.com/mp2893/mime 7https://github.com/Kyushik/Predictive-Uncertainty-Estimation-using-DeepEnsemble…",
+   "orgs": [
+    "IQVIA",
+    "Pennsylvania State University",
+    "University of Illinois Urbana-Champaign"
+   ]
+  }
+ ],
+ "orgs": [
+  {
+   "name": "University of Kansas",
+   "country": "US",
+   "type": "education",
+   "uses": [
+    25,
+    26,
+    71
+   ],
+   "other": []
+  },
+  {
+   "name": "Peking University",
+   "country": "CN",
+   "type": "education",
+   "uses": [
+    0,
+    32
+   ],
+   "other": [
+    52,
+    56,
+    74
+   ]
+  },
+  {
+   "name": "Stanford University",
+   "country": "US",
+   "type": "education",
+   "uses": [
+    10,
+    90
+   ],
+   "other": [
+    115
+   ]
+  },
+  {
+   "name": "The Ohio State University",
+   "country": "US",
+   "type": "education",
+   "uses": [
+    84,
+    117
+   ],
+   "other": [
+    70
+   ]
+  },
+  {
+   "name": "University of Delaware",
+   "country": "US",
+   "type": "education",
+   "uses": [
+    75,
+    118
+   ],
+   "other": [
+    109
+   ]
+  },
+  {
+   "name": "Ben-Gurion University of the Negev",
+   "country": "IL",
+   "type": "education",
+   "uses": [
+    81,
+    94
+   ],
+   "other": []
+  },
+  {
+   "name": "Stevens Institute of Technology",
+   "country": "US",
+   "type": "education",
+   "uses": [
+    11,
+    41
+   ],
+   "other": []
+  },
+  {
+   "name": "University of Hong Kong",
+   "country": "HK",
+   "type": "education",
+   "uses": [
+    39,
+    82
+   ],
+   "other": []
+  },
+  {
+   "name": "Harvard University",
+   "country": "US",
+   "type": "education",
+   "uses": [
+    90
+   ],
+   "other": [
+    66,
+    70,
+    80,
+    92,
+    100
+   ]
+  },
+  {
+   "name": "Nanyang Technological University",
+   "country": "SG",
+   "type": "education",
+   "uses": [
+    30
+   ],
+   "other": [
+    51,
+    79
+   ]
+  },
+  {
+   "name": "Shanghai Jiao Tong University",
+   "country": "CN",
+   "type": "education",
+   "uses": [
+    9
+   ],
+   "other": [
+    46,
+    101
+   ]
+  },
+  {
+   "name": "Beihang University",
+   "country": "CN",
+   "type": "education",
+   "uses": [
+    9
+   ],
+   "other": [
+    74
+   ]
+  },
+  {
+   "name": "Cornell University",
+   "country": "US",
+   "type": "education",
+   "uses": [
+    41
+   ],
+   "other": [
+    70
+   ]
+  },
+  {
+   "name": "Emory University",
+   "country": "US",
+   "type": "education",
+   "uses": [
+    10
+   ],
+   "other": [
+    70
+   ]
+  },
+  {
+   "name": "Georgia Institute of Technology",
+   "country": "US",
+   "type": "education",
+   "uses": [
+    8
+   ],
+   "other": [
+    115
+   ]
+  },
+  {
+   "name": "Oak Ridge National Laboratory",
+   "country": "US",
+   "type": "facility",
+   "uses": [
+    8
+   ],
+   "other": [
+    95
+   ]
+  },
+  {
+   "name": "Tsinghua University",
+   "country": "CN",
+   "type": "education",
+   "uses": [
+    17
+   ],
+   "other": [
+    51
+   ]
+  },
+  {
+   "name": "Weill Cornell Medicine",
+   "country": "US",
+   "type": "education",
+   "uses": [
+    41
+   ],
+   "other": [
+    70
+   ]
+  },
+  {
+   "name": "Arizona State University",
+   "country": "US",
+   "type": "education",
+   "uses": [
+    21
+   ],
+   "other": []
+  },
+  {
+   "name": "AstraZeneca",
+   "country": "GB",
+   "type": "company",
+   "uses": [
+    83
+   ],
+   "other": []
+  },
+  {
+   "name": "Beijing Academy of Artificial Intelligence",
+   "country": "CN",
+   "type": "other",
+   "uses": [
+    32
+   ],
+   "other": []
+  },
+  {
+   "name": "CERPOP, Toulouse",
+   "country": "FR",
+   "type": "facility",
+   "uses": [
+    27
+   ],
+   "other": []
+  },
+  {
+   "name": "Chinese Academy of Medical Sciences & Peking Union Medical College",
+   "country": "CN",
+   "type": "education",
+   "uses": [
+    17
+   ],
+   "other": []
+  },
+  {
+   "name": "Chinese Academy of Sciences",
+   "country": "CN",
+   "type": "government",
+   "uses": [
+    32
+   ],
+   "other": []
+  },
+  {
+   "name": "Chinese Institute for Brain Research",
+   "country": "CN",
+   "type": "government",
+   "uses": [
+    0
+   ],
+   "other": []
+  },
+  {
+   "name": "Cincinnati Children's Hospital Medical Center",
+   "country": "US",
+   "type": "healthcare",
+   "uses": [
+    8
+   ],
+   "other": []
+  },
+  {
+   "name": "Consorzio Interuniversitario Nazionale per l'Informatica",
+   "country": "IT",
+   "type": "facility",
+   "uses": [
+    83
+   ],
+   "other": []
+  },
+  {
+   "name": "Duke University",
+   "country": "US",
+   "type": "education",
+   "uses": [
+    57
+   ],
+   "other": []
+  },
+  {
+   "name": "Edinburgh Napier University",
+   "country": "GB",
+   "type": "education",
+   "uses": [
+    77
+   ],
+   "other": []
+  },
+  {
+   "name": "Fuzhou University",
+   "country": "CN",
+   "type": "education",
+   "uses": [
+    9
+   ],
+   "other": []
+  },
+  {
+   "name": "Halmstad University",
+   "country": "SE",
+   "type": "education",
+   "uses": [
+    76
+   ],
+   "other": []
+  },
+  {
+   "name": "Hanyang University",
+   "country": "KR",
+   "type": "education",
+   "uses": [
+    33
+   ],
+   "other": []
+  },
+  {
+   "name": "Heidelberg University",
+   "country": "DE",
+   "type": "education",
+   "uses": [
+    17
+   ],
+   "other": []
+  },
+  {
+   "name": "Inner Mongolia University of Technology",
+   "country": "CN",
+   "type": "education",
+   "uses": [
+    30
+   ],
+   "other": []
+  },
+  {
+   "name": "Inserm",
+   "country": "FR",
+   "type": "government",
+   "uses": [
+    27
+   ],
+   "other": []
+  },
+  {
+   "name": "Institut de Recherche en Informatique de Toulouse",
+   "country": "FR",
+   "type": "facility",
+   "uses": [
+    27
+   ],
+   "other": []
+  },
+  {
+   "name": "Institute of Automation, Chinese Academy of Sciences",
+   "country": "CN",
+   "type": "facility",
+   "uses": [
+    32
+   ],
+   "other": []
+  },
+  {
+   "name": "James Cook University",
+   "country": "AU",
+   "type": "education",
+   "uses": [
+    77
+   ],
+   "other": []
+  },
+  {
+   "name": "King's College London",
+   "country": "GB",
+   "type": "education",
+   "uses": [
+    83
+   ],
+   "other": []
+  },
+  {
+   "name": "Korea University",
+   "country": "KR",
+   "type": "education",
+   "uses": [
+    33
+   ],
+   "other": []
+  },
+  {
+   "name": "Kumoh National Institute of Technology",
+   "country": "KR",
+   "type": "education",
+   "uses": [
+    8
+   ],
+   "other": []
+  },
+  {
+   "name": "La Jolla Infectious Disease Institute",
+   "country": "US",
+   "type": "facility",
+   "uses": [
+    42
+   ],
+   "other": []
+  },
+  {
+   "name": "National Yang Ming Chiao Tung University",
+   "country": "TW",
+   "type": "education",
+   "uses": [
+    53
+   ],
+   "other": []
+  },
+  {
+   "name": "Neusoft",
+   "country": "CN",
+   "type": "company",
+   "uses": [
+    29
+   ],
+   "other": []
+  },
+  {
+   "name": "Northeastern University (China)",
+   "country": "CN",
+   "type": "education",
+   "uses": [
+    29
+   ],
+   "other": []
+  },
+  {
+   "name": "Osnabrück University",
+   "country": "DE",
+   "type": "education",
+   "uses": [
+    4
+   ],
+   "other": []
+  },
+  {
+   "name": "Rhodes University",
+   "country": "ZA",
+   "type": "education",
+   "uses": [
+    4
+   ],
+   "other": []
+  },
+  {
+   "name": "Rice University",
+   "country": "US",
+   "type": "education",
+   "uses": [
+    57
+   ],
+   "other": []
+  },
+  {
+   "name": "Sejong University",
+   "country": "KR",
+   "type": "education",
+   "uses": [
+    77
+   ],
+   "other": []
+  },
+  {
+   "name": "Sichuan Polytechnic University",
+   "country": "CN",
+   "type": "education",
+   "uses": [
+    30
+   ],
+   "other": []
+  },
+  {
+   "name": "Stanford Health Care",
+   "country": "US",
+   "type": "healthcare",
+   "uses": [
+    90
+   ],
+   "other": []
+  },
+  {
+   "name": "Stanford Medicine",
+   "country": "US",
+   "type": "healthcare",
+   "uses": [
+    90
+   ],
+   "other": []
+  },
+  {
+   "name": "Stony Brook University",
+   "country": "US",
+   "type": "education",
+   "uses": [
+    42
+   ],
+   "other": []
+  },
+  {
+   "name": "Tongji University",
+   "country": "CN",
+   "type": "education",
+   "uses": [
+    77
+   ],
+   "other": []
+  },
+  {
+   "name": "Universidade Federal do Rio Grande do Sul",
+   "country": "BR",
+   "type": "education",
+   "uses": [
+    76
+   ],
+   "other": []
+  },
+  {
+   "name": "University of Cincinnati",
+   "country": "US",
+   "type": "education",
+   "uses": [
+    8
+   ],
+   "other": []
+  },
+  {
+   "name": "University of Florida",
+   "country": "US",
+   "type": "education",
+   "uses": [
+    71
+   ],
+   "other": []
+  },
+  {
+   "name": "University of Massachusetts Amherst",
+   "country": "US",
+   "type": "education",
+   "uses": [
+    11
+   ],
+   "other": []
+  },
+  {
+   "name": "University of Naples Federico II",
+   "country": "IT",
+   "type": "education",
+   "uses": [
+    83
+   ],
+   "other": []
+  },
+  {
+   "name": "University of North Carolina at Chapel Hill",
+   "country": "US",
+   "type": "education",
+   "uses": [
+    18
+   ],
+   "other": []
+  },
+  {
+   "name": "University of Pennsylvania",
+   "country": "US",
+   "type": "education",
+   "uses": [
+    18
+   ],
+   "other": []
+  },
+  {
+   "name": "University of South Carolina",
+   "country": "US",
+   "type": "education",
+   "uses": [
+    21
+   ],
+   "other": []
+  },
+  {
+   "name": "University of Technology Sydney",
+   "country": "AU",
+   "type": "education",
+   "uses": [
+    77
+   ],
+   "other": []
+  },
+  {
+   "name": "Université de Toulouse",
+   "country": "FR",
+   "type": "education",
+   "uses": [
+    27
+   ],
+   "other": []
+  },
+  {
+   "name": "Virginia Tech",
+   "country": "US",
+   "type": "education",
+   "uses": [
+    77
+   ],
+   "other": []
+  },
+  {
+   "name": "Washington University in St. Louis",
+   "country": "US",
+   "type": "education",
+   "uses": [
+    118
+   ],
+   "other": []
+  },
+  {
+   "name": "University of Illinois Urbana-Champaign",
+   "country": "US",
+   "type": "education",
+   "uses": [],
+   "other": [
+    1,
+    2,
+    5,
+    20,
+    50,
+    56,
+    86,
+    92,
+    98,
+    100,
+    103,
+    115,
+    119
+   ]
+  },
+  {
+   "name": "Hong Kong University of Science and Technology",
+   "country": "HK",
+   "type": "education",
+   "uses": [],
+   "other": [
+    38,
+    40,
+    63
+   ]
+  },
+  {
+   "name": "Beth Israel Deaconess Medical Center",
+   "country": "US",
+   "type": "healthcare",
+   "uses": [],
+   "other": [
+    92,
+    100
+   ]
+  },
+  {
+   "name": "ETH Zurich",
+   "country": "CH",
+   "type": "education",
+   "uses": [],
+   "other": [
+    74,
+    102
+   ]
+  },
+  {
+   "name": "IQVIA",
+   "country": "US",
+   "type": "company",
+   "uses": [],
+   "other": [
+    115,
+    119
+   ]
+  },
+  {
+   "name": "Massachusetts General Hospital",
+   "country": "US",
+   "type": "healthcare",
+   "uses": [],
+   "other": [
+    70,
+    80
+   ]
+  },
+  {
+   "name": "Massachusetts Institute of Technology",
+   "country": "US",
+   "type": "education",
+   "uses": [],
+   "other": [
+    66,
+    80
+   ]
+  },
+  {
+   "name": "Peking University Third Hospital",
+   "country": "CN",
+   "type": "healthcare",
+   "uses": [],
+   "other": [
+    56,
+    74
+   ]
+  },
+  {
+   "name": "Shandong University",
+   "country": "CN",
+   "type": "education",
+   "uses": [],
+   "other": [
+    51,
+    79
+   ]
+  },
+  {
+   "name": "Tianjin University",
+   "country": "CN",
+   "type": "education",
+   "uses": [],
+   "other": [
+    38,
+    40
+   ]
+  },
+  {
+   "name": "Yanshan University",
+   "country": "CN",
+   "type": "education",
+   "uses": [],
+   "other": [
+    6,
+    58
+   ]
+  },
+  {
+   "name": "Alibaba Group",
+   "country": "CN",
+   "type": "company",
+   "uses": [],
+   "other": [
+    69
+   ]
+  },
+  {
+   "name": "Bangladesh University of Engineering and Technology",
+   "country": "BD",
+   "type": "education",
+   "uses": [],
+   "other": [
+    20
+   ]
+  },
+  {
+   "name": "Beijing Institute of Technology",
+   "country": "CN",
+   "type": "education",
+   "uses": [],
+   "other": [
+    14
+   ]
+  },
+  {
+   "name": "Boston Children's Hospital",
+   "country": "US",
+   "type": "healthcare",
+   "uses": [],
+   "other": [
+    70
+   ]
+  },
+  {
+   "name": "Center for Excellence in Brain Science and Intelligence Technology",
+   "country": "CN",
+   "type": "education",
+   "uses": [],
+   "other": [
+    69
+   ]
+  },
+  {
+   "name": "Center for Scalable Data Analytics and Artificial Intelligence",
+   "country": "DE",
+   "type": "education",
+   "uses": [],
+   "other": [
+    104
+   ]
+  },
+  {
+   "name": "East China Normal University",
+   "country": "CN",
+   "type": "education",
+   "uses": [],
+   "other": [
+    51
+   ]
+  },
+  {
+   "name": "Friedrich-Alexander-Universität Erlangen-Nürnberg",
+   "country": "DE",
+   "type": "education",
+   "uses": [],
+   "other": [
+    104
+   ]
+  },
+  {
+   "name": "Hangzhou Normal University",
+   "country": "CN",
+   "type": "education",
+   "uses": [],
+   "other": [
+    28
+   ]
+  },
+  {
+   "name": "Harbin Institute of Technology",
+   "country": "CN",
+   "type": "education",
+   "uses": [],
+   "other": [
+    87
+   ]
+  },
+  {
+   "name": "Henan University",
+   "country": "CN",
+   "type": "education",
+   "uses": [],
+   "other": [
+    16
+   ]
+  },
+  {
+   "name": "Hong Kong Baptist University",
+   "country": "HK",
+   "type": "education",
+   "uses": [],
+   "other": [
+    35
+   ]
+  },
+  {
+   "name": "Hong Kong Polytechnic University",
+   "country": "HK",
+   "type": "education",
+   "uses": [],
+   "other": [
+    35
+   ]
+  },
+  {
+   "name": "Huzhou College",
+   "country": null,
+   "type": "education",
+   "uses": [],
+   "other": [
+    16
+   ]
+  },
+  {
+   "name": "IBM Research - Haifa",
+   "country": "IL",
+   "type": "facility",
+   "uses": [],
+   "other": [
+    96
+   ]
+  },
+  {
+   "name": "Imperial College London",
+   "country": "GB",
+   "type": "education",
+   "uses": [],
+   "other": [
+    70
+   ]
+  },
+  {
+   "name": "Iowa State University",
+   "country": "US",
+   "type": "education",
+   "uses": [],
+   "other": [
+    61
+   ]
+  },
+  {
+   "name": "Jilin University",
+   "country": "CN",
+   "type": "education",
+   "uses": [],
+   "other": [
+    14
+   ]
+  },
+  {
+   "name": "Lingnan University",
+   "country": "HK",
+   "type": "education",
+   "uses": [],
+   "other": [
+    35
+   ]
+  },
+  {
+   "name": "Los Alamos National Laboratory",
+   "country": "US",
+   "type": "facility",
+   "uses": [],
+   "other": [
+    95
+   ]
+  },
+  {
+   "name": "Mass General Brigham",
+   "country": "US",
+   "type": "healthcare",
+   "uses": [],
+   "other": [
+    70
+   ]
+  },
+  {
+   "name": "Nemours Children's Health System",
+   "country": "US",
+   "type": "healthcare",
+   "uses": [],
+   "other": [
+    109
+   ]
+  },
+  {
+   "name": "Northwestern University",
+   "country": "US",
+   "type": "education",
+   "uses": [],
+   "other": [
+    70
+   ]
+  },
+  {
+   "name": "OSF HealthCare",
+   "country": "US",
+   "type": "healthcare",
+   "uses": [],
+   "other": [
+    98
+   ]
+  },
+  {
+   "name": "PRIST University",
+   "country": "IN",
+   "type": "education",
+   "uses": [],
+   "other": [
+    7
+   ]
+  },
+  {
+   "name": "Pennsylvania State University",
+   "country": "US",
+   "type": "education",
+   "uses": [],
+   "other": [
+    119
+   ]
+  },
+  {
+   "name": "Qilu Hospital of Shandong University",
+   "country": "CN",
+   "type": "healthcare",
+   "uses": [],
+   "other": [
+    51
+   ]
+  },
+  {
+   "name": "Ruijin Hospital",
+   "country": "CN",
+   "type": "healthcare",
+   "uses": [],
+   "other": [
+    46
+   ]
+  },
+  {
+   "name": "SRM Institute of Science and Technology",
+   "country": "IN",
+   "type": "education",
+   "uses": [],
+   "other": [
+    72
+   ]
+  },
+  {
+   "name": "Shanghai University",
+   "country": "CN",
+   "type": "education",
+   "uses": [],
+   "other": [
+    3
+   ]
+  },
+  {
+   "name": "Shanghai University of Engineering Science",
+   "country": "CN",
+   "type": "education",
+   "uses": [],
+   "other": [
+    3
+   ]
+  },
+  {
+   "name": "Southwest University",
+   "country": "CN",
+   "type": "education",
+   "uses": [],
+   "other": [
+    59
+   ]
+  },
+  {
+   "name": "Technische Hochschule Mannheim",
+   "country": "DE",
+   "type": "education",
+   "uses": [],
+   "other": [
+    104
+   ]
+  },
+  {
+   "name": "Technische Universität Dresden",
+   "country": "DE",
+   "type": "education",
+   "uses": [],
+   "other": [
+    104
+   ]
+  },
+  {
+   "name": "Temple University",
+   "country": "US",
+   "type": "education",
+   "uses": [],
+   "other": [
+    115
+   ]
+  },
+  {
+   "name": "The University of Texas at Austin",
+   "country": "US",
+   "type": "education",
+   "uses": [],
+   "other": [
+    70
+   ]
+  },
+  {
+   "name": "Umeå University",
+   "country": "SE",
+   "type": "education",
+   "uses": [],
+   "other": [
+    51
+   ]
+  },
+  {
+   "name": "University of Edinburgh",
+   "country": "GB",
+   "type": "education",
+   "uses": [],
+   "other": [
+    56
+   ]
+  },
+  {
+   "name": "University of Electronic Science and Technology of China",
+   "country": "CN",
+   "type": "education",
+   "uses": [],
+   "other": [
+    23
+   ]
+  },
+  {
+   "name": "University of Göttingen",
+   "country": "DE",
+   "type": "education",
+   "uses": [],
+   "other": [
+    104
+   ]
+  },
+  {
+   "name": "University of Illinois Chicago",
+   "country": "US",
+   "type": "education",
+   "uses": [],
+   "other": [
+    1
+   ]
+  },
+  {
+   "name": "University of Klagenfurt",
+   "country": "AT",
+   "type": "education",
+   "uses": [],
+   "other": [
+    24
+   ]
+  },
+  {
+   "name": "University of Minnesota",
+   "country": "US",
+   "type": "education",
+   "uses": [],
+   "other": [
+    70
+   ]
+  },
+  {
+   "name": "University of Oxford",
+   "country": "GB",
+   "type": "education",
+   "uses": [],
+   "other": [
+    66
+   ]
+  },
+  {
+   "name": "University of Rostock",
+   "country": "DE",
+   "type": "education",
+   "uses": [],
+   "other": [
+    104
+   ]
+  },
+  {
+   "name": "University of Toronto",
+   "country": "CA",
+   "type": "education",
+   "uses": [],
+   "other": [
+    66
+   ]
+  },
+  {
+   "name": "University of Virginia",
+   "country": "US",
+   "type": "education",
+   "uses": [],
+   "other": [
+    61
+   ]
+  },
+  {
+   "name": "University of the Sunshine Coast",
+   "country": "AU",
+   "type": "education",
+   "uses": [],
+   "other": [
+    14
+   ]
+  },
+  {
+   "name": "Universität Greifswald",
+   "country": "DE",
+   "type": "education",
+   "uses": [],
+   "other": [
+    104
+   ]
+  },
+  {
+   "name": "Universitätsklinikum Erlangen",
+   "country": "DE",
+   "type": "healthcare",
+   "uses": [],
+   "other": [
+    104
+   ]
+  },
+  {
+   "name": "Universitätsmedizin Greifswald",
+   "country": "DE",
+   "type": "healthcare",
+   "uses": [],
+   "other": [
+    104
+   ]
+  },
+  {
+   "name": "Universitätsmedizin Göttingen",
+   "country": "DE",
+   "type": "healthcare",
+   "uses": [],
+   "other": [
+    104
+   ]
+  },
+  {
+   "name": "Vanderbilt University",
+   "country": "US",
+   "type": "education",
+   "uses": [],
+   "other": [
+    50
+   ]
+  },
+  {
+   "name": "Vanderbilt University Medical Center",
+   "country": "US",
+   "type": "healthcare",
+   "uses": [],
+   "other": [
+    50
+   ]
+  },
+  {
+   "name": "Wenzhou Medical University",
+   "country": "CN",
+   "type": "education",
+   "uses": [],
+   "other": [
+    15
+   ]
+  },
+  {
+   "name": "Xinjiang University of Science and Technology",
+   "country": null,
+   "type": "education",
+   "uses": [],
+   "other": [
+    58
+   ]
+  },
+  {
+   "name": "Xuzhou Medical College",
+   "country": "CN",
+   "type": "education",
+   "uses": [],
+   "other": [
+    74
+   ]
+  },
+  {
+   "name": "Zhejiang Lab",
+   "country": "CN",
+   "type": "facility",
+   "uses": [],
+   "other": [
+    69
+   ]
+  },
+  {
+   "name": "Zhejiang Normal University",
+   "country": "CN",
+   "type": "education",
+   "uses": [],
+   "other": [
+    28
+   ]
+  },
+  {
+   "name": "Zhejiang University",
+   "country": "CN",
+   "type": "education",
+   "uses": [],
+   "other": [
+    69
+   ]
+  },
+  {
+   "name": "Zhejiang University of Technology",
+   "country": "CN",
+   "type": "education",
+   "uses": [],
+   "other": [
+    28
+   ]
+  }
+ ]
+}
