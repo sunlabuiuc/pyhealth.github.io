@@ -50,5 +50,18 @@
     "read_time_min": 2,
     "file": "text.md",
     "url": "/blogs/2026-06-07-generative-ehr-module/"
+  },
+  {
+    "id": "2026-10-19-your-paper-is-not-your-impact",
+    "title": "Your Paper Is Not Your Impact",
+    "author": "Jimeng Sun & PyHealth Team",
+    "preview": "In the age of AI, publication alone no longer carries a method. Impact comes from being easy to use, and PyHealth can take your work there.",
+    "date": "2026-10-19",
+    "date_display": "Oct 19, 2026",
+    "last_updated": "2026-10-19T12:00:00",
+    "word_count": 540,
+    "read_time_min": 3,
+    "file": "text.md",
+    "url": "/blogs/2026-10-19-your-paper-is-not-your-impact/"
   }
 ]
