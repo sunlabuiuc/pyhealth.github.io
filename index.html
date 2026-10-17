@@ -533,6 +533,17 @@
     .used-by-link:hover { text-decoration: underline; }
     @media (max-width: 600px) { .used-by { padding: 1.2rem 1rem 1.3rem; } }
 
+
+    /* ── GitHub stars badge (counts fetched from the GitHub API) ── */
+    .gh-star-badge { display: inline-flex; height: 20px; font: 600 11px/20px "IBM Plex Sans", "Segoe UI", sans-serif; text-decoration: none; }
+    .gh-star-label { display: inline-flex; align-items: center; gap: 4px; padding: 0 6px; background: #1c2b3a; color: #fff; }
+    .gh-star-count { padding: 0 6px; background: #c95f26; color: #fff; }
+
+    /* ── Release banner ── */
+    .release-banner { display: inline-flex; align-items: center; gap: 0.55rem; flex-wrap: wrap; margin: 0 0 1rem; padding: 0.35rem 0.8rem 0.35rem 0.4rem; border-radius: 999px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); color: rgba(255,255,255,0.88); font-size: 0.85rem; text-decoration: none; position: relative; z-index: 1; }
+    .release-banner:hover { background: rgba(255,255,255,0.14); }
+    .release-pill { background: var(--accent); color: #fff; border-radius: 999px; padding: 0.1rem 0.55rem; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+
     /* ── Linkable stat cards ── */
     a.stat-card {
       text-decoration: none;
@@ -690,6 +701,8 @@
         <a href="tasks.html">Tasks</a>
         <a href="models.html">Models</a>
         <a href="roadmap.html">Roadmap</a>
+        <a href="tutorials.html">Tutorials</a>
+        <a href="news.html">News</a>
         <a href="blog_list.html">Blog</a>
         <a href="research.html" class="nav-cta">Join Us</a>
       </nav>
@@ -702,6 +715,11 @@
 
     <!-- ── Hero ── -->
     <section class="ph-hero">
+      <a href="news.html#pyhealth-2-1-0" class="release-banner">
+        <span class="release-pill">New</span>
+        PyHealth 2.1.0: leakage-free splits, calibration with confidence intervals, XGBoost + TreeSHAP, and nine Colab tutorials
+        <span aria-hidden="true">→</span>
+      </a>
       <p class="ph-eyebrow">Open-Source Healthcare AI</p>
       <img src="images/pyhealth-logo.png" alt="PyHealth" class="ph-logo">
       <p class="ph-tagline">A Python toolkit for clinical deep learning — unifying datasets, tasks, and models across electronic health records, physiological signals, and medical imaging.</p>
@@ -735,8 +753,8 @@
         </a>
       </div>
       <div class="ph-badges">
-        <a href="https://github.com/sunlabuiuc/PyHealth" target="_blank" rel="noopener">
-          <img src="https://img.shields.io/github/stars/sunlabuiuc/pyhealth.svg?style=flat-square&labelColor=1c2b3a&color=c95f26&label=Stars" alt="GitHub stars">
+        <a href="https://github.com/sunlabuiuc/PyHealth" target="_blank" rel="noopener" class="gh-star-badge" aria-label="Star PyHealth on GitHub">
+          <span class="gh-star-label"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> Stars</span><span class="gh-star-count" id="ghStarCount">GitHub</span>
         </a>
         <a href="https://pypi.org/project/pyhealth/" target="_blank" rel="noopener">
           <img src="https://img.shields.io/pypi/v/pyhealth.svg?style=flat-square&labelColor=1c2b3a&color=5a9fd4&label=PyPI" alt="PyPI version">
@@ -819,31 +837,35 @@
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
               Copy
             </button>
-            <a href="https://colab.research.google.com/drive/1b9xRbxUz-HLzxsrvxdsdJ868ajGQCY6U?usp=sharing" class="colab-inline-link" target="_blank" rel="noopener">Open in Colab →</a>
+            <a href="https://colab.research.google.com/drive/1KXloapcMeYubw4dT_fPJKTY1pepH2vvl" class="colab-inline-link" target="_blank" rel="noopener">Open in Colab →</a>
           </div>
         </div>
-        <pre class="ph-code" id="quickstartCode"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">MIMIC3Dataset</span>
-<span class="tok-kw">from</span> pyhealth.tasks <span class="tok-kw">import</span> <span class="tok-cl">MortalityPredictionMIMIC3</span>
-<span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-fn">split_by_patient</span>, <span class="tok-fn">get_dataloader</span>
+        <pre class="ph-code" id="quickstartCode"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">MIMIC3Dataset</span>, <span class="tok-cl">PatientSplit</span>, <span class="tok-fn">get_dataloader</span>
 <span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">Transformer</span>
+<span class="tok-kw">from</span> pyhealth.tasks <span class="tok-kw">import</span> <span class="tok-cl">MortalityPredictionMIMIC3</span>
 <span class="tok-kw">from</span> pyhealth.trainer <span class="tok-kw">import</span> <span class="tok-cl">Trainer</span>
 
 <span class="tok-kw">if</span> __name__ <span class="tok-op">==</span> <span class="tok-str">"__main__"</span>:
-    <span class="tok-cm"># 1. Load data</span>
-    dataset <span class="tok-op">=</span> <span class="tok-cl">MIMIC3Dataset</span>(root<span class="tok-op">=</span><span class="tok-str">"data/"</span>, tables<span class="tok-op">=</span>[<span class="tok-str">"DIAGNOSES_ICD"</span>, <span class="tok-str">"PROCEDURES_ICD"</span>])
-    samples <span class="tok-op">=</span> dataset.<span class="tok-fn">set_task</span>(<span class="tok-cl">MortalityPredictionMIMIC3</span>())
+    <span class="tok-cm"># 1. Load data: raw tables are processed once and cached</span>
+    dataset <span class="tok-op">=</span> <span class="tok-cl">MIMIC3Dataset</span>(
+        root<span class="tok-op">=</span><span class="tok-str">"data/mimic3"</span>,
+        tables<span class="tok-op">=</span>[<span class="tok-str">"diagnoses_icd"</span>, <span class="tok-str">"procedures_icd"</span>, <span class="tok-str">"prescriptions"</span>],
+        cache_dir<span class="tok-op">=</span><span class="tok-str">"cache/"</span>,
+    )
 
-    <span class="tok-cm"># 2. Split &amp; load</span>
-    train_ds, val_ds, test_ds <span class="tok-op">=</span> <span class="tok-fn">split_by_patient</span>(samples, [<span class="tok-num">0.8</span>, <span class="tok-num">0.1</span>, <span class="tok-num">0.1</span>])
+    <span class="tok-cm"># 2. Task + patient split: preprocessing is fit on training patients only</span>
+    train_ds, val_ds, test_ds <span class="tok-op">=</span> dataset.<span class="tok-fn">set_task</span>(
+        <span class="tok-cl">MortalityPredictionMIMIC3</span>(), split<span class="tok-op">=</span><span class="tok-cl">PatientSplit</span>((<span class="tok-num">0.8</span>, <span class="tok-num">0.1</span>, <span class="tok-num">0.1</span>), seed<span class="tok-op">=</span><span class="tok-num">0</span>)
+    )
     train_loader <span class="tok-op">=</span> <span class="tok-fn">get_dataloader</span>(train_ds, batch_size<span class="tok-op">=</span><span class="tok-num">32</span>, shuffle<span class="tok-op">=</span><span class="tok-num">True</span>)
-    val_loader <span class="tok-op">=</span> <span class="tok-fn">get_dataloader</span>(val_ds, batch_size<span class="tok-op">=</span><span class="tok-num">32</span>, shuffle<span class="tok-op">=</span><span class="tok-num">False</span>)
-    test_loader <span class="tok-op">=</span> <span class="tok-fn">get_dataloader</span>(test_ds, batch_size<span class="tok-op">=</span><span class="tok-num">32</span>, shuffle<span class="tok-op">=</span><span class="tok-num">False</span>)
+    val_loader <span class="tok-op">=</span> <span class="tok-fn">get_dataloader</span>(val_ds, batch_size<span class="tok-op">=</span><span class="tok-num">32</span>)
+    test_loader <span class="tok-op">=</span> <span class="tok-fn">get_dataloader</span>(test_ds, batch_size<span class="tok-op">=</span><span class="tok-num">32</span>)
 
-    <span class="tok-cm"># 3. Train</span>
-    model <span class="tok-op">=</span> <span class="tok-cl">Transformer</span>(dataset<span class="tok-op">=</span>samples)
-    trainer <span class="tok-op">=</span> <span class="tok-cl">Trainer</span>(model<span class="tok-op">=</span>model)
+    <span class="tok-cm"># 3. Train and evaluate</span>
+    model <span class="tok-op">=</span> <span class="tok-cl">Transformer</span>(dataset<span class="tok-op">=</span>train_ds)
+    trainer <span class="tok-op">=</span> <span class="tok-cl">Trainer</span>(model<span class="tok-op">=</span>model, metrics<span class="tok-op">=</span>[<span class="tok-str">"pr_auc"</span>, <span class="tok-str">"roc_auc"</span>])
     trainer.<span class="tok-fn">train</span>(train_loader, val_loader, epochs<span class="tok-op">=</span><span class="tok-num">50</span>, monitor<span class="tok-op">=</span><span class="tok-str">"pr_auc"</span>)
-    trainer.<span class="tok-fn">evaluate</span>(test_loader)</pre>
+    <span class="tok-fn">print</span>(trainer.<span class="tok-fn">evaluate</span>(test_loader))</pre>
       </div>
     </section>
 
@@ -1112,6 +1134,16 @@
       <h2 class="section-h2">Resources</h2>
       <p class="section-sub">Everything you need to get started or get involved.</p>
       <div class="link-cards">
+        <a href="tutorials.html" class="link-card">
+          <div class="lc-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </div>
+          <h3>Colab Tutorials</h3>
+          <p>Nine hands-on notebooks for PyHealth 2.1, from a 15-minute quickstart to calibration, XGBoost, interpretability, clinical text and contributing. Every one runs on a free Colab runtime with public data.</p>
+          <span class="lc-arrow">Start learning
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </a>
         <a href="https://pyhealth.readthedocs.io/en/latest/" class="link-card" target="_blank" rel="noopener">
           <div class="lc-icon">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
@@ -1319,6 +1351,16 @@ trainer.evaluate(test_loader)`;
         }, 2000);
       });
     }
+  
+    // GitHub stars: shields.io's stars endpoint returns "invalid", so ask GitHub directly.
+    fetch('https://api.github.com/repos/sunlabuiuc/PyHealth')
+      .then(r => r.ok ? r.json() : Promise.reject())
+      .then(d => {
+        const n = d.stargazers_count;
+        document.getElementById('ghStarCount').textContent =
+          n >= 1000 ? (n / 1000).toFixed(1).replace(/\.0$/, '') + 'k' : String(n);
+      })
+      .catch(() => {});
   </script>
 
 </body>

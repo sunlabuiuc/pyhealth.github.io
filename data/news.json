@@ -1,0 +1,109 @@
+[
+  {
+    "id": "pyhealth-2-1-0",
+    "date": "2026-10-16",
+    "tag": "Release",
+    "title": "PyHealth 2.1.0 is out",
+    "summary": "PyHealth 2.1.0 is about making results trustworthy: preprocessing that never sees the test patients, training you can reproduce from a seed, and calibration metrics with patient-level confidence intervals.",
+    "points": [
+      "Leakage-free splits: <code>dataset.set_task(task, split=PatientSplit(...))</code> fits every processor on the training patients only.",
+      "Reproducible training: seeded, per-loader shuffles; <code>torch.manual_seed</code> alone makes runs repeatable.",
+      "Calibration (Brier, O/E ratio, calibration slope and intercept) and patient-level bootstrap confidence intervals.",
+      "<code>XGBoostModel</code> with exact TreeSHAP explanations, Synthea synthetic patients, and ICD-9 ↔ ICD-10 translation.",
+      "Important: rebuild caches made with more than 10 workers; earlier versions could mix patients across splits."
+    ],
+    "links": [
+      [
+        "Release notes",
+        "https://github.com/sunlabuiuc/PyHealth/releases/tag/v2.1.0"
+      ],
+      [
+        "Try it in Colab",
+        "tutorials.html"
+      ]
+    ],
+    "code": "pip install -U pyhealth==2.1.0"
+  },
+  {
+    "id": "colab-tutorials",
+    "date": "2026-10-16",
+    "tag": "Tutorials",
+    "title": "Nine new Colab tutorials",
+    "summary": "A new tutorial series takes you from your first model to the practices that make clinical results credible: patient-level splits, calibration, confidence intervals, strong baselines and faithful explanations. Every notebook runs on a free Colab runtime with public data.",
+    "points": [],
+    "links": [
+      [
+        "Browse the tutorials",
+        "tutorials.html"
+      ]
+    ]
+  },
+  {
+    "id": "citing-papers",
+    "date": "2026-10-16",
+    "tag": "Community",
+    "title": "81 papers that use or cite PyHealth",
+    "summary": "We collected and checked the published work built on PyHealth: 81 papers and preprints, 41 of which use it directly in their methods. Researchers at more than 60 institutions, including Stanford, Harvard, Cornell, Oak Ridge National Laboratory and AstraZeneca, have used PyHealth in their published work.",
+    "points": [],
+    "links": [
+      [
+        "See the papers",
+        "citations.html"
+      ]
+    ]
+  },
+  {
+    "id": "benchmark-call",
+    "date": "2026-10-16",
+    "tag": "Call for contributions",
+    "title": "Add your method, task or dataset to the PyHealth benchmark",
+    "summary": "We are building PyHealth into a shared benchmark for clinical predictive models, where methods, tasks and datasets run through the same pipelines, splits and metrics. If you have published a clinical prediction method, task or dataset, we would like to include it, and our team will help with the port.",
+    "points": [
+      "Your method is compared fairly against 50+ models on identical data pipelines.",
+      "Anyone can run it in a few lines of code, and cites your paper when they do.",
+      "Contributors are credited and featured on pyhealth.dev."
+    ],
+    "links": [
+      [
+        "How to contribute",
+        "how_to_contribute.html"
+      ],
+      [
+        "Talk to us on Discord",
+        "https://discord.gg/mpb835EHaX"
+      ]
+    ]
+  },
+  {
+    "id": "icml-2026",
+    "date": "2026-07",
+    "tag": "Paper",
+    "title": "PyHealth 2.0 paper at ICML 2026",
+    "summary": "“PyHealth 2.0: A Comprehensive Open-Source Toolkit for Accessible and Reproducible Clinical Deep Learning” appeared at the Forty-third International Conference on Machine Learning.",
+    "points": [],
+    "links": [
+      [
+        "Read on OpenReview",
+        "https://openreview.net/forum?id=gMLVFN9hl8"
+      ],
+      [
+        "Cite PyHealth",
+        "index.html#cite"
+      ]
+    ]
+  },
+  {
+    "id": "pyhealth-2-0-0",
+    "date": "2026-03-23",
+    "tag": "Release",
+    "title": "PyHealth 2.0.0 released",
+    "summary": "PyHealth 2.0 rebuilt the data pipeline on a memory-mapped architecture that scales from a laptop to full MIMIC-IV, with a unified dataset, task and model API across EHR, signals, imaging and text.",
+    "points": [],
+    "links": [
+      [
+        "Release notes",
+        "https://github.com/sunlabuiuc/PyHealth/releases/tag/v2.0.0"
+      ]
+    ]
+  }
+]
