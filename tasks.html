@@ -451,7 +451,8 @@
         `<span class="tok-kw">from</span> pyhealth.tasks ` +
         `<span class="tok-kw">import</span> <span class="tok-cl">${dc}</span>\n` +
         `samples <span class="tok-op">=</span> dataset.<span class="tok-fn">set_task</span>` +
-        `(<span class="tok-cl">${dc}</span>())`;
+        `(<span class="tok-cl">${dc}</span>(${task.init_args ? esc(task.init_args) : ''}))` +
+        (task.requires ? `\n<span class="tok-cm"># needs: ${esc(task.requires)}</span>` : '');
 
       return `
         <div class="task-card" data-type="${esc(type)}" data-modality="${esc(modalities)}">

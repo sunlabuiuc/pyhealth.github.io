@@ -325,6 +325,8 @@
         <button class="filter-btn" onclick="filterDatasets('text', this)">Text <span style="opacity:0.65;">(3)</span></button>
       </div>
 
+      <p class="snippet-note" style="margin:0 0 1rem; padding:0.75rem 1rem; border:1px solid var(--line); border-radius:10px; background:var(--paper); font-size:0.9rem; color:var(--muted); line-height:1.55;"><strong style="color:var(--ink);">How to read these snippets.</strong> Point <code>root</code> at the folder (or URL) holding the raw files; credentialed datasets such as MIMIC are downloaded from PhysioNet first. Add <code>cache_dir="..."</code> to keep the processed copy somewhere you control, and <code>dev=True</code> to try 1,000 patients first. To try the API with no download, use the public synthetic copy: <code>MIMIC3Dataset(root="https://storage.googleapis.com/pyhealth/Synthetic_MIMIC-III", tables=["diagnoses_icd"])</code>. <a href="https://colab.research.google.com/drive/1azBqFS_vrJxoYMxP4M_dAIDcrU92uNDv" target="_blank" rel="noopener">Tutorial 01</a> covers datasets in depth. Snippets checked against PyHealth 2.1.0.</p>
+
       <div class="dataset-grid" id="datasetGrid">
 
         <!-- ───────────── EHR ───────────── -->
@@ -354,8 +356,8 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">MIMIC3Dataset</span>(
           <p class="dataset-desc">MIMIC-IV with 300K+ patients spanning hospital and ICU encounters, including structured EHR tables and clinical notes.</p>
           <pre class="dataset-code"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">MIMIC4Dataset</span>
 dataset <span class="tok-op">=</span> <span class="tok-cl">MIMIC4Dataset</span>(
-    root<span class="tok-op">=</span><span class="tok-str">"data/mimic4/"</span>,
-    tables<span class="tok-op">=</span>[<span class="tok-str">"diagnoses_icd"</span>, <span class="tok-str">"labevents"</span>],
+    ehr_root<span class="tok-op">=</span><span class="tok-str">&quot;data/mimic4/&quot;</span>,
+    ehr_tables<span class="tok-op">=</span>[<span class="tok-str">&quot;diagnoses_icd&quot;</span>, <span class="tok-str">&quot;labevents&quot;</span>],
 )</pre>
           <div class="dataset-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets/pyhealth.datasets.MIMIC4Dataset.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>

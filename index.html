@@ -544,6 +544,27 @@
     .release-banner:hover { background: rgba(255,255,255,0.14); }
     .release-pill { background: var(--accent); color: #fff; border-radius: 999px; padding: 0.1rem 0.55rem; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
 
+
+    /* ── What PyHealth saves you ── */
+    .roi-section { margin-top: 2.2rem; }
+    .roi-table { display: grid; gap: 0.5rem; margin-top: 1rem; }
+    .roi-row { display: grid; grid-template-columns: 0.9fr 1.3fr 1.5fr; gap: 0.75rem; align-items: stretch; }
+    .roi-row > div { padding: 0.75rem 0.95rem; border-radius: 10px; font-size: 0.92rem; line-height: 1.5; }
+    .roi-step { font-weight: 600; color: var(--ink); align-self: center; }
+    .roi-without { background: var(--bg); border: 1px solid var(--line); color: var(--muted); }
+    .roi-with { background: var(--paper); border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--line)); color: var(--ink); }
+    .roi-head > div { background: none; border: none; padding-bottom: 0; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+    .roi-head .roi-with { color: var(--accent); }
+    .roi-cta { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; margin-top: 1.2rem; }
+    .roi-star { color: var(--accent); font-weight: 600; text-decoration: none; }
+    .roi-star:hover { text-decoration: underline; }
+    @media (max-width: 720px) {
+      .roi-row { grid-template-columns: 1fr; gap: 0.35rem; }
+      .roi-head { display: none; }
+      .roi-without::before { content: "Without: "; font-weight: 600; }
+      .roi-with::before { content: "With PyHealth: "; font-weight: 600; color: var(--accent); }
+    }
+
     /* ── Linkable stat cards ── */
     a.stat-card {
       text-decoration: none;
@@ -811,6 +832,53 @@
     </section>
 
     </div> <!-- /landing-card -->
+
+    <!-- ── What PyHealth saves you (ROI) ── -->
+    <section class="roi-section fade-up" id="why">
+      <h2 class="section-h2">What PyHealth saves you</h2>
+      <p class="section-sub">Most of a clinical ML project is the work around the model. PyHealth ships that work, tested and shared, so your time goes to the idea.</p>
+      <div class="roi-table" role="table" aria-label="Clinical ML work without and with PyHealth">
+        <div class="roi-row roi-head" role="row">
+          <div></div>
+          <div class="roi-without">Without PyHealth</div>
+          <div class="roi-with">With PyHealth</div>
+        </div>
+        <div class="roi-row">
+          <div class="roi-step">Load the data</div>
+          <div class="roi-without">Write and debug a custom ETL for MIMIC, eICU or OMOP, for every project</div>
+          <div class="roi-with">25+ dataset loaders: one line per dataset, cached after the first run</div>
+        </div>
+        <div class="roi-row">
+          <div class="roi-step">Define the cohort and label</div>
+          <div class="roi-without">Re-derive cohort, label and time window from a paper's methods section</div>
+          <div class="roi-with">50+ ready-made, tested clinical tasks, or your own as one small class</div>
+        </div>
+        <div class="roi-row">
+          <div class="roi-step">Compare against baselines</div>
+          <div class="roi-without">Re-implement each baseline and hope it matches the original</div>
+          <div class="roi-with">50+ models behind one API: swapping models is a one-line change</div>
+        </div>
+        <div class="roi-row">
+          <div class="roi-step">Evaluate so reviewers trust it</div>
+          <div class="roi-without">Patients leak across splits; one test number with no interval</div>
+          <div class="roi-with">Leakage-free patient splits, calibration and patient-level bootstrap confidence intervals</div>
+        </div>
+        <div class="roi-row">
+          <div class="roi-step">Scale to real data</div>
+          <div class="roi-without">Pandas pipelines that need a server for full MIMIC-IV</div>
+          <div class="roi-with">Full MIMIC-IV mortality on a laptop in about 5 GB, up to 39× faster than pandas</div>
+        </div>
+        <div class="roi-row">
+          <div class="roi-step">Get your work used</div>
+          <div class="roi-without">Research code that stops working when the student graduates</div>
+          <div class="roi-with">Your method in a library used in 81 papers at 60+ institutions</div>
+        </div>
+      </div>
+      <div class="roi-cta">
+        <a href="https://colab.research.google.com/drive/1KXloapcMeYubw4dT_fPJKTY1pepH2vvl" class="ph-btn primary" target="_blank" rel="noopener">Try it: 15-minute Quickstart in Colab →</a>
+        <a href="https://github.com/sunlabuiuc/PyHealth" class="roi-star" target="_blank" rel="noopener">★ Star PyHealth on GitHub</a>
+      </div>
+    </section>
 
     <!-- ── Explore button ── -->
     <div class="explore-btn-wrap fade-up" id="exploreBtnWrap">
