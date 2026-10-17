@@ -48,5 +48,5 @@
 <text x="974" y="651" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#132B3A">Float vector / [1.0]</text>
 <rect x="48" y="704" width="1344" height="92" rx="14" fill="#FFF2DF"/>
 <text x="70" y="739" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" text-anchor="start" fill="#B76718">CHECK THE PREDICTION TIME</text>
-<text x="70" y="772" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" text-anchor="start" fill="#132B3A">The long-stay demo uses current-admission diagnosis codes dated at discharge; an admission-time model needs earlier features.</text>
+<text x="70" y="772" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" text-anchor="start" fill="#132B3A">The long-stay task predicts at admission: it uses earlier admissions’ diagnoses, not this stay’s codes dated at discharge.</text>
 </svg>

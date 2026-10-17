@@ -31,8 +31,8 @@
 <circle cx="625" cy="262" r="15" fill="#EAF1FC"/>
 <text x="625" y="268" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" text-anchor="middle" fill="#2864C5">3</text>
 <text x="616" y="307" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" text-anchor="start" fill="#2864C5">Split</text>
-<text x="616" y="343" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#526977">70% / 10% / 20%</text>
-<text x="616" y="374" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#526977">by patient</text>
+<text x="616" y="343" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#526977">PatientSplit 70/10/20</text>
+<text x="616" y="374" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#526977">fit on train only</text>
 <line x1="846" y1="327" x2="866" y2="327" stroke="#526977" stroke-width="2.5"/>
 <polygon points="866,327 856.3465918192059,332.2736809246462 856.3465918192059,321.7263190753538" fill="#526977"/>
 <rect x="870" y="232" width="248" height="187" rx="16" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
@@ -71,6 +71,6 @@
 <text x="942" y="588" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">PR-AUC: compare with the test set’s</text>
 <text x="942" y="620" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">positive rate.</text>
 <rect x="48" y="708" width="1344" height="88" rx="14" fill="#EAF1FC"/>
-<text x="70" y="741" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" text-anchor="start" fill="#2864C5">PREPROCESSING DETAIL</text>
-<text x="70" y="772" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#132B3A">This notebook fits vocabularies before splitting. Tutorial 03 shows how to fit them on training patients only.</text>
+<text x="70" y="741" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" text-anchor="start" fill="#2864C5">SPLIT BEFORE FITTING</text>
+<text x="70" y="772" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#132B3A">set_task(task, split=PatientSplit(...)) learns the code vocabulary from training patients only.</text>
 </svg>

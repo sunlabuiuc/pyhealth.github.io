@@ -1378,27 +1378,7 @@
     }
 
     function copyCode(btn) {
-      const code = `from pyhealth.datasets import MIMIC3Dataset
-from pyhealth.tasks import MortalityPredictionMIMIC3
-from pyhealth.datasets import split_by_patient, get_dataloader
-from pyhealth.models import Transformer
-from pyhealth.trainer import Trainer
-
-# 1. Load data
-dataset = MIMIC3Dataset(root="data/", tables=["DIAGNOSES_ICD", "PROCEDURES_ICD"])
-samples = dataset.set_task(MortalityPredictionMIMIC3())
-
-# 2. Split & load
-train_ds, val_ds, test_ds = split_by_patient(samples, [0.8, 0.1, 0.1])
-train_loader = get_dataloader(train_ds, batch_size=32, shuffle=True)
-val_loader = get_dataloader(val_ds, batch_size=32, shuffle=False)
-test_loader = get_dataloader(test_ds, batch_size=32, shuffle=False)
-
-# 3. Train
-model = Transformer(dataset=samples)
-trainer = Trainer(model=model)
-trainer.train(train_loader, val_loader, epochs=50, monitor="pr_auc")
-trainer.evaluate(test_loader)`;
+      const code = document.getElementById('quickstartCode').textContent;
       navigator.clipboard.writeText(code).then(() => {
         btn.classList.add('copied');
         btn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied!';
