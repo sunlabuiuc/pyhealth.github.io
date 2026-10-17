@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="940" viewBox="0 0 1440 940" role="img" aria-labelledby="title desc">
+<title id="title">Put each contribution in the right layer</title><desc id="desc">A new source needs a dataset loader. A new prediction question needs a task. Use a tiny synthetic fixture to demonstrate the data flow and expected labels.</desc>
+<rect x="0" y="0" width="1440" height="940" rx="0" fill="#F5F8FA"/>
+<rect x="0" y="0" width="12" height="940" rx="0" fill="#007F7A"/>
+<text x="48" y="49" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" text-anchor="start" fill="#132B3A">PyHealth</text>
+<text x="1392" y="47" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700" text-anchor="end" fill="#007F7A">TUTORIAL 08</text>
+<text x="48" y="116" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="700" text-anchor="start" fill="#132B3A">Put each contribution in the right layer</text>
+<text x="48" y="158" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400" text-anchor="start" fill="#526977">A new source needs a dataset loader. A new prediction question needs a task.</text>
+<line x1="48" y1="201" x2="1392" y2="201" stroke="#D7E2E8" stroke-width="2"/>
+<rect x="48" y="823" width="1344" height="66" rx="14" fill="#E5F4F1"/>
+<text x="68" y="862" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" text-anchor="start" fill="#007F7A">Use a tiny synthetic fixture to demonstrate the data flow and expected labels.</text>
+<text x="48" y="920" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" text-anchor="start" fill="#526977">PYHEALTH 2.1  /  COLAB VISUAL GUIDE</text>
+<text x="1392" y="920" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" text-anchor="end" fill="#526977">Concepts and toy examples • no measured model results</text>
+<rect x="48" y="233" width="416" height="152" rx="16" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<text x="68" y="270" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" text-anchor="start" fill="#007F7A">New data source</text>
+<text x="68" y="306" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#526977">Dataset class + YAML config</text>
+<text x="68" y="337" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#526977">Cleaning hooks + default tables</text>
+<rect x="512" y="233" width="416" height="152" rx="16" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<text x="532" y="270" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" text-anchor="start" fill="#2864C5">New clinical question</text>
+<text x="532" y="306" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#526977">BaseTask + schemas</text>
+<text x="532" y="337" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#526977">Patient → sample dictionaries</text>
+<rect x="976" y="233" width="416" height="152" rx="16" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<text x="996" y="270" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" text-anchor="start" fill="#7553B7">New source + benchmark</text>
+<text x="996" y="306" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#526977">Both layers</text>
+<text x="996" y="337" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#526977">Connect with default_task</text>
+<rect x="48" y="414" width="868" height="382" rx="18" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<rect x="48" y="414" width="6" height="382" rx="3" fill="#2864C5"/>
+<text x="72" y="454" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" text-anchor="start" fill="#2864C5">The notebook’s clinic example</text>
+<text x="72" y="495" font-family="Menlo, monospace" font-size="23" font-weight="700" text-anchor="start" fill="#2864C5">preprocess_visits: i10 → I10</text>
+<rect x="72" y="526" width="248" height="106" rx="16" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<text x="92" y="563" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" text-anchor="start" fill="#2864C5">Visit 1</text>
+<text x="92" y="599" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#526977">BP 152</text>
+<rect x="355" y="526" width="248" height="106" rx="16" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<text x="375" y="563" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" text-anchor="start" fill="#2864C5">Visit 2</text>
+<text x="375" y="599" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#526977">BP 148</text>
+<rect x="638" y="526" width="248" height="106" rx="16" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<text x="658" y="563" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" text-anchor="start" fill="#2864C5">Visit 3</text>
+<text x="658" y="599" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#526977">BP 139</text>
+<line x1="326" y1="577" x2="346" y2="577" stroke="#526977" stroke-width="2.5"/>
+<polygon points="346,577 336.3465918192059,582.2736809246462 336.3465918192059,571.7263190753538" fill="#526977"/>
+<line x1="609" y1="577" x2="629" y2="577" stroke="#526977" stroke-width="2.5"/>
+<polygon points="629,577 619.3465918192059,582.2736809246462 619.3465918192059,571.7263190753538" fill="#526977"/>
+<text x="72" y="688" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">Use history through visit t to predict BP ≥ 140 at visit t+1.</text>
+<text x="72" y="720" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">p1 produces labels [1, 0]. A patient without follow-up produces [].</text>
+<rect x="940" y="414" width="452" height="382" rx="18" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<rect x="940" y="414" width="6" height="382" rx="3" fill="#007F7A"/>
+<text x="964" y="454" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" text-anchor="start" fill="#007F7A">Contribution checks</text>
+<circle cx="973" cy="492" r="16" fill="#E5F4F1"/>
+<text x="973" y="499" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" text-anchor="middle" fill="#007F7A">1</text>
+<text x="1005" y="499" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#132B3A">Tests on synthetic rows</text>
+<circle cx="973" cy="562" r="16" fill="#E5F4F1"/>
+<text x="973" y="569" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" text-anchor="middle" fill="#007F7A">2</text>
+<text x="1005" y="569" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#132B3A">Docs + runnable example</text>
+<circle cx="973" cy="632" r="16" fill="#E5F4F1"/>
+<text x="973" y="639" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" text-anchor="middle" fill="#007F7A">3</text>
+<text x="1005" y="639" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#132B3A">Docstring usage example</text>
+<circle cx="973" cy="702" r="16" fill="#E5F4F1"/>
+<text x="973" y="709" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" text-anchor="middle" fill="#007F7A">4</text>
+<text x="1005" y="709" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#132B3A">Lint + repository checks</text>
+</svg>

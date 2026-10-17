@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="940" viewBox="0 0 1440 940" role="img" aria-labelledby="title desc">
+<title id="title">Strong baselines and explicit code representations</title><desc id="desc">XGBoost uses code counts; CrossMap translates vocabularies; nested_multihot marks code presence per visit. Choose the representation deliberately: counts retain repeats; multi-hot records presence.</desc>
+<rect x="0" y="0" width="1440" height="940" rx="0" fill="#F5F8FA"/>
+<rect x="0" y="0" width="12" height="940" rx="0" fill="#7553B7"/>
+<text x="48" y="49" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" text-anchor="start" fill="#132B3A">PyHealth</text>
+<text x="1392" y="47" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700" text-anchor="end" fill="#7553B7">WHAT’S NEW 3</text>
+<text x="48" y="116" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="700" text-anchor="start" fill="#132B3A">Strong baselines and explicit code representations</text>
+<text x="48" y="158" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400" text-anchor="start" fill="#526977">XGBoost uses code counts; CrossMap translates vocabularies; nested_multihot marks code presence per visit.</text>
+<line x1="48" y1="201" x2="1392" y2="201" stroke="#D7E2E8" stroke-width="2"/>
+<rect x="48" y="823" width="1344" height="66" rx="14" fill="#F1ECFA"/>
+<text x="68" y="862" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" text-anchor="start" fill="#7553B7">Choose the representation deliberately: counts retain repeats; multi-hot records presence.</text>
+<text x="48" y="920" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" text-anchor="start" fill="#526977">PYHEALTH 2.1  /  COLAB VISUAL GUIDE</text>
+<text x="1392" y="920" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" text-anchor="end" fill="#526977">Concepts and toy examples • no measured model results</text>
+<rect x="48" y="233" width="1344" height="198" rx="18" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<rect x="48" y="233" width="6" height="198" rx="3" fill="#007F7A"/>
+<text x="72" y="273" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" text-anchor="start" fill="#007F7A">XGBoost + TreeSHAP</text>
+<rect x="72" y="309" width="265" height="48" rx="10" fill="#E5F4F1"/>
+<text x="204.5" y="340" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#007F7A">[A, A, B] → [2, 1]</text>
+<line x1="344" y1="333" x2="377" y2="333" stroke="#007F7A" stroke-width="2.5"/>
+<polygon points="377,333 367.3465918192059,338.2736809246462 367.3465918192059,327.7263190753538" fill="#007F7A"/>
+<rect x="389" y="309" width="273" height="48" rx="10" fill="#E5F4F1"/>
+<text x="525.5" y="340" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#007F7A">fit(train, val)</text>
+<line x1="669" y1="333" x2="702" y2="333" stroke="#007F7A" stroke-width="2.5"/>
+<polygon points="702,333 692.3465918192059,338.2736809246462 692.3465918192059,327.7263190753538" fill="#007F7A"/>
+<rect x="714" y="309" width="269" height="48" rx="10" fill="#E5F4F1"/>
+<text x="848.5" y="340" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#007F7A">Trainer.evaluate</text>
+<line x1="990" y1="333" x2="1023" y2="333" stroke="#007F7A" stroke-width="2.5"/>
+<polygon points="1023,333 1013.3465918192059,338.2736809246462 1013.3465918192059,327.7263190753538" fill="#007F7A"/>
+<rect x="1035" y="309" width="333" height="48" rx="10" fill="#E5F4F1"/>
+<text x="1201.5" y="340" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#007F7A">explain / mean_abs_shap</text>
+<text x="72" y="398" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#132B3A">Vocabulary fixes the columns. Validation stops tree growth. SHAP explains each column’s contribution.</text>
+<rect x="48" y="460" width="594" height="336" rx="18" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<rect x="48" y="460" width="6" height="336" rx="3" fill="#2864C5"/>
+<text x="72" y="500" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" text-anchor="start" fill="#2864C5">Map codes before encoding</text>
+<rect x="72" y="536" width="155" height="48" rx="10" fill="#EAF1FC"/>
+<text x="149.5" y="567" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#2864C5">ICD-9</text>
+<line x1="237" y1="559" x2="265" y2="559" stroke="#2864C5" stroke-width="2.5"/>
+<polygon points="265,559 255.3465918192059,564.2736809246462 255.3465918192059,553.7263190753538" fill="#2864C5"/>
+<rect x="276" y="536" width="155" height="48" rx="10" fill="#EAF1FC"/>
+<text x="353.5" y="567" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#2864C5">ICD-10</text>
+<line x1="441" y1="559" x2="470" y2="559" stroke="#2864C5" stroke-width="2.5"/>
+<polygon points="470,559 460.3465918192059,564.2736809246462 460.3465918192059,553.7263190753538" fill="#2864C5"/>
+<rect x="480" y="536" width="138" height="48" rx="10" fill="#EAF1FC"/>
+<text x="549.0" y="567" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#2864C5">CCSR</text>
+<text x="72" y="637" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">One source code may lose detail in translation.</text>
+<text x="72" y="669" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">Inspect unmapped_codes.</text>
+<text x="72" y="701" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">TensorProcessor.size() reports the fitted numeric</text>
+<text x="72" y="733" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">feature width.</text>
+<rect x="666" y="460" width="726" height="336" rx="18" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<rect x="666" y="460" width="6" height="336" rx="3" fill="#7553B7"/>
+<text x="690" y="500" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" text-anchor="start" fill="#7553B7">nested_multihot: visit × vocabulary</text>
+<text x="837" y="551" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" text-anchor="middle" fill="#526977">pad</text>
+<text x="921" y="551" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" text-anchor="middle" fill="#526977">unk</text>
+<text x="1005" y="551" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" text-anchor="middle" fill="#526977">I10</text>
+<text x="1089" y="551" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" text-anchor="middle" fill="#526977">E11</text>
+<text x="1173" y="551" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" text-anchor="middle" fill="#526977">N18</text>
+<text x="1257" y="551" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" text-anchor="middle" fill="#526977">J45</text>
+<text x="690" y="598" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="400" text-anchor="start" fill="#132B3A">Visit 1</text>
+<rect x="804" y="568" width="66" height="39" rx="7" fill="#F5F8FA"/>
+<text x="837" y="595" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="middle" fill="#526977">0</text>
+<rect x="888" y="568" width="66" height="39" rx="7" fill="#F5F8FA"/>
+<text x="921" y="595" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="middle" fill="#526977">0</text>
+<rect x="972" y="568" width="66" height="39" rx="7" fill="#F1ECFA"/>
+<text x="1005" y="595" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" text-anchor="middle" fill="#7553B7">1</text>
+<rect x="1056" y="568" width="66" height="39" rx="7" fill="#F1ECFA"/>
+<text x="1089" y="595" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" text-anchor="middle" fill="#7553B7">1</text>
+<rect x="1140" y="568" width="66" height="39" rx="7" fill="#F5F8FA"/>
+<text x="1173" y="595" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="middle" fill="#526977">0</text>
+<rect x="1224" y="568" width="66" height="39" rx="7" fill="#F5F8FA"/>
+<text x="1257" y="595" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="middle" fill="#526977">0</text>
+<text x="690" y="647" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="400" text-anchor="start" fill="#132B3A">Visit 2</text>
+<rect x="804" y="617" width="66" height="39" rx="7" fill="#F5F8FA"/>
+<text x="837" y="644" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="middle" fill="#526977">0</text>
+<rect x="888" y="617" width="66" height="39" rx="7" fill="#F5F8FA"/>
+<text x="921" y="644" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="middle" fill="#526977">0</text>
+<rect x="972" y="617" width="66" height="39" rx="7" fill="#F5F8FA"/>
+<text x="1005" y="644" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="middle" fill="#526977">0</text>
+<rect x="1056" y="617" width="66" height="39" rx="7" fill="#F5F8FA"/>
+<text x="1089" y="644" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="middle" fill="#526977">0</text>
+<rect x="1140" y="617" width="66" height="39" rx="7" fill="#F1ECFA"/>
+<text x="1173" y="644" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" text-anchor="middle" fill="#7553B7">1</text>
+<rect x="1224" y="617" width="66" height="39" rx="7" fill="#F5F8FA"/>
+<text x="1257" y="644" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="middle" fill="#526977">0</text>
+<text x="690" y="696" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="400" text-anchor="start" fill="#132B3A">Visit 3</text>
+<rect x="804" y="666" width="66" height="39" rx="7" fill="#F5F8FA"/>
+<text x="837" y="693" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="middle" fill="#526977">0</text>
+<rect x="888" y="666" width="66" height="39" rx="7" fill="#F5F8FA"/>
+<text x="921" y="693" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="middle" fill="#526977">0</text>
+<rect x="972" y="666" width="66" height="39" rx="7" fill="#F1ECFA"/>
+<text x="1005" y="693" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" text-anchor="middle" fill="#7553B7">1</text>
+<rect x="1056" y="666" width="66" height="39" rx="7" fill="#F5F8FA"/>
+<text x="1089" y="693" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="middle" fill="#526977">0</text>
+<rect x="1140" y="666" width="66" height="39" rx="7" fill="#F5F8FA"/>
+<text x="1173" y="693" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="middle" fill="#526977">0</text>
+<rect x="1224" y="666" width="66" height="39" rx="7" fill="#F1ECFA"/>
+<text x="1257" y="693" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" text-anchor="middle" fill="#7553B7">1</text>
+<text x="690" y="766" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" text-anchor="start" fill="#132B3A">1 = present • repeats collapse • pad column stays 0</text>
+</svg>

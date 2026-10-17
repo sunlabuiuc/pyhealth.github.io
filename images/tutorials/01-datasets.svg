@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="940" viewBox="0 0 1440 940" role="img" aria-labelledby="title desc">
+<title id="title">One dataset, many clinical questions</title><desc id="desc">A YAML config turns source tables into patient timelines; tasks choose what to predict. Load the source once, inspect its events, then reuse it for different tasks.</desc>
+<rect x="0" y="0" width="1440" height="940" rx="0" fill="#F5F8FA"/>
+<rect x="0" y="0" width="12" height="940" rx="0" fill="#007F7A"/>
+<text x="48" y="49" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" text-anchor="start" fill="#132B3A">PyHealth</text>
+<text x="1392" y="47" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700" text-anchor="end" fill="#007F7A">TUTORIAL 01</text>
+<text x="48" y="116" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="700" text-anchor="start" fill="#132B3A">One dataset, many clinical questions</text>
+<text x="48" y="158" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400" text-anchor="start" fill="#526977">A YAML config turns source tables into patient timelines; tasks choose what to predict.</text>
+<line x1="48" y1="201" x2="1392" y2="201" stroke="#D7E2E8" stroke-width="2"/>
+<rect x="48" y="823" width="1344" height="66" rx="14" fill="#E5F4F1"/>
+<text x="68" y="862" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" text-anchor="start" fill="#007F7A">Load the source once, inspect its events, then reuse it for different tasks.</text>
+<text x="48" y="920" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" text-anchor="start" fill="#526977">PYHEALTH 2.1  /  COLAB VISUAL GUIDE</text>
+<text x="1392" y="920" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" text-anchor="end" fill="#526977">Concepts and toy examples • no measured model results</text>
+<rect x="48" y="233" width="315" height="269" rx="18" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<rect x="48" y="233" width="6" height="269" rx="3" fill="#007F7A"/>
+<text x="72" y="273" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" text-anchor="start" fill="#007F7A">Source + config</text>
+<rect x="72" y="296" width="267" height="37" rx="6" fill="#F5F8FA"/>
+<text x="86" y="321" font-family="Menlo, monospace" font-size="20" font-weight="400" text-anchor="start" fill="#132B3A">patients.csv</text>
+<rect x="72" y="343" width="267" height="37" rx="6" fill="#F5F8FA"/>
+<text x="86" y="368" font-family="Menlo, monospace" font-size="20" font-weight="400" text-anchor="start" fill="#132B3A">admissions.csv</text>
+<rect x="72" y="390" width="267" height="37" rx="6" fill="#F5F8FA"/>
+<text x="86" y="415" font-family="Menlo, monospace" font-size="20" font-weight="400" text-anchor="start" fill="#132B3A">diagnoses_icd.csv</text>
+<text x="72" y="477" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" text-anchor="start" fill="#007F7A">YAML: id · time · attributes</text>
+<line x1="375" y1="364" x2="421" y2="364" stroke="#526977" stroke-width="2.5"/>
+<polygon points="421,364 411.3465918192059,369.2736809246462 411.3465918192059,358.7263190753538" fill="#526977"/>
+<rect x="435" y="233" width="540" height="269" rx="18" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<rect x="435" y="233" width="6" height="269" rx="3" fill="#2864C5"/>
+<text x="459" y="273" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" text-anchor="start" fill="#2864C5">Dataset → patient → events</text>
+<text x="464" y="310" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" text-anchor="start" fill="#2864C5">Patient p1</text>
+<line x1="482" y1="368" x2="923" y2="368" stroke="#2864C5" stroke-width="3"/>
+<circle cx="490" cy="368" r="11" fill="#2864C5"/>
+<text x="490" y="345" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" text-anchor="middle" fill="#132B3A">Visit 1</text>
+<text x="490" y="408" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="400" text-anchor="middle" fill="#526977">Jan 2023</text>
+<circle cx="677" cy="368" r="11" fill="#2864C5"/>
+<text x="677" y="345" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" text-anchor="middle" fill="#132B3A">Visit 2</text>
+<text x="677" y="408" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="400" text-anchor="middle" fill="#526977">Jun 2023</text>
+<circle cx="903" cy="368" r="11" fill="#2864C5"/>
+<text x="903" y="345" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" text-anchor="middle" fill="#132B3A">Visit 3</text>
+<text x="903" y="408" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="400" text-anchor="middle" fill="#526977">Feb 2024</text>
+<text x="464" y="466" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#132B3A">Events retain type, time and attributes.</text>
+<line x1="985" y1="364" x2="1028" y2="364" stroke="#526977" stroke-width="2.5"/>
+<polygon points="1028,364 1018.3465918192059,369.2736809246462 1018.3465918192059,358.7263190753538" fill="#526977"/>
+<rect x="1042" y="233" width="350" height="269" rx="18" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<rect x="1042" y="233" width="6" height="269" rx="3" fill="#7553B7"/>
+<text x="1066" y="273" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" text-anchor="start" fill="#7553B7">Choose a task</text>
+<rect x="1066" y="295" width="302" height="48" rx="10" fill="#F1ECFA"/>
+<text x="1217.0" y="326" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#7553B7">Mortality</text>
+<rect x="1066" y="356" width="302" height="48" rx="10" fill="#F1ECFA"/>
+<text x="1217.0" y="387" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#7553B7">Readmission</text>
+<rect x="1066" y="417" width="302" height="48" rx="10" fill="#F1ECFA"/>
+<text x="1217.0" y="448" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#7553B7">Length of stay</text>
+<rect x="48" y="531" width="816" height="265" rx="18" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<rect x="48" y="531" width="6" height="265" rx="3" fill="#007F7A"/>
+<text x="72" y="571" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" text-anchor="start" fill="#007F7A">Inspect one patient</text>
+<text x="72" y="613" font-family="Menlo, monospace" font-size="24" font-weight="700" text-anchor="start" fill="#007F7A">patient.get_events(...)</text>
+<rect x="72" y="642" width="225" height="48" rx="10" fill="#E5F4F1"/>
+<text x="184.5" y="673" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#007F7A">event_type</text>
+<rect x="313" y="642" width="241" height="48" rx="10" fill="#E5F4F1"/>
+<text x="433.5" y="673" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#007F7A">start / end</text>
+<rect x="570" y="642" width="268" height="48" rx="10" fill="#E5F4F1"/>
+<text x="704.0" y="673" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#007F7A">hadm_id filter</text>
+<text x="72" y="741" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">Select a table, a time range, or one admission. Use return_df=True for a</text>
+<text x="72" y="773" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">table view.</text>
+<rect x="888" y="531" width="504" height="265" rx="18" fill="white" stroke="#D7E2E8" stroke-width="1.5"/>
+<rect x="888" y="531" width="6" height="265" rx="3" fill="#2864C5"/>
+<text x="912" y="571" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" text-anchor="start" fill="#2864C5">Cache and reuse</text>
+<text x="912" y="613" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">Raw files + YAML → cached events</text>
+<text x="912" y="645" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">Same source → another task</text>
+<text x="912" y="677" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="start" fill="#526977">Your CSVs + YAML → BaseDataset</text>
+</svg>
