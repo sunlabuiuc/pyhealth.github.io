@@ -352,6 +352,8 @@
         <button class="filter-btn" onclick="filterModels('generative', this)">Generative <span style="opacity:0.65;">(5)</span></button>
       </div>
 
+      <p class="snippet-note" style="margin:0 0 1rem; padding:0.75rem 1rem; border:1px solid var(--line); border-radius:10px; background:var(--paper); font-size:0.9rem; color:var(--muted); line-height:1.55;"><strong style="color:var(--ink);">How to read these snippets.</strong> <code>samples</code> is the dataset your task produces, for example <code>samples = dataset.set_task(MortalityPredictionMIMIC3())</code>, or <code>train_ds</code> from <code>set_task(task, split=PatientSplit(...))</code>. Every model reads its inputs from it, so swapping models is a one-line change. Train with <code>Trainer(model=model).train(train_loader, val_loader)</code>. The <a href="https://colab.research.google.com/drive/1KXloapcMeYubw4dT_fPJKTY1pepH2vvl" target="_blank" rel="noopener">Quickstart</a> runs the whole pipeline, and <a href="https://colab.research.google.com/drive/1hHJ1Ll6lQIq95EnRzn3jC9V2XeP-0lU2" target="_blank" rel="noopener">Tutorial 04</a> compares models fairly. Snippets checked against PyHealth 2.1.0.</p>
+
       <div class="model-grid" id="modelGrid">
 
         <!-- ───────────── EHR Sequence (20) ───────────── -->
@@ -544,6 +546,8 @@ model <span class="tok-op">=</span> <span class="tok-cl">EHRMamba</span>(dataset
           </div>
           <p class="model-desc">Mamba backbone over CEHR-style embeddings, built for the FHIR pipeline. Pairs with MIMIC4FHIR for clinical prediction on FHIR data.</p>
           <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">EHRMambaCEHR</span>
+<span class="tok-cm"># samples: from MPFClinicalPredictionTask, which builds CEHR concept ids</span>
+vocab_size <span class="tok-op">=</span> samples.input_processors[<span class="tok-str">&quot;concept_ids&quot;</span>].vocab.vocab_size
 model <span class="tok-op">=</span> <span class="tok-cl">EHRMambaCEHR</span>(dataset<span class="tok-op">=</span>samples, vocab_size<span class="tok-op">=</span>vocab_size)</pre>
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.EHRMambaCEHR.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
@@ -610,8 +614,8 @@ model <span class="tok-op">=</span> <span class="tok-cl">MultimodalAdaCare</span
           </div>
           <p class="model-desc">Calibrated random forest for tabular clinical risk — out-of-bag isotonic calibration yields probabilities you can threshold meaningfully.</p>
           <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">CaliForest</span>
-model <span class="tok-op">=</span> <span class="tok-cl">CaliForest</span>(dataset<span class="tok-op">=</span>samples,
-    n_estimators<span class="tok-op">=</span><span class="tok-num">100</span>, calibration<span class="tok-op">=</span><span class="tok-str">"isotonic"</span>)</pre>
+model <span class="tok-op">=</span> <span class="tok-cl">CaliForest</span>(dataset<span class="tok-op">=</span>samples, n_estimators<span class="tok-op">=</span><span class="tok-num">100</span>, calibration<span class="tok-op">=</span><span class="tok-str">&quot;isotonic&quot;</span>)
+model.<span class="tok-fn">fit</span>(train_loader)  <span class="tok-cm"># trees are fit once, then use Trainer.evaluate</span></pre>
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
           </div>
@@ -624,7 +628,9 @@ model <span class="tok-op">=</span> <span class="tok-cl">CaliForest</span>(datas
           </div>
           <p class="model-desc">Shared embedding layer that maps every processor type in a sample dataset to a common dimension — the building block the other EHR models sit on, and usable standalone with pre-trained code embeddings.</p>
           <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">EmbeddingModel</span>
-model <span class="tok-op">=</span> <span class="tok-cl">EmbeddingModel</span>(dataset<span class="tok-op">=</span>samples, embedding_dim<span class="tok-op">=</span><span class="tok-num">128</span>)</pre>
+<span class="tok-cm"># Building block: embeds every input field of a batch, used inside models</span>
+embedder <span class="tok-op">=</span> <span class="tok-cl">EmbeddingModel</span>(dataset<span class="tok-op">=</span>samples, embedding_dim<span class="tok-op">=</span><span class="tok-num">128</span>)
+embedded <span class="tok-op">=</span> <span class="tok-fn">embedder</span>({k: batch[k] <span class="tok-kw">for</span> k <span class="tok-kw">in</span> samples.input_schema})</pre>
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
           </div>
@@ -798,7 +804,9 @@ model <span class="tok-op">=</span> <span class="tok-cl">GCN</span>(dataset<span
           <p class="model-desc">Torchvision image backbone with a graph convolution head — propagates label co-occurrence structure over CNN features for multi-label imaging tasks.</p>
           <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">Graph_TorchvisionModel</span>
 model <span class="tok-op">=</span> <span class="tok-cl">Graph_TorchvisionModel</span>(dataset<span class="tok-op">=</span>samples,
-    feature_keys<span class="tok-op">=</span>[<span class="tok-str">"image"</span>], label_key<span class="tok-op">=</span><span class="tok-str">"labels"</span>)</pre>
+    feature_keys<span class="tok-op">=</span>[<span class="tok-str">&quot;image&quot;</span>], label_key<span class="tok-op">=</span><span class="tok-str">&quot;labels&quot;</span>, mode<span class="tok-op">=</span><span class="tok-str">&quot;multilabel&quot;</span>,
+    model_name<span class="tok-op">=</span><span class="tok-str">&quot;resnet18&quot;</span>, model_config<span class="tok-op">=</span>{<span class="tok-str">&quot;weights&quot;</span>: <span class="tok-str">&quot;DEFAULT&quot;</span>},
+    gnn_config<span class="tok-op">=</span>{<span class="tok-str">&quot;input_dim&quot;</span>: <span class="tok-num">256</span>, <span class="tok-str">&quot;hidden_dim&quot;</span>: <span class="tok-num">128</span>})</pre>
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
           </div>
@@ -841,8 +849,8 @@ model <span class="tok-op">=</span> <span class="tok-cl">CNN</span>(dataset<span
           </div>
           <p class="model-desc">Wrapper for any torchvision architecture (ResNet, ViT, EfficientNet, DenseNet) as a drop-in PyHealth model with pre-trained weights support.</p>
           <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">TorchvisionModel</span>
-model <span class="tok-op">=</span> <span class="tok-cl">TorchvisionModel</span>(dataset<span class="tok-op">=</span>samples,
-    backbone<span class="tok-op">=</span><span class="tok-str">"resnet50"</span>)</pre>
+model <span class="tok-op">=</span> <span class="tok-cl">TorchvisionModel</span>(dataset<span class="tok-op">=</span>samples, model_name<span class="tok-op">=</span><span class="tok-str">&quot;resnet50&quot;</span>,
+    model_config<span class="tok-op">=</span>{<span class="tok-str">&quot;weights&quot;</span>: <span class="tok-str">&quot;DEFAULT&quot;</span>})</pre>
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
             <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/cxr/covid19cxr_tutorial.py" class="example-link" target="_blank" rel="noopener">Example →</a>
@@ -856,7 +864,9 @@ model <span class="tok-op">=</span> <span class="tok-cl">TorchvisionModel</span>
           </div>
           <p class="model-desc">Variational autoencoder for medical image generation and latent-space representation learning — supports chest X-ray synthesis.</p>
           <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">VAE</span>
-model <span class="tok-op">=</span> <span class="tok-cl">VAE</span>(dataset<span class="tok-op">=</span>samples, latent_dim<span class="tok-op">=</span><span class="tok-num">128</span>)</pre>
+<span class="tok-cm"># samples: an image task with an &quot;image&quot; input, e.g. from COVID19CXRDataset</span>
+model <span class="tok-op">=</span> <span class="tok-cl">VAE</span>(dataset<span class="tok-op">=</span>samples, feature_keys<span class="tok-op">=</span>[<span class="tok-str">&quot;image&quot;</span>], label_key<span class="tok-op">=</span><span class="tok-str">&quot;disease&quot;</span>,
+    input_channel<span class="tok-op">=</span><span class="tok-num">1</span>, input_size<span class="tok-op">=</span><span class="tok-num">128</span>, mode<span class="tok-op">=</span><span class="tok-str">&quot;multiclass&quot;</span>)</pre>
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.VAE.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
             <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/cxr/chextXray_image_generation_VAE.py" class="example-link" target="_blank" rel="noopener">Example →</a>
@@ -870,7 +880,8 @@ model <span class="tok-op">=</span> <span class="tok-cl">VAE</span>(dataset<span
           </div>
           <p class="model-desc">Generative adversarial network for medical image synthesis and data augmentation — includes generator and discriminator for chest X-ray generation.</p>
           <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">GAN</span>
-model <span class="tok-op">=</span> <span class="tok-cl">GAN</span>(dataset<span class="tok-op">=</span>samples)</pre>
+<span class="tok-cm"># A standalone generator/discriminator pair for 32x32, 64x64 or 128x128 images</span>
+gan <span class="tok-op">=</span> <span class="tok-cl">GAN</span>(input_channel<span class="tok-op">=</span><span class="tok-num">1</span>, input_size<span class="tok-op">=</span><span class="tok-num">128</span>, hidden_dim<span class="tok-op">=</span><span class="tok-num">128</span>)</pre>
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.GAN.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
             <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/cxr/ChestXray-image-generation-GAN.ipynb" class="example-link" target="_blank" rel="noopener">Example →</a>
@@ -901,8 +912,9 @@ model <span class="tok-op">=</span> <span class="tok-cl">TransformersModel</span
           </div>
           <p class="model-desc">Extracts fixed-size text embeddings from clinical notes using a HuggingFace encoder, feeding downstream PyHealth models.</p>
           <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">TextEmbedding</span>
-model <span class="tok-op">=</span> <span class="tok-cl">TextEmbedding</span>(dataset<span class="tok-op">=</span>samples,
-    model_name<span class="tok-op">=</span><span class="tok-str">"bert-base-uncased"</span>)</pre>
+<span class="tok-cm"># An encoder module used inside other models, not a standalone model</span>
+encoder <span class="tok-op">=</span> <span class="tok-cl">TextEmbedding</span>(embedding_dim<span class="tok-op">=</span><span class="tok-num">256</span>)
+embeddings, mask <span class="tok-op">=</span> <span class="tok-fn">encoder</span>([<span class="tok-str">&quot;Patient presents with chest pain.&quot;</span>])</pre>
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.text_embedding_docs.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
             <a href="https://github.com/sunlabuiuc/PyHealth/blob/master/examples/text_embedding_tutorial.ipynb" class="example-link" target="_blank" rel="noopener">Example →</a>
@@ -916,7 +928,9 @@ model <span class="tok-op">=</span> <span class="tok-cl">TextEmbedding</span>(da
           </div>
           <p class="model-desc">Social determinants of health model that extracts SDOH factors from unstructured clinical notes and integrates them into risk prediction.</p>
           <pre class="model-code"><span class="tok-kw">from</span> pyhealth.models <span class="tok-kw">import</span> <span class="tok-cl">SdohClassifier</span>
-model <span class="tok-op">=</span> <span class="tok-cl">SdohClassifier</span>(dataset<span class="tok-op">=</span>samples)</pre>
+<span class="tok-cm"># Pretrained LLM classifier: no training needed</span>
+sdoh <span class="tok-op">=</span> <span class="tok-cl">SdohClassifier</span>()
+sdoh.<span class="tok-fn">predict</span>(<span class="tok-str">&quot;Pt is homeless and has no car&quot;</span>)  <span class="tok-cm"># {&quot;housing&quot;, &quot;transportation&quot;}</span></pre>
           <div class="model-card-footer">
             <a href="https://pyhealth.readthedocs.io/en/latest/api/models/pyhealth.models.SDOH.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
           </div>
