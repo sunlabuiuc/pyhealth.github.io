@@ -1,0 +1,55 @@
+# Publishes posts prepared ahead of time on branches named
+# scheduled/YYYY-MM-DD-<slug>. Every Monday morning (and on demand) it merges
+# each such branch whose date has arrived into main, in date order, then
+# deletes the branch. GitHub Pages deploys main, so the post goes live.
+#
+# To schedule a post: branch from main, add blogs/<date>-<slug>/text.md, run
+# scripts/build_blog_index.py, commit, and push as scheduled/<date>-<slug>.
+# Stack later posts on earlier ones so they merge cleanly in order.
+name: Publish scheduled posts
+
+on:
+  schedule:
+    - cron: "0 11 * * 1"   # Mondays 11:00 UTC (7:00 EDT / 6:00 EST)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-scheduled
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
+
+      - name: Merge scheduled branches that are due
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          today=$(date -u +%F)
+          due=()
+          for ref in $(git for-each-ref --sort=refname --format='%(refname:short)' refs/remotes/origin/scheduled/); do
+            date=$(echo "$ref" | sed -nE 's#^origin/scheduled/([0-9]{4}-[0-9]{2}-[0-9]{2}).*#\1#p')
+            if [ -n "$date" ] && [[ ! "$date" > "$today" ]]; then
+              due+=("$ref")
+            fi
+          done
+          if [ ${#due[@]} -eq 0 ]; then
+            echo "Nothing due on $today."
+            exit 0
+          fi
+          for ref in "${due[@]}"; do
+            echo "Publishing $ref"
+            git merge --no-ff --no-edit -m "Publish ${ref#origin/}" "$ref"
+          done
+          git push origin HEAD:main
+          for ref in "${due[@]}"; do
+            git push origin --delete "${ref#origin/}"
+          done
