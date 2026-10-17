@@ -1,5 +1,19 @@
 [
   {
+    "id": "2026-10-26-make-your-work-easy-to-build-on",
+    "date": "2026-10-26",
+    "tag": "Blog",
+    "title": "Make Your Work the Easy One to Build On",
+    "summary": "Reproducibility is how a method earns its next hundred users. The second of three posts on bringing your research into PyHealth.",
+    "points": [],
+    "links": [
+      [
+        "Read the post",
+        "blogs/2026-10-26-make-your-work-easy-to-build-on/"
+      ]
+    ]
+  },
+  {
     "id": "2026-10-19-your-paper-is-not-your-impact",
     "date": "2026-10-19",
     "tag": "Blog",
