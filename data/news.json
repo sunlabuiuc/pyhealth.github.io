@@ -1,5 +1,23 @@
 [
   {
+    "id": "tutorials-04-07-update",
+    "date": "2026-10-17",
+    "tag": "Tutorials",
+    "title": "Tutorials 04 and 07 now open on a free T4 GPU",
+    "summary": "The model-comparison and clinical-text tutorials now start on a T4 GPU runtime, so they train the full set of models in about 15 minutes, and both explain more of what they show.",
+    "points": [
+      "Tutorial 04: all six models (logistic regression, MLP, RNN, Transformer, RETAIN and XGBoost) on one patient split, with each model's name on every training-log line, commented code, and a guide to reading the log and the results table.",
+      "Tutorial 07: label distributions for specialties and ICD codes, a plain explanation of the “unexpected weights” message when a language model loads, and worked examples of correct predictions, checked against simple baselines.",
+      "No GPU available? Colab offers a CPU runtime, and both notebooks still run with smaller settings."
+    ],
+    "links": [
+      [
+        "Open the tutorials",
+        "tutorials.html"
+      ]
+    ]
+  },
+  {
     "id": "whats-new-colabs",
     "date": "2026-10-17",
     "tag": "Tutorials",
