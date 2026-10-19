@@ -742,7 +742,9 @@
         fetch('data/blogs.json')
             .then(response => response.json())
             .then(blogs => {
-                allBlogs = blogs;
+                // Newest first; posts without a date go last.
+                allBlogs = blogs.slice().sort((a, b) =>
+                    (b.date || '').localeCompare(a.date || ''));
                 render(allBlogs);
             })
             .catch(err => {
