@@ -183,6 +183,44 @@
       font-weight: 700;
     }
     .checklist li strong { color: var(--ink); }
+    .steps {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1.5rem 1.8rem;
+      list-style: none;
+      margin: 0;
+      counter-reset: step;
+    }
+    .steps li {
+      position: relative;
+      padding: 0.6rem 0 0.6rem 2.4rem;
+      font-size: 0.96rem;
+      color: var(--ink);
+      line-height: 1.5;
+      border-bottom: 1px solid var(--line);
+      counter-increment: step;
+    }
+    .steps li:last-child { border-bottom: none; }
+    .steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0.6rem;
+      width: 1.6rem;
+      height: 1.6rem;
+      border-radius: 50%;
+      background: var(--accent);
+      color: white;
+      font-size: 0.82rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .review-notes {
+      margin-top: 0.85rem;
+    }
     .apply-callout {
       margin-top: 2rem;
       background: var(--paper);
@@ -311,6 +349,33 @@
         <li><strong>PR description</strong> covering who you are (NetID if UIUC), contribution type, a high-level description, and a file guide.</li>
         <li><strong>Rebased</strong> on the latest <code>sunlabuiuc</code> <code>master</code>, targeting <code>master</code>, with maintainer edits enabled.</li>
       </ul>
+    </section>
+
+    <!-- ── AI review ── -->
+    <section class="research-section">
+      <h2 class="section-h2">Get Your PR Reviewed with <code>/review</code></h2>
+      <p class="section-sub">PRs labeled <code>status: automatic</code> can be reviewed — and approved — by our AI reviewer. You don't need to wait for a maintainer: request the review yourself from the PR's comments.</p>
+      <ol class="steps">
+        <li><strong>Open your PR</strong> against <code>master</code>. The tests and contribution-rule checks run automatically.</li>
+        <li><strong>Wait for the <code>status: automatic</code> label.</strong> Once your PR has it, you (the PR author) can request AI reviews.</li>
+        <li><strong>Comment <code>/review</code></strong> on the PR. A 👀 reaction means your request is queued; the review starts as soon as the required checks pass on your latest commit.</li>
+        <li><strong>Read the AI review.</strong> If it approves, your PR is approved and ready for a maintainer to merge. Otherwise it lists concrete steps to get it merged.</li>
+        <li><strong>Push fixes and comment <code>/review</code> again.</strong> Each commit is reviewed once, so push your changes before asking for another review.</li>
+      </ol>
+      <div class="card-grid review-notes">
+        <div class="info-card">
+          <h3>Five reviews per label</h3>
+          <p>Each <code>status: automatic</code> label allows up to 5 AI reviews. After that, the PR switches to <code>status: manual</code> and a maintainer takes over.</p>
+        </div>
+        <div class="info-card">
+          <h3>When a human steps in</h3>
+          <p>A PR switches to <code>status: manual</code> if it changes files outside <code>docs/</code>, <code>examples/</code>, <code>pyhealth/</code>, <code>tests/</code> or <code>test-resources/</code>, is very large, or touches core parts of the library. It still gets an AI review, but a maintainer decides.</p>
+        </div>
+        <div class="info-card">
+          <h3>Make the review count</h3>
+          <p>Make sure your tests pass locally and work through the checklist above first. Tests and coverage are part of what the reviewer looks at.</p>
+        </div>
+      </div>
     </section>
 
     <!-- ── Full guide callout ── -->
