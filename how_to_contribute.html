@@ -218,8 +218,19 @@
       align-items: center;
       justify-content: center;
     }
-    .review-notes {
-      margin-top: 0.85rem;
+    .label-list {
+      margin: 0.5rem 0 0;
+      padding-left: 1.1rem;
+    }
+    .label-list li {
+      padding: 0.2rem 0;
+      border-bottom: none;
+      counter-increment: none;
+    }
+    .label-list li::before { content: none; }
+    .review-note {
+      margin: 0.85rem 0 0;
+      font-size: 0.92rem;
     }
     .apply-callout {
       margin-top: 2rem;
@@ -351,31 +362,21 @@
       </ul>
     </section>
 
-    <!-- ── AI review ── -->
+    <!-- ── How to contribute ── -->
     <section class="research-section">
-      <h2 class="section-h2">Get Your PR Reviewed with <code>/review</code></h2>
-      <p class="section-sub">PRs labeled <code>status: automatic</code> can be reviewed — and approved — by our AI reviewer. You don't need to wait for a maintainer: request the review yourself from the PR's comments.</p>
+      <h2 class="section-h2">How to Get Your PR Merged</h2>
       <ol class="steps">
-        <li><strong>Open your PR</strong> against <code>master</code>. The tests and contribution-rule checks run automatically.</li>
-        <li><strong>Wait for the <code>status: automatic</code> label.</strong> Once your PR has it, you (the PR author) can request AI reviews.</li>
-        <li><strong>Comment <code>/review</code></strong> on the PR. A 👀 reaction means your request is queued; the review starts as soon as the required checks pass on your latest commit.</li>
-        <li><strong>Read the AI review.</strong> If it approves, your PR is approved and ready for a maintainer to merge. Otherwise it lists concrete steps to get it merged.</li>
-        <li><strong>Push fixes and comment <code>/review</code> again.</strong> Each commit is reviewed once, so push your changes before asking for another review.</li>
+        <li><strong><a href="https://github.com/sunlabuiuc/PyHealth/fork" target="_blank" rel="noopener">Fork PyHealth</a>.</strong></li>
+        <li><strong>Submit a pull request</strong> against <code>master</code>.</li>
+        <li><strong>Wait to be labeled</strong> for AI review, or ask for a review on <a href="https://discord.gg/mpb835EHaX" target="_blank" rel="noopener">Discord</a>.</li>
+        <li><strong>Check your label:</strong>
+          <ul class="label-list">
+            <li><code>status: manual</code>: wait for a maintainer to review and approve your PR.</li>
+            <li><code>status: automatic</code>: comment <code>/review</code> to get an AI review. Push your fixes and comment <code>/review</code> again whenever you want another review. <strong>Once the AI approves, you can merge your PR into PyHealth yourself.</strong></li>
+          </ul>
+        </li>
       </ol>
-      <div class="card-grid review-notes">
-        <div class="info-card">
-          <h3>Five reviews per label</h3>
-          <p>Each <code>status: automatic</code> label allows up to 5 AI reviews. After that, the PR switches to <code>status: manual</code> and a maintainer takes over.</p>
-        </div>
-        <div class="info-card">
-          <h3>When a human steps in</h3>
-          <p>A PR switches to <code>status: manual</code> if it changes files outside <code>docs/</code>, <code>examples/</code>, <code>pyhealth/</code>, <code>tests/</code> or <code>test-resources/</code>, is very large, or touches core parts of the library. It still gets an AI review, but a maintainer decides.</p>
-        </div>
-        <div class="info-card">
-          <h3>Make the review count</h3>
-          <p>Make sure your tests pass locally and work through the checklist above first. Tests and coverage are part of what the reviewer looks at.</p>
-        </div>
-      </div>
+      <p class="section-sub review-note">A PR switches to <code>status: manual</code> after 5 AI reviews, or if it changes core parts of the library.</p>
     </section>
 
     <!-- ── Full guide callout ── -->
