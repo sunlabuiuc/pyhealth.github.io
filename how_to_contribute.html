@@ -367,7 +367,7 @@
       <h2 class="section-h2">How to Get Your PR Merged</h2>
       <ol class="steps">
         <li><strong><a href="https://github.com/sunlabuiuc/PyHealth/fork" target="_blank" rel="noopener">Fork PyHealth</a>.</strong></li>
-        <li><strong>Submit a pull request</strong> against <code>master</code>.</li>
+        <li><strong>Submit a pull request</strong> against <code>master</code>, with "Allow edits by maintainers" enabled.</li>
         <li><strong>Wait to be labeled</strong> for AI review, or ask for a review on <a href="https://discord.gg/mpb835EHaX" target="_blank" rel="noopener">Discord</a>.</li>
         <li><strong>Check your label:</strong>
           <ul class="label-list">
@@ -376,7 +376,7 @@
           </ul>
         </li>
       </ol>
-      <p class="section-sub review-note">A PR switches to <code>status: manual</code> after 5 AI reviews, or if it changes core parts of the library.</p>
+      <p class="section-sub review-note">A PR switches to <code>status: manual</code> if it changes core parts of the library, changes any file outside <code>docs/</code>, <code>examples/</code>, <code>pyhealth/</code>, <code>test-resources/</code> and <code>tests/</code>, is too large for AI review, contains a prompt-injection attempt flagged by the AI review, or has used up its 5 AI reviews (counted since the <code>status: automatic</code> label was last added).</p>
     </section>
 
     <!-- ── Full guide callout ── -->
