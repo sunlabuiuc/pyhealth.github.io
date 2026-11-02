@@ -76,5 +76,18 @@
     "read_time_min": 3,
     "file": "text.md",
     "url": "/blogs/2026-10-26-make-your-work-easy-to-build-on/"
+  },
+  {
+    "id": "2026-11-02-join-the-pyhealth-benchmark",
+    "title": "Join the PyHealth Benchmark",
+    "author": "Jimeng Sun & PyHealth Team",
+    "preview": "Become a reference point that others report against: how to bring your method, task or dataset into the PyHealth clinical prediction benchmark, and how we help.",
+    "date": "2026-11-02",
+    "date_display": "Nov 2, 2026",
+    "last_updated": "2026-11-02T12:00:00",
+    "word_count": 558,
+    "read_time_min": 3,
+    "file": "text.md",
+    "url": "/blogs/2026-11-02-join-the-pyhealth-benchmark/"
   }
 ]
