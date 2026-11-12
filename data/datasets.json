@@ -86,7 +86,7 @@
   "EHRShotDataset": {
     "label": "EHRShot",
     "access": "restricted",
-    "access_note": "Redivis access request + EHRSHOT data use agreement",
+    "access_note": "Redivis access request + signed EHRSHOT research usage agreement",
     "source_url": "https://redivis.com/datasets/53gc-8rhx41kgt"
   },
   "SHHSDataset": {
@@ -231,7 +231,7 @@
   "TCGAPRADDataset": {
     "label": "TCGA-PRAD",
     "access": "open",
-    "access_note": "No account needed for the open MAF and clinical files",
+    "access_note": "No account needed for the open MAF and clinical files; merge the per-sample MAFs into one",
     "source_url": "https://portal.gdc.cancer.gov/projects/TCGA-PRAD"
   },
   "ClinVarDataset": {
