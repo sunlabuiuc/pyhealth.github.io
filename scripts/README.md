@@ -48,6 +48,35 @@ Each entry is one Python class found in `pyhealth/tasks/`:
 schema dynamically in `__init__` will have `null` here — override via
 `tasks_extra.json`.
 
+`dataset_classes` is read from the task's docstring: every
+``:class:`~pyhealth.datasets.X` `` it cites (PyHealth task docstrings say
+"Works with :class:`~pyhealth.datasets.X`."). tasks.html turns these into
+dataset pills that link to `datasets.html#X`, and datasets.html lists each
+dataset's tasks from them, so a new task shows up in both places after you
+rerun the script. Hand-written `datasets` labels are only a fallback for
+entries without `dataset_classes`.
+
+---
+
+### data/datasets.json (hand-authored)
+
+One entry per `pyhealth.datasets` class, keyed by class name. datasets.html
+uses it for each card's access badge and "Get the data" link, and tasks.html
+for the pill labels. The facts match the "Getting the data" section of each
+dataset's docstring in PyHealth; update both together.
+
+| Field         | Required | Description |
+|---------------|----------|-------------|
+| `label`       | Yes      | Short pill label, e.g. `"MIMIC-III"` |
+| `access`      | Yes      | `open`, `restricted`, `credentialed`, or `format` |
+| `access_note` | Yes      | One line on what access takes |
+| `source_url`  | Yes      | Where to download it |
+| `demo_label`, `demo_url` | No | An open demo or subset |
+| `anchor`      | No       | Card to link to when the class has no card of its own |
+
+A new dataset card needs `id="<ClassName>"` on its `.dataset-card` div so
+`datasets.html#<ClassName>` links land on it.
+
 ---
 
 ### data/tasks_extra.json (hand-authored)
