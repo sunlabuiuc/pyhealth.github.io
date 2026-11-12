@@ -170,7 +170,7 @@
   "ISRUCDataset": {
     "label": "ISRUC",
     "access": "open",
-    "access_note": "No account needed; download=True fetches it",
+    "access_note": "No account needed; download=True fetches it (needs the 7zzs binary on Linux/macOS)",
     "source_url": "https://sleeptight.isr.uc.pt/"
   },
   "EESM23Dataset": {
