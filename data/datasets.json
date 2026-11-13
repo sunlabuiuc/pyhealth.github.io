@@ -1,0 +1,271 @@
+{
+  "MIMIC3Dataset": {
+    "label": "MIMIC-III",
+    "access": "credentialed",
+    "access_note": "PhysioNet credentialing + CITI training + a signed data use agreement",
+    "source_url": "https://physionet.org/content/mimiciii/1.4/",
+    "demo_label": "MIMIC-III demo (100 patients)",
+    "demo_url": "https://physionet.org/content/mimiciii-demo/1.4/"
+  },
+  "MIMIC4Dataset": {
+    "label": "MIMIC-IV",
+    "access": "credentialed",
+    "access_note": "PhysioNet credentialing + CITI training + a signed data use agreement for each module you load",
+    "source_url": "https://physionet.org/content/mimiciv/",
+    "demo_label": "MIMIC-IV demo (100 patients)",
+    "demo_url": "https://physionet.org/content/mimic-iv-demo/2.2/"
+  },
+  "MIMIC4EHRDataset": {
+    "label": "MIMIC-IV",
+    "access": "credentialed",
+    "access_note": "PhysioNet credentialing + CITI training + a signed data use agreement",
+    "source_url": "https://physionet.org/content/mimiciv/",
+    "demo_label": "MIMIC-IV demo (100 patients)",
+    "demo_url": "https://physionet.org/content/mimic-iv-demo/2.2/"
+  },
+  "MIMIC4NoteDataset": {
+    "label": "MIMIC-IV Note",
+    "access": "credentialed",
+    "access_note": "PhysioNet credentialing + CITI training + a signed data use agreement",
+    "source_url": "https://physionet.org/content/mimic-iv-note/2.2/"
+  },
+  "MIMIC4CXRDataset": {
+    "label": "MIMIC-CXR",
+    "access": "credentialed",
+    "access_note": "PhysioNet credentialing + CITI training + a signed data use agreement (MIMIC-CXR-JPG release)",
+    "source_url": "https://physionet.org/content/mimic-cxr-jpg/2.1.0/"
+  },
+  "MIMIC4EDDataset": {
+    "label": "MIMIC-IV-ED",
+    "access": "credentialed",
+    "access_note": "PhysioNet credentialing + CITI training + a signed data use agreement",
+    "source_url": "https://physionet.org/content/mimic-iv-ed/",
+    "demo_label": "MIMIC-IV-ED demo",
+    "demo_url": "https://physionet.org/content/mimic-iv-ed-demo/"
+  },
+  "MIMIC4FHIR": {
+    "label": "MIMIC-IV FHIR",
+    "access": "credentialed",
+    "access_note": "PhysioNet credentialing + CITI training + a signed data use agreement",
+    "source_url": "https://physionet.org/content/mimic-iv-fhir/2.1/",
+    "demo_label": "MIMIC-IV FHIR demo",
+    "demo_url": "https://physionet.org/content/mimic-iv-fhir-demo/2.1.0/"
+  },
+  "MIMICExtractDataset": {
+    "label": "MIMIC-Extract",
+    "access": "credentialed",
+    "access_note": "Built from MIMIC-III, so it needs MIMIC-III credentialing first",
+    "source_url": "https://github.com/MLforHealth/MIMIC_Extract"
+  },
+  "eICUDataset": {
+    "label": "eICU",
+    "access": "credentialed",
+    "access_note": "PhysioNet credentialing + CITI training + a signed data use agreement",
+    "source_url": "https://physionet.org/content/eicu-crd/2.0/",
+    "demo_label": "eICU demo",
+    "demo_url": "https://physionet.org/content/eicu-crd-demo/2.0.1/"
+  },
+  "PhysioNetDeIDDataset": {
+    "label": "PhysioNet De-ID",
+    "access": "credentialed",
+    "access_note": "PhysioNet credentialing + CITI training + a signed data use agreement",
+    "source_url": "https://physionet.org/content/deidentifiedmedicaltext/1.0/"
+  },
+  "IIICDataset": {
+    "label": "IIIC",
+    "access": "credentialed",
+    "access_note": "BDSP credentialing + a signed data use agreement",
+    "source_url": "https://bdsp.io/content/bdsp-sparcnet/"
+  },
+  "DREAMTDataset": {
+    "label": "DREAMT",
+    "access": "restricted",
+    "access_note": "PhysioNet account + signed data use agreement (no credentialing)",
+    "source_url": "https://physionet.org/content/dreamt/"
+  },
+  "EHRShotDataset": {
+    "label": "EHRShot",
+    "access": "restricted",
+    "access_note": "Redivis access request + signed EHRSHOT research usage agreement",
+    "source_url": "https://redivis.com/datasets/53gc-8rhx41kgt"
+  },
+  "SHHSDataset": {
+    "label": "SHHS",
+    "access": "restricted",
+    "access_note": "NSRR account + approved data access request",
+    "source_url": "https://sleepdata.org/datasets/shhs"
+  },
+  "TUABDataset": {
+    "label": "TUAB",
+    "access": "restricted",
+    "access_note": "Free; email a signed request form to get a username and password",
+    "source_url": "https://isip.piconepress.com/projects/nedc/html/tuh_eeg/"
+  },
+  "TUEVDataset": {
+    "label": "TUEV",
+    "access": "restricted",
+    "access_note": "Free; email a signed request form to get a username and password",
+    "source_url": "https://isip.piconepress.com/projects/nedc/html/tuh_eeg/"
+  },
+  "COSMICDataset": {
+    "label": "COSMIC",
+    "access": "restricted",
+    "access_note": "Registration; free for academic use, licensed for commercial use",
+    "source_url": "https://cancer.sanger.ac.uk/cosmic/download"
+  },
+  "VSACDataset": {
+    "label": "VSAC",
+    "access": "restricted",
+    "access_note": "Free UMLS license and API key",
+    "source_url": "https://vsac.nlm.nih.gov"
+  },
+  "COVID19CXRDataset": {
+    "label": "COVID19-CXR",
+    "access": "open",
+    "access_note": "Free Kaggle account",
+    "source_url": "https://www.kaggle.com/datasets/tawsifurrahman/covid19-radiography-database"
+  },
+  "MedicalTranscriptionsDataset": {
+    "label": "MedTranscriptions",
+    "access": "open",
+    "access_note": "Free Kaggle account",
+    "source_url": "https://www.kaggle.com/datasets/tboyle10/medicaltranscriptions"
+  },
+  "CardiologyDataset": {
+    "label": "Cardiology",
+    "access": "open",
+    "access_note": "No account needed",
+    "source_url": "https://physionet.org/content/challenge-2020/1.0.2/"
+  },
+  "PhysioNet2012Dataset": {
+    "label": "PhysioNet 2012",
+    "access": "open",
+    "access_note": "No account needed; download=True fetches it",
+    "source_url": "https://physionet.org/content/challenge-2012/1.0.0/"
+  },
+  "PTBXLDataset": {
+    "label": "PTB-XL",
+    "access": "open",
+    "access_note": "No account needed",
+    "source_url": "https://physionet.org/content/ptb-xl/1.0.3/"
+  },
+  "SleepEDFDataset": {
+    "label": "SleepEDF",
+    "access": "open",
+    "access_note": "No account needed",
+    "source_url": "https://physionet.org/content/sleep-edfx/1.0.0/"
+  },
+  "CHBMITDataset": {
+    "label": "CHB-MIT",
+    "access": "open",
+    "access_note": "No account needed",
+    "source_url": "https://physionet.org/content/chbmit/1.0.0/"
+  },
+  "EEGBCIDataset": {
+    "label": "EEGBCI",
+    "access": "open",
+    "access_note": "No account needed; download=True fetches it",
+    "source_url": "https://physionet.org/content/eegmmidb/1.0.0/"
+  },
+  "ISRUCDataset": {
+    "label": "ISRUC",
+    "access": "open",
+    "access_note": "No account needed; download=True fetches it (needs the 7zzs binary on Linux/macOS)",
+    "source_url": "https://sleeptight.isr.uc.pt/"
+  },
+  "EESM23Dataset": {
+    "label": "EESM23",
+    "access": "open",
+    "access_note": "No account needed",
+    "source_url": "https://openneuro.org/datasets/ds005178"
+  },
+  "ChestXray14Dataset": {
+    "label": "ChestXray14",
+    "access": "open",
+    "access_note": "No account needed; download=True fetches it",
+    "source_url": "https://nihcc.app.box.com/v/ChestXray-NIHCC"
+  },
+  "MSDSegmentationDataset": {
+    "label": "MSD",
+    "access": "open",
+    "access_note": "CC-BY-SA 4.0; download=True fetches it",
+    "source_url": "http://medicaldecathlon.com/",
+    "anchor": "MSDHippocampusDataset"
+  },
+  "MSDHippocampusDataset": {
+    "label": "MSD Hippocampus",
+    "access": "open",
+    "access_note": "CC-BY-SA 4.0; download=True fetches it",
+    "source_url": "http://medicaldecathlon.com/"
+  },
+  "MSDProstateDataset": {
+    "label": "MSD Prostate",
+    "access": "open",
+    "access_note": "CC-BY-SA 4.0; download=True fetches it",
+    "source_url": "http://medicaldecathlon.com/"
+  },
+  "MSDSpleenDataset": {
+    "label": "MSD Spleen",
+    "access": "open",
+    "access_note": "CC-BY-SA 4.0; download=True fetches it",
+    "source_url": "http://medicaldecathlon.com/"
+  },
+  "BMDHSDataset": {
+    "label": "BMDHS",
+    "access": "open",
+    "access_note": "No account needed",
+    "source_url": "https://github.com/sani002/BMD-HS-Dataset"
+  },
+  "Support2Dataset": {
+    "label": "SUPPORT2",
+    "access": "open",
+    "access_note": "No account needed",
+    "source_url": "https://archive.ics.uci.edu/dataset/880/support2"
+  },
+  "MetabricDataset": {
+    "label": "METABRIC",
+    "access": "open",
+    "access_note": "No account needed; download=True fetches it",
+    "source_url": "https://github.com/XintianHan/Survival-MDN"
+  },
+  "TCGAPRADDataset": {
+    "label": "TCGA-PRAD",
+    "access": "open",
+    "access_note": "No account needed for the open MAF and clinical files; merge the per-sample MAFs into one",
+    "source_url": "https://portal.gdc.cancer.gov/projects/TCGA-PRAD"
+  },
+  "ClinVarDataset": {
+    "label": "ClinVar",
+    "access": "open",
+    "access_note": "No account needed",
+    "source_url": "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/"
+  },
+  "SyntheaCSVDataset": {
+    "label": "Synthea",
+    "access": "open",
+    "access_note": "Synthetic; generate locally or download samples",
+    "source_url": "https://synthea.mitre.org/downloads"
+  },
+  "OMOPDataset": {
+    "label": "OMOP",
+    "access": "format",
+    "access_note": "A format: point root at any OMOP CDM export",
+    "source_url": "https://www.ohdsi.org/data-standardization/",
+    "demo_label": "MIMIC-IV demo in OMOP",
+    "demo_url": "https://physionet.org/content/mimic-iv-demo-omop/0.9/"
+  },
+  "MEDSDataset": {
+    "label": "MEDS",
+    "access": "format",
+    "access_note": "A format: convert a dataset with a MEDS ETL",
+    "source_url": "https://medical-event-data-standard.github.io/"
+  },
+  "FHIRDataset": {
+    "label": "FHIR",
+    "access": "format",
+    "access_note": "A format: point root at any FHIR NDJSON export",
+    "source_url": "https://www.hl7.org/fhir/",
+    "demo_label": "MIMIC-IV FHIR demo",
+    "demo_url": "https://physionet.org/content/mimic-iv-fhir-demo/2.1.0/"
+  }
+}

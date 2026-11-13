@@ -254,6 +254,52 @@
       border: 1px solid rgba(16,185,129,0.2);
     }
 
+    /* ── Access line and task links (filled from data/*.json) ── */
+    .dataset-access {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.35rem 0.5rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.45;
+      margin: 0;
+    }
+    .access-tag {
+      flex-shrink: 0;
+      font-size: 0.68rem;
+      font-weight: 600;
+      padding: 0.15rem 0.5rem;
+      border-radius: 100px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .access-open         { background: rgba(16,185,129,0.12); color: #047857; }
+    .access-restricted   { background: rgba(245,158,11,0.14); color: #b45309; }
+    .access-credentialed { background: rgba(239,68,68,0.12);  color: #b91c1c; }
+    .access-format       { background: rgba(0,0,0,0.06);      color: var(--muted); }
+    .dataset-access a { color: var(--accent); text-underline-offset: 2px; }
+    .dataset-tasks {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+    .dataset-tasks a {
+      display: inline-block;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.72rem;
+      padding: 0.1rem 0.45rem;
+      margin: 0 0.15rem 0.2rem 0;
+      border-radius: 100px;
+      background: rgba(0,0,0,0.05);
+      color: var(--muted);
+      text-decoration: none;
+    }
+    .dataset-tasks a:hover { background: rgba(59,130,246,0.12); color: #2563eb; }
+    .dataset-card { scroll-margin-top: 80px; }  /* clear the sticky header on #anchor jumps */
+    .dataset-card:target { outline: 2px solid var(--accent); outline-offset: 2px; }
+
     /* ── Count badge ── */
     .count-badge {
       display: inline-block;
@@ -329,13 +375,13 @@
         <button class="filter-btn" onclick="filterDatasets('text', this)">Text <span style="opacity:0.65;">(3)</span></button>
       </div>
 
-      <p class="snippet-note" style="margin:0 0 1rem; padding:0.75rem 1rem; border:1px solid var(--line); border-radius:10px; background:var(--paper); font-size:0.9rem; color:var(--muted); line-height:1.55;"><strong style="color:var(--ink);">How to read these snippets.</strong> Point <code>root</code> at the folder (or URL) holding the raw files; credentialed datasets such as MIMIC are downloaded from PhysioNet first. Add <code>cache_dir="..."</code> to keep the processed copy somewhere you control, and <code>dev=True</code> to try 1,000 patients first. To try the API with no download, use the public synthetic copy: <code>MIMIC3Dataset(root="https://storage.googleapis.com/pyhealth/Synthetic_MIMIC-III", tables=["diagnoses_icd"])</code>. <a href="https://colab.research.google.com/drive/1azBqFS_vrJxoYMxP4M_dAIDcrU92uNDv" target="_blank" rel="noopener">Tutorial 01</a> covers datasets in depth. Snippets checked against PyHealth 2.1.0.</p>
+      <p class="snippet-note" style="margin:0 0 1rem; padding:0.75rem 1rem; border:1px solid var(--line); border-radius:10px; background:var(--paper); font-size:0.9rem; color:var(--muted); line-height:1.55;"><strong style="color:var(--ink);">How to read these snippets.</strong> PyHealth does not ship data: download each dataset from its source, then point <code>root</code> at the folder (or URL) holding the raw files. Each card's badge says what that takes (<strong>Open</strong>: download now; <strong>Restricted</strong>: free, but sign an agreement or request access; <strong>Credentialed</strong>: PhysioNet-style credentialing and training first), and <em>Get the data</em> links to the source. The dataset's docs page has the download command and the folder layout. Add <code>cache_dir="..."</code> to keep the processed copy somewhere you control, and <code>dev=True</code> to try 1,000 patients first. To try the API with no download, use the public synthetic copy: <code>MIMIC3Dataset(root="https://storage.googleapis.com/pyhealth/Synthetic_MIMIC-III", tables=["diagnoses_icd"])</code>. <a href="https://colab.research.google.com/drive/1azBqFS_vrJxoYMxP4M_dAIDcrU92uNDv" target="_blank" rel="noopener">Tutorial 01</a> covers datasets in depth. Snippets checked against PyHealth 2.1.0.</p>
 
       <div class="dataset-grid" id="datasetGrid">
 
         <!-- ───────────── EHR ───────────── -->
 
-        <div class="dataset-card" data-modality="ehr">
+        <div class="dataset-card" id="MIMIC3Dataset" data-modality="ehr">
           <div class="dataset-card-header">
             <span class="dataset-classname">MIMIC3Dataset</span>
             <span class="modality-tag mod-ehr">EHR</span>
@@ -352,7 +398,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">MIMIC3Dataset</span>(
           </div>
         </div>
 
-        <div class="dataset-card" data-modality="ehr">
+        <div class="dataset-card" id="MIMIC4Dataset" data-modality="ehr">
           <div class="dataset-card-header">
             <span class="dataset-classname">MIMIC4Dataset</span>
             <span class="modality-tag mod-ehr">EHR</span>
@@ -369,7 +415,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">MIMIC4Dataset</span>(
           </div>
         </div>
 
-        <div class="dataset-card" data-modality="ehr">
+        <div class="dataset-card" id="MIMIC4EHRDataset" data-modality="ehr">
           <div class="dataset-card-header">
             <span class="dataset-classname">MIMIC4EHRDataset</span>
             <span class="modality-tag mod-ehr">EHR</span>
@@ -385,7 +431,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">MIMIC4EHRDataset</spa
           </div>
         </div>
 
-        <div class="dataset-card" data-modality="text">
+        <div class="dataset-card" id="MIMIC4NoteDataset" data-modality="text">
           <div class="dataset-card-header">
             <span class="dataset-classname">MIMIC4NoteDataset</span>
             <span class="modality-tag mod-text">Text</span>
@@ -401,7 +447,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">MIMIC4NoteDataset</sp
           </div>
         </div>
 
-        <div class="dataset-card" data-modality="image">
+        <div class="dataset-card" id="MIMIC4CXRDataset" data-modality="image">
           <div class="dataset-card-header">
             <span class="dataset-classname">MIMIC4CXRDataset</span>
             <span class="modality-tag mod-image">Image</span>
@@ -417,7 +463,23 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">MIMIC4CXRDataset</spa
           </div>
         </div>
 
-        <div class="dataset-card" data-modality="text">
+        <div class="dataset-card" id="MIMIC4EDDataset" data-modality="ehr">
+          <div class="dataset-card-header">
+            <span class="dataset-classname">MIMIC4EDDataset</span>
+            <span class="modality-tag mod-ehr">EHR</span>
+          </div>
+          <p class="dataset-desc">MIMIC-IV-ED emergency department module: ED stays, triage, vital signs, medication reconciliation, Pyxis dispensing and ED diagnoses.</p>
+          <pre class="dataset-code"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">MIMIC4EDDataset</span>
+dataset <span class="tok-op">=</span> <span class="tok-cl">MIMIC4EDDataset</span>(
+    root<span class="tok-op">=</span><span class="tok-str">"data/mimic-iv-ed/2.2/"</span>,
+    tables<span class="tok-op">=</span>[<span class="tok-str">"triage"</span>, <span class="tok-str">"vitalsign"</span>, <span class="tok-str">"diagnosis"</span>],
+)</pre>
+          <div class="dataset-card-footer">
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets/pyhealth.datasets.MIMIC4EDDataset.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="dataset-card" id="PhysioNetDeIDDataset" data-modality="text">
           <div class="dataset-card-header">
             <span class="dataset-classname">PhysioNetDeIDDataset</span>
             <span class="modality-tag mod-text">Text</span>
@@ -430,7 +492,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">PhysioNetDeIDDataset<
           </div>
         </div>
 
-        <div class="dataset-card" data-modality="ehr">
+        <div class="dataset-card" id="MIMIC4FHIR" data-modality="ehr">
           <div class="dataset-card-header">
             <span class="dataset-classname">MIMIC4FHIR</span>
             <span class="modality-tag mod-ehr">EHR</span>
@@ -444,7 +506,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">MIMIC4FHIR</span>(roo
           </div>
         </div>
 
-        <div class="dataset-card" data-modality="ehr">
+        <div class="dataset-card" id="FHIRDataset" data-modality="ehr">
           <div class="dataset-card-header">
             <span class="dataset-classname">FHIRDataset</span>
             <span class="modality-tag mod-ehr">EHR</span>
@@ -460,7 +522,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">FHIRDataset</span>(
           </div>
         </div>
 
-        <div class="dataset-card" data-modality="ehr">
+        <div class="dataset-card" id="eICUDataset" data-modality="ehr">
           <div class="dataset-card-header">
             <span class="dataset-classname">eICUDataset</span>
             <span class="modality-tag mod-ehr">EHR</span>
@@ -477,7 +539,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">eICUDataset</span>(
           </div>
         </div>
 
-        <div class="dataset-card" data-modality="ehr">
+        <div class="dataset-card" id="OMOPDataset" data-modality="ehr">
           <div class="dataset-card-header">
             <span class="dataset-classname">OMOPDataset</span>
             <span class="modality-tag mod-ehr">EHR</span>
@@ -494,7 +556,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">OMOPDataset</span>(
           </div>
         </div>
 
-        <div class="dataset-card" data-modality="ehr">
+        <div class="dataset-card" id="MIMICExtractDataset" data-modality="ehr">
           <div class="dataset-card-header">
             <span class="dataset-classname">MIMICExtractDataset</span>
             <span class="modality-tag mod-ehr">EHR</span>
@@ -509,7 +571,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">MIMICExtractDataset</
           </div>
         </div>
 
-        <div class="dataset-card" data-modality="ehr">
+        <div class="dataset-card" id="EHRShotDataset" data-modality="ehr">
           <div class="dataset-card-header">
             <span class="dataset-classname">EHRShotDataset</span>
             <span class="modality-tag mod-ehr">EHR</span>
@@ -525,7 +587,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">EHRShotDataset</span>
           </div>
         </div>
 
-        <div class="dataset-card" data-modality="ehr">
+        <div class="dataset-card" id="Support2Dataset" data-modality="ehr">
           <div class="dataset-card-header">
             <span class="dataset-classname">Support2Dataset</span>
             <span class="modality-tag mod-ehr">EHR</span>
@@ -541,7 +603,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">Support2Dataset</span
           </div>
         </div>
 
-        <div class="dataset-card" data-modality="ehr">
+        <div class="dataset-card" id="MEDSDataset" data-modality="ehr">
           <div class="dataset-card-header">
             <span class="dataset-classname">MEDSDataset</span>
             <span class="modality-tag mod-ehr">EHR</span>
@@ -558,9 +620,72 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">MEDSDataset</span>(
           </div>
         </div>
 
+        <div class="dataset-card" id="PhysioNet2012Dataset" data-modality="ehr">
+          <div class="dataset-card-header">
+            <span class="dataset-classname">PhysioNet2012Dataset</span>
+            <span class="modality-tag mod-ehr">EHR</span>
+          </div>
+          <p class="dataset-desc">PhysioNet/CinC Challenge 2012: 12,000 ICU stays with irregularly sampled vitals and labs over the first 48 hours, plus in-hospital mortality.</p>
+          <pre class="dataset-code"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">PhysioNet2012Dataset</span>
+dataset <span class="tok-op">=</span> <span class="tok-cl">PhysioNet2012Dataset</span>(
+    root<span class="tok-op">=</span><span class="tok-str">"data/physionet2012/"</span>,
+    download<span class="tok-op">=</span><span class="tok-num">True</span>,
+)</pre>
+          <div class="dataset-card-footer">
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets/pyhealth.datasets.PhysioNet2012Dataset.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="dataset-card" id="MetabricDataset" data-modality="ehr">
+          <div class="dataset-card-header">
+            <span class="dataset-classname">MetabricDataset</span>
+            <span class="modality-tag mod-ehr">EHR</span>
+          </div>
+          <p class="dataset-desc">METABRIC breast cancer survival cohort (1,904 patients) with gene expression and clinical features and the ten published train/test splits.</p>
+          <pre class="dataset-code"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">MetabricDataset</span>
+dataset <span class="tok-op">=</span> <span class="tok-cl">MetabricDataset</span>(
+    root<span class="tok-op">=</span><span class="tok-str">"data/metabric/"</span>,
+    download<span class="tok-op">=</span><span class="tok-num">True</span>,
+)</pre>
+          <div class="dataset-card-footer">
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets/pyhealth.datasets.MetabricDataset.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="dataset-card" id="SyntheaCSVDataset" data-modality="ehr">
+          <div class="dataset-card-header">
+            <span class="dataset-classname">SyntheaCSVDataset</span>
+            <span class="modality-tag mod-ehr">EHR</span>
+          </div>
+          <p class="dataset-desc">Synthetic patient records from Synthea in CSV form, with SNOMED-CT, RxNorm, LOINC and CVX codes. No credentialing needed.</p>
+          <pre class="dataset-code"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">SyntheaCSVDataset</span>
+dataset <span class="tok-op">=</span> <span class="tok-cl">SyntheaCSVDataset</span>(
+    root<span class="tok-op">=</span><span class="tok-str">"data/synthea/csv/"</span>,
+    tables<span class="tok-op">=</span>[<span class="tok-str">"conditions"</span>],
+)</pre>
+          <div class="dataset-card-footer">
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets/pyhealth.datasets.SyntheaCSVDataset.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="dataset-card" id="VSACDataset" data-modality="ehr">
+          <div class="dataset-card-header">
+            <span class="dataset-classname">VSACDataset</span>
+            <span class="modality-tag mod-ehr">EHR</span>
+          </div>
+          <p class="dataset-desc">Clinical value sets from the NLM Value Set Authority Center: named lists of SNOMED-CT, ICD-10-CM, RxNorm and LOINC codes.</p>
+          <pre class="dataset-code"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">VSACDataset</span>
+dataset <span class="tok-op">=</span> <span class="tok-cl">VSACDataset</span>(
+    root<span class="tok-op">=</span><span class="tok-str">"data/vsac/"</span>,
+)</pre>
+          <div class="dataset-card-footer">
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets/pyhealth.datasets.VSACDataset.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
         <!-- ───────────── Biosignal ───────────── -->
 
-        <div class="dataset-card" data-modality="signal">
+        <div class="dataset-card" id="CardiologyDataset" data-modality="signal">
           <div class="dataset-card-header">
             <span class="dataset-classname">CardiologyDataset</span>
             <span class="modality-tag mod-signal">Biosignal</span>
@@ -576,7 +701,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">CardiologyDataset</sp
           </div>
         </div>
 
-        <div class="dataset-card" data-modality="signal">
+        <div class="dataset-card" id="ISRUCDataset" data-modality="signal">
           <div class="dataset-card-header">
             <span class="dataset-classname">ISRUCDataset</span>
             <span class="modality-tag mod-signal">Biosignal</span>
@@ -592,7 +717,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">ISRUCDataset</span>(
           </div>
         </div>
 
-        <div class="dataset-card" data-modality="signal">
+        <div class="dataset-card" id="DREAMTDataset" data-modality="signal">
           <div class="dataset-card-header">
             <span class="dataset-classname">DREAMTDataset</span>
             <span class="modality-tag mod-signal">Biosignal</span>
@@ -608,7 +733,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">DREAMTDataset</span>(
           </div>
         </div>
 
-        <div class="dataset-card" data-modality="signal">
+        <div class="dataset-card" id="SHHSDataset" data-modality="signal">
           <div class="dataset-card-header">
             <span class="dataset-classname">SHHSDataset</span>
             <span class="modality-tag mod-signal">Biosignal</span>
@@ -624,7 +749,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">SHHSDataset</span>(
           </div>
         </div>
 
-        <div class="dataset-card" data-modality="signal">
+        <div class="dataset-card" id="SleepEDFDataset" data-modality="signal">
           <div class="dataset-card-header">
             <span class="dataset-classname">SleepEDFDataset</span>
             <span class="modality-tag mod-signal">Biosignal</span>
@@ -640,7 +765,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">SleepEDFDataset</span
           </div>
         </div>
 
-        <div class="dataset-card" data-modality="signal">
+        <div class="dataset-card" id="BMDHSDataset" data-modality="signal">
           <div class="dataset-card-header">
             <span class="dataset-classname">BMDHSDataset</span>
             <span class="modality-tag mod-signal">Biosignal</span>
@@ -655,7 +780,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">BMDHSDataset</span>(
           </div>
         </div>
 
-        <div class="dataset-card" data-modality="signal">
+        <div class="dataset-card" id="TUABDataset" data-modality="signal">
           <div class="dataset-card-header">
             <span class="dataset-classname">TUABDataset</span>
             <span class="modality-tag mod-signal">Biosignal</span>
@@ -671,7 +796,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">TUABDataset</span>(
           </div>
         </div>
 
-        <div class="dataset-card" data-modality="signal">
+        <div class="dataset-card" id="TUEVDataset" data-modality="signal">
           <div class="dataset-card-header">
             <span class="dataset-classname">TUEVDataset</span>
             <span class="modality-tag mod-signal">Biosignal</span>
@@ -687,7 +812,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">TUEVDataset</span>(
           </div>
         </div>
 
-        <div class="dataset-card" data-modality="signal">
+        <div class="dataset-card" id="EEGBCIDataset" data-modality="signal">
           <div class="dataset-card-header">
             <span class="dataset-classname">EEGBCIDataset</span>
             <span class="modality-tag mod-signal">Biosignal</span>
@@ -705,9 +830,69 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">EEGBCIDataset</span>(
           </div>
         </div>
 
+        <div class="dataset-card" id="PTBXLDataset" data-modality="signal">
+          <div class="dataset-card-header">
+            <span class="dataset-classname">PTBXLDataset</span>
+            <span class="modality-tag mod-signal">Biosignal</span>
+          </div>
+          <p class="dataset-desc">PTB-XL: 21,799 clinical 12-lead ECGs from 18,869 patients with SCP-ECG diagnostic statements.</p>
+          <pre class="dataset-code"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">PTBXLDataset</span>
+dataset <span class="tok-op">=</span> <span class="tok-cl">PTBXLDataset</span>(
+    root<span class="tok-op">=</span><span class="tok-str">"data/ptb-xl/1.0.3/"</span>,
+)</pre>
+          <div class="dataset-card-footer">
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets/pyhealth.datasets.PTBXLDataset.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="dataset-card" id="CHBMITDataset" data-modality="signal">
+          <div class="dataset-card-header">
+            <span class="dataset-classname">CHBMITDataset</span>
+            <span class="modality-tag mod-signal">Biosignal</span>
+          </div>
+          <p class="dataset-desc">CHB-MIT scalp EEG from 23 pediatric subjects with annotated seizure intervals, for seizure detection.</p>
+          <pre class="dataset-code"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">CHBMITDataset</span>
+dataset <span class="tok-op">=</span> <span class="tok-cl">CHBMITDataset</span>(
+    root<span class="tok-op">=</span><span class="tok-str">"data/chbmit/1.0.0/"</span>,
+)</pre>
+          <div class="dataset-card-footer">
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets/pyhealth.datasets.CHBMITDataset.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="dataset-card" id="IIICDataset" data-modality="signal">
+          <div class="dataset-card-header">
+            <span class="dataset-classname">IIICDataset</span>
+            <span class="modality-tag mod-signal">Biosignal</span>
+          </div>
+          <p class="dataset-desc">IIIC Seizure Corpus (SPaRCNet): expert-labeled EEG segments of seizures and ictal-interictal-injury continuum patterns.</p>
+          <pre class="dataset-code"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">IIICDataset</span>
+dataset <span class="tok-op">=</span> <span class="tok-cl">IIICDataset</span>(
+    root<span class="tok-op">=</span><span class="tok-str">"data/iiic/"</span>,
+)</pre>
+          <div class="dataset-card-footer">
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets/pyhealth.datasets.IIICDataset.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="dataset-card" id="EESM23Dataset" data-modality="signal">
+          <div class="dataset-card-header">
+            <span class="dataset-classname">EESM23Dataset</span>
+            <span class="modality-tag mod-signal">Biosignal</span>
+          </div>
+          <p class="dataset-desc">Ear-EEG Sleep Monitoring 2023 (OpenNeuro ds005178): home ear-EEG nights from ten subjects with manual sleep scoring.</p>
+          <pre class="dataset-code"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">EESM23Dataset</span>
+dataset <span class="tok-op">=</span> <span class="tok-cl">EESM23Dataset</span>(
+    root<span class="tok-op">=</span><span class="tok-str">"data/ds005178/"</span>,
+)</pre>
+          <div class="dataset-card-footer">
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets/pyhealth.datasets.EESM23Dataset.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
         <!-- ───────────── Image ───────────── -->
 
-        <div class="dataset-card" data-modality="image">
+        <div class="dataset-card" id="COVID19CXRDataset" data-modality="image">
           <div class="dataset-card-header">
             <span class="dataset-classname">COVID19CXRDataset</span>
             <span class="modality-tag mod-image">Image</span>
@@ -723,7 +908,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">COVID19CXRDataset</sp
           </div>
         </div>
 
-        <div class="dataset-card" data-modality="image">
+        <div class="dataset-card" id="ChestXray14Dataset" data-modality="image">
           <div class="dataset-card-header">
             <span class="dataset-classname">ChestXray14Dataset</span>
             <span class="modality-tag mod-image">Image</span>
@@ -739,9 +924,57 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">ChestXray14Dataset</s
           </div>
         </div>
 
+        <div class="dataset-card" id="MSDHippocampusDataset" data-modality="image">
+          <div class="dataset-card-header">
+            <span class="dataset-classname">MSDHippocampusDataset</span>
+            <span class="modality-tag mod-image">Image</span>
+          </div>
+          <p class="dataset-desc">Medical Segmentation Decathlon Task04: T1-weighted MRI volumes with left/right hippocampus masks.</p>
+          <pre class="dataset-code"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">MSDHippocampusDataset</span>
+dataset <span class="tok-op">=</span> <span class="tok-cl">MSDHippocampusDataset</span>(
+    root<span class="tok-op">=</span><span class="tok-str">"data/Task04_Hippocampus/"</span>,
+    download<span class="tok-op">=</span><span class="tok-num">True</span>,
+)</pre>
+          <div class="dataset-card-footer">
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets/pyhealth.datasets.MSDHippocampusDataset.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="dataset-card" id="MSDProstateDataset" data-modality="image">
+          <div class="dataset-card-header">
+            <span class="dataset-classname">MSDProstateDataset</span>
+            <span class="modality-tag mod-image">Image</span>
+          </div>
+          <p class="dataset-desc">Medical Segmentation Decathlon Task05: two-channel prostate MRI (T2 and ADC) with zone masks.</p>
+          <pre class="dataset-code"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">MSDProstateDataset</span>
+dataset <span class="tok-op">=</span> <span class="tok-cl">MSDProstateDataset</span>(
+    root<span class="tok-op">=</span><span class="tok-str">"data/Task05_Prostate/"</span>,
+    download<span class="tok-op">=</span><span class="tok-num">True</span>,
+)</pre>
+          <div class="dataset-card-footer">
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets/pyhealth.datasets.MSDProstateDataset.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
+        <div class="dataset-card" id="MSDSpleenDataset" data-modality="image">
+          <div class="dataset-card-header">
+            <span class="dataset-classname">MSDSpleenDataset</span>
+            <span class="modality-tag mod-image">Image</span>
+          </div>
+          <p class="dataset-desc">Medical Segmentation Decathlon Task09: abdominal CT volumes with spleen masks.</p>
+          <pre class="dataset-code"><span class="tok-kw">from</span> pyhealth.datasets <span class="tok-kw">import</span> <span class="tok-cl">MSDSpleenDataset</span>
+dataset <span class="tok-op">=</span> <span class="tok-cl">MSDSpleenDataset</span>(
+    root<span class="tok-op">=</span><span class="tok-str">"data/Task09_Spleen/"</span>,
+    download<span class="tok-op">=</span><span class="tok-num">True</span>,
+)</pre>
+          <div class="dataset-card-footer">
+            <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets/pyhealth.datasets.MSDSpleenDataset.html" class="docs-link" target="_blank" rel="noopener">Docs →</a>
+          </div>
+        </div>
+
         <!-- ───────────── Genomics ───────────── -->
 
-        <div class="dataset-card" data-modality="genomics">
+        <div class="dataset-card" id="ClinVarDataset" data-modality="genomics">
           <div class="dataset-card-header">
             <span class="dataset-classname">ClinVarDataset</span>
             <span class="modality-tag mod-genomics">Genomics</span>
@@ -756,7 +989,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">ClinVarDataset</span>
           </div>
         </div>
 
-        <div class="dataset-card" data-modality="genomics">
+        <div class="dataset-card" id="COSMICDataset" data-modality="genomics">
           <div class="dataset-card-header">
             <span class="dataset-classname">COSMICDataset</span>
             <span class="modality-tag mod-genomics">Genomics</span>
@@ -771,7 +1004,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">COSMICDataset</span>(
           </div>
         </div>
 
-        <div class="dataset-card" data-modality="genomics">
+        <div class="dataset-card" id="TCGAPRADDataset" data-modality="genomics">
           <div class="dataset-card-header">
             <span class="dataset-classname">TCGAPRADDataset</span>
             <span class="modality-tag mod-genomics">Genomics</span>
@@ -788,7 +1021,7 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">TCGAPRADDataset</span
 
         <!-- ───────────── Text ───────────── -->
 
-        <div class="dataset-card" data-modality="text">
+        <div class="dataset-card" id="MedicalTranscriptionsDataset" data-modality="text">
           <div class="dataset-card-header">
             <span class="dataset-classname">MedicalTranscriptionsDataset</span>
             <span class="modality-tag mod-text">Text</span>
@@ -862,6 +1095,70 @@ dataset <span class="tok-op">=</span> <span class="tok-cl">MedicalTranscriptions
         const key = btn.getAttribute('onclick').match(/filterDatasets\('([^']+)'/)[1];
         const n = key === 'all' ? cards.length : cards.filter(c => c.dataset.modality === key).length;
         btn.querySelector('span').textContent = `(${n})`;
+      });
+    })();
+
+    // Fill in how to get the data and which tasks use each dataset (cards
+    // carry static ids, so datasets.html#<Class> links work without JS), from data/datasets.json and data/tasks.json. Cards stay
+    // usable (snippet + Docs link) if either file fails to load.
+    const ACCESS_LABEL = {
+      open: 'Open', restricted: 'Restricted', credentialed: 'Credentialed', format: 'Format',
+    };
+    // Pages that also list the tasks of related classes (kept in step with
+    // docs/extensions/dataset_tasks.py in PyHealth).
+    const ALSO = {
+      MIMIC4Dataset: ['MIMIC4EHRDataset', 'MIMIC4NoteDataset', 'MIMIC4CXRDataset', 'MIMIC4EDDataset'],
+      MSDHippocampusDataset: ['MSDSegmentationDataset'],
+      MSDProstateDataset: ['MSDSegmentationDataset'],
+      MSDSpleenDataset: ['MSDSegmentationDataset'],
+    };
+
+    function escHtml(s) {
+      return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
+
+    (async function decorateCards() {
+      const cards = [...document.querySelectorAll('#datasetGrid .dataset-card')];
+
+      let datasets = {}, tasks = [];
+      try {
+        const [d, t] = await Promise.all([fetch('data/datasets.json'), fetch('data/tasks.json')]);
+        if (d.ok) datasets = await d.json();
+        if (t.ok) tasks = await t.json();
+      } catch (err) {
+        console.error(err);
+      }
+
+      const byDataset = {};
+      tasks.forEach(task => (task.dataset_classes || []).forEach(cls => {
+        (byDataset[cls] = byDataset[cls] || []).push(task);
+      }));
+
+      cards.forEach(card => {
+        const cls = card.id;
+        const desc = card.querySelector('.dataset-desc');
+        const info = datasets[cls];
+        if (info) {
+          const demo = info.demo_url
+            ? ` · No access yet? Try the <a href="${escHtml(info.demo_url)}" target="_blank" rel="noopener">${escHtml(info.demo_label)}</a>.`
+            : '';
+          desc.insertAdjacentHTML('afterend', `
+          <p class="dataset-access">
+            <span class="access-tag access-${escHtml(info.access)}">${ACCESS_LABEL[info.access] || escHtml(info.access)}</span>
+            <span>${escHtml(info.access_note)}. <a href="${escHtml(info.source_url)}" target="_blank" rel="noopener">Get the data →</a>${demo}</span>
+          </p>`);
+        }
+        const seen = new Set();
+        const own = [cls, ...(ALSO[cls] || [])].flatMap(c => byDataset[c] || [])
+          .filter(task => !seen.has(task.class_name) && seen.add(task.class_name))
+          .sort((a, b) => (a.display_name || a.class_name).localeCompare(b.display_name || b.class_name));
+        if (own.length) {
+          const links = own.map(task =>
+            `<a href="tasks.html#${escHtml(task.class_name)}" title="${escHtml(task.class_name)}">${escHtml(task.display_name || task.class_name)}</a>`
+          ).join('');
+          card.querySelector('.dataset-code').insertAdjacentHTML('afterend',
+            `<p class="dataset-tasks"><strong>Tasks:</strong> ${links}</p>`);
+        }
       });
     })();
   </script>

@@ -36,6 +36,8 @@ Code-derived fields (always refreshed from the installed package):
     input_schema  - {field: type} from the input_schema class attribute
     output_schema - {field: type} from the output_schema class attribute
     source_file   - Relative path within the pyhealth package
+    dataset_classes - pyhealth.datasets classes the docstring cites with
+                    :class:`~pyhealth.datasets.X` (drives dataset links)
 """
 
 import inspect
@@ -45,6 +47,7 @@ import argparse
 from pathlib import Path
 
 _DEFAULT_OUTPUT = Path(__file__).parent.parent / "data" / "tasks.json"
+_DATASET_REF = re.compile(r":class:`~?pyhealth\.datasets\.(\w+)`")
 
 OUTPUT_TYPE_MAP = {
     "binary":     "binary",
@@ -166,6 +169,7 @@ def _discover_classes():
             "_inferred_output_type": _infer_output_type(output_schema),
             "_inferred_modality":    _infer_modality(input_schema),
             "source_file":   _relative_source(cls),
+            "dataset_classes": sorted(set(_DATASET_REF.findall(cls.__doc__ or ""))),
         }
     return found
 
@@ -206,6 +210,7 @@ def merge_tasks(existing, discovered):
         if auto["output_schema"] is not None:
             new_entry["output_schema"] = auto["output_schema"]
         new_entry["source_file"]   = auto["source_file"]
+        new_entry["dataset_classes"] = auto["dataset_classes"]
 
         # Fill from code only when the hand-authored field is absent/empty
         if not new_entry.get("description"):
@@ -233,6 +238,7 @@ def merge_tasks(existing, discovered):
             "output_type":   auto["_inferred_output_type"],
             "modality":      auto["_inferred_modality"],
             "source_file":   auto["source_file"],
+            "dataset_classes": auto["dataset_classes"],
             "colab_url":     None,
             "docs_url":      None,
             "example_url":   None,
