@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Verify the entity pages on pyhealth.github.io still match the PyHealth package.
 
-models.html, datasets.html and data/tasks.json name PyHealth classes and link to
+models.html, data/datasets.json and data/tasks.json name PyHealth classes and link to
 readthedocs pages and GitHub examples. All three drift silently when the package
 moves. This checks, against a PyHealth checkout:
 
@@ -74,7 +74,7 @@ def exported_symbols(pyhealth, module):
 def site_symbols(site):
     """Symbols the site claims exist, per module."""
     claimed = {m: set() for m in MODULES}
-    for page, module in (("models.html", "models"), ("datasets.html", "datasets")):
+    for page, module in (("models.html", "models"),):
         text = open(os.path.join(site, page)).read()
         # readthedocs slugs are page names, not symbols -- they are validated
         # separately against the rst files, so drop them before scanning.
@@ -87,6 +87,12 @@ def site_symbols(site):
         claimed[module].update(
             re.findall(r'import</span> <span class="tok-cl">([^<]+)<', text)
         )
+    # datasets.html renders its cards from datasets.json, one per key.
+    datasets = json.load(open(os.path.join(site, "data", "datasets.json")))
+    claimed["datasets"].update(datasets)
+    for info in datasets.values():
+        claimed["datasets"].update(
+            re.findall(r"^from pyhealth\.datasets import (\w+)", info.get("snippet", ""), re.M))
     for task in json.load(open(os.path.join(site, "data", "tasks.json"))):
         claimed["tasks"].add(task["class_name"])
         if task.get("display_class"):
@@ -144,6 +150,18 @@ def main():
                 errors.append(f"{page}: example link to {rel} which does not "
                               f"exist in the checkout")
 
+    # datasets.html builds each card's Docs link from the class name unless
+    # the entry sets docs_url (checked with the other links above).
+    datasets = json.load(open(os.path.join(site, "data", "datasets.json")))
+    for name, info in datasets.items():
+        if info.get("anchor") or info.get("docs_url"):
+            continue
+        rst = os.path.join(pyhealth, "docs", "api", "datasets", f"pyhealth.datasets.{name}.rst")
+        if not os.path.isfile(rst):
+            errors.append(f"datasets.json: {name} card links to api/datasets/"
+                          f"pyhealth.datasets.{name}.html but that rst does not "
+                          f"exist; set docs_url")
+
     # 4. tasks.json bookkeeping.
     tasks = json.load(open(os.path.join(site, "data", "tasks.json")))
     for task in tasks:
@@ -156,7 +174,7 @@ def main():
         if task.get("display_class") and task["display_class"] != name:
             errors.append(f"tasks.json: {name} display_class is "
                           f"{task['display_class']}; they must match")
-        if task.get("docs_url", "").endswith("api/tasks.html") and name not in NO_RST_PAGE:
+        if (task.get("docs_url") or "").endswith("api/tasks.html") and name not in NO_RST_PAGE:
             notes.append(f"tasks.json: {name} still points at the generic docs "
                          f"index; a per-class or module rst page may now exist")
 

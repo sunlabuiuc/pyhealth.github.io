@@ -153,6 +153,16 @@ def _discover_classes():
     """Return {class_name: auto_fields} for all BaseTask subclasses in pyhealth.tasks."""
     from pyhealth.tasks import BaseTask
     import pyhealth.tasks as tasks_module
+    import pyhealth.datasets as datasets_module
+
+    # Docstrings also cite helpers such as PatientSplit; keep only datasets.
+    dataset_bases = tuple(getattr(datasets_module, name) for name in
+                          ("BaseDataset", "BaseEHRDataset", "BaseSignalDataset")
+                          if hasattr(datasets_module, name))
+
+    def is_dataset(name):
+        cls = getattr(datasets_module, name, None)
+        return inspect.isclass(cls) and issubclass(cls, dataset_bases)
 
     found = {}
     for name, cls in inspect.getmembers(tasks_module, inspect.isclass):
@@ -169,7 +179,8 @@ def _discover_classes():
             "_inferred_output_type": _infer_output_type(output_schema),
             "_inferred_modality":    _infer_modality(input_schema),
             "source_file":   _relative_source(cls),
-            "dataset_classes": sorted(set(_DATASET_REF.findall(cls.__doc__ or ""))),
+            "dataset_classes": sorted({name for name in _DATASET_REF.findall(cls.__doc__ or "")
+                                       if is_dataset(name)}),
         }
     return found
 
@@ -256,6 +267,7 @@ def main():
         default=str(_DEFAULT_OUTPUT),
         help="Path to tasks.json (default: data/tasks.json relative to this repo)",
     )
+    parser.add_argument("--summary", help="Also append the new tasks, as Markdown, to this file")
     args = parser.parse_args()
     output_path = Path(args.output)
 
@@ -274,10 +286,17 @@ def main():
 
     tasks = merge_tasks(existing, discovered)
 
-    n_new = sum(1 for t in tasks if t["class_name"] not in {e["class_name"] for e in existing})
+    new = [t for t in tasks if t["class_name"] not in {e["class_name"] for e in existing}]
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(json.dumps(tasks, indent=2, ensure_ascii=False) + "\n")
-    print(f"Wrote {len(tasks)} tasks to {output_path}  ({n_new} new)")
+    print(f"Wrote {len(tasks)} tasks to {output_path}  ({len(new)} new)")
+    if args.summary and new:
+        with open(args.summary, "a", encoding="utf-8") as f:
+            f.write(f"**New task cards ({len(new)})**, filled in from docstrings:\n")
+            f.writelines(f"- `{t['class_name']}`: works with "
+                         f"{', '.join(t['dataset_classes']) or 'no dataset cited'}\n"
+                         for t in new)
+            f.write("\n")
 
 
 if __name__ == "__main__":

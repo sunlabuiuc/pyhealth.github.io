@@ -99,7 +99,7 @@
       "ehr"
     ],
     "output_type": "binary",
-    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/clinical_tasks/dka_mimic4_stagenet.py",
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/old/clinical_tasks/dka_mimic4_stagenet.py",
     "input_schema": {
       "icd_codes": "stagenet",
       "labs": "stagenet_tensor"
@@ -476,7 +476,7 @@
       "text"
     ],
     "output_type": "multilabel",
-    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/medical_coding_mimic3.ipynb",
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/old/medical_coding_mimic3.ipynb",
     "dataset_classes": [
       "MIMIC3Dataset"
     ]
