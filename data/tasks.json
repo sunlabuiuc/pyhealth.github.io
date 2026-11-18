@@ -1598,7 +1598,7 @@
     "description": "Time to in-hospital death after the first 36 ICU hours, on MIMIC-IV.",
     "datasets": [],
     "input_schema": {
-      "dynamic": "sequence_v2",
+      "dynamic": "jagged",
       "static": "tensor",
       "summary": "tensor"
     },
@@ -2014,8 +2014,8 @@
     "description": "YAIB acute kidney injury (AKI) prediction on MIMIC-IV.",
     "datasets": [],
     "input_schema": {
-      "dynamic": "sequence_v2",
-      "static": "sequence_v2"
+      "dynamic": "jagged",
+      "static": "jagged"
     },
     "output_schema": {
       "aki": "timeseries_binary"
@@ -2086,8 +2086,8 @@
     "description": "YAIB kidney function prediction on MIMIC-IV.",
     "datasets": [],
     "input_schema": {
-      "dynamic": "sequence_v2",
-      "static": "sequence_v2"
+      "dynamic": "jagged",
+      "static": "jagged"
     },
     "output_schema": {
       "creatinine": "regression"
@@ -2158,8 +2158,8 @@
     "description": "YAIB remaining length of stay prediction on MIMIC-IV.",
     "datasets": [],
     "input_schema": {
-      "dynamic": "sequence_v2",
-      "static": "sequence_v2"
+      "dynamic": "jagged",
+      "static": "jagged"
     },
     "output_schema": {
       "los": "timeseries_regression"
@@ -2230,8 +2230,8 @@
     "description": "YAIB ICU mortality prediction after 24 hours on MIMIC-IV.",
     "datasets": [],
     "input_schema": {
-      "dynamic": "sequence_v2",
-      "static": "sequence_v2"
+      "dynamic": "jagged",
+      "static": "jagged"
     },
     "output_schema": {
       "mortality": "binary"
@@ -2302,8 +2302,8 @@
     "description": "YAIB sepsis prediction on MIMIC-IV.",
     "datasets": [],
     "input_schema": {
-      "dynamic": "sequence_v2",
-      "static": "sequence_v2"
+      "dynamic": "jagged",
+      "static": "jagged"
     },
     "output_schema": {
       "sepsis": "timeseries_binary"
@@ -2316,6 +2316,498 @@
     ],
     "colab_url": null,
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.yaib_mimic4.html",
+    "example_url": null
+  },
+  {
+    "class_name": "CHAOSAbdominalSegmentationCTMRI",
+    "display_name": "CHAOS Abdominal Segmentation CTMRI",
+    "display_class": null,
+    "task_name": "CHAOSAbdominalSegmentationCTMRI",
+    "description": "Official CHAOS task 4: abdominal organs from CT and MRI.",
+    "datasets": [],
+    "input_schema": null,
+    "output_schema": null,
+    "output_type": null,
+    "modality": [],
+    "source_file": "pyhealth/tasks/chaos_segmentation.py",
+    "dataset_classes": [],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null
+  },
+  {
+    "class_name": "CHAOSAbdominalSegmentationMRIonly",
+    "display_name": "CHAOS Abdominal Segmentation MR Ionly",
+    "display_class": null,
+    "task_name": "CHAOSAbdominalSegmentationMRIonly",
+    "description": "Official CHAOS task 5: abdominal organs from MRI only.",
+    "datasets": [],
+    "input_schema": null,
+    "output_schema": null,
+    "output_type": null,
+    "modality": [],
+    "source_file": "pyhealth/tasks/chaos_segmentation.py",
+    "dataset_classes": [],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null
+  },
+  {
+    "class_name": "CHAOSLiverSegmentationCTMRI",
+    "display_name": "CHAOS Liver Segmentation CTMRI",
+    "display_class": null,
+    "task_name": "CHAOSLiverSegmentationCTMRI",
+    "description": "Official CHAOS task 1: liver segmentation from CT and MRI.",
+    "datasets": [],
+    "input_schema": null,
+    "output_schema": null,
+    "output_type": null,
+    "modality": [],
+    "source_file": "pyhealth/tasks/chaos_segmentation.py",
+    "dataset_classes": [],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null
+  },
+  {
+    "class_name": "CHAOSLiverSegmentationCTonly",
+    "display_name": "CHAOS Liver Segmentation C Tonly",
+    "display_class": null,
+    "task_name": "CHAOSLiverSegmentationCTonly",
+    "description": "Official CHAOS task 2: liver segmentation from CT only.",
+    "datasets": [],
+    "input_schema": null,
+    "output_schema": null,
+    "output_type": null,
+    "modality": [],
+    "source_file": "pyhealth/tasks/chaos_segmentation.py",
+    "dataset_classes": [],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null
+  },
+  {
+    "class_name": "CHAOSLiverSegmentationMRIonly",
+    "display_name": "CHAOS Liver Segmentation MR Ionly",
+    "display_class": null,
+    "task_name": "CHAOSLiverSegmentationMRIonly",
+    "description": "Official CHAOS task 3: liver segmentation from MRI only.",
+    "datasets": [],
+    "input_schema": null,
+    "output_schema": null,
+    "output_type": null,
+    "modality": [],
+    "source_file": "pyhealth/tasks/chaos_segmentation.py",
+    "dataset_classes": [],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null
+  },
+  {
+    "class_name": "CompetingRisksPBC",
+    "display_name": "Competing Risks PBC",
+    "display_class": null,
+    "task_name": "CompetingRisksPBC",
+    "description": "Extract one baseline first-event sample without future-value backfill.",
+    "datasets": [],
+    "input_schema": null,
+    "output_schema": null,
+    "output_type": null,
+    "modality": [],
+    "source_file": "pyhealth/tasks/competing_risks_pbc.py",
+    "dataset_classes": [],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null
+  },
+  {
+    "class_name": "DiseaseProgressionMIMIC4",
+    "display_name": "Disease Progression MIMIC4",
+    "display_class": null,
+    "task_name": "DiseaseProgressionMIMIC4",
+    "description": "Disease progression between two consecutive chest X-rays of an ICU stay.",
+    "datasets": [],
+    "input_schema": null,
+    "output_schema": {
+      "progression": "multilabel"
+    },
+    "output_type": null,
+    "modality": [],
+    "source_file": "pyhealth/tasks/disease_progression_mimic4.py",
+    "dataset_classes": [
+      "MIMIC4ImaGenomeDataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null
+  },
+  {
+    "class_name": "EHRCXRMortalityMIMIC4",
+    "display_name": "EHRCXR Mortality MIMIC4",
+    "display_class": null,
+    "task_name": "EHRCXRMortalityMIMIC4",
+    "description": "In-hospital mortality from the first 48 ICU hours and a chest X-ray.",
+    "datasets": [],
+    "input_schema": null,
+    "output_schema": {
+      "mortality": "binary"
+    },
+    "output_type": "binary",
+    "modality": [],
+    "source_file": "pyhealth/tasks/ehr_cxr_mimic4.py",
+    "dataset_classes": [
+      "MIMIC4Dataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null
+  },
+  {
+    "class_name": "EHRCXRPhenotypingMIMIC4",
+    "display_name": "EHRCXR Phenotyping MIMIC4",
+    "display_class": null,
+    "task_name": "EHRCXRPhenotypingMIMIC4",
+    "description": "25-label phenotyping of an ICU stay from its time series and a chest X-ray.",
+    "datasets": [],
+    "input_schema": null,
+    "output_schema": {
+      "phenotypes": "multilabel"
+    },
+    "output_type": null,
+    "modality": [],
+    "source_file": "pyhealth/tasks/ehr_cxr_mimic4.py",
+    "dataset_classes": [
+      "MIMIC4Dataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null
+  },
+  {
+    "class_name": "EthosOutcomeMEDS",
+    "display_name": "Ethos Outcome MEDS",
+    "display_class": null,
+    "task_name": "EthosOutcomeMEDS",
+    "description": "An outcome task's cohort and labels, as ETHOS timelines.",
+    "datasets": [],
+    "input_schema": {
+      "timeline": "ethos",
+      "context": "ethos_context"
+    },
+    "output_schema": null,
+    "output_type": null,
+    "modality": [],
+    "source_file": "pyhealth/tasks/ethos_tasks.py",
+    "dataset_classes": [],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null
+  },
+  {
+    "class_name": "EthosTimelineMEDS",
+    "display_name": "Ethos Timeline MEDS",
+    "display_class": null,
+    "task_name": "EthosTimelineMEDS",
+    "description": "One whole MEDS timeline per patient, for training ETHOS.",
+    "datasets": [],
+    "input_schema": {
+      "timeline": "ethos",
+      "context": "ethos_context"
+    },
+    "output_schema": {},
+    "output_type": null,
+    "modality": [],
+    "source_file": "pyhealth/tasks/ethos_tasks.py",
+    "dataset_classes": [],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null
+  },
+  {
+    "class_name": "HospitalReadmissionMEDS",
+    "display_name": "Hospital Readmission MEDS",
+    "display_class": null,
+    "task_name": "HospitalReadmissionMEDS",
+    "description": "Readmission prediction at hospital discharge for MEDS datasets.",
+    "datasets": [],
+    "input_schema": {
+      "codes": "sequence"
+    },
+    "output_schema": {
+      "readmission": "binary"
+    },
+    "output_type": "binary",
+    "modality": [
+      "ehr"
+    ],
+    "source_file": "pyhealth/tasks/meds_outcome_tasks.py",
+    "dataset_classes": [
+      "MEDSDataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null
+  },
+  {
+    "class_name": "ICUAdmissionMEDS",
+    "display_name": "ICU Admission MEDS",
+    "display_class": null,
+    "task_name": "ICUAdmissionMEDS",
+    "description": "ICU admission prediction at hospital admission for MEDS datasets.",
+    "datasets": [],
+    "input_schema": {
+      "codes": "sequence"
+    },
+    "output_schema": {
+      "icu_admission": "binary"
+    },
+    "output_type": "binary",
+    "modality": [
+      "ehr"
+    ],
+    "source_file": "pyhealth/tasks/meds_outcome_tasks.py",
+    "dataset_classes": [],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null
+  },
+  {
+    "class_name": "IIICSeizureClassification",
+    "display_name": "IIIC Seizure Classification",
+    "display_class": null,
+    "task_name": "EEG_seizure_IIIC",
+    "description": "Multi-class EEG classification task for the IIIC Seizure (SPaRCNet) dataset.",
+    "datasets": [],
+    "input_schema": {
+      "signal": "tensor",
+      "stft": "tensor"
+    },
+    "output_schema": {
+      "label": "multiclass"
+    },
+    "output_type": "multiclass",
+    "modality": [
+      "timeseries"
+    ],
+    "source_file": "pyhealth/tasks/iiic_seizure_classification.py",
+    "dataset_classes": [
+      "IIICDataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null
+  },
+  {
+    "class_name": "MedModDecompensationMIMIC4",
+    "display_name": "Med Mod Decompensation MIMIC4",
+    "display_class": null,
+    "task_name": "MedModDecompensationMIMIC4",
+    "description": "Death within the next 24 hours, predicted during an ICU stay.",
+    "datasets": [],
+    "input_schema": null,
+    "output_schema": {
+      "decompensation": "binary"
+    },
+    "output_type": "binary",
+    "modality": [],
+    "source_file": "pyhealth/tasks/medmod_decompensation_mimic4.py",
+    "dataset_classes": [],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null
+  },
+  {
+    "class_name": "ProlongedLengthOfStayMEDS",
+    "display_name": "Prolonged Length Of Stay MEDS",
+    "display_class": null,
+    "task_name": "ProlongedLengthOfStayMEDS",
+    "description": "Prolonged length of stay prediction at admission for MEDS datasets.",
+    "datasets": [],
+    "input_schema": {
+      "codes": "sequence"
+    },
+    "output_schema": {
+      "prolonged_los": "binary"
+    },
+    "output_type": "binary",
+    "modality": [
+      "ehr"
+    ],
+    "source_file": "pyhealth/tasks/meds_outcome_tasks.py",
+    "dataset_classes": [],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null
+  },
+  {
+    "class_name": "RSNAPneumoniaClassification",
+    "display_name": "RSNA Pneumonia Classification",
+    "display_class": null,
+    "task_name": "RSNAPneumoniaClassification",
+    "description": "Classify RSNA chest X-rays as lung-opacity positive or negative.",
+    "datasets": [],
+    "input_schema": {
+      "image": "dicom"
+    },
+    "output_schema": {
+      "pneumonia": "binary"
+    },
+    "output_type": "binary",
+    "modality": [],
+    "source_file": "pyhealth/tasks/rsna_pneumonia_classification.py",
+    "dataset_classes": [],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null
+  },
+  {
+    "class_name": "SOZLocalizationHUP",
+    "display_name": "SOZ Localization HUP",
+    "display_class": null,
+    "task_name": "SOZLocalizationHUP",
+    "description": "Seizure onset zone localization on the HUP iEEG dataset.",
+    "datasets": [],
+    "input_schema": {
+      "signal": "tensor"
+    },
+    "output_schema": {
+      "label": "binary"
+    },
+    "output_type": "binary",
+    "modality": [
+      "timeseries"
+    ],
+    "source_file": "pyhealth/tasks/soz_localization_hup.py",
+    "dataset_classes": [
+      "HUPiEEGDataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null
+  },
+  {
+    "class_name": "SeizureDetectionHelsinki",
+    "display_name": "Seizure Detection Helsinki",
+    "display_class": null,
+    "task_name": "SeizureDetectionHelsinki",
+    "description": "Binary seizure detection on the Helsinki neonatal EEG dataset.",
+    "datasets": [],
+    "input_schema": {
+      "signal": "tensor"
+    },
+    "output_schema": {
+      "label": "binary"
+    },
+    "output_type": "binary",
+    "modality": [
+      "timeseries"
+    ],
+    "source_file": "pyhealth/tasks/seizure_detection_helsinki.py",
+    "dataset_classes": [
+      "HelsinkiNeonatalDataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null
+  },
+  {
+    "class_name": "SleepStagingISRUC",
+    "display_name": "Sleep Staging ISRUC",
+    "display_class": null,
+    "task_name": "SleepStagingISRUC",
+    "description": "Multi-class sleep staging on ISRUC-Sleep.",
+    "datasets": [],
+    "input_schema": {
+      "signal": "tensor"
+    },
+    "output_schema": {
+      "label": "multiclass"
+    },
+    "output_type": "multiclass",
+    "modality": [
+      "timeseries"
+    ],
+    "source_file": "pyhealth/tasks/sleep_staging_isruc.py",
+    "dataset_classes": [
+      "ISRUCDataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null
+  },
+  {
+    "class_name": "SleepStagingSequenceSleepEDF",
+    "display_name": "Sleep Staging Sequence Sleep EDF",
+    "display_class": null,
+    "task_name": "SleepStagingSequence",
+    "description": "Sequence-to-sequence sleep staging on Sleep EDF, AASM stages.",
+    "datasets": [],
+    "input_schema": {
+      "signal": "tensor"
+    },
+    "output_schema": {
+      "label": "tensor"
+    },
+    "output_type": null,
+    "modality": [
+      "timeseries"
+    ],
+    "source_file": "pyhealth/tasks/sleep_staging_v2.py",
+    "dataset_classes": [
+      "SleepEDFDataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null
+  },
+  {
+    "class_name": "SurvivalTimeToEventGBSG",
+    "display_name": "Survival Time To Event GBSG",
+    "display_class": null,
+    "task_name": "SurvivalTimeToEventGBSG",
+    "description": "Extract seven ordered features and GBSG duration/event labels.",
+    "datasets": [],
+    "input_schema": {
+      "features": "tensor"
+    },
+    "output_schema": {
+      "duration": "tensor",
+      "event": "tensor"
+    },
+    "output_type": null,
+    "modality": [
+      "timeseries"
+    ],
+    "source_file": "pyhealth/tasks/survival_time_to_event.py",
+    "dataset_classes": [],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null
+  },
+  {
+    "class_name": "SurvivalTimeToEventSupport2",
+    "display_name": "Survival Time To Event Support2",
+    "display_class": null,
+    "task_name": "SurvivalTimeToEventSupport2",
+    "description": "Time to death for SUPPORT2, in the DeepSurv benchmark representation.",
+    "datasets": [],
+    "input_schema": {
+      "features": "tensor"
+    },
+    "output_schema": {
+      "duration": "tensor",
+      "event": "tensor"
+    },
+    "output_type": null,
+    "modality": [
+      "timeseries"
+    ],
+    "source_file": "pyhealth/tasks/survival_time_to_event.py",
+    "dataset_classes": [
+      "Support2Dataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
     "example_url": null
   }
 ]

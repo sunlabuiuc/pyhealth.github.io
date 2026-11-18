@@ -197,6 +197,12 @@
     "description": "Clinical value sets from the NLM Value Set Authority Center: named lists of SNOMED-CT, ICD-10-CM, RxNorm and LOINC codes.",
     "snippet": "from pyhealth.datasets import VSACDataset\ndataset = VSACDataset(\n    root=\"data/vsac/\",\n)"
   },
+  "MIMIC4ImaGenomeDataset": {
+    "label": "MIMIC4ImaGenome",
+    "modality": "ehr",
+    "description": "MIMIC-IV (EHR, notes, CXR) together with Chest ImaGenome, by patient.",
+    "snippet": "from pyhealth.datasets import MIMIC4ImaGenomeDataset\ndataset = MIMIC4ImaGenomeDataset(\n    root=\"data/mimic4imagenome/\",\n)"
+  },
   "CardiologyDataset": {
     "label": "Cardiology",
     "access": "open",
@@ -322,6 +328,24 @@
     "description": "Ear-EEG Sleep Monitoring 2023 (OpenNeuro ds005178): home ear-EEG nights from ten subjects with manual sleep scoring.",
     "snippet": "from pyhealth.datasets import EESM23Dataset\ndataset = EESM23Dataset(\n    root=\"data/ds005178/\",\n)"
   },
+  "HUPiEEGDataset": {
+    "label": "HUPiEEG",
+    "modality": "signal",
+    "description": "HUP intracranial EEG epilepsy dataset (OpenNeuro ds004100).",
+    "snippet": "from pyhealth.datasets import HUPiEEGDataset\ndataset = HUPiEEGDataset(\n    root=\"data/hupieeg/\",\n)",
+    "source_url": "https://openneuro.org/datasets/ds004100",
+    "access": "open",
+    "access_note": "CC0 license"
+  },
+  "HelsinkiNeonatalDataset": {
+    "label": "HelsinkiNeonatal",
+    "modality": "signal",
+    "description": "Helsinki neonatal EEG dataset with seizure annotations.",
+    "snippet": "from pyhealth.datasets import HelsinkiNeonatalDataset\ndataset = HelsinkiNeonatalDataset(\n    root=\"data/helsinkineonatal/\",\n)",
+    "source_url": "https://zenodo.org/records/4940267",
+    "access": "open",
+    "access_note": "Creative Commons Attribution 4.0 license"
+  },
   "COVID19CXRDataset": {
     "label": "COVID19-CXR",
     "access": "open",
@@ -369,6 +393,18 @@
     "description": "Medical Segmentation Decathlon Task09: abdominal CT volumes with spleen masks.",
     "snippet": "from pyhealth.datasets import MSDSpleenDataset\ndataset = MSDSpleenDataset(\n    root=\"data/Task09_Spleen/\",\n    download=True,\n)"
   },
+  "CHAOSDataset": {
+    "label": "CHAOS",
+    "modality": "image",
+    "description": "CHAOS abdominal CT/MRI dataset.",
+    "snippet": "from pyhealth.datasets import CHAOSDataset\ndataset = CHAOSDataset(\n    root=\"data/chaos/\",\n)"
+  },
+  "RSNAPneumoniaDataset": {
+    "label": "RSNAPneumonia",
+    "modality": "image",
+    "description": "RSNA Pneumonia Detection Challenge chest X-ray dataset.",
+    "snippet": "from pyhealth.datasets import RSNAPneumoniaDataset\ndataset = RSNAPneumoniaDataset(\n    root=\"data/rsnapneumonia/\",\n)"
+  },
   "ClinVarDataset": {
     "label": "ClinVar",
     "access": "open",
@@ -411,5 +447,23 @@
     "access_note": "CC-BY-SA 4.0; download=True fetches it",
     "source_url": "http://medicaldecathlon.com/",
     "anchor": "MSDHippocampusDataset"
+  },
+  "ChestImaGenomeDataset": {
+    "label": "ChestImaGenome",
+    "modality": "other",
+    "description": "Chest ImaGenome silver scene graphs and gold object comparisons.",
+    "snippet": "from pyhealth.datasets import ChestImaGenomeDataset\ndataset = ChestImaGenomeDataset(\n    root=\"data/chestimagenome/\",\n)"
+  },
+  "GBSGDataset": {
+    "label": "GBSG",
+    "modality": "other",
+    "description": "Read a local CSV prepared from the pooled Rotterdam/GBSG benchmark.",
+    "snippet": "from pyhealth.datasets import GBSGDataset\ndataset = GBSGDataset(\n    root=\"data/gbsg/\",\n)"
+  },
+  "PBCDataset": {
+    "label": "PBC",
+    "modality": "other",
+    "description": "Load longitudinal PBC data from Jeanselme's DeepSurvivalMachines fork.",
+    "snippet": "from pyhealth.datasets import PBCDataset\ndataset = PBCDataset(\n    root=\"data/pbc/\",\n)"
   }
 }
