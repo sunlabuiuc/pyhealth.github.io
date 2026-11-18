@@ -19,6 +19,12 @@ New classes arrive as stub cards written from their docstrings. To review:
 The workflow needs "Allow GitHub Actions to create and approve pull requests"
 turned on under Settings > Actions > General.
 
+**Auto-merge.** Set the repository variable `SYNC_AUTO_MERGE` to `true`
+(Settings > Secrets and variables > Actions > Variables). After that, a run
+whose site check passes commits straight to main, and GitHub Pages deploys it.
+A run with no changes does nothing. A run whose check fails still opens a PR,
+so a person sees the problem. Delete the variable to go back to PRs.
+
 To run the same thing by hand, from the repo root with PyHealth installed:
 
 ```bash

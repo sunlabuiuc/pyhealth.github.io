@@ -1,7 +1,9 @@
 # Keeps the task and dataset cards in step with PyHealth. Every night (and on
 # demand) it installs PyHealth master, reruns scripts/extract_metadata.py and
 # scripts/extract_datasets.py, and, if data/tasks.json or data/datasets.json
-# changed, opens or updates one "Sync from PyHealth" PR for a person to review.
+# changed, opens or updates one "Sync from PyHealth" PR for a person to review,
+# or, once the repository variable SYNC_AUTO_MERGE is "true", commits straight
+# to main.
 #
 # New classes arrive as stub cards written from their docstrings; existing
 # hand-written text is never overwritten. See scripts/README.md.
@@ -82,7 +84,36 @@ jobs:
               grep '^ERROR' "$RUNNER_TEMP/check.txt"; echo '```'; } >> "$RUNNER_TEMP/body.md"
           fi
 
+      # With the repository variable SYNC_AUTO_MERGE set to "true", a run whose
+      # site check passes commits straight to main (GitHub Pages then deploys
+      # it); no change means no commit. Otherwise, or when the check fails, the
+      # changes go to a PR for review.
+      - name: Commit to main
+        id: direct
+        if: vars.SYNC_AUTO_MERGE == 'true' && steps.check.outputs.failed != 'true'
+        working-directory: site
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git add data/tasks.json data/datasets.json
+          if git diff --cached --quiet; then
+            echo "No changes from PyHealth $PYHEALTH_SHA."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -q -F - <<EOF
+          Sync tasks and datasets from PyHealth $PYHEALTH_SHA
+
+          $(cat "$RUNNER_TEMP/body.md")
+          EOF
+            git push origin HEAD:main
+          fi
+          # A PR left over from before auto-merge was turned on is now stale.
+          gh pr close bot/sync-pyhealth --delete-branch \
+            --comment "Superseded: changes now go straight to main." 2>/dev/null || true
+
       - name: Open or update the sync PR
+        if: steps.direct.outcome == 'skipped'
         uses: peter-evans/create-pull-request@v7
         with:
           path: site
