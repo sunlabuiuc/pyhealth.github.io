@@ -5,7 +5,11 @@
     "access_note": "PhysioNet credentialing + CITI training + a signed data use agreement",
     "source_url": "https://physionet.org/content/mimiciii/1.4/",
     "demo_label": "MIMIC-III demo (100 patients)",
-    "demo_url": "https://physionet.org/content/mimiciii-demo/1.4/"
+    "demo_url": "https://physionet.org/content/mimiciii-demo/1.4/",
+    "modality": "ehr",
+    "description": "MIMIC-III Critical Care database with 40K+ ICU stays covering diagnoses, procedures, medications, lab results, and free text notes.",
+    "snippet": "from pyhealth.datasets import MIMIC3Dataset\ndataset = MIMIC3Dataset(\n    root=\"data/mimic3/\",\n    tables=[\"DIAGNOSES_ICD\", \"PROCEDURES_ICD\"],\n)",
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/mortality_prediction/mortality_mimic3_rnn.py"
   },
   "MIMIC4Dataset": {
     "label": "MIMIC-IV",
@@ -13,7 +17,11 @@
     "access_note": "PhysioNet credentialing + CITI training + a signed data use agreement for each module you load",
     "source_url": "https://physionet.org/content/mimiciv/",
     "demo_label": "MIMIC-IV demo (100 patients)",
-    "demo_url": "https://physionet.org/content/mimic-iv-demo/2.2/"
+    "demo_url": "https://physionet.org/content/mimic-iv-demo/2.2/",
+    "modality": "ehr",
+    "description": "MIMIC-IV with 300K+ patients spanning hospital and ICU encounters, including structured EHR tables and clinical notes.",
+    "snippet": "from pyhealth.datasets import MIMIC4Dataset\ndataset = MIMIC4Dataset(\n    ehr_root=\"data/mimic4/\",\n    ehr_tables=[\"diagnoses_icd\", \"labevents\"],\n)",
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/mortality_prediction/mortality_mimic4_transformer.py"
   },
   "MIMIC4EHRDataset": {
     "label": "MIMIC-IV",
@@ -21,19 +29,31 @@
     "access_note": "PhysioNet credentialing + CITI training + a signed data use agreement",
     "source_url": "https://physionet.org/content/mimiciv/",
     "demo_label": "MIMIC-IV demo (100 patients)",
-    "demo_url": "https://physionet.org/content/mimic-iv-demo/2.2/"
+    "demo_url": "https://physionet.org/content/mimic-iv-demo/2.2/",
+    "modality": "ehr",
+    "description": "The structured half of MIMIC-IV on its own — patients, admissions, ICU stays, diagnoses, procedures, and lab events, without pulling in notes or imaging.",
+    "snippet": "from pyhealth.datasets import MIMIC4EHRDataset\ndataset = MIMIC4EHRDataset(\n    root=\"data/mimic-iv/2.2\",\n    tables=[\"diagnoses_icd\", \"labevents\"],\n)",
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/datasets/pyhealth.datasets.MIMIC4Dataset.html"
   },
   "MIMIC4NoteDataset": {
     "label": "MIMIC-IV Note",
     "access": "credentialed",
     "access_note": "PhysioNet credentialing + CITI training + a signed data use agreement",
-    "source_url": "https://physionet.org/content/mimic-iv-note/2.2/"
+    "source_url": "https://physionet.org/content/mimic-iv-note/2.2/",
+    "modality": "text",
+    "description": "MIMIC-IV-Note: discharge summaries and radiology reports as a standalone text dataset, joinable back to the structured EHR by admission.",
+    "snippet": "from pyhealth.datasets import MIMIC4NoteDataset\ndataset = MIMIC4NoteDataset(\n    root=\"data/mimic-iv-note/2.2\",\n    tables=[\"discharge\", \"radiology\"],\n)",
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/datasets/pyhealth.datasets.MIMIC4Dataset.html"
   },
   "MIMIC4CXRDataset": {
     "label": "MIMIC-CXR",
     "access": "credentialed",
     "access_note": "PhysioNet credentialing + CITI training + a signed data use agreement (MIMIC-CXR-JPG release)",
-    "source_url": "https://physionet.org/content/mimic-cxr-jpg/2.1.0/"
+    "source_url": "https://physionet.org/content/mimic-cxr-jpg/2.1.0/",
+    "modality": "image",
+    "description": "MIMIC-CXR chest radiographs with study metadata and CheXpert labels — pairs with the EHR and note datasets for multimodal MIMIC-IV modelling.",
+    "snippet": "from pyhealth.datasets import MIMIC4CXRDataset\ndataset = MIMIC4CXRDataset(\n    root=\"data/mimic-cxr/2.0.0\",\n    tables=[\"metadata\", \"chexpert\"],\n)",
+    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/datasets/pyhealth.datasets.MIMIC4Dataset.html"
   },
   "MIMIC4EDDataset": {
     "label": "MIMIC-IV-ED",
@@ -41,7 +61,19 @@
     "access_note": "PhysioNet credentialing + CITI training + a signed data use agreement",
     "source_url": "https://physionet.org/content/mimic-iv-ed/",
     "demo_label": "MIMIC-IV-ED demo",
-    "demo_url": "https://physionet.org/content/mimic-iv-ed-demo/"
+    "demo_url": "https://physionet.org/content/mimic-iv-ed-demo/",
+    "modality": "ehr",
+    "description": "MIMIC-IV-ED emergency department module: ED stays, triage, vital signs, medication reconciliation, Pyxis dispensing and ED diagnoses.",
+    "snippet": "from pyhealth.datasets import MIMIC4EDDataset\ndataset = MIMIC4EDDataset(\n    root=\"data/mimic-iv-ed/2.2/\",\n    tables=[\"triage\", \"vitalsign\", \"diagnosis\"],\n)"
+  },
+  "PhysioNetDeIDDataset": {
+    "label": "PhysioNet De-ID",
+    "access": "credentialed",
+    "access_note": "PhysioNet credentialing + CITI training + a signed data use agreement",
+    "source_url": "https://physionet.org/content/deidentifiedmedicaltext/1.0/",
+    "modality": "text",
+    "description": "PhysioNet de-identification corpus — clinical notes paired with gold PHI annotations, for training and benchmarking de-identification models.",
+    "snippet": "from pyhealth.datasets import PhysioNetDeIDDataset\ndataset = PhysioNetDeIDDataset(root=\"data/physionet_deid/\")"
   },
   "MIMIC4FHIR": {
     "label": "MIMIC-IV FHIR",
@@ -49,216 +81,11 @@
     "access_note": "PhysioNet credentialing + CITI training + a signed data use agreement",
     "source_url": "https://physionet.org/content/mimic-iv-fhir/2.1/",
     "demo_label": "MIMIC-IV FHIR demo",
-    "demo_url": "https://physionet.org/content/mimic-iv-fhir-demo/2.1.0/"
-  },
-  "MIMICExtractDataset": {
-    "label": "MIMIC-Extract",
-    "access": "credentialed",
-    "access_note": "Built from MIMIC-III, so it needs MIMIC-III credentialing first",
-    "source_url": "https://github.com/MLforHealth/MIMIC_Extract"
-  },
-  "eICUDataset": {
-    "label": "eICU",
-    "access": "credentialed",
-    "access_note": "PhysioNet credentialing + CITI training + a signed data use agreement",
-    "source_url": "https://physionet.org/content/eicu-crd/2.0/",
-    "demo_label": "eICU demo",
-    "demo_url": "https://physionet.org/content/eicu-crd-demo/2.0.1/"
-  },
-  "PhysioNetDeIDDataset": {
-    "label": "PhysioNet De-ID",
-    "access": "credentialed",
-    "access_note": "PhysioNet credentialing + CITI training + a signed data use agreement",
-    "source_url": "https://physionet.org/content/deidentifiedmedicaltext/1.0/"
-  },
-  "IIICDataset": {
-    "label": "IIIC",
-    "access": "credentialed",
-    "access_note": "BDSP credentialing + a signed data use agreement",
-    "source_url": "https://bdsp.io/content/bdsp-sparcnet/"
-  },
-  "DREAMTDataset": {
-    "label": "DREAMT",
-    "access": "restricted",
-    "access_note": "PhysioNet account + signed data use agreement (no credentialing)",
-    "source_url": "https://physionet.org/content/dreamt/"
-  },
-  "EHRShotDataset": {
-    "label": "EHRShot",
-    "access": "restricted",
-    "access_note": "Redivis access request + signed EHRSHOT research usage agreement",
-    "source_url": "https://redivis.com/datasets/53gc-8rhx41kgt"
-  },
-  "SHHSDataset": {
-    "label": "SHHS",
-    "access": "restricted",
-    "access_note": "NSRR account + approved data access request",
-    "source_url": "https://sleepdata.org/datasets/shhs"
-  },
-  "TUABDataset": {
-    "label": "TUAB",
-    "access": "restricted",
-    "access_note": "Free; email a signed request form to get a username and password",
-    "source_url": "https://isip.piconepress.com/projects/nedc/html/tuh_eeg/"
-  },
-  "TUEVDataset": {
-    "label": "TUEV",
-    "access": "restricted",
-    "access_note": "Free; email a signed request form to get a username and password",
-    "source_url": "https://isip.piconepress.com/projects/nedc/html/tuh_eeg/"
-  },
-  "COSMICDataset": {
-    "label": "COSMIC",
-    "access": "restricted",
-    "access_note": "Registration; free for academic use, licensed for commercial use",
-    "source_url": "https://cancer.sanger.ac.uk/cosmic/download"
-  },
-  "VSACDataset": {
-    "label": "VSAC",
-    "access": "restricted",
-    "access_note": "Free UMLS license and API key",
-    "source_url": "https://vsac.nlm.nih.gov"
-  },
-  "COVID19CXRDataset": {
-    "label": "COVID19-CXR",
-    "access": "open",
-    "access_note": "Free Kaggle account",
-    "source_url": "https://www.kaggle.com/datasets/tawsifurrahman/covid19-radiography-database"
-  },
-  "MedicalTranscriptionsDataset": {
-    "label": "MedTranscriptions",
-    "access": "open",
-    "access_note": "Free Kaggle account",
-    "source_url": "https://www.kaggle.com/datasets/tboyle10/medicaltranscriptions"
-  },
-  "CardiologyDataset": {
-    "label": "Cardiology",
-    "access": "open",
-    "access_note": "No account needed",
-    "source_url": "https://physionet.org/content/challenge-2020/1.0.2/"
-  },
-  "PhysioNet2012Dataset": {
-    "label": "PhysioNet 2012",
-    "access": "open",
-    "access_note": "No account needed; download=True fetches it",
-    "source_url": "https://physionet.org/content/challenge-2012/1.0.0/"
-  },
-  "PTBXLDataset": {
-    "label": "PTB-XL",
-    "access": "open",
-    "access_note": "No account needed",
-    "source_url": "https://physionet.org/content/ptb-xl/1.0.3/"
-  },
-  "SleepEDFDataset": {
-    "label": "SleepEDF",
-    "access": "open",
-    "access_note": "No account needed",
-    "source_url": "https://physionet.org/content/sleep-edfx/1.0.0/"
-  },
-  "CHBMITDataset": {
-    "label": "CHB-MIT",
-    "access": "open",
-    "access_note": "No account needed",
-    "source_url": "https://physionet.org/content/chbmit/1.0.0/"
-  },
-  "EEGBCIDataset": {
-    "label": "EEGBCI",
-    "access": "open",
-    "access_note": "No account needed; download=True fetches it",
-    "source_url": "https://physionet.org/content/eegmmidb/1.0.0/"
-  },
-  "ISRUCDataset": {
-    "label": "ISRUC",
-    "access": "open",
-    "access_note": "No account needed; download=True fetches it (needs the 7zzs binary on Linux/macOS)",
-    "source_url": "https://sleeptight.isr.uc.pt/"
-  },
-  "EESM23Dataset": {
-    "label": "EESM23",
-    "access": "open",
-    "access_note": "No account needed",
-    "source_url": "https://openneuro.org/datasets/ds005178"
-  },
-  "ChestXray14Dataset": {
-    "label": "ChestXray14",
-    "access": "open",
-    "access_note": "No account needed; download=True fetches it",
-    "source_url": "https://nihcc.app.box.com/v/ChestXray-NIHCC"
-  },
-  "MSDSegmentationDataset": {
-    "label": "MSD",
-    "access": "open",
-    "access_note": "CC-BY-SA 4.0; download=True fetches it",
-    "source_url": "http://medicaldecathlon.com/",
-    "anchor": "MSDHippocampusDataset"
-  },
-  "MSDHippocampusDataset": {
-    "label": "MSD Hippocampus",
-    "access": "open",
-    "access_note": "CC-BY-SA 4.0; download=True fetches it",
-    "source_url": "http://medicaldecathlon.com/"
-  },
-  "MSDProstateDataset": {
-    "label": "MSD Prostate",
-    "access": "open",
-    "access_note": "CC-BY-SA 4.0; download=True fetches it",
-    "source_url": "http://medicaldecathlon.com/"
-  },
-  "MSDSpleenDataset": {
-    "label": "MSD Spleen",
-    "access": "open",
-    "access_note": "CC-BY-SA 4.0; download=True fetches it",
-    "source_url": "http://medicaldecathlon.com/"
-  },
-  "BMDHSDataset": {
-    "label": "BMDHS",
-    "access": "open",
-    "access_note": "No account needed",
-    "source_url": "https://github.com/sani002/BMD-HS-Dataset"
-  },
-  "Support2Dataset": {
-    "label": "SUPPORT2",
-    "access": "open",
-    "access_note": "No account needed",
-    "source_url": "https://archive.ics.uci.edu/dataset/880/support2"
-  },
-  "MetabricDataset": {
-    "label": "METABRIC",
-    "access": "open",
-    "access_note": "No account needed; download=True fetches it",
-    "source_url": "https://github.com/XintianHan/Survival-MDN"
-  },
-  "TCGAPRADDataset": {
-    "label": "TCGA-PRAD",
-    "access": "open",
-    "access_note": "No account needed for the open MAF and clinical files; merge the per-sample MAFs into one",
-    "source_url": "https://portal.gdc.cancer.gov/projects/TCGA-PRAD"
-  },
-  "ClinVarDataset": {
-    "label": "ClinVar",
-    "access": "open",
-    "access_note": "No account needed",
-    "source_url": "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/"
-  },
-  "SyntheaCSVDataset": {
-    "label": "Synthea",
-    "access": "open",
-    "access_note": "Synthetic; generate locally or download samples",
-    "source_url": "https://synthea.mitre.org/downloads"
-  },
-  "OMOPDataset": {
-    "label": "OMOP",
-    "access": "format",
-    "access_note": "A format: point root at any OMOP CDM export",
-    "source_url": "https://www.ohdsi.org/data-standardization/",
-    "demo_label": "MIMIC-IV demo in OMOP",
-    "demo_url": "https://physionet.org/content/mimic-iv-demo-omop/0.9/"
-  },
-  "MEDSDataset": {
-    "label": "MEDS",
-    "access": "format",
-    "access_note": "A format: convert a dataset with a MEDS ETL",
-    "source_url": "https://medical-event-data-standard.github.io/"
+    "demo_url": "https://physionet.org/content/mimic-iv-fhir-demo/2.1.0/",
+    "modality": "ehr",
+    "description": "MIMIC-IV-on-FHIR (R4): streams the PhysioNet FHIR export into flattened Patient, Encounter, Condition, Observation, MedicationRequest, and Procedure tables.",
+    "snippet": "from pyhealth.datasets import MIMIC4FHIR\ndataset = MIMIC4FHIR(root=\"data/mimic-iv-fhir/\")",
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/mimic4fhir_mpf_ehrmamba.py"
   },
   "FHIRDataset": {
     "label": "FHIR",
@@ -266,6 +93,323 @@
     "access_note": "A format: point root at any FHIR NDJSON export",
     "source_url": "https://www.hl7.org/fhir/",
     "demo_label": "MIMIC-IV FHIR demo",
-    "demo_url": "https://physionet.org/content/mimic-iv-fhir-demo/2.1.0/"
+    "demo_url": "https://physionet.org/content/mimic-iv-fhir-demo/2.1.0/",
+    "modality": "ehr",
+    "description": "Generic FHIR loader: a single YAML config describes any NDJSON FHIR export, and PyHealth handles the streaming, flattening, and caching.",
+    "snippet": "from pyhealth.datasets import FHIRDataset\ndataset = FHIRDataset(\n    root=\"data/export/\",\n    config_path=\"my_fhir.yaml\",\n)"
+  },
+  "eICUDataset": {
+    "label": "eICU",
+    "access": "credentialed",
+    "access_note": "PhysioNet credentialing + CITI training + a signed data use agreement",
+    "source_url": "https://physionet.org/content/eicu-crd/2.0/",
+    "demo_label": "eICU demo",
+    "demo_url": "https://physionet.org/content/eicu-crd-demo/2.0.1/",
+    "modality": "ehr",
+    "description": "Multi-center eICU Collaborative Research Database with 200K+ ICU stays from 208 hospitals across the US.",
+    "snippet": "from pyhealth.datasets import eICUDataset\ndataset = eICUDataset(\n    root=\"data/eicu/\",\n    tables=[\"diagnosis\", \"medication\"],\n)",
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/mortality_prediction/mortality_prediction_eicu_rnn.py"
+  },
+  "OMOPDataset": {
+    "label": "OMOP",
+    "access": "format",
+    "access_note": "A format: point root at any OMOP CDM export",
+    "source_url": "https://www.ohdsi.org/data-standardization/",
+    "demo_label": "MIMIC-IV demo in OMOP",
+    "demo_url": "https://physionet.org/content/mimic-iv-demo-omop/0.9/",
+    "modality": "ehr",
+    "description": "OMOP Common Data Model loader — a standardized format for observational health data used widely across academic medical centers.",
+    "snippet": "from pyhealth.datasets import OMOPDataset\ndataset = OMOPDataset(\n    root=\"data/omop/\",\n    tables=[\"condition_occurrence\"],\n)",
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/omop_dataset_demo.py"
+  },
+  "MIMICExtractDataset": {
+    "label": "MIMIC-Extract",
+    "access": "credentialed",
+    "access_note": "Built from MIMIC-III, so it needs MIMIC-III credentialing first",
+    "source_url": "https://github.com/MLforHealth/MIMIC_Extract",
+    "modality": "ehr",
+    "description": "MIMIC-Extract pre-processed cohort with time-series vitals and lab values for 34K ICU patients, ready for timeseries modeling.",
+    "snippet": "from pyhealth.datasets import MIMICExtractDataset\ndataset = MIMICExtractDataset(\n    root=\"data/mimic-extract/\",\n)"
+  },
+  "EHRShotDataset": {
+    "label": "EHRShot",
+    "access": "restricted",
+    "access_note": "Redivis access request + signed EHRSHOT research usage agreement",
+    "source_url": "https://redivis.com/datasets/53gc-8rhx41kgt",
+    "modality": "ehr",
+    "description": "EHRShot few-shot benchmark derived from EHRSFM with 15 clinical prediction tasks for evaluating foundation models on EHR data.",
+    "snippet": "from pyhealth.datasets import EHRShotDataset\ndataset = EHRShotDataset(\n    root=\"data/ehrshot/\",\n)",
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/benchmark_ehrshot_xgboost.ipynb"
+  },
+  "Support2Dataset": {
+    "label": "SUPPORT2",
+    "access": "open",
+    "access_note": "No account needed",
+    "source_url": "https://archive.ics.uci.edu/dataset/880/support2",
+    "modality": "ehr",
+    "description": "SUPPORT2 study dataset for survival prediction with demographics, vitals, labs, comorbidities, and 2-month / 6-month survival labels.",
+    "snippet": "from pyhealth.datasets import Support2Dataset\ndataset = Support2Dataset(\n    root=\"data/support2/\",\n)",
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/survival_preprocess_support2_demo.py"
+  },
+  "MEDSDataset": {
+    "label": "MEDS",
+    "access": "format",
+    "access_note": "A format: convert a dataset with a MEDS ETL",
+    "source_url": "https://medical-event-data-standard.github.io/",
+    "modality": "ehr",
+    "description": "Any dataset in the Medical Event Data Standard (MEDS): sharded Parquet event streams with the canonical train / tuning / held-out split loadable as a filter.",
+    "snippet": "from pyhealth.datasets import MEDSDataset\ndataset = MEDSDataset(\n    root=\"data/meds/\",\n    subset=\"train\",\n)",
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/meds_demo.py"
+  },
+  "PhysioNet2012Dataset": {
+    "label": "PhysioNet 2012",
+    "access": "open",
+    "access_note": "No account needed; download=True fetches it",
+    "source_url": "https://physionet.org/content/challenge-2012/1.0.0/",
+    "modality": "ehr",
+    "description": "PhysioNet/CinC Challenge 2012: 12,000 ICU stays with irregularly sampled vitals and labs over the first 48 hours, plus in-hospital mortality.",
+    "snippet": "from pyhealth.datasets import PhysioNet2012Dataset\ndataset = PhysioNet2012Dataset(\n    root=\"data/physionet2012/\",\n    download=True,\n)"
+  },
+  "MetabricDataset": {
+    "label": "METABRIC",
+    "access": "open",
+    "access_note": "No account needed; download=True fetches it",
+    "source_url": "https://github.com/XintianHan/Survival-MDN",
+    "modality": "ehr",
+    "description": "METABRIC breast cancer survival cohort (1,904 patients) with gene expression and clinical features and the ten published train/test splits.",
+    "snippet": "from pyhealth.datasets import MetabricDataset\ndataset = MetabricDataset(\n    root=\"data/metabric/\",\n    download=True,\n)"
+  },
+  "SyntheaCSVDataset": {
+    "label": "Synthea",
+    "access": "open",
+    "access_note": "Synthetic; generate locally or download samples",
+    "source_url": "https://synthea.mitre.org/downloads",
+    "modality": "ehr",
+    "description": "Synthetic patient records from Synthea in CSV form, with SNOMED-CT, RxNorm, LOINC and CVX codes. No credentialing needed.",
+    "snippet": "from pyhealth.datasets import SyntheaCSVDataset\ndataset = SyntheaCSVDataset(\n    root=\"data/synthea/csv/\",\n    tables=[\"conditions\"],\n)"
+  },
+  "VSACDataset": {
+    "label": "VSAC",
+    "access": "restricted",
+    "access_note": "Free UMLS license and API key",
+    "source_url": "https://vsac.nlm.nih.gov",
+    "modality": "ehr",
+    "description": "Clinical value sets from the NLM Value Set Authority Center: named lists of SNOMED-CT, ICD-10-CM, RxNorm and LOINC codes.",
+    "snippet": "from pyhealth.datasets import VSACDataset\ndataset = VSACDataset(\n    root=\"data/vsac/\",\n)"
+  },
+  "CardiologyDataset": {
+    "label": "Cardiology",
+    "access": "open",
+    "access_note": "No account needed",
+    "source_url": "https://physionet.org/content/challenge-2020/1.0.2/",
+    "modality": "signal",
+    "description": "Multi-label ECG dataset for cardiac arrhythmia detection with 12-lead signals annotated across multiple cardiac conditions.",
+    "snippet": "from pyhealth.datasets import CardiologyDataset\ndataset = CardiologyDataset(\n    root=\"data/cardiology/\",\n)",
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/old/cardiology_detection_isAR_SparcNet.py"
+  },
+  "ISRUCDataset": {
+    "label": "ISRUC",
+    "access": "open",
+    "access_note": "No account needed; download=True fetches it (needs the 7zzs binary on Linux/macOS)",
+    "source_url": "https://sleeptight.isr.uc.pt/",
+    "modality": "signal",
+    "description": "ISRUC-Sleep dataset with polysomnography recordings (EEG, EOG, EMG) from healthy subjects and patients with sleep disorders.",
+    "snippet": "from pyhealth.datasets import ISRUCDataset\ndataset = ISRUCDataset(\n    root=\"data/isruc/\",\n)",
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/old/eeg/sleep_staging/sleep_staging_ISRUC_SparcNet.py"
+  },
+  "DREAMTDataset": {
+    "label": "DREAMT",
+    "access": "restricted",
+    "access_note": "PhysioNet account + signed data use agreement (no credentialing)",
+    "source_url": "https://physionet.org/content/dreamt/",
+    "modality": "signal",
+    "description": "DREAMT study dataset with multi-night wrist-worn EEG data for sleep staging in a free-living environment.",
+    "snippet": "from pyhealth.datasets import DREAMTDataset\ndataset = DREAMTDataset(\n    root=\"data/dreamt/\",\n)",
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/datasets_overview.ipynb"
+  },
+  "SHHSDataset": {
+    "label": "SHHS",
+    "access": "restricted",
+    "access_note": "NSRR account + approved data access request",
+    "source_url": "https://sleepdata.org/datasets/shhs",
+    "modality": "signal",
+    "description": "Sleep Heart Health Study with overnight polysomnography from 5,800+ participants for sleep staging and cardiovascular risk research.",
+    "snippet": "from pyhealth.datasets import SHHSDataset\ndataset = SHHSDataset(\n    root=\"data/shhs/\",\n)",
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/old/eeg/sleep_staging/sleep_staging_shhs_contrawr.py"
+  },
+  "SleepEDFDataset": {
+    "label": "SleepEDF",
+    "access": "open",
+    "access_note": "No account needed",
+    "source_url": "https://physionet.org/content/sleep-edfx/1.0.0/",
+    "modality": "signal",
+    "description": "SleepEDF-78/Cassette dataset with full-night EEG recordings from 78 healthy subjects, widely used for sleep staging benchmarks.",
+    "snippet": "from pyhealth.datasets import SleepEDFDataset\ndataset = SleepEDFDataset(\n    root=\"data/sleepedf/\",\n)",
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/eeg/sleep_staging/sleep_staging_sleepEDF_contrawr.py"
+  },
+  "BMDHSDataset": {
+    "label": "BMDHS",
+    "access": "open",
+    "access_note": "No account needed",
+    "source_url": "https://github.com/sani002/BMD-HS-Dataset",
+    "modality": "signal",
+    "description": "BMDHS heart sound dataset with phonocardiogram recordings for cardiac valve disease classification and auscultation research.",
+    "snippet": "from pyhealth.datasets import BMDHSDataset\ndataset = BMDHSDataset(\n    root=\"data/bmdhs/\",\n)"
+  },
+  "TUABDataset": {
+    "label": "TUAB",
+    "access": "restricted",
+    "access_note": "Free; email a signed request form to get a username and password",
+    "source_url": "https://isip.piconepress.com/projects/nedc/html/tuh_eeg/",
+    "modality": "signal",
+    "description": "Temple University EEG Abnormal (TUAB) corpus with clinical EEG recordings labeled as normal or abnormal by board-certified neurologists.",
+    "snippet": "from pyhealth.datasets import TUABDataset\ndataset = TUABDataset(\n    root=\"data/tuab/\",\n)",
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/eeg/tuh_eeg/tuab_abnormal_detection.ipynb"
+  },
+  "TUEVDataset": {
+    "label": "TUEV",
+    "access": "restricted",
+    "access_note": "Free; email a signed request form to get a username and password",
+    "source_url": "https://isip.piconepress.com/projects/nedc/html/tuh_eeg/",
+    "modality": "signal",
+    "description": "Temple University EEG Events (TUEV) corpus annotated with six EEG event types including spike-wave complexes and artifacts.",
+    "snippet": "from pyhealth.datasets import TUEVDataset\ndataset = TUEVDataset(\n    root=\"data/tuev/\",\n)",
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/eeg/tuh_eeg/tuev_eeg_event_classification.ipynb"
+  },
+  "EEGBCIDataset": {
+    "label": "EEGBCI",
+    "access": "open",
+    "access_note": "No account needed; download=True fetches it",
+    "source_url": "https://physionet.org/content/eegmmidb/1.0.0/",
+    "modality": "signal",
+    "description": "PhysioNet EEG Motor Movement/Imagery recordings of executed and imagined hand and foot movements — openly licensed, so it can download itself.",
+    "snippet": "from pyhealth.datasets import EEGBCIDataset\ndataset = EEGBCIDataset(\n    root=\"data/eegbci/\",\n    subjects=[1, 2, 3],\n    download=True,\n)",
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/eeg/eegbci/eegbci_pattern_discovery.py"
+  },
+  "PTBXLDataset": {
+    "label": "PTB-XL",
+    "access": "open",
+    "access_note": "No account needed",
+    "source_url": "https://physionet.org/content/ptb-xl/1.0.3/",
+    "modality": "signal",
+    "description": "PTB-XL: 21,799 clinical 12-lead ECGs from 18,869 patients with SCP-ECG diagnostic statements.",
+    "snippet": "from pyhealth.datasets import PTBXLDataset\ndataset = PTBXLDataset(\n    root=\"data/ptb-xl/1.0.3/\",\n)"
+  },
+  "CHBMITDataset": {
+    "label": "CHB-MIT",
+    "access": "open",
+    "access_note": "No account needed",
+    "source_url": "https://physionet.org/content/chbmit/1.0.0/",
+    "modality": "signal",
+    "description": "CHB-MIT scalp EEG from 23 pediatric subjects with annotated seizure intervals, for seizure detection.",
+    "snippet": "from pyhealth.datasets import CHBMITDataset\ndataset = CHBMITDataset(\n    root=\"data/chbmit/1.0.0/\",\n)"
+  },
+  "IIICDataset": {
+    "label": "IIIC",
+    "access": "credentialed",
+    "access_note": "BDSP credentialing + a signed data use agreement",
+    "source_url": "https://bdsp.io/content/bdsp-sparcnet/",
+    "modality": "signal",
+    "description": "IIIC Seizure Corpus (SPaRCNet): expert-labeled EEG segments of seizures and ictal-interictal-injury continuum patterns.",
+    "snippet": "from pyhealth.datasets import IIICDataset\ndataset = IIICDataset(\n    root=\"data/iiic/\",\n)"
+  },
+  "EESM23Dataset": {
+    "label": "EESM23",
+    "access": "open",
+    "access_note": "No account needed",
+    "source_url": "https://openneuro.org/datasets/ds005178",
+    "modality": "signal",
+    "description": "Ear-EEG Sleep Monitoring 2023 (OpenNeuro ds005178): home ear-EEG nights from ten subjects with manual sleep scoring.",
+    "snippet": "from pyhealth.datasets import EESM23Dataset\ndataset = EESM23Dataset(\n    root=\"data/ds005178/\",\n)"
+  },
+  "COVID19CXRDataset": {
+    "label": "COVID19-CXR",
+    "access": "open",
+    "access_note": "Free Kaggle account",
+    "source_url": "https://www.kaggle.com/datasets/tawsifurrahman/covid19-radiography-database",
+    "modality": "image",
+    "description": "COVID-19 chest X-ray dataset for binary classification of COVID-19 vs. normal and pneumonia images across multiple sources.",
+    "snippet": "from pyhealth.datasets import COVID19CXRDataset\ndataset = COVID19CXRDataset(\n    root=\"data/covid19cxr/\",\n)",
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/cxr/covid19cxr_tutorial.py"
+  },
+  "ChestXray14Dataset": {
+    "label": "ChestXray14",
+    "access": "open",
+    "access_note": "No account needed; download=True fetches it",
+    "source_url": "https://nihcc.app.box.com/v/ChestXray-NIHCC",
+    "modality": "image",
+    "description": "NIH ChestX-ray14 with 112K frontal chest X-rays from 30K patients, annotated with 14 disease labels for multi-label classification.",
+    "snippet": "from pyhealth.datasets import ChestXray14Dataset\ndataset = ChestXray14Dataset(\n    root=\"data/chestxray14/\",\n)",
+    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/cxr/chestxray14_binary_classification.py"
+  },
+  "MSDHippocampusDataset": {
+    "label": "MSD Hippocampus",
+    "access": "open",
+    "access_note": "CC-BY-SA 4.0; download=True fetches it",
+    "source_url": "http://medicaldecathlon.com/",
+    "modality": "image",
+    "description": "Medical Segmentation Decathlon Task04: T1-weighted MRI volumes with left/right hippocampus masks.",
+    "snippet": "from pyhealth.datasets import MSDHippocampusDataset\ndataset = MSDHippocampusDataset(\n    root=\"data/Task04_Hippocampus/\",\n    download=True,\n)"
+  },
+  "MSDProstateDataset": {
+    "label": "MSD Prostate",
+    "access": "open",
+    "access_note": "CC-BY-SA 4.0; download=True fetches it",
+    "source_url": "http://medicaldecathlon.com/",
+    "modality": "image",
+    "description": "Medical Segmentation Decathlon Task05: two-channel prostate MRI (T2 and ADC) with zone masks.",
+    "snippet": "from pyhealth.datasets import MSDProstateDataset\ndataset = MSDProstateDataset(\n    root=\"data/Task05_Prostate/\",\n    download=True,\n)"
+  },
+  "MSDSpleenDataset": {
+    "label": "MSD Spleen",
+    "access": "open",
+    "access_note": "CC-BY-SA 4.0; download=True fetches it",
+    "source_url": "http://medicaldecathlon.com/",
+    "modality": "image",
+    "description": "Medical Segmentation Decathlon Task09: abdominal CT volumes with spleen masks.",
+    "snippet": "from pyhealth.datasets import MSDSpleenDataset\ndataset = MSDSpleenDataset(\n    root=\"data/Task09_Spleen/\",\n    download=True,\n)"
+  },
+  "ClinVarDataset": {
+    "label": "ClinVar",
+    "access": "open",
+    "access_note": "No account needed",
+    "source_url": "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/",
+    "modality": "genomics",
+    "description": "NCBI ClinVar database of genomic variants and their clinical significance, used for variant pathogenicity classification.",
+    "snippet": "from pyhealth.datasets import ClinVarDataset\ndataset = ClinVarDataset(\n    root=\"data/clinvar/\",\n)"
+  },
+  "COSMICDataset": {
+    "label": "COSMIC",
+    "access": "restricted",
+    "access_note": "Registration; free for academic use, licensed for commercial use",
+    "source_url": "https://cancer.sanger.ac.uk/cosmic/download",
+    "modality": "genomics",
+    "description": "Catalogue of Somatic Mutations in Cancer (COSMIC) for predicting the functional impact of somatic mutations in cancer.",
+    "snippet": "from pyhealth.datasets import COSMICDataset\ndataset = COSMICDataset(\n    root=\"data/cosmic/\",\n)"
+  },
+  "TCGAPRADDataset": {
+    "label": "TCGA-PRAD",
+    "access": "open",
+    "access_note": "No account needed for the open MAF and clinical files; merge the per-sample MAFs into one",
+    "source_url": "https://portal.gdc.cancer.gov/projects/TCGA-PRAD",
+    "modality": "genomics",
+    "description": "TCGA Prostate Adenocarcinoma (PRAD) multi-omics dataset for cancer survival prediction using RNA-seq, CNV, and mutation profiles.",
+    "snippet": "from pyhealth.datasets import TCGAPRADDataset\ndataset = TCGAPRADDataset(\n    root=\"data/tcga/\",\n)"
+  },
+  "MedicalTranscriptionsDataset": {
+    "label": "MedTranscriptions",
+    "access": "open",
+    "access_note": "Free Kaggle account",
+    "source_url": "https://www.kaggle.com/datasets/tboyle10/medicaltranscriptions",
+    "modality": "text",
+    "description": "Kaggle medical transcriptions dataset with 5K+ clinical notes across 40 specialties for specialty classification and NLP tasks.",
+    "snippet": "from pyhealth.datasets import MedicalTranscriptionsDataset\ndataset = MedicalTranscriptionsDataset(\n    root=\"data/medical_transcriptions/\",\n)"
+  },
+  "MSDSegmentationDataset": {
+    "label": "MSD",
+    "access": "open",
+    "access_note": "CC-BY-SA 4.0; download=True fetches it",
+    "source_url": "http://medicaldecathlon.com/",
+    "anchor": "MSDHippocampusDataset"
   }
 }

@@ -1,9 +1,40 @@
 # Website Scripts
 
+## Keeping tasks and datasets in step with PyHealth
+
+`.github/workflows/sync-pyhealth.yml` runs every night at 09:00 UTC; to run it
+now, go to Actions > Sync from PyHealth > Run workflow. It installs PyHealth
+master, runs `extract_metadata.py` and `extract_datasets.py`, and checks the
+result with `check_site_consistency.py`. If `data/tasks.json` or
+`data/datasets.json` changed, it opens a PR, or updates the one already open,
+on the branch `bot/sync-pyhealth`. The PR body lists the new cards and
+anything that needs a person to look at it.
+
+New classes arrive as stub cards written from their docstrings. To review:
+1. Read the new cards locally (see "Testing locally" below) and merge.
+2. Polish the stub text on main in a normal PR. The next run rebuilds the bot
+   branch from main, so edits pushed to the bot branch are lost, but edits
+   on main are kept.
+
+The workflow needs "Allow GitHub Actions to create and approve pull requests"
+turned on under Settings > Actions > General.
+
+To run the same thing by hand, from the repo root with PyHealth installed:
+
+```bash
+python scripts/extract_metadata.py
+python scripts/extract_datasets.py
+python scripts/check_site_consistency.py --pyhealth ../PyHealth
+```
+
+Both generators take `--summary FILE` to append a Markdown report.
+
+---
+
 ## extract_metadata.py
 
-Imports task classes from the installed `pyhealth` package and writes
-`data/tasks.json`. Run this whenever a task class is added or renamed.
+Imports task classes from the installed `pyhealth` package and updates
+`data/tasks.json`.
 
 **Prerequisites:** `pyhealth` installed in your active Python environment.
 
@@ -15,96 +46,96 @@ python scripts/extract_metadata.py
 python scripts/extract_metadata.py --output data/tasks.json
 ```
 
-Output goes to `data/tasks.json` by default.
-
 ---
 
-### Workflow for adding a new task
+### data/tasks.json
 
-1. Add the task class to `PyHealth/pyhealth/tasks/`.
-2. Run the script to regenerate `data/tasks.json`.
-3. Add one entry to `data/tasks_extra.json` (see format below).
-4. Commit both JSON files — the site renders from them automatically.
-
----
-
-### data/tasks.json (auto-generated, do not hand-edit)
-
-Each entry is one Python class found in `pyhealth/tasks/`:
+One entry per task class in `pyhealth.tasks`; tasks.html renders a card for
+each. Rerunning the script refreshes the fields that come from code and adds a
+stub entry for each new class. Hand-edited fields are kept.
 
 ```json
 {
   "class_name":    "MortalityPredictionMIMIC3",
+  "display_name":  "Mortality Prediction (MIMIC-III)",
   "task_name":     "MortalityPredictionMIMIC3",
   "description":   "Task for predicting mortality using MIMIC-III...",
   "input_schema":  {"conditions": "sequence", "procedures": "sequence"},
   "output_schema": {"mortality": "binary"},
   "output_type":   "binary",
-  "source_file":   "pyhealth/tasks/mortality_prediction.py"
+  "source_file":   "pyhealth/tasks/mortality_prediction.py",
+  "dataset_classes": ["MIMIC3Dataset"]
 }
 ```
 
-`output_type` is inferred from `output_schema` values. Classes that set their
-schema dynamically in `__init__` will have `null` here — override via
-`tasks_extra.json`.
+**Refreshed from code on every run:** `task_name`, `input_schema`,
+`output_schema`, `source_file`, `dataset_classes`.
 
-`dataset_classes` is read from the task's docstring: every
-``:class:`~pyhealth.datasets.X` `` it cites (PyHealth task docstrings say
-"Works with :class:`~pyhealth.datasets.X`."). tasks.html turns these into
+**Hand-edited, never overwritten:**
+- `display_name`
+- `display_class`
+- `description`
+- `datasets`
+- `colab_url`
+- `docs_url`
+- `example_url`
+- `output_type`
+- `modality`
+
+The script fills `description`, `output_type` and `modality` from the code only
+when they are empty. Classes that set their schema in `__init__` have a `null`
+`output_type`; set it by hand.
+
+`dataset_classes` lists the `pyhealth.datasets` classes that the task's
+docstring cites as ``:class:`~pyhealth.datasets.X` ``. PyHealth task docstrings
+say "Works with :class:`~pyhealth.datasets.X`." tasks.html turns these into
 dataset pills that link to `datasets.html#X`, and datasets.html lists each
-dataset's tasks from them, so a new task shows up in both places after you
-rerun the script. Hand-written `datasets` labels are only a fallback for
-entries without `dataset_classes`.
+dataset's tasks from them. A task whose docstring cites no dataset gets no
+pills.
 
 ---
 
-### data/datasets.json (hand-authored)
+## extract_datasets.py
 
-One entry per `pyhealth.datasets` class, keyed by class name. datasets.html
-uses it for each card's access badge and "Get the data" link, and tasks.html
-for the pill labels. The facts match the "Getting the data" section of each
-dataset's docstring in PyHealth; update both together.
+Imports dataset classes from the installed `pyhealth` package and adds a stub
+entry to `data/datasets.json` for each class the site doesn't list yet.
 
-| Field         | Required | Description |
-|---------------|----------|-------------|
-| `label`       | Yes      | Short pill label, e.g. `"MIMIC-III"` |
-| `access`      | Yes      | `open`, `restricted`, `credentialed`, or `format` |
-| `access_note` | Yes      | One line on what access takes |
-| `source_url`  | Yes      | Where to download it |
-| `demo_label`, `demo_url` | No | An open demo or subset |
-| `anchor`      | No       | Card to link to when the class has no card of its own |
-
-A new dataset card needs `id="<ClassName>"` on its `.dataset-card` div so
-`datasets.html#<ClassName>` links land on it.
-
----
-
-### data/tasks_extra.json (hand-authored)
-
-Controls which tasks appear on the site and in what order. Fields:
-
-| Field           | Required | Description |
-|----------------|----------|-------------|
-| `class_name`    | Yes      | Python class name — used to join with `tasks.json` |
-| `display_name`  | Yes      | Human-readable title shown on the card |
-| `display_class` | No       | Short name shown in the code snippet (defaults to `class_name`) |
-| `datasets`      | Yes      | Array of dataset pill labels, e.g. `["MIMIC-III"]` |
-| `description`   | Yes      | One-sentence description for the card |
-| `colab_url`     | No       | Colab notebook URL |
-| `docs_url`      | No       | ReadTheDocs URL (defaults to the tasks index page) |
-| `output_type`   | No       | Override auto-detected type (needed when schema is set in `__init__`) |
-
-Minimal entry:
-
-```json
-{
-  "class_name":   "MyNewTask",
-  "display_name": "My New Task",
-  "datasets":     ["MIMIC-IV"],
-  "description":  "One sentence for the website card.",
-  "colab_url":    "https://colab.research.google.com/drive/..."
-}
+```bash
+python scripts/extract_datasets.py
 ```
+
+Existing entries are hand-checked and never changed. A stub is filled in from
+the dataset docstring's "Getting the data:" block (Source, Access,
+No access yet?) and its first paragraph. A stub's modality is guessed from the
+description, and set to `other` when nothing matches. The new entry goes after
+the last entry with the same modality.
+
+The script only reports, and does not change:
+- entries whose class is no longer exported;
+- entries whose docstring now cites a different source URL than the site.
+
+---
+
+### data/datasets.json
+
+One entry per `pyhealth.datasets` class, keyed by class name, in page order.
+datasets.html renders a card for each entry that has no `anchor`, and
+tasks.html uses `label` for its dataset pills. The access facts match the
+"Getting the data" section of each dataset's docstring in PyHealth.
+
+| Field         | Description |
+|---------------|-------------|
+| `label`       | Short pill label, e.g. `"MIMIC-III"` |
+| `modality`    | `ehr`, `signal`, `image`, `genomics`, `text` or `other`; sets the tag and the filter |
+| `description` | One or two sentences for the card |
+| `snippet`     | Plain-text Python example; highlighted when the page renders |
+| `access`      | `open`, `restricted`, `credentialed`, or `format` |
+| `access_note` | One line on what access takes (the page adds the period) |
+| `source_url`  | Where to download it; with no `source_url`, the card has no access line |
+| `demo_label`, `demo_url` | Optional open demo or subset |
+| `docs_url`    | Optional; defaults to `api/datasets/pyhealth.datasets.<Class>.html` |
+| `example_url` | Optional "Example →" link |
+| `anchor`      | Card to link to instead, for a class with no card of its own |
 
 ---
 

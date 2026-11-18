@@ -1,0 +1,102 @@
+# Keeps the task and dataset cards in step with PyHealth. Every night (and on
+# demand) it installs PyHealth master, reruns scripts/extract_metadata.py and
+# scripts/extract_datasets.py, and, if data/tasks.json or data/datasets.json
+# changed, opens or updates one "Sync from PyHealth" PR for a person to review.
+#
+# New classes arrive as stub cards written from their docstrings; existing
+# hand-written text is never overwritten. See scripts/README.md.
+#
+# Needs Settings > Actions > General > "Allow GitHub Actions to create and
+# approve pull requests" turned on.
+name: Sync from PyHealth
+
+on:
+  schedule:
+    - cron: "0 9 * * *"   # daily, 09:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: sync-pyhealth
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      # Side by side, so the scripts' default --pyhealth ../PyHealth works and
+      # the PyHealth checkout never ends up in the site's commit.
+      - uses: actions/checkout@v4
+        with:
+          path: site
+
+      - uses: actions/checkout@v4
+        with:
+          repository: sunlabuiuc/PyHealth
+          ref: master
+          path: PyHealth
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: PyHealth/pyproject.toml
+
+      # CPU wheels keep the torch download small; the scripts only import classes.
+      - name: Install PyHealth
+        run: pip install --extra-index-url https://download.pytorch.org/whl/cpu ./PyHealth
+
+      - name: Regenerate tasks.json and datasets.json
+        working-directory: site
+        run: |
+          sha=$(git -C ../PyHealth rev-parse --short HEAD)
+          echo "PYHEALTH_SHA=$sha" >> "$GITHUB_ENV"
+          body="$RUNNER_TEMP/body.md"
+          echo "Regenerated from [PyHealth@$sha](https://github.com/sunlabuiuc/PyHealth/commit/$sha) by the nightly sync." > "$body"
+          echo >> "$body"
+          python scripts/extract_metadata.py --summary "$body"
+          python scripts/extract_datasets.py --summary "$body"
+          cat >> "$body" <<'EOF'
+          To review: check out this branch and run `python -m http.server`, then
+          read the new cards on `tasks.html` and `datasets.html`. Merge, then
+          polish stub text (descriptions, snippets, any `modality` of `other`)
+          in a normal PR. The next run rebuilds this branch from main, so edits
+          pushed here are lost, while edits on main are kept. A dataset with no
+          "Getting the data" block shows no access line until its PyHealth
+          docstring gets one, or until `access`, `access_note` and `source_url`
+          are filled in here.
+          EOF
+
+      # Report problems in the PR instead of blocking it; the last step fails
+      # the run so they are not missed.
+      - name: Check the site against PyHealth
+        id: check
+        working-directory: site
+        run: |
+          if ! python scripts/check_site_consistency.py --pyhealth ../PyHealth > "$RUNNER_TEMP/check.txt"; then
+            echo "failed=true" >> "$GITHUB_OUTPUT"
+            { echo; echo "**check_site_consistency.py found problems:**"; echo '```'
+              grep '^ERROR' "$RUNNER_TEMP/check.txt"; echo '```'; } >> "$RUNNER_TEMP/body.md"
+          fi
+
+      - name: Open or update the sync PR
+        uses: peter-evans/create-pull-request@v7
+        with:
+          path: site
+          add-paths: |
+            data/tasks.json
+            data/datasets.json
+          branch: bot/sync-pyhealth
+          delete-branch: true
+          commit-message: "Sync tasks and datasets from PyHealth ${{ env.PYHEALTH_SHA }}"
+          title: "Sync tasks and datasets from PyHealth ${{ env.PYHEALTH_SHA }}"
+          body-path: ${{ runner.temp }}/body.md
+
+      - name: Fail if the site check found problems
+        if: steps.check.outputs.failed == 'true'
+        run: |
+          cat "$RUNNER_TEMP/check.txt"
+          exit 1
