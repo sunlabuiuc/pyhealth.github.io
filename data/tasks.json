@@ -26,7 +26,13 @@
     "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/mortality_prediction/mortality_mimic3_rnn.py",
     "dataset_classes": [
       "MIMIC3Dataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "InHospitalMortalityMIMIC4",
@@ -53,7 +59,13 @@
     "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/mortality_prediction/mortality_mimic4_transformer.py",
     "dataset_classes": [
       "MIMIC4EHRDataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "timeseries"
+      ]
+    }
   },
   {
     "class_name": "ReadmissionPredictionMIMIC3",
@@ -82,7 +94,13 @@
     "task_name": "ReadmissionPredictionMIMIC3",
     "dataset_classes": [
       "MIMIC3Dataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "DKAPredictionMIMIC4",
@@ -110,7 +128,14 @@
     "task_name": "DKAPredictionMIMIC4",
     "dataset_classes": [
       "MIMIC4Dataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "ehr",
+        "timeseries"
+      ]
+    }
   },
   {
     "class_name": "EEGAbnormalTUAB",
@@ -138,34 +163,13 @@
     "task_name": "EEG_abnormal",
     "dataset_classes": [
       "TUABDataset"
-    ]
-  },
-  {
-    "class_name": "COVID19CXRClassification",
-    "display_name": "COVID-19 Detection",
-    "display_class": "COVID19CXRClassification",
-    "datasets": [
-      "COVID19-CXR"
     ],
-    "description": "Binary classification of chest X-rays as COVID-19 positive vs. normal/pneumonia.",
-    "colab_url": "https://colab.research.google.com/drive/18vK23gyI1LjWbTgkq4f99yDZA3A7Pxp9?usp=sharing",
-    "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.COVID19CXRClassification.html",
-    "input_schema": {
-      "image": "image"
-    },
-    "output_schema": {
-      "disease": "multiclass"
-    },
-    "task_name": "COVID19CXRClassification",
-    "source_file": "pyhealth/tasks/covid19_cxr_classification.py",
-    "modality": [
-      "image"
-    ],
-    "output_type": "binary",
-    "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/cxr/covid19cxr_tutorial.py",
-    "dataset_classes": [
-      "COVID19CXRDataset"
-    ]
+    "inferred": {
+      "output_type": "multiclass",
+      "modality": [
+        "signal"
+      ]
+    }
   },
   {
     "class_name": "MutationPathogenicityPrediction",
@@ -193,7 +197,13 @@
     "task_name": "MutationPathogenicityPrediction",
     "dataset_classes": [
       "COSMICDataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "text"
+      ]
+    }
   },
   {
     "class_name": "CancerSurvivalPrediction",
@@ -221,7 +231,14 @@
     "task_name": "CancerSurvivalPrediction",
     "dataset_classes": [
       "TCGAPRADDataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "ehr",
+        "genomics"
+      ]
+    }
   },
   {
     "class_name": "PatientLinkageMIMIC3Task",
@@ -258,7 +275,13 @@
     "task_name": "patient_linkage_mimic3",
     "dataset_classes": [
       "MIMIC3Dataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": null,
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "LengthOfStayPredictionMIMIC3",
@@ -287,7 +310,13 @@
     "task_name": "LengthOfStayPredictionMIMIC3",
     "dataset_classes": [
       "MIMIC3Dataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": "multiclass",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "SleepStagingSleepEDF",
@@ -314,7 +343,13 @@
     "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/eeg/sleep_staging/sleep_staging_sleepEDF_contrawr.py",
     "dataset_classes": [
       "SleepEDFDataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": "multiclass",
+      "modality": [
+        "signal"
+      ]
+    }
   },
   {
     "class_name": "EEGEventsTUEV",
@@ -342,7 +377,13 @@
     "task_name": "EEG_events",
     "dataset_classes": [
       "TUEVDataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": "multiclass",
+      "modality": [
+        "signal"
+      ]
+    }
   },
   {
     "class_name": "COVID19CXRClassification",
@@ -369,7 +410,13 @@
     "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/cxr/covid19cxr_tutorial.py",
     "dataset_classes": [
       "COVID19CXRDataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": "multiclass",
+      "modality": [
+        "image"
+      ]
+    }
   },
   {
     "class_name": "MedicalTranscriptionsClassification",
@@ -395,7 +442,13 @@
     "output_type": "multiclass",
     "dataset_classes": [
       "MedicalTranscriptionsDataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": "multiclass",
+      "modality": [
+        "text"
+      ]
+    }
   },
   {
     "class_name": "BenchmarkEHRShot",
@@ -423,7 +476,13 @@
     "init_args": "task=\"guo_icu\"",
     "dataset_classes": [
       "EHRShotDataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": "multiclass",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "DrugRecommendationMIMIC3",
@@ -452,7 +511,13 @@
     "task_name": "DrugRecommendationMIMIC3",
     "dataset_classes": [
       "MIMIC3Dataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": "multilabel",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "MIMIC3ICD9Coding",
@@ -465,10 +530,10 @@
     "colab_url": "https://colab.research.google.com/drive/1Q9TrbXxitZ8Cr1R9G2XyWTolooQYq-lg",
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.MIMIC3ICD9Coding.html",
     "input_schema": {
-      "text": "TextProcessor"
+      "text": "text"
     },
     "output_schema": {
-      "icd_codes": "MultiLabelProcessor"
+      "icd_codes": "multilabel"
     },
     "task_name": "mimic3_icd9_coding",
     "source_file": "pyhealth/tasks/medical_coding.py",
@@ -479,7 +544,13 @@
     "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/old/medical_coding_mimic3.ipynb",
     "dataset_classes": [
       "MIMIC3Dataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": "multilabel",
+      "modality": [
+        "text"
+      ]
+    }
   },
   {
     "class_name": "BMDHSDiseaseClassification",
@@ -493,7 +564,8 @@
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.bmd_hs_disease_classification.html",
     "source_file": "pyhealth/tasks/bmd_hs_disease_classification.py",
     "modality": [
-      "audio"
+      "audio",
+      "signal"
     ],
     "output_type": "multilabel",
     "input_schema": {
@@ -517,7 +589,14 @@
     "requires": "pip install soundfile",
     "dataset_classes": [
       "BMDHSDataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": "multilabel",
+      "modality": [
+        "audio",
+        "signal"
+      ]
+    }
   },
   {
     "class_name": "ChestXray14MultilabelClassification",
@@ -544,7 +623,13 @@
     "task_name": "ChestXray14MultilabelClassification",
     "dataset_classes": [
       "ChestXray14Dataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": "multilabel",
+      "modality": [
+        "image"
+      ]
+    }
   },
   {
     "class_name": "VariantClassificationClinVar",
@@ -572,7 +657,13 @@
     "task_name": "VariantClassificationClinVar",
     "dataset_classes": [
       "ClinVarDataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": "multiclass",
+      "modality": [
+        "text"
+      ]
+    }
   },
   {
     "class_name": "DrugRecommendationEICU",
@@ -601,7 +692,13 @@
     "task_name": "DrugRecommendationEICU",
     "dataset_classes": [
       "eICUDataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": "multilabel",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "CancerMutationBurden",
@@ -628,7 +725,14 @@
     "task_name": "CancerMutationBurden",
     "dataset_classes": [
       "TCGAPRADDataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "ehr",
+        "genomics"
+      ]
+    }
   },
   {
     "class_name": "MortalityPredictionEICU",
@@ -657,7 +761,13 @@
     "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/mortality_prediction/mortality_prediction_eicu_rnn.py",
     "dataset_classes": [
       "eICUDataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "MortalityPredictionEICU2",
@@ -685,7 +795,13 @@
     "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/mortality_prediction/mortality_prediction_eicu_rnn.py",
     "dataset_classes": [
       "eICUDataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "MortalityPredictionMIMIC4",
@@ -714,7 +830,13 @@
     "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/mortality_prediction/mortality_mimic4_transformer.py",
     "dataset_classes": [
       "MIMIC4EHRDataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "MortalityPredictionOMOP",
@@ -743,7 +865,13 @@
     "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/omop_dataset_demo.py",
     "dataset_classes": [
       "OMOPDataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "MortalityPredictionStageNetMIMIC4",
@@ -772,7 +900,14 @@
     "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/mortality_prediction/mortality_mimic4_stagenet_v2.py",
     "dataset_classes": [
       "MIMIC4EHRDataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "ehr",
+        "timeseries"
+      ]
+    }
   },
   {
     "class_name": "EHRGenerationMIMIC3",
@@ -785,7 +920,7 @@
     "colab_url": null,
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.generate_ehr.html",
     "input_schema": {
-      "visits": "NestedMultiHotProcessor"
+      "visits": "nested_multihot"
     },
     "output_schema": {},
     "task_name": "ehr_generation_mimic3",
@@ -797,7 +932,13 @@
     "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/halo_mimic3.py",
     "dataset_classes": [
       "MIMIC3Dataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": null,
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "EHRGenerationMIMIC4",
@@ -810,7 +951,7 @@
     "colab_url": null,
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.generate_ehr.html",
     "input_schema": {
-      "visits": "NestedMultiHotProcessor"
+      "visits": "nested_multihot"
     },
     "output_schema": {},
     "task_name": "ehr_generation_mimic4",
@@ -822,7 +963,13 @@
     "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/halo_mimic3.py",
     "dataset_classes": [
       "MIMIC4Dataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": null,
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "ReadmissionPredictionMIMIC4",
@@ -849,7 +996,13 @@
     "output_type": "binary",
     "dataset_classes": [
       "MIMIC4EHRDataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "ReadmissionPredictionEICU",
@@ -876,7 +1029,13 @@
     "output_type": "binary",
     "dataset_classes": [
       "eICUDataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "ReadmissionPredictionOMOP",
@@ -903,7 +1062,13 @@
     "output_type": "binary",
     "dataset_classes": [
       "OMOPDataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "LengthOfStayPredictionMIMIC4",
@@ -930,7 +1095,13 @@
     "output_type": "multiclass",
     "dataset_classes": [
       "MIMIC4Dataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": "multiclass",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "LengthOfStayPredictioneICU",
@@ -957,7 +1128,13 @@
     "output_type": "multiclass",
     "dataset_classes": [
       "eICUDataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": "multiclass",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "LengthOfStayPredictionOMOP",
@@ -984,7 +1161,13 @@
     "output_type": "multiclass",
     "dataset_classes": [
       "OMOPDataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": "multiclass",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "LengthOfStayStageNetMIMIC4",
@@ -1011,7 +1194,14 @@
     "output_type": "multiclass",
     "dataset_classes": [
       "MIMIC4EHRDataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": "multiclass",
+      "modality": [
+        "ehr",
+        "timeseries"
+      ]
+    }
   },
   {
     "class_name": "DrugRecommendationMIMIC4",
@@ -1038,7 +1228,13 @@
     "output_type": "recommend",
     "dataset_classes": [
       "MIMIC4EHRDataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": "multilabel",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "MultimodalMortalityPredictionMIMIC3",
@@ -1067,7 +1263,14 @@
     "output_type": "binary",
     "dataset_classes": [
       "MIMIC3Dataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "ehr",
+        "text"
+      ]
+    }
   },
   {
     "class_name": "MultimodalMortalityPredictionMIMIC4",
@@ -1103,7 +1306,14 @@
     "output_type": "binary",
     "dataset_classes": [
       "MIMIC4Dataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "ehr",
+        "text"
+      ]
+    }
   },
   {
     "class_name": "T1DDKAPredictionMIMIC4",
@@ -1130,7 +1340,14 @@
     "output_type": "binary",
     "dataset_classes": [
       "MIMIC4Dataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "ehr",
+        "timeseries"
+      ]
+    }
   },
   {
     "class_name": "ChestXray14BinaryClassification",
@@ -1156,7 +1373,13 @@
     "init_args": "disease=\"pneumonia\"",
     "dataset_classes": [
       "ChestXray14Dataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "image"
+      ]
+    }
   },
   {
     "class_name": "DeIDNERTask",
@@ -1168,10 +1391,10 @@
     "description": "Token-level named-entity recognition to locate and label protected health information in clinical notes.",
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.DeIDNERTask.html",
     "input_schema": {
-      "text": "TextProcessor"
+      "text": "text"
     },
     "output_schema": {
-      "labels": "TextProcessor"
+      "labels": "text"
     },
     "task_name": "DeIDNER",
     "source_file": "pyhealth/tasks/deid_ner.py",
@@ -1181,7 +1404,13 @@
     "output_type": "multiclass",
     "dataset_classes": [
       "PhysioNetDeIDDataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": null,
+      "modality": [
+        "text"
+      ]
+    }
   },
   {
     "class_name": "SurvivalPreprocessSupport2",
@@ -1211,7 +1440,13 @@
     "output_type": "regression",
     "dataset_classes": [
       "Support2Dataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": "regression",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "MPFClinicalPredictionTask",
@@ -1242,7 +1477,13 @@
     "dataset_classes": [
       "FHIRDataset",
       "MIMIC4FHIR"
-    ]
+    ],
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "timeseries"
+      ]
+    }
   },
   {
     "class_name": "DrugRecommendationOMOP",
@@ -1271,7 +1512,13 @@
     "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/drug_recommendation/drug_recommendation_omop.py",
     "dataset_classes": [
       "OMOPDataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": "multilabel",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "EEGBCIPatternDiscovery",
@@ -1299,7 +1546,13 @@
     "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/eeg/eegbci/eegbci_pattern_discovery.py",
     "dataset_classes": [
       "EEGBCIDataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": "multiclass",
+      "modality": [
+        "signal"
+      ]
+    }
   },
   {
     "class_name": "EEGMotorImageryEEGBCI",
@@ -1327,7 +1580,13 @@
     "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/eeg/eegbci/eegbci_pattern_discovery.py",
     "dataset_classes": [
       "EEGBCIDataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": "multiclass",
+      "modality": [
+        "signal"
+      ]
+    }
   },
   {
     "class_name": "EHRCodeSetGenerationMIMIC3",
@@ -1339,7 +1598,7 @@
       "MIMIC-III"
     ],
     "input_schema": {
-      "visits": "MultiHotProcessor"
+      "visits": "multi_hot"
     },
     "output_schema": {},
     "output_type": "generative",
@@ -1352,7 +1611,13 @@
     "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/medgan_mimic3.py",
     "dataset_classes": [
       "MIMIC3Dataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": null,
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "EHRCodeSetGenerationMIMIC4",
@@ -1364,7 +1629,7 @@
       "MIMIC-IV"
     ],
     "input_schema": {
-      "visits": "MultiHotProcessor"
+      "visits": "multi_hot"
     },
     "output_schema": {},
     "output_type": "generative",
@@ -1377,7 +1642,13 @@
     "example_url": null,
     "dataset_classes": [
       "MIMIC4Dataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": null,
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "EHRSequenceGenerationMIMIC3",
@@ -1389,7 +1660,7 @@
       "MIMIC-III"
     ],
     "input_schema": {
-      "visits": "NestedSequenceProcessor"
+      "visits": "nested_sequence"
     },
     "output_schema": {},
     "output_type": "generative",
@@ -1402,7 +1673,13 @@
     "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/gpt2_mimic3.py",
     "dataset_classes": [
       "MIMIC3Dataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": null,
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "EHRSequenceGenerationMIMIC4",
@@ -1414,7 +1691,7 @@
       "MIMIC-IV"
     ],
     "input_schema": {
-      "visits": "NestedSequenceProcessor"
+      "visits": "nested_sequence"
     },
     "output_schema": {},
     "output_type": "generative",
@@ -1427,7 +1704,13 @@
     "example_url": null,
     "dataset_classes": [
       "MIMIC4Dataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": null,
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "InHospitalMortalityMEDS",
@@ -1454,7 +1737,13 @@
     "example_url": "https://github.com/sunlabuiuc/PyHealth/blob/master/examples/verify_meds_mortality.py",
     "dataset_classes": [
       "MEDSDataset"
-    ]
+    ],
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "COVID19CXRImageGeneration",
@@ -1467,15 +1756,23 @@
       "image": "image"
     },
     "output_schema": {},
-    "output_type": null,
-    "modality": [],
+    "output_type": "generative",
+    "modality": [
+      "image"
+    ],
     "source_file": "pyhealth/tasks/covid19_cxr_generation.py",
     "dataset_classes": [
       "COVID19CXRDataset"
     ],
     "colab_url": null,
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.COVID19CXRImageGeneration.html",
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": null,
+      "modality": [
+        "image"
+      ]
+    }
   },
   {
     "class_name": "EDDispositionMIMIC4",
@@ -1484,19 +1781,33 @@
     "task_name": "EDDispositionMIMIC4",
     "description": "Predicts whether an ED visit ends in admission, from pseudo-notes.",
     "datasets": [],
-    "input_schema": null,
+    "input_schema": {
+      "arrival": "text",
+      "triage": "text",
+      "medrecon": "text",
+      "vitals": "text",
+      "pyxis": "text"
+    },
     "output_schema": {
       "disposition": "binary"
     },
     "output_type": "binary",
-    "modality": [],
+    "modality": [
+      "text"
+    ],
     "source_file": "pyhealth/tasks/ed_disposition_mimic4.py",
     "dataset_classes": [
       "MIMIC4Dataset"
     ],
     "colab_url": null,
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.ed_disposition_mimic4.html",
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "text"
+      ]
+    }
   },
   {
     "class_name": "EDOutcomesMIMIC4",
@@ -1505,19 +1816,33 @@
     "task_name": "EDOutcomesMIMIC4",
     "description": "Hospital outcomes of admitted ED patients, from ED pseudo-notes.",
     "datasets": [],
-    "input_schema": null,
+    "input_schema": {
+      "arrival": "text",
+      "triage": "text",
+      "medrecon": "text",
+      "vitals": "text",
+      "pyxis": "text"
+    },
     "output_schema": {
       "outcomes": "multilabel"
     },
     "output_type": "multilabel",
-    "modality": [],
+    "modality": [
+      "text"
+    ],
     "source_file": "pyhealth/tasks/ed_disposition_mimic4.py",
     "dataset_classes": [
       "MIMIC4Dataset"
     ],
     "colab_url": null,
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.ed_disposition_mimic4.html",
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "multilabel",
+      "modality": [
+        "text"
+      ]
+    }
   },
   {
     "class_name": "EEGSeizureIIIC",
@@ -1535,7 +1860,7 @@
     },
     "output_type": "multiclass",
     "modality": [
-      "timeseries"
+      "signal"
     ],
     "source_file": "pyhealth/tasks/iiic_seizure_classification.py",
     "dataset_classes": [
@@ -1543,7 +1868,13 @@
     ],
     "colab_url": null,
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.iiic_seizure_classification.html",
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "multiclass",
+      "modality": [
+        "signal"
+      ]
+    }
   },
   {
     "class_name": "EHRTextSerializationTask",
@@ -1555,7 +1886,9 @@
     "input_schema": null,
     "output_schema": null,
     "output_type": null,
-    "modality": [],
+    "modality": [
+      "text"
+    ],
     "source_file": "pyhealth/tasks/ehr_text_serialization.py",
     "dataset_classes": [
       "EHRShotDataset",
@@ -1564,7 +1897,13 @@
     ],
     "colab_url": null,
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.ehr_text_serialization.html",
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": null,
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "ICUAcuityMIMIC4",
@@ -1581,14 +1920,22 @@
       "acuity": "tensor"
     },
     "output_type": null,
-    "modality": [],
+    "modality": [
+      "ehr"
+    ],
     "source_file": "pyhealth/tasks/acuity_mimic4.py",
     "dataset_classes": [
       "MIMIC4EHRDataset"
     ],
     "colab_url": null,
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.ICUAcuityMIMIC4.html",
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": null,
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "InHospitalSurvivalMIMIC4",
@@ -1606,15 +1953,23 @@
       "duration": "tensor",
       "event": "tensor"
     },
-    "output_type": null,
-    "modality": [],
+    "output_type": "survival",
+    "modality": [
+      "ehr"
+    ],
     "source_file": "pyhealth/tasks/survival_mimic4.py",
     "dataset_classes": [
       "MIMIC4EHRDataset"
     ],
     "colab_url": null,
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.InHospitalSurvivalMIMIC4.html",
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": null,
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "KnowRareICUMortalityMIMIC4",
@@ -1631,14 +1986,22 @@
       "mortality": "binary"
     },
     "output_type": "binary",
-    "modality": [],
+    "modality": [
+      "ehr"
+    ],
     "source_file": "pyhealth/tasks/knowrare_mimic4.py",
     "dataset_classes": [
       "MIMIC4EHRDataset"
     ],
     "colab_url": null,
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.KnowRareICUMortalityMIMIC4.html",
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "LabNowcasting",
@@ -1666,7 +2029,13 @@
     ],
     "colab_url": null,
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.LabNowcasting.html",
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "multilabel",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "LabNowcastingMIMIC3",
@@ -1693,7 +2062,13 @@
     ],
     "colab_url": null,
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.LabNowcasting.html",
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "multilabel",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "LabNowcastingMIMIC4",
@@ -1720,7 +2095,13 @@
     ],
     "colab_url": null,
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.LabNowcasting.html",
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "multilabel",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "MSDSegmentationTask",
@@ -1735,8 +2116,10 @@
     "output_schema": {
       "mask": "nifti"
     },
-    "output_type": null,
-    "modality": [],
+    "output_type": "segmentation",
+    "modality": [
+      "image"
+    ],
     "source_file": "pyhealth/tasks/msd_segmentation.py",
     "dataset_classes": [
       "MSDHippocampusDataset",
@@ -1746,7 +2129,13 @@
     ],
     "colab_url": null,
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.MSDSegmentationTask.html",
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": null,
+      "modality": [
+        "image"
+      ]
+    }
   },
   {
     "class_name": "MetabricSurvivalPrediction",
@@ -1755,20 +2144,30 @@
     "task_name": "MetabricSurvivalPrediction",
     "description": "Predict the time to death from the METABRIC baseline features.",
     "datasets": [],
-    "input_schema": null,
+    "input_schema": {
+      "features": "tensor"
+    },
     "output_schema": {
       "duration": "tensor",
       "event": "tensor"
     },
-    "output_type": null,
-    "modality": [],
+    "output_type": "survival",
+    "modality": [
+      "ehr"
+    ],
     "source_file": "pyhealth/tasks/survival_metabric.py",
     "dataset_classes": [
       "MetabricDataset"
     ],
     "colab_url": null,
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.MetabricSurvivalPrediction.html",
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": null,
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "NextVisitDiagnosisPredictionMIMIC3",
@@ -1777,17 +2176,29 @@
     "task_name": "NextVisitDiagnosisPredictionMIMIC3",
     "description": "Next-visit diagnosis prediction on MIMIC-III (ICD-9 codes).",
     "datasets": [],
-    "input_schema": null,
-    "output_schema": null,
-    "output_type": null,
-    "modality": [],
+    "input_schema": {
+      "conditions": "nested_sequence"
+    },
+    "output_schema": {
+      "next_conditions": "multilabel"
+    },
+    "output_type": "multilabel",
+    "modality": [
+      "ehr"
+    ],
     "source_file": "pyhealth/tasks/next_visit_diagnosis_prediction.py",
     "dataset_classes": [
       "MIMIC3Dataset"
     ],
     "colab_url": null,
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.next_visit_diagnosis_prediction.html",
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "multilabel",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "NextVisitDiagnosisPredictionMIMIC4",
@@ -1796,17 +2207,29 @@
     "task_name": "NextVisitDiagnosisPredictionMIMIC4",
     "description": "Next-visit diagnosis prediction on MIMIC-IV, ICD-9 codes only.",
     "datasets": [],
-    "input_schema": null,
-    "output_schema": null,
-    "output_type": null,
-    "modality": [],
+    "input_schema": {
+      "conditions": "nested_sequence"
+    },
+    "output_schema": {
+      "next_conditions": "multilabel"
+    },
+    "output_type": "multilabel",
+    "modality": [
+      "ehr"
+    ],
     "source_file": "pyhealth/tasks/next_visit_diagnosis_prediction.py",
     "dataset_classes": [
       "MIMIC4EHRDataset"
     ],
     "colab_url": null,
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.next_visit_diagnosis_prediction.html",
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "multilabel",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "PTBXLHeartLangClassification",
@@ -1825,7 +2248,7 @@
     },
     "output_type": "multilabel",
     "modality": [
-      "timeseries"
+      "signal"
     ],
     "source_file": "pyhealth/tasks/ptbxl_heartlang.py",
     "dataset_classes": [
@@ -1833,7 +2256,13 @@
     ],
     "colab_url": null,
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.PTBXLHeartLangClassification.html",
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "multilabel",
+      "modality": [
+        "signal"
+      ]
+    }
   },
   {
     "class_name": "PTBXLMultilabelClassification",
@@ -1850,7 +2279,7 @@
     },
     "output_type": "multilabel",
     "modality": [
-      "timeseries"
+      "signal"
     ],
     "source_file": "pyhealth/tasks/ptbxl_multilabel_classification.py",
     "dataset_classes": [
@@ -1858,7 +2287,13 @@
     ],
     "colab_url": null,
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.PTBXLMultilabelClassification.html",
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "multilabel",
+      "modality": [
+        "signal"
+      ]
+    }
   },
   {
     "class_name": "PhysioNet2012Forecasting",
@@ -1875,7 +2310,7 @@
     "output_schema": {
       "y": "tensor"
     },
-    "output_type": null,
+    "output_type": "regression",
     "modality": [
       "timeseries"
     ],
@@ -1885,7 +2320,13 @@
     ],
     "colab_url": null,
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.PhysioNet2012Forecasting.html",
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": null,
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "SeizureDetectionCHBMIT",
@@ -1903,7 +2344,7 @@
     },
     "output_type": "binary",
     "modality": [
-      "timeseries"
+      "signal"
     ],
     "source_file": "pyhealth/tasks/seizure_detection_chbmit.py",
     "dataset_classes": [
@@ -1911,7 +2352,13 @@
     ],
     "colab_url": null,
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.SeizureDetectionCHBMIT.html",
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "signal"
+      ]
+    }
   },
   {
     "class_name": "SleepStagingEarEEG",
@@ -1929,7 +2376,7 @@
     },
     "output_type": "multiclass",
     "modality": [
-      "timeseries"
+      "signal"
     ],
     "source_file": "pyhealth/tasks/sleep_staging_ear_eeg.py",
     "dataset_classes": [
@@ -1937,7 +2384,13 @@
     ],
     "colab_url": null,
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.SleepStagingEarEEG.html",
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "multiclass",
+      "modality": [
+        "signal"
+      ]
+    }
   },
   {
     "class_name": "ValueSetCompletion",
@@ -1948,15 +2401,23 @@
     "datasets": [],
     "input_schema": null,
     "output_schema": null,
-    "output_type": null,
-    "modality": [],
+    "output_type": "binary",
+    "modality": [
+      "ehr"
+    ],
     "source_file": "pyhealth/tasks/value_set_completion.py",
     "dataset_classes": [
       "VSACDataset"
     ],
     "colab_url": null,
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.ValueSetCompletion.html",
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": null,
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "YAIBAKIEICU",
@@ -1972,15 +2433,23 @@
     "output_schema": {
       "aki": "timeseries_binary"
     },
-    "output_type": null,
-    "modality": [],
+    "output_type": "binary",
+    "modality": [
+      "ehr"
+    ],
     "source_file": "pyhealth/tasks/yaib_eicu.py",
     "dataset_classes": [
       "eICUDataset"
     ],
     "colab_url": null,
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.yaib_eicu.html",
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "YAIBAKIMIMIC3",
@@ -1996,15 +2465,23 @@
     "output_schema": {
       "aki": "timeseries_binary"
     },
-    "output_type": null,
-    "modality": [],
+    "output_type": "binary",
+    "modality": [
+      "ehr"
+    ],
     "source_file": "pyhealth/tasks/yaib_mimic3.py",
     "dataset_classes": [
       "MIMIC3Dataset"
     ],
     "colab_url": null,
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.yaib_mimic3.html",
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "YAIBAKIMIMIC4",
@@ -2020,15 +2497,23 @@
     "output_schema": {
       "aki": "timeseries_binary"
     },
-    "output_type": null,
-    "modality": [],
+    "output_type": "binary",
+    "modality": [
+      "ehr"
+    ],
     "source_file": "pyhealth/tasks/yaib_mimic4.py",
     "dataset_classes": [
       "MIMIC4EHRDataset"
     ],
     "colab_url": null,
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.yaib_mimic4.html",
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "YAIBKidneyFunctionEICU",
@@ -2044,15 +2529,23 @@
     "output_schema": {
       "creatinine": "regression"
     },
-    "output_type": null,
-    "modality": [],
+    "output_type": "regression",
+    "modality": [
+      "ehr"
+    ],
     "source_file": "pyhealth/tasks/yaib_eicu.py",
     "dataset_classes": [
       "eICUDataset"
     ],
     "colab_url": null,
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.yaib_eicu.html",
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "regression",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "YAIBKidneyFunctionMIMIC3",
@@ -2068,15 +2561,23 @@
     "output_schema": {
       "creatinine": "regression"
     },
-    "output_type": null,
-    "modality": [],
+    "output_type": "regression",
+    "modality": [
+      "ehr"
+    ],
     "source_file": "pyhealth/tasks/yaib_mimic3.py",
     "dataset_classes": [
       "MIMIC3Dataset"
     ],
     "colab_url": null,
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.yaib_mimic3.html",
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "regression",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "YAIBKidneyFunctionMIMIC4",
@@ -2092,15 +2593,23 @@
     "output_schema": {
       "creatinine": "regression"
     },
-    "output_type": null,
-    "modality": [],
+    "output_type": "regression",
+    "modality": [
+      "ehr"
+    ],
     "source_file": "pyhealth/tasks/yaib_mimic4.py",
     "dataset_classes": [
       "MIMIC4EHRDataset"
     ],
     "colab_url": null,
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.yaib_mimic4.html",
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "regression",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "YAIBLengthOfStayEICU",
@@ -2116,15 +2625,23 @@
     "output_schema": {
       "los": "timeseries_regression"
     },
-    "output_type": null,
-    "modality": [],
+    "output_type": "regression",
+    "modality": [
+      "ehr"
+    ],
     "source_file": "pyhealth/tasks/yaib_eicu.py",
     "dataset_classes": [
       "eICUDataset"
     ],
     "colab_url": null,
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.yaib_eicu.html",
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "regression",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "YAIBLengthOfStayMIMIC3",
@@ -2140,15 +2657,23 @@
     "output_schema": {
       "los": "timeseries_regression"
     },
-    "output_type": null,
-    "modality": [],
+    "output_type": "regression",
+    "modality": [
+      "ehr"
+    ],
     "source_file": "pyhealth/tasks/yaib_mimic3.py",
     "dataset_classes": [
       "MIMIC3Dataset"
     ],
     "colab_url": null,
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.yaib_mimic3.html",
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "regression",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "YAIBLengthOfStayMIMIC4",
@@ -2164,15 +2689,23 @@
     "output_schema": {
       "los": "timeseries_regression"
     },
-    "output_type": null,
-    "modality": [],
+    "output_type": "regression",
+    "modality": [
+      "ehr"
+    ],
     "source_file": "pyhealth/tasks/yaib_mimic4.py",
     "dataset_classes": [
       "MIMIC4EHRDataset"
     ],
     "colab_url": null,
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.yaib_mimic4.html",
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "regression",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "YAIBMortalityEICU",
@@ -2189,14 +2722,22 @@
       "mortality": "binary"
     },
     "output_type": "binary",
-    "modality": [],
+    "modality": [
+      "ehr"
+    ],
     "source_file": "pyhealth/tasks/yaib_eicu.py",
     "dataset_classes": [
       "eICUDataset"
     ],
     "colab_url": null,
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.yaib_eicu.html",
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "YAIBMortalityMIMIC3",
@@ -2213,14 +2754,22 @@
       "mortality": "binary"
     },
     "output_type": "binary",
-    "modality": [],
+    "modality": [
+      "ehr"
+    ],
     "source_file": "pyhealth/tasks/yaib_mimic3.py",
     "dataset_classes": [
       "MIMIC3Dataset"
     ],
     "colab_url": null,
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.yaib_mimic3.html",
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "YAIBMortalityMIMIC4",
@@ -2237,14 +2786,22 @@
       "mortality": "binary"
     },
     "output_type": "binary",
-    "modality": [],
+    "modality": [
+      "ehr"
+    ],
     "source_file": "pyhealth/tasks/yaib_mimic4.py",
     "dataset_classes": [
       "MIMIC4EHRDataset"
     ],
     "colab_url": null,
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.yaib_mimic4.html",
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "YAIBSepsisEICU",
@@ -2260,15 +2817,23 @@
     "output_schema": {
       "sepsis": "timeseries_binary"
     },
-    "output_type": null,
-    "modality": [],
+    "output_type": "binary",
+    "modality": [
+      "ehr"
+    ],
     "source_file": "pyhealth/tasks/yaib_eicu.py",
     "dataset_classes": [
       "eICUDataset"
     ],
     "colab_url": null,
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.yaib_eicu.html",
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "YAIBSepsisMIMIC3",
@@ -2284,15 +2849,23 @@
     "output_schema": {
       "sepsis": "timeseries_binary"
     },
-    "output_type": null,
-    "modality": [],
+    "output_type": "binary",
+    "modality": [
+      "ehr"
+    ],
     "source_file": "pyhealth/tasks/yaib_mimic3.py",
     "dataset_classes": [
       "MIMIC3Dataset"
     ],
     "colab_url": null,
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.yaib_mimic3.html",
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "YAIBSepsisMIMIC4",
@@ -2308,15 +2881,23 @@
     "output_schema": {
       "sepsis": "timeseries_binary"
     },
-    "output_type": null,
-    "modality": [],
+    "output_type": "binary",
+    "modality": [
+      "ehr"
+    ],
     "source_file": "pyhealth/tasks/yaib_mimic4.py",
     "dataset_classes": [
       "MIMIC4EHRDataset"
     ],
     "colab_url": null,
     "docs_url": "https://pyhealth.readthedocs.io/en/latest/api/tasks/pyhealth.tasks.yaib_mimic4.html",
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "CHAOSAbdominalSegmentationCTMRI",
@@ -2325,15 +2906,29 @@
     "task_name": "CHAOSAbdominalSegmentationCTMRI",
     "description": "Official CHAOS task 4: abdominal organs from CT and MRI.",
     "datasets": [],
-    "input_schema": null,
-    "output_schema": null,
-    "output_type": null,
-    "modality": [],
+    "input_schema": {
+      "image": "dicom_series"
+    },
+    "output_schema": {
+      "mask": "image_mask_dir"
+    },
+    "output_type": "segmentation",
+    "modality": [
+      "image"
+    ],
     "source_file": "pyhealth/tasks/chaos_segmentation.py",
-    "dataset_classes": [],
+    "dataset_classes": [
+      "CHAOSDataset"
+    ],
     "colab_url": null,
     "docs_url": null,
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "segmentation",
+      "modality": [
+        "image"
+      ]
+    }
   },
   {
     "class_name": "CHAOSAbdominalSegmentationMRIonly",
@@ -2342,15 +2937,29 @@
     "task_name": "CHAOSAbdominalSegmentationMRIonly",
     "description": "Official CHAOS task 5: abdominal organs from MRI only.",
     "datasets": [],
-    "input_schema": null,
-    "output_schema": null,
-    "output_type": null,
-    "modality": [],
+    "input_schema": {
+      "image": "dicom_series"
+    },
+    "output_schema": {
+      "mask": "image_mask_dir"
+    },
+    "output_type": "segmentation",
+    "modality": [
+      "image"
+    ],
     "source_file": "pyhealth/tasks/chaos_segmentation.py",
-    "dataset_classes": [],
+    "dataset_classes": [
+      "CHAOSDataset"
+    ],
     "colab_url": null,
     "docs_url": null,
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "segmentation",
+      "modality": [
+        "image"
+      ]
+    }
   },
   {
     "class_name": "CHAOSLiverSegmentationCTMRI",
@@ -2359,15 +2968,29 @@
     "task_name": "CHAOSLiverSegmentationCTMRI",
     "description": "Official CHAOS task 1: liver segmentation from CT and MRI.",
     "datasets": [],
-    "input_schema": null,
-    "output_schema": null,
-    "output_type": null,
-    "modality": [],
+    "input_schema": {
+      "image": "dicom_series"
+    },
+    "output_schema": {
+      "mask": "image_mask_dir"
+    },
+    "output_type": "segmentation",
+    "modality": [
+      "image"
+    ],
     "source_file": "pyhealth/tasks/chaos_segmentation.py",
-    "dataset_classes": [],
+    "dataset_classes": [
+      "CHAOSDataset"
+    ],
     "colab_url": null,
     "docs_url": null,
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "segmentation",
+      "modality": [
+        "image"
+      ]
+    }
   },
   {
     "class_name": "CHAOSLiverSegmentationCTonly",
@@ -2376,15 +2999,29 @@
     "task_name": "CHAOSLiverSegmentationCTonly",
     "description": "Official CHAOS task 2: liver segmentation from CT only.",
     "datasets": [],
-    "input_schema": null,
-    "output_schema": null,
-    "output_type": null,
-    "modality": [],
+    "input_schema": {
+      "image": "dicom_series"
+    },
+    "output_schema": {
+      "mask": "image_mask_dir"
+    },
+    "output_type": "segmentation",
+    "modality": [
+      "image"
+    ],
     "source_file": "pyhealth/tasks/chaos_segmentation.py",
-    "dataset_classes": [],
+    "dataset_classes": [
+      "CHAOSDataset"
+    ],
     "colab_url": null,
     "docs_url": null,
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "segmentation",
+      "modality": [
+        "image"
+      ]
+    }
   },
   {
     "class_name": "CHAOSLiverSegmentationMRIonly",
@@ -2393,15 +3030,29 @@
     "task_name": "CHAOSLiverSegmentationMRIonly",
     "description": "Official CHAOS task 3: liver segmentation from MRI only.",
     "datasets": [],
-    "input_schema": null,
-    "output_schema": null,
-    "output_type": null,
-    "modality": [],
+    "input_schema": {
+      "image": "dicom_series"
+    },
+    "output_schema": {
+      "mask": "image_mask_dir"
+    },
+    "output_type": "segmentation",
+    "modality": [
+      "image"
+    ],
     "source_file": "pyhealth/tasks/chaos_segmentation.py",
-    "dataset_classes": [],
+    "dataset_classes": [
+      "CHAOSDataset"
+    ],
     "colab_url": null,
     "docs_url": null,
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "segmentation",
+      "modality": [
+        "image"
+      ]
+    }
   },
   {
     "class_name": "CompetingRisksPBC",
@@ -2410,15 +3061,27 @@
     "task_name": "CompetingRisksPBC",
     "description": "Extract one baseline first-event sample without future-value backfill.",
     "datasets": [],
-    "input_schema": null,
-    "output_schema": null,
-    "output_type": null,
+    "input_schema": {
+      "features": "raw",
+      "missing_mask": "raw"
+    },
+    "output_schema": {
+      "time": "raw",
+      "event": "raw"
+    },
+    "output_type": "survival",
     "modality": [],
     "source_file": "pyhealth/tasks/competing_risks_pbc.py",
-    "dataset_classes": [],
+    "dataset_classes": [
+      "PBCDataset"
+    ],
     "colab_url": null,
     "docs_url": null,
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": null,
+      "modality": []
+    }
   },
   {
     "class_name": "DiseaseProgressionMIMIC4",
@@ -2427,19 +3090,32 @@
     "task_name": "DiseaseProgressionMIMIC4",
     "description": "Disease progression between two consecutive chest X-rays of an ICU stay.",
     "datasets": [],
-    "input_schema": null,
+    "input_schema": {
+      "ehr": "tensor",
+      "cxr": "time_image"
+    },
     "output_schema": {
       "progression": "multilabel"
     },
-    "output_type": null,
-    "modality": [],
+    "output_type": "multilabel",
+    "modality": [
+      "ehr",
+      "image"
+    ],
     "source_file": "pyhealth/tasks/disease_progression_mimic4.py",
     "dataset_classes": [
       "MIMIC4ImaGenomeDataset"
     ],
     "colab_url": null,
     "docs_url": null,
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "multilabel",
+      "modality": [
+        "ehr",
+        "image"
+      ]
+    }
   },
   {
     "class_name": "EHRCXRMortalityMIMIC4",
@@ -2448,19 +3124,32 @@
     "task_name": "EHRCXRMortalityMIMIC4",
     "description": "In-hospital mortality from the first 48 ICU hours and a chest X-ray.",
     "datasets": [],
-    "input_schema": null,
+    "input_schema": {
+      "ehr": "tensor",
+      "cxr": "_OptionalImageProcessor",
+      "cxr_mask": "tensor"
+    },
     "output_schema": {
       "mortality": "binary"
     },
     "output_type": "binary",
-    "modality": [],
+    "modality": [
+      "ehr",
+      "image"
+    ],
     "source_file": "pyhealth/tasks/ehr_cxr_mimic4.py",
     "dataset_classes": [
       "MIMIC4Dataset"
     ],
     "colab_url": null,
     "docs_url": null,
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "EHRCXRPhenotypingMIMIC4",
@@ -2469,19 +3158,32 @@
     "task_name": "EHRCXRPhenotypingMIMIC4",
     "description": "25-label phenotyping of an ICU stay from its time series and a chest X-ray.",
     "datasets": [],
-    "input_schema": null,
+    "input_schema": {
+      "ehr": "tensor",
+      "cxr": "_OptionalImageProcessor",
+      "cxr_mask": "tensor"
+    },
     "output_schema": {
       "phenotypes": "multilabel"
     },
-    "output_type": null,
-    "modality": [],
+    "output_type": "multilabel",
+    "modality": [
+      "ehr",
+      "image"
+    ],
     "source_file": "pyhealth/tasks/ehr_cxr_mimic4.py",
     "dataset_classes": [
       "MIMIC4Dataset"
     ],
     "colab_url": null,
     "docs_url": null,
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "multilabel",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "EthosOutcomeMEDS",
@@ -2496,12 +3198,22 @@
     },
     "output_schema": null,
     "output_type": null,
-    "modality": [],
+    "modality": [
+      "ehr"
+    ],
     "source_file": "pyhealth/tasks/ethos_tasks.py",
-    "dataset_classes": [],
+    "dataset_classes": [
+      "MEDSDataset"
+    ],
     "colab_url": null,
     "docs_url": null,
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": null,
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "EthosTimelineMEDS",
@@ -2515,13 +3227,23 @@
       "context": "ethos_context"
     },
     "output_schema": {},
-    "output_type": null,
-    "modality": [],
+    "output_type": "generative",
+    "modality": [
+      "ehr"
+    ],
     "source_file": "pyhealth/tasks/ethos_tasks.py",
-    "dataset_classes": [],
+    "dataset_classes": [
+      "MEDSDataset"
+    ],
     "colab_url": null,
     "docs_url": null,
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": null,
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "HospitalReadmissionMEDS",
@@ -2546,7 +3268,13 @@
     ],
     "colab_url": null,
     "docs_url": null,
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "ICUAdmissionMEDS",
@@ -2566,10 +3294,18 @@
       "ehr"
     ],
     "source_file": "pyhealth/tasks/meds_outcome_tasks.py",
-    "dataset_classes": [],
+    "dataset_classes": [
+      "MEDSDataset"
+    ],
     "colab_url": null,
     "docs_url": null,
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "IIICSeizureClassification",
@@ -2587,7 +3323,7 @@
     },
     "output_type": "multiclass",
     "modality": [
-      "timeseries"
+      "signal"
     ],
     "source_file": "pyhealth/tasks/iiic_seizure_classification.py",
     "dataset_classes": [
@@ -2595,7 +3331,13 @@
     ],
     "colab_url": null,
     "docs_url": null,
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "multiclass",
+      "modality": [
+        "signal"
+      ]
+    }
   },
   {
     "class_name": "MedModDecompensationMIMIC4",
@@ -2604,17 +3346,32 @@
     "task_name": "MedModDecompensationMIMIC4",
     "description": "Death within the next 24 hours, predicted during an ICU stay.",
     "datasets": [],
-    "input_schema": null,
+    "input_schema": {
+      "ehr": "tensor",
+      "cxr": "_OptionalImageProcessor",
+      "cxr_mask": "tensor"
+    },
     "output_schema": {
       "decompensation": "binary"
     },
     "output_type": "binary",
-    "modality": [],
+    "modality": [
+      "ehr",
+      "image"
+    ],
     "source_file": "pyhealth/tasks/medmod_decompensation_mimic4.py",
-    "dataset_classes": [],
+    "dataset_classes": [
+      "MIMIC4Dataset"
+    ],
     "colab_url": null,
     "docs_url": null,
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "ProlongedLengthOfStayMEDS",
@@ -2634,10 +3391,18 @@
       "ehr"
     ],
     "source_file": "pyhealth/tasks/meds_outcome_tasks.py",
-    "dataset_classes": [],
+    "dataset_classes": [
+      "MEDSDataset"
+    ],
     "colab_url": null,
     "docs_url": null,
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "RSNAPneumoniaClassification",
@@ -2653,12 +3418,22 @@
       "pneumonia": "binary"
     },
     "output_type": "binary",
-    "modality": [],
+    "modality": [
+      "image"
+    ],
     "source_file": "pyhealth/tasks/rsna_pneumonia_classification.py",
-    "dataset_classes": [],
+    "dataset_classes": [
+      "RSNAPneumoniaDataset"
+    ],
     "colab_url": null,
     "docs_url": null,
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "image"
+      ]
+    }
   },
   {
     "class_name": "SOZLocalizationHUP",
@@ -2675,7 +3450,7 @@
     },
     "output_type": "binary",
     "modality": [
-      "timeseries"
+      "signal"
     ],
     "source_file": "pyhealth/tasks/soz_localization_hup.py",
     "dataset_classes": [
@@ -2683,7 +3458,13 @@
     ],
     "colab_url": null,
     "docs_url": null,
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "signal"
+      ]
+    }
   },
   {
     "class_name": "SeizureDetectionHelsinki",
@@ -2700,7 +3481,7 @@
     },
     "output_type": "binary",
     "modality": [
-      "timeseries"
+      "signal"
     ],
     "source_file": "pyhealth/tasks/seizure_detection_helsinki.py",
     "dataset_classes": [
@@ -2708,7 +3489,13 @@
     ],
     "colab_url": null,
     "docs_url": null,
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "signal"
+      ]
+    }
   },
   {
     "class_name": "SleepStagingISRUC",
@@ -2725,7 +3512,7 @@
     },
     "output_type": "multiclass",
     "modality": [
-      "timeseries"
+      "signal"
     ],
     "source_file": "pyhealth/tasks/sleep_staging_isruc.py",
     "dataset_classes": [
@@ -2733,7 +3520,13 @@
     ],
     "colab_url": null,
     "docs_url": null,
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "multiclass",
+      "modality": [
+        "signal"
+      ]
+    }
   },
   {
     "class_name": "SleepStagingSequenceSleepEDF",
@@ -2748,9 +3541,9 @@
     "output_schema": {
       "label": "tensor"
     },
-    "output_type": null,
+    "output_type": "multiclass",
     "modality": [
-      "timeseries"
+      "signal"
     ],
     "source_file": "pyhealth/tasks/sleep_staging_v2.py",
     "dataset_classes": [
@@ -2758,7 +3551,13 @@
     ],
     "colab_url": null,
     "docs_url": null,
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": null,
+      "modality": [
+        "signal"
+      ]
+    }
   },
   {
     "class_name": "SurvivalTimeToEventGBSG",
@@ -2774,15 +3573,19 @@
       "duration": "tensor",
       "event": "tensor"
     },
-    "output_type": null,
-    "modality": [
-      "timeseries"
-    ],
+    "output_type": "survival",
+    "modality": [],
     "source_file": "pyhealth/tasks/survival_time_to_event.py",
-    "dataset_classes": [],
+    "dataset_classes": [
+      "GBSGDataset"
+    ],
     "colab_url": null,
     "docs_url": null,
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": null,
+      "modality": []
+    }
   },
   {
     "class_name": "SurvivalTimeToEventSupport2",
@@ -2798,9 +3601,9 @@
       "duration": "tensor",
       "event": "tensor"
     },
-    "output_type": null,
+    "output_type": "survival",
     "modality": [
-      "timeseries"
+      "ehr"
     ],
     "source_file": "pyhealth/tasks/survival_time_to_event.py",
     "dataset_classes": [
@@ -2808,7 +3611,13 @@
     ],
     "colab_url": null,
     "docs_url": null,
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": null,
+      "modality": [
+        "ehr"
+      ]
+    }
   },
   {
     "class_name": "ChapmanShaoxingSNOMEDClassification",
@@ -2823,9 +3632,9 @@
     "output_schema": {
       "labels": "multilabel"
     },
-    "output_type": null,
+    "output_type": "multilabel",
     "modality": [
-      "timeseries"
+      "signal"
     ],
     "source_file": "pyhealth/tasks/chapman_shaoxing_classification.py",
     "dataset_classes": [
@@ -2833,7 +3642,13 @@
     ],
     "colab_url": null,
     "docs_url": null,
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "multilabel",
+      "modality": [
+        "signal"
+      ]
+    }
   },
   {
     "class_name": "ChapmanShaoxingSuperclassClassification",
@@ -2848,9 +3663,9 @@
     "output_schema": {
       "labels": "multilabel"
     },
-    "output_type": null,
+    "output_type": "multilabel",
     "modality": [
-      "timeseries"
+      "signal"
     ],
     "source_file": "pyhealth/tasks/chapman_shaoxing_classification.py",
     "dataset_classes": [
@@ -2858,6 +3673,42 @@
     ],
     "colab_url": null,
     "docs_url": null,
-    "example_url": null
+    "example_url": null,
+    "inferred": {
+      "output_type": "multilabel",
+      "modality": [
+        "signal"
+      ]
+    }
+  },
+  {
+    "class_name": "MAESTROMortalityMIMIC4",
+    "display_name": "MAESTRO Mortality MIMIC4",
+    "display_class": null,
+    "task_name": "MAESTROMortalityMIMIC4",
+    "description": "In-hospital mortality from the first 48 ICU hours, for MAESTRO.",
+    "datasets": [],
+    "input_schema": {
+      "vitals": "tensor",
+      "neuro": "tensor",
+      "labs": "tensor",
+      "anthropometrics": "tensor"
+    },
+    "output_schema": {
+      "mortality": "binary"
+    },
+    "output_type": "binary",
+    "modality": [
+      "ehr"
+    ],
+    "source_file": "pyhealth/tasks/maestro_mortality_mimic4.py",
+    "dataset_classes": [],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": "binary",
+      "modality": []
+    }
   }
 ]

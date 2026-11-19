@@ -9,7 +9,7 @@ moves. This checks, against a PyHealth checkout:
   2. every readthedocs api/{models,datasets,tasks}/<slug>.html link has a
      matching docs/api/<cat>/<slug>.rst
   3. every github.com/sunlabuiuc/PyHealth/blob/<ref>/<path> link resolves
-  4. every ``source_file`` in tasks.json exists
+  4. every ``source_file`` in tasks.json exists, and no task is listed twice
   5. (advisory) entities PyHealth exports that the site never mentions
 
 Deliberately stdlib-only and AST-based: it must run in CI without installing
@@ -164,8 +164,13 @@ def main():
 
     # 4. tasks.json bookkeeping.
     tasks = json.load(open(os.path.join(site, "data", "tasks.json")))
+    seen = set()
     for task in tasks:
         name = task["class_name"]
+        if name in seen:
+            # Cards are anchored by class name, so a second entry is a second card.
+            errors.append(f"tasks.json: {name} is listed more than once")
+        seen.add(name)
         src = task.get("source_file")
         if not src:
             errors.append(f"tasks.json: {name} has no source_file")
