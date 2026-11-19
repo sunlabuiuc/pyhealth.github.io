@@ -316,6 +316,76 @@ li {
   }
 }
 
+/* Search and filters on the card pages (assets/js/catalog.js) */
+.catalog-tools {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.1rem;
+}
+
+.catalog-search,
+.catalog-select {
+  font: 500 0.92rem "IBM Plex Sans", sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  padding: 0.55rem 0.85rem;
+  min-width: 0;
+}
+
+.catalog-search {
+  flex: 1 1 260px;
+}
+
+.catalog-select {
+  flex: 0 1 300px;
+  cursor: pointer;
+}
+
+.catalog-search:focus,
+.catalog-select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+/* Names the filter row below it */
+.filter-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--muted);
+  margin: 0 0 0.4rem;
+}
+
+.filter-btn:disabled,
+.filter-btn:disabled:hover {
+  opacity: 0.45;
+  cursor: default;
+  border-color: var(--line);
+  color: var(--muted);
+}
+
+.catalog-empty {
+  padding: 2rem 1rem;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.catalog-empty button {
+  font: inherit;
+  color: var(--accent);
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 @media (max-width: 760px) {
   .header-inner {
     flex-direction: column;
