@@ -369,6 +369,7 @@
       <div class="catalog-tools">
         <input type="search" class="catalog-search" id="catalogSearch" placeholder="Search tasks: mortality, sepsis, ECG, MIMIC-IV…" aria-label="Search tasks" autocomplete="off">
         <select class="catalog-select" id="datasetFilter" aria-label="Filter by dataset"></select>
+        <div class="catalog-view" id="viewToggle" role="group" aria-label="View as"></div>
       </div>
 
       <p class="filter-label">Output type</p>
@@ -383,6 +384,7 @@
       <div class="task-grid" id="taskGrid">
         <div id="taskGridPlaceholder" style="grid-column:1/-1; padding:2rem; text-align:center; color:var(--muted); font-size:0.9rem;">Loading tasks…</div>
       </div><!-- /task-grid -->
+      <div class="catalog-table-wrap" id="catalogTable" hidden></div>
       <p class="catalog-empty" id="catalogEmpty" hidden>No tasks match. <button type="button" data-clear>Clear the search and filters</button></p>
     </section>
 
@@ -527,6 +529,11 @@
         .sort((a, b) => a[1].localeCompare(b[1]));
     }
 
+    // A table cell holding copies of the card's pills.
+    function tags(el, selector) {
+      return `<span class="cell-tags">${[...el.querySelectorAll(selector)].map(t => t.outerHTML).join('')}</span>`;
+    }
+
     // ── Load and render ─────────────────────────────────────────────────────
     (async function () {
       const grid = document.getElementById('taskGrid');
@@ -560,6 +567,19 @@
             { key: 'modality', attr: 'modality', el: document.getElementById('modalityBar'),
               options: Object.entries(MODALITY_LABEL) },
           ],
+          table: {
+            el: document.getElementById('catalogTable'), toggle: document.getElementById('viewToggle'),
+            columns: [
+              { key: 'task', label: 'Task',
+                cell: el => Catalog.name(el, el.querySelector('.task-title').textContent, el.querySelector('.task-classname').textContent),
+                sort: el => el.querySelector('.task-title').textContent.toLowerCase() },
+              { key: 'output', label: 'Output', cell: el => el.querySelector('.output-tag').outerHTML },
+              { key: 'modality', label: 'Modality', cell: el => tags(el, '.mod-pill') },
+              { key: 'datasets', label: 'Datasets', cell: el => tags(el, '.dataset-pill') },
+              { label: 'Links', cell: el => `<span class="cell-links">${Catalog.links(el,
+                  [['.colab-link', 'Colab'], ['.docs-link', 'Docs'], ['.example-link', 'Example']])}</span>` },
+            ],
+          },
         });
 
         // Cards are rendered after load, so jump to #TaskName ourselves.

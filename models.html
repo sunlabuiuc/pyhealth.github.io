@@ -165,6 +165,7 @@
       box-shadow: 0 4px 16px rgba(0,0,0,0.07);
       transform: translateY(-2px);
     }
+    .model-card { scroll-margin-top: 80px; }  /* clear the sticky header on #anchor jumps */
     .model-card-header {
       display: flex;
       align-items: flex-start;
@@ -346,6 +347,7 @@
 
       <div class="catalog-tools">
         <input type="search" class="catalog-search" id="catalogSearch" placeholder="Search models: transformer, GNN, ECG, interpretable…" aria-label="Search models" autocomplete="off">
+        <div class="catalog-view" id="viewToggle" role="group" aria-label="View as"></div>
       </div>
 
       <div class="filter-bar" role="group" aria-label="Filter by category" id="filterBar"></div>
@@ -1076,6 +1078,7 @@ model <span class="tok-op">=</span> <span class="tok-cl">CorGAN</span>(dataset<s
         </div>
 
       </div><!-- /model-grid -->
+      <div class="catalog-table-wrap" id="catalogTable" hidden></div>
       <p class="catalog-empty" id="catalogEmpty" hidden>No models match. <button type="button" data-clear>Clear the search and filters</button></p>
     </section>
 
@@ -1112,6 +1115,8 @@ model <span class="tok-op">=</span> <span class="tok-cl">CorGAN</span>(dataset<s
     // Keep every count on the page in step with the cards actually listed.
     const cards = document.querySelectorAll('#modelGrid .model-card');
     document.getElementById('heroCount').textContent = cards.length;
+    // Anchor each card by its class name (models.html#RNN), as on the other pages.
+    cards.forEach(card => { card.id = card.querySelector('.model-classname').textContent.trim(); });
     document.title = document.title.replace(/\d+/, cards.length);
 
     Catalog.init({
@@ -1125,7 +1130,21 @@ model <span class="tok-op">=</span> <span class="tok-cl">CorGAN</span>(dataset<s
           ['image', 'Image'], ['text', 'Text'], ['multimodal', 'Multimodal'], ['generative', 'Generative'],
         ] },
       ],
+      table: {
+        el: document.getElementById('catalogTable'), toggle: document.getElementById('viewToggle'),
+        columns: [
+          { key: 'model', label: 'Model', cell: el => Catalog.name(el, el.querySelector('.model-classname').textContent) },
+          { key: 'category', label: 'Category', cell: el => el.querySelector('.category-tag').outerHTML },
+          { label: 'Description', cell: el => `<span class="cell-desc">${Catalog.esc(el.querySelector('.model-desc').textContent)}</span>` },
+          { label: 'Links', cell: el => `<span class="cell-links">${Catalog.links(el,
+              [['.docs-link', 'Docs'], ['.example-link', 'Example']])}</span>` },
+        ],
+      },
     });
+
+    // The ids are set by script, so jump to #ClassName ourselves.
+    const target = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (target) target.scrollIntoView();
   </script>
 
 </body>

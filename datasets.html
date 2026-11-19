@@ -370,6 +370,7 @@
 
       <div class="catalog-tools">
         <input type="search" class="catalog-search" id="catalogSearch" placeholder="Search datasets: EEG, ICU, chest X-ray, PhysioNet…" aria-label="Search datasets" autocomplete="off">
+        <div class="catalog-view" id="viewToggle" role="group" aria-label="View as"></div>
       </div>
 
       <p class="filter-label">Modality</p>
@@ -386,6 +387,7 @@
       <div class="dataset-grid" id="datasetGrid">
         <div id="datasetGridPlaceholder" style="grid-column:1/-1; padding:2rem; text-align:center; color:var(--muted); font-size:0.9rem;">Loading datasets…</div>
       </div><!-- /dataset-grid -->
+      <div class="catalog-table-wrap" id="catalogTable" hidden></div>
       <p class="catalog-empty" id="catalogEmpty" hidden>No datasets match. <button type="button" data-clear>Clear the search and filters</button></p>
     </section>
 
@@ -477,7 +479,7 @@
         ? `\n            <a href="${escHtml(info.example_url)}" class="example-link" target="_blank" rel="noopener">Example →</a>`
         : '';
       return `
-        <div class="dataset-card" id="${escHtml(cls)}" data-modality="${modality}" data-access="${escHtml(info.source_url ? info.access || '' : '')}">
+        <div class="dataset-card" id="${escHtml(cls)}" data-modality="${modality}" data-access="${escHtml(info.source_url ? info.access || '' : '')}" data-task-count="${tasks.length}">
           <div class="dataset-card-header">
             <span class="dataset-classname">${escHtml(cls)}</span>
             <span class="modality-tag mod-${modality}">${MODALITY_LABEL[modality]}</span>
@@ -533,6 +535,20 @@
             { key: 'access', attr: 'access', el: document.getElementById('accessBar'),
               options: Object.entries(ACCESS_LABEL) },
           ],
+          table: {
+            el: document.getElementById('catalogTable'), toggle: document.getElementById('viewToggle'),
+            columns: [
+              { key: 'dataset', label: 'Dataset', cell: el => Catalog.name(el, el.id) },
+              { key: 'modality', label: 'Modality', cell: el => el.querySelector('.modality-tag').outerHTML },
+              { key: 'access', label: 'Access', cell: el => (el.querySelector('.access-tag') || {}).outerHTML || '' },
+              { key: 'tasks', label: 'Tasks', sort: el => Number(el.dataset.taskCount),
+                cell: el => Number(el.dataset.taskCount)
+                  ? `<span class="cell-links"><a href="tasks.html?dataset=${encodeURIComponent(el.id)}">${el.dataset.taskCount}</a></span>` : '' },
+              { label: 'Description', cell: el => `<span class="cell-desc">${escHtml(el.querySelector('.dataset-desc').textContent)}</span>` },
+              { label: 'Links', cell: el => `<span class="cell-links">${Catalog.links(el,
+                  [['.dataset-access a', 'Get the data'], ['.docs-link', 'Docs'], ['.example-link', 'Example']])}</span>` },
+            ],
+          },
         });
 
         // Cards are rendered after load, so jump to #ClassName ourselves.
