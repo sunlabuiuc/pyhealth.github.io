@@ -240,15 +240,6 @@
     .mod-genomics   { background: rgba(6,182,212,0.12);   color: #0891b2; }
     .mod-graph      { background: rgba(249,115,22,0.12);  color: #ea580c; }
 
-    /* Filter section labels */
-    .filter-label {
-      font-size: 0.72rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
-      color: var(--muted);
-      margin-bottom: 0.4rem;
-    }
 
     .task-desc {
       font-size: 0.85rem;
@@ -375,11 +366,17 @@
         <a href="https://pyhealth.readthedocs.io/en/latest/api/tasks.html" target="_blank" rel="noopener" style="font-size:0.85rem; color:var(--accent); text-decoration:none; font-weight:500;">Full API reference →</a>
       </div>
 
+      <div class="catalog-tools">
+        <input type="search" class="catalog-search" id="catalogSearch" placeholder="Search tasks: mortality, sepsis, ECG, MIMIC-IV…" aria-label="Search tasks" autocomplete="off">
+        <select class="catalog-select" id="datasetFilter" aria-label="Filter by dataset"></select>
+        <div class="catalog-view" id="viewToggle" role="group" aria-label="View as"></div>
+      </div>
+
       <p class="filter-label">Output type</p>
       <div class="filter-bar" role="group" aria-label="Filter by output type" id="filterBar">
         <!-- populated by JS after tasks.json loads -->
       </div>
-      <p class="filter-label" style="margin-top:0.9rem;">Input modality</p>
+      <p class="filter-label">Input modality</p>
       <div class="filter-bar" role="group" aria-label="Filter by input modality" id="modalityBar">
         <!-- populated by JS after tasks.json loads -->
       </div>
@@ -387,6 +384,8 @@
       <div class="task-grid" id="taskGrid">
         <div id="taskGridPlaceholder" style="grid-column:1/-1; padding:2rem; text-align:center; color:var(--muted); font-size:0.9rem;">Loading tasks…</div>
       </div><!-- /task-grid -->
+      <div class="catalog-table-wrap" id="catalogTable" hidden></div>
+      <p class="catalog-empty" id="catalogEmpty" hidden>No tasks match. <button type="button" data-clear>Clear the search and filters</button></p>
     </section>
 
     <!-- ── Custom Task Note ── -->
@@ -415,6 +414,7 @@
     </div>
   </footer>
 
+  <script src="assets/js/catalog.js"></script>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -489,7 +489,7 @@
         (task.requires ? `\n<span class="tok-cm"># needs: ${esc(task.requires)}</span>` : '');
 
       return `
-        <div class="task-card" id="${esc(task.class_name)}" data-type="${esc(type)}" data-modality="${esc(modalities)}">
+        <div class="task-card" id="${esc(task.class_name)}" data-type="${esc(type)}" data-modality="${esc(modalities)}" data-datasets="${esc(datasetKeys(task).join(' '))}">
           <div class="task-card-header">
             <div>
               <p class="task-title">${esc(displayName)}</p>
@@ -508,104 +508,31 @@
         </div>`;
     }
 
-    // ── Build output-type filter bar ────────────────────────────────────────
-    function buildFilterBar(tasks, activeType) {
-      const counts = { all: tasks.length };
-      tasks.forEach(t => {
-        const tp = t.output_type || 'other';
-        counts[tp] = (counts[tp] || 0) + 1;
-      });
+    // ── Filters ─────────────────────────────────────────────────────────────
+    // Output-type buttons, in this order; a task with none counts as Other.
+    const OUTPUT_ORDER = ['binary', 'multiclass', 'multilabel', 'recommend', 'regression',
+                          'generative', 'survival', 'segmentation', 'other'];
 
-      const buttons = [
-        ['all',        'All'],
-        ['binary',     'Binary'],
-        ['multiclass', 'Multiclass'],
-        ['multilabel', 'Multilabel'],
-        ['recommend',  'Recommendation'],
-        ['regression', 'Regression'],
-        ['generative', 'Generative'],
-        ['survival',   'Survival'],
-        ['segmentation', 'Segmentation'],
-        ['other',      'Other'],
-      ];
-
-      return buttons
-        .filter(([type]) => type === 'all' || counts[type])
-        .map(([type, label]) => {
-          const active = type === activeType ? ' active' : '';
-          const n = counts[type] || 0;
-          return `<button class="filter-btn${active}" data-filter="${type}">${label} <span style="opacity:0.65;">(${n})</span></button>`;
-        })
-        .join('\n        ');
+    // The datasets a task is listed under: those it cites, and the datasets
+    // that roll them up (MIMIC4EHRDataset tasks are also MIMIC4Dataset tasks).
+    function datasetKeys(task) {
+      return [...new Set((task.dataset_classes || []).flatMap(Catalog.withRelated))];
     }
 
-    // ── Build modality filter bar ───────────────────────────────────────────
-    function buildModalityBar(tasks, activeModality) {
-      const counts = { all: tasks.length };
-      tasks.forEach(t => {
-        (t.modality || []).forEach(m => {
-          counts[m] = (counts[m] || 0) + 1;
-        });
-      });
-
-      const buttons = [
-        ['all',        'All'],
-        ['ehr',        'EHR Codes'],
-        ['timeseries', 'Timeseries'],
-        ['image',      'Image'],
-        ['text',       'Text / NLP'],
-        ['signal',     'Signal'],
-        ['audio',      'Audio'],
-        ['genomics',   'Genomics'],
-        ['graph',      'Graph'],
-      ];
-
-      return buttons
-        .filter(([type]) => type === 'all' || counts[type])
-        .map(([type, label]) => {
-          const active = type === activeModality ? ' active' : '';
-          const n = counts[type] !== undefined ? counts[type] : 0;
-          return `<button class="filter-btn${active}" data-filter="${type}">${label} <span style="opacity:0.65;">(${n})</span></button>`;
-        })
-        .join('\n        ');
+    // One option per dataset class, sorted by label; classes that share a
+    // label (MIMIC4Dataset and MIMIC4EHRDataset) also show the class name.
+    function datasetOptions(tasks) {
+      const classes = [...new Set(tasks.flatMap(datasetKeys))];
+      const label = cls => (DATASETS[cls] && DATASETS[cls].label) || cls;
+      const shared = l => classes.filter(cls => label(cls) === l).length > 1;
+      return classes.map(cls => [cls, shared(label(cls)) ? `${label(cls)} · ${cls}` : label(cls)])
+        .sort((a, b) => a[1].localeCompare(b[1]));
     }
 
-    // ── Active filter state ─────────────────────────────────────────────────
-    let activeType = 'all';
-    let activeModality = 'all';
-
-    function applyFilters() {
-      const cards = document.querySelectorAll('#taskGrid .task-card');
-      let visible = 0;
-      cards.forEach(card => {
-        const typeMatch = activeType === 'all' || card.dataset.type === activeType;
-        const mods = card.dataset.modality ? card.dataset.modality.split(' ') : [];
-        const modMatch = activeModality === 'all' || mods.includes(activeModality);
-        const show = typeMatch && modMatch;
-        card.style.display = show ? '' : 'none';
-        if (show) visible++;
-      });
-      document.getElementById('visibleCount').textContent = visible;
+    // A table cell holding copies of the card's pills.
+    function tags(el, selector) {
+      return `<span class="cell-tags">${[...el.querySelectorAll(selector)].map(t => t.outerHTML).join('')}</span>`;
     }
-
-    // ── Filter handlers (delegated) ─────────────────────────────────────────
-    document.getElementById('filterBar').addEventListener('click', e => {
-      const btn = e.target.closest('.filter-btn');
-      if (!btn) return;
-      activeType = btn.dataset.filter;
-      document.querySelectorAll('#filterBar .filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      applyFilters();
-    });
-
-    document.getElementById('modalityBar').addEventListener('click', e => {
-      const btn = e.target.closest('.filter-btn');
-      if (!btn) return;
-      activeModality = btn.dataset.filter;
-      document.querySelectorAll('#modalityBar .filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      applyFilters();
-    });
 
     // ── Load and render ─────────────────────────────────────────────────────
     (async function () {
@@ -622,17 +549,38 @@
         // Links still work without the labels, so this file is optional.
         if (dsRes.ok) DATASETS = await dsRes.json();
 
-        // Render filter bars (default: all)
-        document.getElementById('filterBar').innerHTML   = buildFilterBar(tasks, 'all');
-        document.getElementById('modalityBar').innerHTML = buildModalityBar(tasks, 'all');
-
         // Render cards
         placeholder.remove();
         grid.insertAdjacentHTML('beforeend', tasks.map(buildCard).join(''));
-
-        // Update counts in hero and header badge
         document.getElementById('heroTaskCount').textContent = tasks.length;
-        document.getElementById('visibleCount').textContent  = tasks.length;
+
+        Catalog.init({
+          grid, cards: '.task-card',
+          count: document.getElementById('visibleCount'),
+          search: document.getElementById('catalogSearch'),
+          empty: document.getElementById('catalogEmpty'),
+          facets: [
+            { key: 'dataset', attr: 'datasets', kind: 'select', all: 'All datasets',
+              el: document.getElementById('datasetFilter'), options: datasetOptions(tasks) },
+            { key: 'type', attr: 'type', el: document.getElementById('filterBar'),
+              options: OUTPUT_ORDER.map(type => [type, OUTPUT_LABELS[type].label]) },
+            { key: 'modality', attr: 'modality', el: document.getElementById('modalityBar'),
+              options: Object.entries(MODALITY_LABEL) },
+          ],
+          table: {
+            el: document.getElementById('catalogTable'), toggle: document.getElementById('viewToggle'),
+            columns: [
+              { key: 'task', label: 'Task',
+                cell: el => Catalog.name(el, el.querySelector('.task-title').textContent, el.querySelector('.task-classname').textContent),
+                sort: el => el.querySelector('.task-title').textContent.toLowerCase() },
+              { key: 'output', label: 'Output', cell: el => el.querySelector('.output-tag').outerHTML },
+              { key: 'modality', label: 'Modality', cell: el => tags(el, '.mod-pill') },
+              { key: 'datasets', label: 'Datasets', cell: el => tags(el, '.dataset-pill') },
+              { label: 'Links', cell: el => `<span class="cell-links">${Catalog.links(el,
+                  [['.colab-link', 'Colab'], ['.docs-link', 'Docs'], ['.example-link', 'Example']])}</span>` },
+            ],
+          },
+        });
 
         // Cards are rendered after load, so jump to #TaskName ourselves.
         const target = location.hash && document.getElementById(location.hash.slice(1));

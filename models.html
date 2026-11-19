@@ -165,6 +165,7 @@
       box-shadow: 0 4px 16px rgba(0,0,0,0.07);
       transform: translateY(-2px);
     }
+    .model-card { scroll-margin-top: 80px; }  /* clear the sticky header on #anchor jumps */
     .model-card-header {
       display: flex;
       align-items: flex-start;
@@ -344,17 +345,12 @@
         <a href="https://pyhealth.readthedocs.io/en/latest/api/models.html" target="_blank" rel="noopener" style="font-size:0.85rem; color:var(--accent); text-decoration:none; font-weight:500;">Full API reference →</a>
       </div>
 
-      <div class="filter-bar" role="group" aria-label="Filter by category">
-        <button class="filter-btn active" onclick="filterModels('all', this)">All <span style="opacity:0.65;">(50)</span></button>
-        <button class="filter-btn" onclick="filterModels('ehr', this)">EHR <span style="opacity:0.65;">(20)</span></button>
-        <button class="filter-btn" onclick="filterModels('drug', this)">Drug Rec <span style="opacity:0.65;">(4)</span></button>
-        <button class="filter-btn" onclick="filterModels('signal', this)">Signal <span style="opacity:0.65;">(5)</span></button>
-        <button class="filter-btn" onclick="filterModels('graph', this)">Graph <span style="opacity:0.65;">(4)</span></button>
-        <button class="filter-btn" onclick="filterModels('image', this)">Image <span style="opacity:0.65;">(4)</span></button>
-        <button class="filter-btn" onclick="filterModels('text', this)">Text <span style="opacity:0.65;">(4)</span></button>
-        <button class="filter-btn" onclick="filterModels('multimodal', this)">Multimodal <span style="opacity:0.65;">(4)</span></button>
-        <button class="filter-btn" onclick="filterModels('generative', this)">Generative <span style="opacity:0.65;">(5)</span></button>
+      <div class="catalog-tools">
+        <input type="search" class="catalog-search" id="catalogSearch" placeholder="Search models: transformer, GNN, ECG, interpretable…" aria-label="Search models" autocomplete="off">
+        <div class="catalog-view" id="viewToggle" role="group" aria-label="View as"></div>
       </div>
+
+      <div class="filter-bar" role="group" aria-label="Filter by category" id="filterBar"></div>
 
       <p class="snippet-note" style="margin:0 0 1rem; padding:0.75rem 1rem; border:1px solid var(--line); border-radius:10px; background:var(--paper); font-size:0.9rem; color:var(--muted); line-height:1.55;"><strong style="color:var(--ink);">How to read these snippets.</strong> <code>samples</code> is the dataset your task produces, for example <code>samples = dataset.set_task(MortalityPredictionMIMIC3())</code>, or <code>train_ds</code> from <code>set_task(task, split=PatientSplit(...))</code>. Every model reads its inputs from it, so swapping models is a one-line change. Train with <code>Trainer(model=model).train(train_loader, val_loader)</code>. The <a href="https://colab.research.google.com/drive/1KXloapcMeYubw4dT_fPJKTY1pepH2vvl" target="_blank" rel="noopener">Quickstart</a> runs the whole pipeline, and <a href="https://colab.research.google.com/drive/1hHJ1Ll6lQIq95EnRzn3jC9V2XeP-0lU2" target="_blank" rel="noopener">Tutorial 04</a> compares models fairly. Snippets checked against PyHealth 2.1.0.</p>
 
@@ -1082,6 +1078,8 @@ model <span class="tok-op">=</span> <span class="tok-cl">CorGAN</span>(dataset<s
         </div>
 
       </div><!-- /model-grid -->
+      <div class="catalog-table-wrap" id="catalogTable" hidden></div>
+      <p class="catalog-empty" id="catalogEmpty" hidden>No models match. <button type="button" data-clear>Clear the search and filters</button></p>
     </section>
 
     <!-- ── Custom Model Note ── -->
@@ -1110,36 +1108,43 @@ model <span class="tok-op">=</span> <span class="tok-cl">CorGAN</span>(dataset<s
     </div>
   </footer>
 
+  <script src="assets/js/catalog.js"></script>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    function filterModels(category, btn) {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      const cards = document.querySelectorAll('#modelGrid .model-card');
-      let visible = 0;
-      cards.forEach(card => {
-        const show = category === 'all' || card.dataset.category === category;
-        card.style.display = show ? '' : 'none';
-        if (show) visible++;
-      });
-
-      document.getElementById('visibleCount').textContent = visible;
-    }
-
     // Keep every count on the page in step with the cards actually listed.
-    (function syncCounts() {
-      const cards = [...document.querySelectorAll('#modelGrid .model-card')];
-      document.getElementById('heroCount').textContent = cards.length;
-      document.getElementById('visibleCount').textContent = cards.length;
-      document.title = document.title.replace(/\d+/, cards.length);
-      document.querySelectorAll('.filter-btn').forEach(btn => {
-        const key = btn.getAttribute('onclick').match(/filterModels\('([^']+)'/)[1];
-        const n = key === 'all' ? cards.length : cards.filter(c => c.dataset.category === key).length;
-        btn.querySelector('span').textContent = `(${n})`;
-      });
-    })();
+    const cards = document.querySelectorAll('#modelGrid .model-card');
+    document.getElementById('heroCount').textContent = cards.length;
+    // Anchor each card by its class name (models.html#RNN), as on the other pages.
+    cards.forEach(card => { card.id = card.querySelector('.model-classname').textContent.trim(); });
+    document.title = document.title.replace(/\d+/, cards.length);
+
+    Catalog.init({
+      grid: document.getElementById('modelGrid'), cards: '.model-card',
+      count: document.getElementById('visibleCount'),
+      search: document.getElementById('catalogSearch'),
+      empty: document.getElementById('catalogEmpty'),
+      facets: [
+        { key: 'category', attr: 'category', el: document.getElementById('filterBar'), options: [
+          ['ehr', 'EHR'], ['drug', 'Drug Rec'], ['signal', 'Signal'], ['graph', 'Graph'],
+          ['image', 'Image'], ['text', 'Text'], ['multimodal', 'Multimodal'], ['generative', 'Generative'],
+        ] },
+      ],
+      table: {
+        el: document.getElementById('catalogTable'), toggle: document.getElementById('viewToggle'),
+        columns: [
+          { key: 'model', label: 'Model', cell: el => Catalog.name(el, el.querySelector('.model-classname').textContent) },
+          { key: 'category', label: 'Category', cell: el => el.querySelector('.category-tag').outerHTML },
+          { label: 'Description', cell: el => `<span class="cell-desc">${Catalog.esc(el.querySelector('.model-desc').textContent)}</span>` },
+          { label: 'Links', cell: el => `<span class="cell-links">${Catalog.links(el,
+              [['.docs-link', 'Docs'], ['.example-link', 'Example']])}</span>` },
+        ],
+      },
+    });
+
+    // The ids are set by script, so jump to #ClassName ourselves.
+    const target = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (target) target.scrollIntoView();
   </script>
 
 </body>

@@ -298,6 +298,7 @@
       text-decoration: none;
     }
     .dataset-tasks a:hover { background: rgba(59,130,246,0.12); color: #2563eb; }
+    .dataset-tasks a.more { font-family: inherit; background: none; color: var(--accent); font-weight: 500; }
     .dataset-card { scroll-margin-top: 80px; }  /* clear the sticky header on #anchor jumps */
     .dataset-card:target { outline: 2px solid var(--accent); outline-offset: 2px; }
 
@@ -367,7 +368,17 @@
         <a href="https://pyhealth.readthedocs.io/en/latest/api/datasets.html" target="_blank" rel="noopener" style="font-size:0.85rem; color:var(--accent); text-decoration:none; font-weight:500;">Full API reference →</a>
       </div>
 
+      <div class="catalog-tools">
+        <input type="search" class="catalog-search" id="catalogSearch" placeholder="Search datasets: EEG, ICU, chest X-ray, PhysioNet…" aria-label="Search datasets" autocomplete="off">
+        <div class="catalog-view" id="viewToggle" role="group" aria-label="View as"></div>
+      </div>
+
+      <p class="filter-label">Modality</p>
       <div class="filter-bar" role="group" aria-label="Filter by modality" id="filterBar">
+        <!-- populated by JS after datasets.json loads -->
+      </div>
+      <p class="filter-label">Access</p>
+      <div class="filter-bar" role="group" aria-label="Filter by access" id="accessBar">
         <!-- populated by JS after datasets.json loads -->
       </div>
 
@@ -376,6 +387,8 @@
       <div class="dataset-grid" id="datasetGrid">
         <div id="datasetGridPlaceholder" style="grid-column:1/-1; padding:2rem; text-align:center; color:var(--muted); font-size:0.9rem;">Loading datasets…</div>
       </div><!-- /dataset-grid -->
+      <div class="catalog-table-wrap" id="catalogTable" hidden></div>
+      <p class="catalog-empty" id="catalogEmpty" hidden>No datasets match. <button type="button" data-clear>Clear the search and filters</button></p>
     </section>
 
     <!-- ── Custom Dataset Note ── -->
@@ -404,6 +417,7 @@
     </div>
   </footer>
 
+  <script src="assets/js/catalog.js"></script>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -418,15 +432,8 @@
     const ACCESS_LABEL = {
       open: 'Open', restricted: 'Restricted', credentialed: 'Credentialed', format: 'Format',
     };
+    const TASKS_SHOWN = 6;
     const DOCS_URL = 'https://pyhealth.readthedocs.io/en/latest/api/datasets/pyhealth.datasets.';
-    // Pages that also list the tasks of related classes (kept in step with
-    // docs/extensions/dataset_tasks.py in PyHealth).
-    const ALSO = {
-      MIMIC4Dataset: ['MIMIC4EHRDataset', 'MIMIC4NoteDataset', 'MIMIC4CXRDataset', 'MIMIC4EDDataset'],
-      MSDHippocampusDataset: ['MSDSegmentationDataset'],
-      MSDProstateDataset: ['MSDSegmentationDataset'],
-      MSDSpleenDataset: ['MSDSegmentationDataset'],
-    };
 
     function escHtml(s) {
       return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -459,15 +466,20 @@
             <span class="access-tag access-${escHtml(info.access)}">${ACCESS_LABEL[info.access] || escHtml(info.access)}</span>
             <span>${escHtml(info.access_note)}. <a href="${escHtml(info.source_url)}" target="_blank" rel="noopener">Get the data →</a>${demo}</span>
           </p>` : '';
+      // Long task lists stop after TASKS_SHOWN and link to the tasks page,
+      // filtered to this dataset.
+      const more = tasks.length > TASKS_SHOWN
+        ? `<a class="more" href="tasks.html?dataset=${encodeURIComponent(cls)}">All ${tasks.length} tasks →</a>`
+        : '';
       const taskLinks = tasks.length ? `
-          <p class="dataset-tasks"><strong>Tasks:</strong> ${tasks.map(task =>
+          <p class="dataset-tasks"><strong>Tasks:</strong> ${tasks.slice(0, TASKS_SHOWN).map(task =>
             `<a href="tasks.html#${escHtml(task.class_name)}" title="${escHtml(task.class_name)}">${escHtml(task.display_name || task.class_name)}</a>`
-          ).join('')}</p>` : '';
+          ).join('')}${more}</p>` : '';
       const example = info.example_url
         ? `\n            <a href="${escHtml(info.example_url)}" class="example-link" target="_blank" rel="noopener">Example →</a>`
         : '';
       return `
-        <div class="dataset-card" id="${escHtml(cls)}" data-modality="${modality}">
+        <div class="dataset-card" id="${escHtml(cls)}" data-modality="${modality}" data-access="${escHtml(info.source_url ? info.access || '' : '')}" data-task-count="${tasks.length}">
           <div class="dataset-card-header">
             <span class="dataset-classname">${escHtml(cls)}</span>
             <span class="modality-tag mod-${modality}">${MODALITY_LABEL[modality]}</span>
@@ -478,21 +490,6 @@
             <a href="${escHtml(info.docs_url || `${DOCS_URL}${cls}.html`)}" class="docs-link" target="_blank" rel="noopener">Docs →</a>${example}
           </div>
         </div>`;
-    }
-
-    function filterDatasets(modality, btn) {
-      document.querySelectorAll('#filterBar .filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      const cards = document.querySelectorAll('#datasetGrid .dataset-card');
-      let visible = 0;
-      cards.forEach(card => {
-        const show = modality === 'all' || card.dataset.modality === modality;
-        card.style.display = show ? '' : 'none';
-        if (show) visible++;
-      });
-
-      document.getElementById('visibleCount').textContent = visible;
     }
 
     (async function render() {
@@ -512,7 +509,7 @@
         }));
         const tasksFor = cls => {
           const seen = new Set();
-          return [cls, ...(ALSO[cls] || [])].flatMap(c => byDataset[c] || [])
+          return [cls, ...(Catalog.RELATED[cls] || [])].flatMap(c => byDataset[c] || [])
             .filter(task => !seen.has(task.class_name) && seen.add(task.class_name))
             .sort((a, b) => (a.display_name || a.class_name).localeCompare(b.display_name || b.class_name));
         };
@@ -524,16 +521,35 @@
         grid.insertAdjacentHTML('beforeend',
           entries.map(([cls, info]) => buildCard(cls, info, tasksFor(cls))).join(''));
 
-        const cards = [...grid.querySelectorAll('.dataset-card')];
-        const count = key => cards.filter(c => c.dataset.modality === key).length;
-        document.getElementById('filterBar').innerHTML =
-          `<button class="filter-btn active" onclick="filterDatasets('all', this)">All <span style="opacity:0.65;">(${cards.length})</span></button>` +
-          MODALITIES.filter(([key]) => count(key)).map(([key, label]) =>
-            `<button class="filter-btn" onclick="filterDatasets('${key}', this)">${label} <span style="opacity:0.65;">(${count(key)})</span></button>`
-          ).join('');
+        const cards = grid.querySelectorAll('.dataset-card');
         document.getElementById('heroCount').textContent = cards.length;
-        document.getElementById('visibleCount').textContent = cards.length;
         document.title = document.title.replace(/\d+/, cards.length);
+
+        Catalog.init({
+          grid, cards: '.dataset-card',
+          count: document.getElementById('visibleCount'),
+          search: document.getElementById('catalogSearch'),
+          empty: document.getElementById('catalogEmpty'),
+          facets: [
+            { key: 'modality', attr: 'modality', el: document.getElementById('filterBar'), options: MODALITIES },
+            { key: 'access', attr: 'access', el: document.getElementById('accessBar'),
+              options: Object.entries(ACCESS_LABEL) },
+          ],
+          table: {
+            el: document.getElementById('catalogTable'), toggle: document.getElementById('viewToggle'),
+            columns: [
+              { key: 'dataset', label: 'Dataset', cell: el => Catalog.name(el, el.id) },
+              { key: 'modality', label: 'Modality', cell: el => el.querySelector('.modality-tag').outerHTML },
+              { key: 'access', label: 'Access', cell: el => (el.querySelector('.access-tag') || {}).outerHTML || '' },
+              { key: 'tasks', label: 'Tasks', sort: el => Number(el.dataset.taskCount),
+                cell: el => Number(el.dataset.taskCount)
+                  ? `<span class="cell-links"><a href="tasks.html?dataset=${encodeURIComponent(el.id)}">${el.dataset.taskCount}</a></span>` : '' },
+              { label: 'Description', cell: el => `<span class="cell-desc">${escHtml(el.querySelector('.dataset-desc').textContent)}</span>` },
+              { label: 'Links', cell: el => `<span class="cell-links">${Catalog.links(el,
+                  [['.dataset-access a', 'Get the data'], ['.docs-link', 'Docs'], ['.example-link', 'Example']])}</span>` },
+            ],
+          },
+        });
 
         // Cards are rendered after load, so jump to #ClassName ourselves.
         const target = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
