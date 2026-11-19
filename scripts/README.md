@@ -69,6 +69,8 @@ stub entry for each new class. Hand-edited fields are kept.
   "input_schema":  {"conditions": "sequence", "procedures": "sequence"},
   "output_schema": {"mortality": "binary"},
   "output_type":   "binary",
+  "modality":      ["ehr"],
+  "inferred":      {"output_type": "binary", "modality": ["ehr"]},
   "source_file":   "pyhealth/tasks/mortality_prediction.py",
   "dataset_classes": ["MIMIC3Dataset"]
 }
@@ -80,17 +82,38 @@ stub entry for each new class. Hand-edited fields are kept.
 **Hand-edited, never overwritten:**
 - `display_name`
 - `display_class`
-- `description`
+- `description` (filled from the docstring when empty)
 - `datasets`
 - `colab_url`
 - `docs_url`
 - `example_url`
-- `output_type`
-- `modality`
 
-The script fills `description`, `output_type` and `modality` from the code only
-when they are empty. Classes that set their schema in `__init__` have a `null`
-`output_type`; set it by hand.
+**Classified from code unless set by hand:** `output_type` and `modality`.
+The script reads them off the schemas, after naming each processor by the name
+it registered under in `pyhealth.processors` (so `MultiHotProcessor` counts as
+`multi_hot`):
+
+- `output_type` is the first `output_schema` value in `OUTPUT_TYPE_MAP`:
+  `binary`, `multiclass`, `multilabel`, `regression` (and their `timeseries_`
+  forms), or `image_mask_dir` for `segmentation`. Otherwise it stays `null`,
+  which the page shows as "Other".
+- `modality` is every `SCHEMA_TO_MODALITY` value among the `input_schema`
+  values. Inputs such as `tensor` and `raw` (listed in `NO_MODALITY`) hold
+  whatever the dataset holds, so they add the `datasets.json` modality of each
+  dataset in `dataset_classes`.
+
+Schemas a task sets in `__init__` are read from a default instance; a task that
+needs arguments keeps the schema last recorded.
+
+`inferred` holds the values the rules gave on the last run. A field equal to
+them (or empty) is refreshed, so better rules reach it; a field you changed by
+hand differs from them and is kept. To classify a task by hand, edit
+`output_type` or `modality` and leave `inferred` alone. No schema says a task
+recommends, generates or models survival, so set `recommend`, `generative` or
+`survival` by hand.
+
+When PyHealth registers a processor neither table covers, the run lists it in
+its summary; add it to `SCHEMA_TO_MODALITY` or `NO_MODALITY`.
 
 `dataset_classes` lists the `pyhealth.datasets` classes that the task's
 docstring cites as ``:class:`~pyhealth.datasets.X` ``. PyHealth task docstrings

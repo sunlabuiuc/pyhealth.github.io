@@ -202,6 +202,9 @@
     .out-regression { background: rgba(245,158,11,0.12); color: #d97706; }
     .out-recommend  { background: rgba(236,72,153,0.12); color: #db2777; }
     .out-generative { background: rgba(201,95,38,0.12); color: #c2410c; }
+    .out-survival   { background: rgba(20,184,166,0.12); color: #0d9488; }
+    .out-segmentation { background: rgba(14,165,233,0.12); color: #0284c7; }
+    .out-other      { background: rgba(100,116,139,0.12); color: #475569; }
 
     /* Dataset pill */
     .dataset-pill {
@@ -423,6 +426,9 @@
       regression: { label: 'Regression',     cls: 'out-regression' },
       recommend:  { label: 'Recommendation', cls: 'out-recommend' },
       generative: { label: 'Generative',     cls: 'out-generative' },
+      survival:   { label: 'Survival',       cls: 'out-survival' },
+      segmentation: { label: 'Segmentation', cls: 'out-segmentation' },
+      other:      { label: 'Other',          cls: 'out-other' },
     };
 
     // ── Modality display config ─────────────────────────────────────────────
@@ -467,8 +473,8 @@
 
     function buildCard(task) {
       const displayName = task.display_name || task.class_name;
-      const type = task.output_type || 'binary';
-      const cfg  = OUTPUT_LABELS[type] || { label: type, cls: 'out-binary' };
+      const type = task.output_type || 'other';
+      const cfg  = OUTPUT_LABELS[type] || { label: type, cls: 'out-other' };
       const datasets = datasetPills(task);
       const modalities = (task.modality || []).join(' ');
       const modPills = (task.modality || []).map(m =>
@@ -506,7 +512,7 @@
     function buildFilterBar(tasks, activeType) {
       const counts = { all: tasks.length };
       tasks.forEach(t => {
-        const tp = t.output_type || 'binary';
+        const tp = t.output_type || 'other';
         counts[tp] = (counts[tp] || 0) + 1;
       });
 
@@ -518,6 +524,9 @@
         ['recommend',  'Recommendation'],
         ['regression', 'Regression'],
         ['generative', 'Generative'],
+        ['survival',   'Survival'],
+        ['segmentation', 'Segmentation'],
+        ['other',      'Other'],
       ];
 
       return buttons
