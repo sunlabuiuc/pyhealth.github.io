@@ -2809,5 +2809,55 @@
     "colab_url": null,
     "docs_url": null,
     "example_url": null
+  },
+  {
+    "class_name": "ChapmanShaoxingSNOMEDClassification",
+    "display_name": "Chapman Shaoxing SNOMED Classification",
+    "display_class": null,
+    "task_name": "ChapmanShaoxingSNOMEDClassification",
+    "description": "Multi-label classification over raw SNOMED-CT diagnosis codes.",
+    "datasets": [],
+    "input_schema": {
+      "signal": "tensor"
+    },
+    "output_schema": {
+      "labels": "multilabel"
+    },
+    "output_type": null,
+    "modality": [
+      "timeseries"
+    ],
+    "source_file": "pyhealth/tasks/chapman_shaoxing_classification.py",
+    "dataset_classes": [
+      "ChapmanShaoxingDataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null
+  },
+  {
+    "class_name": "ChapmanShaoxingSuperclassClassification",
+    "display_name": "Chapman Shaoxing Superclass Classification",
+    "display_class": null,
+    "task_name": "ChapmanShaoxingSuperclassClassification",
+    "description": "Seven-superclass multi-label ECG classification (CLIMB grouping).",
+    "datasets": [],
+    "input_schema": {
+      "signal": "tensor"
+    },
+    "output_schema": {
+      "labels": "multilabel"
+    },
+    "output_type": null,
+    "modality": [
+      "timeseries"
+    ],
+    "source_file": "pyhealth/tasks/chapman_shaoxing_classification.py",
+    "dataset_classes": [
+      "ChapmanShaoxingDataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null
   }
 ]

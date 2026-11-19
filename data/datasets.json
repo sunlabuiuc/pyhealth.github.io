@@ -346,6 +346,15 @@
     "access": "open",
     "access_note": "Creative Commons Attribution 4.0 license"
   },
+  "ChapmanShaoxingDataset": {
+    "label": "ChapmanShaoxing",
+    "modality": "signal",
+    "description": "Chapman University / Shaoxing and Ningbo hospitals 12-lead ECG database.",
+    "snippet": "from pyhealth.datasets import ChapmanShaoxingDataset\ndataset = ChapmanShaoxingDataset(\n    root=\"data/chapmanshaoxing/\",\n)",
+    "source_url": "https://physionet.org/content/ecg-arrhythmia/1.0.0/",
+    "access": "open",
+    "access_note": "No account needed"
+  },
   "COVID19CXRDataset": {
     "label": "COVID19-CXR",
     "access": "open",
