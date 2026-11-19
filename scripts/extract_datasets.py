@@ -35,7 +35,7 @@ PyHealth dataset docstrings carry:
     access_note - first sentence of the rest of Access
     demo_url    - URL in "No access yet?"
     description - first paragraph of the docstring
-    snippet     - a minimal constructor call with root=...
+    snippet     - a constructor call with each required argument
     modality    - guessed from the description (ehr / signal / image /
                   genomics / text), else "other"
 
@@ -120,37 +120,48 @@ def _modality(text):
     return "other"
 
 
-def _snippet(class_name):
+def _required_args(cls):
+    """Names of the constructor arguments that have no default."""
+    try:
+        params = inspect.signature(cls.__init__).parameters.values()
+    except (TypeError, ValueError):
+        return ["root"]
+    return [p.name for p in params
+            if p.name != "self" and p.default is p.empty
+            and p.kind not in (p.VAR_POSITIONAL, p.VAR_KEYWORD)] or ["root"]
+
+
+def _snippet(class_name, args):
     folder = re.sub(r"Dataset$", "", class_name).lower() or class_name.lower()
+    lines = "".join(f"    {arg}=\"data/{folder}/\",\n" for arg in args)
     return (f"from pyhealth.datasets import {class_name}\n"
-            f"dataset = {class_name}(\n"
-            f"    root=\"data/{folder}/\",\n"
-            f")")
+            f"dataset = {class_name}(\n{lines})")
 
 
 def _discover_classes():
-    """Return {class_name: docstring} for every dataset class pyhealth.datasets exports."""
+    """Return {class_name: class} for every dataset class pyhealth.datasets exports."""
     import pyhealth.datasets as datasets_module
 
     bases = tuple(getattr(datasets_module, name) for name in
                   ("BaseDataset", "BaseEHRDataset", "BaseSignalDataset")
                   if hasattr(datasets_module, name))
     return {
-        name: inspect.getdoc(cls) or ""
+        name: cls
         for name, cls in inspect.getmembers(datasets_module, inspect.isclass)
         if issubclass(cls, bases) and name not in _NOT_DATASETS
     }
 
 
-def stub_entry(class_name, docstring):
+def stub_entry(class_name, cls):
     """A datasets.json entry for a class the site doesn't list yet."""
+    docstring = inspect.getdoc(cls) or ""
     block = _getting_the_data(docstring)
     description = _first_paragraph(docstring)
     entry = {
         "label": re.sub(r"Dataset$", "", class_name) or class_name,
         "modality": _modality(description),
         "description": description,
-        "snippet": _snippet(class_name),
+        "snippet": _snippet(class_name, _required_args(cls)),
     }
     source = _URL.search(block.get("Source", ""))
     if source:
@@ -174,14 +185,15 @@ def merge_datasets(existing, discovered):
     merged = dict(existing)
     report = {"added": [], "not_exported": [], "source_changed": []}
 
-    for name, docstring in sorted(discovered.items()):
+    for name, cls in sorted(discovered.items()):
         if name in existing:
+            docstring = inspect.getdoc(cls) or ""
             source = _URL.search(_getting_the_data(docstring).get("Source", ""))
             listed = existing[name].get("source_url")
             if source and listed and source.group(0).rstrip("/") != listed.rstrip("/"):
                 report["source_changed"].append((name, listed, source.group(0)))
             continue
-        entry = stub_entry(name, docstring)
+        entry = stub_entry(name, cls)
         keys = list(merged)
         same = [i for i, key in enumerate(keys)
                 if merged[key].get("modality") == entry["modality"]]
