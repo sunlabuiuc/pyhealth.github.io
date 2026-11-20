@@ -224,6 +224,12 @@
     "description": "Clinical value sets from the NLM Value Set Authority Center: named lists of SNOMED-CT, ICD-10-CM, RxNorm and LOINC codes.",
     "snippet": "from pyhealth.datasets import VSACDataset\ndataset = VSACDataset(\n    root=\"data/vsac/\",\n)"
   },
+  "TCGARNASeqDataset": {
+    "label": "TCGARNASeq",
+    "modality": "ehr",
+    "description": "TCGA bulk RNA-seq survival dataset, from frozen BulkRNABert embeddings.",
+    "snippet": "from pyhealth.datasets import TCGARNASeqDataset\ndataset = TCGARNASeqDataset(\n    root=\"data/tcgarnaseq/\",\n)"
+  },
   "CardiologyDataset": {
     "label": "Cardiology",
     "access": "open",
@@ -376,6 +382,15 @@
     "access": "open",
     "access_note": "No account needed"
   },
+  "BCICompetitionIV2aDataset": {
+    "label": "BCICompetitionIV2a",
+    "modality": "signal",
+    "description": "BCI Competition IV dataset 2a: four-class motor imagery EEG.",
+    "snippet": "from pyhealth.datasets import BCICompetitionIV2aDataset\ndataset = BCICompetitionIV2aDataset(\n    root=\"data/bcicompetitioniv2a/\",\n)",
+    "source_url": "https://bnci-horizon-2020.eu/database/data-sets",
+    "access": "open",
+    "access_note": "Download"
+  },
   "COVID19CXRDataset": {
     "label": "COVID19-CXR",
     "access": "open",
@@ -450,6 +465,15 @@
     "access_note": "PhysioNet credentialing + CITI training + a signed data use agreement",
     "source_url": "https://physionet.org/content/chest-imagenome/1.0.0/"
   },
+  "CBISDDSMDataset": {
+    "label": "CBISDDSM",
+    "modality": "image",
+    "description": "CBIS-DDSM (Curated Breast Imaging Subset of DDSM) mammography dataset.",
+    "snippet": "from pyhealth.datasets import CBISDDSMDataset\ndataset = CBISDDSMDataset(\n    root=\"data/cbisddsm/\",\n)",
+    "source_url": "https://www.cancerimagingarchive.net/collection/cbis-ddsm/",
+    "access": "open",
+    "access_note": "No account, registration or data-use agreement is needed"
+  },
   "ClinVarDataset": {
     "label": "ClinVar",
     "access": "open",
@@ -492,5 +516,68 @@
     "access_note": "CC-BY-SA 4.0; download=True fetches it",
     "source_url": "http://medicaldecathlon.com/",
     "anchor": "MSDHippocampusDataset"
+  },
+  "ABIDEDataset": {
+    "label": "ABIDE",
+    "modality": "other",
+    "description": "ABIDE I resting-state fMRI ROI time series, preprocessed by the PCP.",
+    "snippet": "from pyhealth.datasets import ABIDEDataset\ndataset = ABIDEDataset(\n    root=\"data/abide/\",\n)",
+    "source_url": "http://preprocessed-connectomes-project.org/abide/",
+    "access": "open",
+    "access_note": "The PCP derivatives on S3 need no account, sign-up or agreement (the raw ABIDE images on NITRC ask for a NITRC registration, but they are not used here)"
+  },
+  "HAM10000Dataset": {
+    "label": "HAM10000",
+    "modality": "other",
+    "description": "HAM10000 dermoscopy dataset, as released for ISIC 2018 Task 3.",
+    "snippet": "from pyhealth.datasets import HAM10000Dataset\ndataset = HAM10000Dataset(\n    root=\"data/ham10000/\",\n)",
+    "source_url": "https://challenge.isic-archive.com/data/#2018",
+    "access": "open",
+    "access_note": "No account, registration or data-use agreement; the files are plain HTTPS links on the ISIC S3 bucket"
+  },
+  "ISIC2019Dataset": {
+    "label": "ISIC2019",
+    "modality": "other",
+    "description": "ISIC 2019 dermoscopy dataset for skin lesion diagnosis.",
+    "snippet": "from pyhealth.datasets import ISIC2019Dataset\ndataset = ISIC2019Dataset(\n    root=\"data/isic2019/\",\n)",
+    "source_url": "https://challenge.isic-archive.com/data/#2019",
+    "access": "open",
+    "access_note": "No account, registration or data-use agreement; the files are plain HTTPS links on the ISIC S3 bucket"
+  },
+  "ISIC2020Dataset": {
+    "label": "ISIC2020",
+    "modality": "other",
+    "description": "SIIM-ISIC 2020 dermoscopy dataset for benign vs. malignant lesions.",
+    "snippet": "from pyhealth.datasets import ISIC2020Dataset\ndataset = ISIC2020Dataset(\n    root=\"data/isic2020/\",\n)",
+    "source_url": "https://challenge.isic-archive.com/data/#2020",
+    "access": "open",
+    "access_note": "No account, registration or data-use agreement; the files are plain HTTPS links on the ISIC S3 bucket"
+  },
+  "JichiDRDataset": {
+    "label": "JichiDR",
+    "modality": "other",
+    "description": "Jichi diabetic retinopathy fundus photographs with Davis grades.",
+    "snippet": "from pyhealth.datasets import JichiDRDataset\ndataset = JichiDRDataset(\n    root=\"data/jichidr/\",\n)",
+    "source_url": "https://figshare.com/articles/dataset/4879853",
+    "access": "open",
+    "access_note": "Download, no account, registration or data-use agreement"
+  },
+  "LNDbDataset": {
+    "label": "LNDb",
+    "modality": "other",
+    "description": "LNDb lung nodule database: chest CTs with radiologist findings.",
+    "snippet": "from pyhealth.datasets import LNDbDataset\ndataset = LNDbDataset(\n    root=\"data/lndb/\",\n)",
+    "source_url": "https://doi.org/10.5281/zenodo.8348419",
+    "access": "open",
+    "access_note": "No account, registration or agreement needed"
+  },
+  "PADUFES20Dataset": {
+    "label": "PADUFES20",
+    "modality": "other",
+    "description": "PAD-UFES-20 clinical (smartphone) skin-lesion dataset.",
+    "snippet": "from pyhealth.datasets import PADUFES20Dataset\ndataset = PADUFES20Dataset(\n    root=\"data/padufes20/\",\n)",
+    "source_url": "https://data.mendeley.com/datasets/zr7vgbcyr2/1",
+    "access": "open",
+    "access_note": "No account, registration or data-use agreement"
   }
 }

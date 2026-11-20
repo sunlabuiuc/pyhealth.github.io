@@ -3070,7 +3070,9 @@
       "event": "raw"
     },
     "output_type": "survival",
-    "modality": [],
+    "modality": [
+      "ehr"
+    ],
     "source_file": "pyhealth/tasks/competing_risks_pbc.py",
     "dataset_classes": [
       "PBCDataset"
@@ -3080,7 +3082,9 @@
     "example_url": null,
     "inferred": {
       "output_type": null,
-      "modality": []
+      "modality": [
+        "ehr"
+      ]
     }
   },
   {
@@ -3099,7 +3103,6 @@
     },
     "output_type": "multilabel",
     "modality": [
-      "ehr",
       "image"
     ],
     "source_file": "pyhealth/tasks/disease_progression_mimic4.py",
@@ -3112,7 +3115,6 @@
     "inferred": {
       "output_type": "multilabel",
       "modality": [
-        "ehr",
         "image"
       ]
     }
@@ -3574,7 +3576,9 @@
       "event": "tensor"
     },
     "output_type": "survival",
-    "modality": [],
+    "modality": [
+      "ehr"
+    ],
     "source_file": "pyhealth/tasks/survival_time_to_event.py",
     "dataset_classes": [
       "GBSGDataset"
@@ -3584,7 +3588,9 @@
     "example_url": null,
     "inferred": {
       "output_type": null,
-      "modality": []
+      "modality": [
+        "ehr"
+      ]
     }
   },
   {
@@ -3708,6 +3714,604 @@
     "example_url": null,
     "inferred": {
       "output_type": "binary",
+      "modality": []
+    }
+  },
+  {
+    "class_name": "ABIDEAutismClassification",
+    "display_name": "ABIDE Autism Classification",
+    "display_class": null,
+    "task_name": "ABIDEAutismClassification",
+    "description": "Binary autism vs. typical-control classification on ABIDE I.",
+    "datasets": [],
+    "input_schema": {
+      "connectivity": "tensor"
+    },
+    "output_schema": {
+      "autism": "binary"
+    },
+    "output_type": "binary",
+    "modality": [],
+    "source_file": "pyhealth/tasks/abide_classification.py",
+    "dataset_classes": [
+      "ABIDEDataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": "binary",
+      "modality": []
+    }
+  },
+  {
+    "class_name": "BCIIV2aLeftRightImagery",
+    "display_name": "BCIIV2a Left Right Imagery",
+    "display_class": null,
+    "task_name": "BCIIV2aLeftRightImagery",
+    "description": "Binary left- vs right-hand motor imagery on BCI Competition IV 2a.",
+    "datasets": [],
+    "input_schema": {
+      "signal": "tensor"
+    },
+    "output_schema": {
+      "label": "binary"
+    },
+    "output_type": "binary",
+    "modality": [],
+    "source_file": "pyhealth/tasks/bciiv2a_left_right_imagery.py",
+    "dataset_classes": [
+      "BCICompetitionIV2aDataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": "binary",
+      "modality": []
+    }
+  },
+  {
+    "class_name": "BCIIV2aMotorImageryClassification",
+    "display_name": "BCIIV2a Motor Imagery Classification",
+    "display_class": null,
+    "task_name": "BCIIV2aMotorImageryClassification",
+    "description": "Four-class motor imagery classification on BCI Competition IV 2a.",
+    "datasets": [],
+    "input_schema": {
+      "signal": "tensor"
+    },
+    "output_schema": {
+      "label": "multiclass"
+    },
+    "output_type": "multiclass",
+    "modality": [],
+    "source_file": "pyhealth/tasks/bciiv2a_motor_imagery.py",
+    "dataset_classes": [
+      "BCICompetitionIV2aDataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": "multiclass",
+      "modality": []
+    }
+  },
+  {
+    "class_name": "CBISDDSMAbnormalityClassification",
+    "display_name": "CBISDDSM Abnormality Classification",
+    "display_class": null,
+    "task_name": "CBISDDSMAbnormalityClassification",
+    "description": "Image-level abnormality type (mass vs calcification) on CBIS-DDSM.",
+    "datasets": [],
+    "input_schema": {
+      "image": "dicom"
+    },
+    "output_schema": {
+      "mass": "binary"
+    },
+    "output_type": "binary",
+    "modality": [
+      "image"
+    ],
+    "source_file": "pyhealth/tasks/cbis_ddsm_abnormality_classification.py",
+    "dataset_classes": [
+      "CBISDDSMDataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "image"
+      ]
+    }
+  },
+  {
+    "class_name": "CBISDDSMBIRADSClassification",
+    "display_name": "CBISDDSMBIRADS Classification",
+    "display_class": null,
+    "task_name": "CBISDDSMBIRADSClassification",
+    "description": "Image-level BI-RADS assessment (1-5) classification on CBIS-DDSM.",
+    "datasets": [],
+    "input_schema": {
+      "image": "dicom"
+    },
+    "output_schema": {
+      "birads": "multiclass"
+    },
+    "output_type": "multiclass",
+    "modality": [
+      "image"
+    ],
+    "source_file": "pyhealth/tasks/cbis_ddsm_classification.py",
+    "dataset_classes": [
+      "CBISDDSMDataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": "multiclass",
+      "modality": [
+        "image"
+      ]
+    }
+  },
+  {
+    "class_name": "CBISDDSMDensityClassification",
+    "display_name": "CBISDDSM Density Classification",
+    "display_class": null,
+    "task_name": "CBISDDSMDensityClassification",
+    "description": "Image-level breast density (1-4) classification on CBIS-DDSM.",
+    "datasets": [],
+    "input_schema": {
+      "image": "dicom"
+    },
+    "output_schema": {
+      "density": "multiclass"
+    },
+    "output_type": "multiclass",
+    "modality": [
+      "image"
+    ],
+    "source_file": "pyhealth/tasks/cbis_ddsm_density_classification.py",
+    "dataset_classes": [
+      "CBISDDSMDataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": "multiclass",
+      "modality": [
+        "image"
+      ]
+    }
+  },
+  {
+    "class_name": "CBISDDSMPathologyClassification",
+    "display_name": "CBISDDSM Pathology Classification",
+    "display_class": null,
+    "task_name": "CBISDDSMPathologyClassification",
+    "description": "Image-level malignant vs benign classification on CBIS-DDSM.",
+    "datasets": [],
+    "input_schema": {
+      "image": "dicom"
+    },
+    "output_schema": {
+      "malignant": "binary"
+    },
+    "output_type": "binary",
+    "modality": [
+      "image"
+    ],
+    "source_file": "pyhealth/tasks/cbis_ddsm_classification.py",
+    "dataset_classes": [
+      "CBISDDSMDataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "image"
+      ]
+    }
+  },
+  {
+    "class_name": "CardiologyDetection",
+    "display_name": "Cardiology Detection",
+    "display_class": null,
+    "task_name": "CardiologyDetection",
+    "description": "Binary detection of one diagnosis category in 12-lead ECG windows.",
+    "datasets": [],
+    "input_schema": {
+      "signal": "tensor"
+    },
+    "output_schema": {
+      "label": "binary"
+    },
+    "output_type": "binary",
+    "modality": [
+      "signal"
+    ],
+    "source_file": "pyhealth/tasks/cardiology_detect.py",
+    "dataset_classes": [
+      "CardiologyDataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "signal"
+      ]
+    }
+  },
+  {
+    "class_name": "DearLLMMortalityPredictionMIMIC3",
+    "display_name": "Dear LLM Mortality Prediction MIMIC3",
+    "display_class": null,
+    "task_name": "DearLLMMortalityPredictionMIMIC3",
+    "description": "DearLLM mortality prediction on MIMIC-III (ICD-9 diagnoses).",
+    "datasets": [],
+    "input_schema": {
+      "conditions": "nested_sequence",
+      "graph_nodes": "sequence",
+      "graph_node_weights": "tensor",
+      "graph_edges": "tensor"
+    },
+    "output_schema": {
+      "mortality": "binary"
+    },
+    "output_type": "binary",
+    "modality": [
+      "ehr"
+    ],
+    "source_file": "pyhealth/tasks/dearllm_mortality.py",
+    "dataset_classes": [
+      "MIMIC3Dataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "ehr"
+      ]
+    }
+  },
+  {
+    "class_name": "DearLLMMortalityPredictionMIMIC4",
+    "display_name": "Dear LLM Mortality Prediction MIMIC4",
+    "display_class": null,
+    "task_name": "DearLLMMortalityPredictionMIMIC4",
+    "description": "DearLLM mortality prediction on MIMIC-IV (ICD-9 and ICD-10 diagnoses).",
+    "datasets": [],
+    "input_schema": {
+      "conditions": "nested_sequence",
+      "graph_nodes": "sequence",
+      "graph_node_weights": "tensor",
+      "graph_edges": "tensor"
+    },
+    "output_schema": {
+      "mortality": "binary"
+    },
+    "output_type": "binary",
+    "modality": [
+      "ehr"
+    ],
+    "source_file": "pyhealth/tasks/dearllm_mortality.py",
+    "dataset_classes": [
+      "MIMIC4Dataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "ehr"
+      ]
+    }
+  },
+  {
+    "class_name": "EHRFoundationModelTask",
+    "display_name": "EHR Foundation Model Task",
+    "display_class": null,
+    "task_name": "EHRFoundationModelTask",
+    "description": "Wraps a task so each sample carries its raw event timeline.",
+    "datasets": [],
+    "input_schema": null,
+    "output_schema": null,
+    "output_type": null,
+    "modality": [
+      "ehr"
+    ],
+    "source_file": "pyhealth/tasks/ehr_foundation_model.py",
+    "dataset_classes": [
+      "EHRShotDataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": null,
+      "modality": [
+        "ehr"
+      ]
+    }
+  },
+  {
+    "class_name": "HAM10000Classification",
+    "display_name": "HAM10000 Classification",
+    "display_class": null,
+    "task_name": "HAM10000Classification",
+    "description": "Classify HAM10000 dermoscopy images by diagnosis.",
+    "datasets": [],
+    "input_schema": {
+      "image": "image"
+    },
+    "output_schema": {
+      "diagnosis": "multiclass"
+    },
+    "output_type": "multiclass",
+    "modality": [
+      "image"
+    ],
+    "source_file": "pyhealth/tasks/ham10000_classification.py",
+    "dataset_classes": [
+      "HAM10000Dataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": "multiclass",
+      "modality": [
+        "image"
+      ]
+    }
+  },
+  {
+    "class_name": "ISIC2019Classification",
+    "display_name": "ISIC2019 Classification",
+    "display_class": null,
+    "task_name": "ISIC2019Classification",
+    "description": "Classify ISIC 2019 dermoscopy images by diagnosis.",
+    "datasets": [],
+    "input_schema": {
+      "image": "image"
+    },
+    "output_schema": {
+      "diagnosis": "multiclass"
+    },
+    "output_type": "multiclass",
+    "modality": [
+      "image"
+    ],
+    "source_file": "pyhealth/tasks/isic2019_classification.py",
+    "dataset_classes": [
+      "ISIC2019Dataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": "multiclass",
+      "modality": [
+        "image"
+      ]
+    }
+  },
+  {
+    "class_name": "ISIC2020MelanomaClassification",
+    "display_name": "ISIC2020 Melanoma Classification",
+    "display_class": null,
+    "task_name": "ISIC2020MelanomaClassification",
+    "description": "Classify ISIC 2020 dermoscopy images as benign or malignant.",
+    "datasets": [],
+    "input_schema": {
+      "image": "image"
+    },
+    "output_schema": {
+      "malignant": "binary"
+    },
+    "output_type": "binary",
+    "modality": [
+      "image"
+    ],
+    "source_file": "pyhealth/tasks/isic2020_melanoma_classification.py",
+    "dataset_classes": [
+      "ISIC2020Dataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "image"
+      ]
+    }
+  },
+  {
+    "class_name": "JichiDavisGrading",
+    "display_name": "Jichi Davis Grading",
+    "display_class": null,
+    "task_name": "JichiDavisGrading",
+    "description": "Four-grade Davis diabetic-retinopathy staging from one fundus image.",
+    "datasets": [],
+    "input_schema": {
+      "image": "image"
+    },
+    "output_schema": {
+      "label": "multiclass"
+    },
+    "output_type": "multiclass",
+    "modality": [
+      "image"
+    ],
+    "source_file": "pyhealth/tasks/jichi_davis_grading.py",
+    "dataset_classes": [
+      "JichiDRDataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": "multiclass",
+      "modality": [
+        "image"
+      ]
+    }
+  },
+  {
+    "class_name": "LNDbFindingClassification",
+    "display_name": "LN Db Finding Classification",
+    "display_class": null,
+    "task_name": "LNDbFindingClassification",
+    "description": "Classify an LNDb CT finding from a patch centred on it.",
+    "datasets": [],
+    "input_schema": {
+      "patch": "tensor"
+    },
+    "output_schema": {
+      "finding_class": "multiclass"
+    },
+    "output_type": "multiclass",
+    "modality": [],
+    "source_file": "pyhealth/tasks/lndb_classification.py",
+    "dataset_classes": [
+      "LNDbDataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": "multiclass",
+      "modality": []
+    }
+  },
+  {
+    "class_name": "LNDbTextureClassification",
+    "display_name": "LN Db Texture Classification",
+    "display_class": null,
+    "task_name": "LNDbTextureClassification",
+    "description": "Classify the texture of an LNDb nodule >= 3 mm from a CT patch.",
+    "datasets": [],
+    "input_schema": {
+      "patch": "tensor"
+    },
+    "output_schema": {
+      "texture_class": "multiclass"
+    },
+    "output_type": "multiclass",
+    "modality": [],
+    "source_file": "pyhealth/tasks/lndb_texture.py",
+    "dataset_classes": [
+      "LNDbDataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": "multiclass",
+      "modality": []
+    }
+  },
+  {
+    "class_name": "PADUFES20Classification",
+    "display_name": "PADUFES20 Classification",
+    "display_class": null,
+    "task_name": "PADUFES20Classification",
+    "description": "Multiclass skin-lesion diagnosis from PAD-UFES-20 smartphone photos.",
+    "datasets": [],
+    "input_schema": {
+      "image": "image"
+    },
+    "output_schema": {
+      "label": "multiclass"
+    },
+    "output_type": "multiclass",
+    "modality": [
+      "image"
+    ],
+    "source_file": "pyhealth/tasks/pad_ufes_20_classification.py",
+    "dataset_classes": [
+      "PADUFES20Dataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": "multiclass",
+      "modality": [
+        "image"
+      ]
+    }
+  },
+  {
+    "class_name": "SleepStagingSequenceISRUC",
+    "display_name": "Sleep Staging Sequence ISRUC",
+    "display_class": null,
+    "task_name": "SleepStagingSequenceISRUC",
+    "description": "Sequence-to-sequence sleep staging on ISRUC-Sleep, one EEG channel.",
+    "datasets": [],
+    "input_schema": {
+      "signal": "tensor"
+    },
+    "output_schema": {
+      "label": "tensor"
+    },
+    "output_type": null,
+    "modality": [
+      "signal"
+    ],
+    "source_file": "pyhealth/tasks/sleep_staging_isruc.py",
+    "dataset_classes": [
+      "ISRUCDataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": null,
+      "modality": [
+        "signal"
+      ]
+    }
+  },
+  {
+    "class_name": "TCGASurvivalPrediction",
+    "display_name": "TCGA Survival Prediction",
+    "display_class": null,
+    "task_name": "TCGASurvivalPrediction",
+    "description": "Survival prediction from TCGA bulk RNA-seq.",
+    "datasets": [],
+    "input_schema": {
+      "embedding": "tensor"
+    },
+    "output_schema": {
+      "duration": "tensor",
+      "event": "tensor",
+      "cohort": "tensor"
+    },
+    "output_type": null,
+    "modality": [],
+    "source_file": "pyhealth/tasks/tcga_survival_prediction.py",
+    "dataset_classes": [],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": null,
       "modality": []
     }
   }
