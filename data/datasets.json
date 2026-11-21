@@ -230,6 +230,15 @@
     "description": "TCGA bulk RNA-seq survival dataset, from frozen BulkRNABert embeddings.",
     "snippet": "from pyhealth.datasets import TCGARNASeqDataset\ndataset = TCGARNASeqDataset(\n    root=\"data/tcgarnaseq/\",\n)"
   },
+  "KiTS23Dataset": {
+    "label": "KiTS23",
+    "modality": "ehr",
+    "description": "KiTS23: contrast-enhanced abdominal CTs of kidney tumour patients.",
+    "snippet": "from pyhealth.datasets import KiTS23Dataset\ndataset = KiTS23Dataset(\n    root=\"data/kits23/\",\n)",
+    "source_url": "https://kits-challenge.org/kits23/",
+    "access": "open",
+    "access_note": "No account, registration or agreement needed"
+  },
   "CardiologyDataset": {
     "label": "Cardiology",
     "access": "open",
@@ -474,6 +483,15 @@
     "access": "open",
     "access_note": "No account, registration or data-use agreement is needed"
   },
+  "BrainTumorMRIDataset": {
+    "label": "BrainTumorMRI",
+    "modality": "image",
+    "description": "Brain Tumor Classification (MRI): 3,264 brain MRI slices in 4 classes.",
+    "snippet": "from pyhealth.datasets import BrainTumorMRIDataset\ndataset = BrainTumorMRIDataset(\n    root=\"data/braintumormri/\",\n)",
+    "source_url": "https://github.com/SartajBhuvaji/Brain-Tumor-Classification-DataSet",
+    "access": "open",
+    "access_note": "GitHub needs no account"
+  },
   "ClinVarDataset": {
     "label": "ClinVar",
     "access": "open",
@@ -579,5 +597,23 @@
     "source_url": "https://data.mendeley.com/datasets/zr7vgbcyr2/1",
     "access": "open",
     "access_note": "No account, registration or data-use agreement"
+  },
+  "BCSSDataset": {
+    "label": "BCSS",
+    "modality": "other",
+    "description": "BCSS breast-cancer pathology ROIs, tiled into labelled patches.",
+    "snippet": "from pyhealth.datasets import BCSSDataset\ndataset = BCSSDataset(\n    root=\"data/bcss/\",\n)",
+    "source_url": "https://github.com/PathologyDataScience/BCSS",
+    "access": "restricted",
+    "access_note": "See the source for how to get access"
+  },
+  "COVIDBLUESDataset": {
+    "label": "COVIDBLUES",
+    "modality": "other",
+    "description": "COVID-BLUES: bluepoint lung ultrasound videos of COVID-19 suspects.",
+    "snippet": "from pyhealth.datasets import COVIDBLUESDataset\ndataset = COVIDBLUESDataset(\n    root=\"data/covidblues/\",\n)",
+    "source_url": "https://github.com/NinaWie/COVID-BLUES",
+    "access": "open",
+    "access_note": "No account, registration or agreement needed"
   }
 }

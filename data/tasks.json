@@ -3758,7 +3758,9 @@
       "label": "binary"
     },
     "output_type": "binary",
-    "modality": [],
+    "modality": [
+      "signal"
+    ],
     "source_file": "pyhealth/tasks/bciiv2a_left_right_imagery.py",
     "dataset_classes": [
       "BCICompetitionIV2aDataset"
@@ -3768,7 +3770,9 @@
     "example_url": null,
     "inferred": {
       "output_type": "binary",
-      "modality": []
+      "modality": [
+        "signal"
+      ]
     }
   },
   {
@@ -3785,7 +3789,9 @@
       "label": "multiclass"
     },
     "output_type": "multiclass",
-    "modality": [],
+    "modality": [
+      "signal"
+    ],
     "source_file": "pyhealth/tasks/bciiv2a_motor_imagery.py",
     "dataset_classes": [
       "BCICompetitionIV2aDataset"
@@ -3795,7 +3801,9 @@
     "example_url": null,
     "inferred": {
       "output_type": "multiclass",
-      "modality": []
+      "modality": [
+        "signal"
+      ]
     }
   },
   {
@@ -4313,6 +4321,250 @@
     "inferred": {
       "output_type": null,
       "modality": []
+    }
+  },
+  {
+    "class_name": "BCSSTileClassification",
+    "display_name": "BCSS Tile Classification",
+    "display_class": null,
+    "task_name": "BCSSTileClassification",
+    "description": "Classify the dominant tissue class of a BCSS pathology tile.",
+    "datasets": [],
+    "input_schema": {
+      "image": "image"
+    },
+    "output_schema": {
+      "label": "multiclass"
+    },
+    "output_type": "multiclass",
+    "modality": [
+      "image"
+    ],
+    "source_file": "pyhealth/tasks/bcss_tile_classification.py",
+    "dataset_classes": [
+      "BCSSDataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": "multiclass",
+      "modality": [
+        "image"
+      ]
+    }
+  },
+  {
+    "class_name": "BCSSTissueSegmentation",
+    "display_name": "BCSS Tissue Segmentation",
+    "display_class": null,
+    "task_name": "BCSSTissueSegmentation",
+    "description": "Five-class semantic segmentation of BCSS tiles (the BCSS benchmark).",
+    "datasets": [],
+    "input_schema": {
+      "image": "image"
+    },
+    "output_schema": {
+      "mask": "tensor"
+    },
+    "output_type": null,
+    "modality": [
+      "image"
+    ],
+    "source_file": "pyhealth/tasks/bcss_tissue_segmentation.py",
+    "dataset_classes": [
+      "BCSSDataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": null,
+      "modality": [
+        "image"
+      ]
+    }
+  },
+  {
+    "class_name": "BrainTumorMRIClassification",
+    "display_name": "Brain Tumor MRI Classification",
+    "display_class": null,
+    "task_name": "BrainTumorMRIClassification",
+    "description": "Classify a brain MRI slice as no tumour, glioma, meningioma or pituitary.",
+    "datasets": [],
+    "input_schema": {
+      "image": "image"
+    },
+    "output_schema": {
+      "label": "multiclass"
+    },
+    "output_type": "multiclass",
+    "modality": [
+      "image"
+    ],
+    "source_file": "pyhealth/tasks/brain_tumor_mri_classification.py",
+    "dataset_classes": [
+      "BrainTumorMRIDataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": "multiclass",
+      "modality": [
+        "image"
+      ]
+    }
+  },
+  {
+    "class_name": "COVIDBLUESFrameClassification",
+    "display_name": "COVIDBLUES Frame Classification",
+    "display_class": null,
+    "task_name": "COVIDBLUESFrameClassification",
+    "description": "Classify COVID-BLUES lung ultrasound frames as COVID-19 positive or not.",
+    "datasets": [],
+    "input_schema": {
+      "image": "image"
+    },
+    "output_schema": {
+      "covid": "binary"
+    },
+    "output_type": "binary",
+    "modality": [
+      "image"
+    ],
+    "source_file": "pyhealth/tasks/covid_blues_classification.py",
+    "dataset_classes": [
+      "COVIDBLUESDataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "image"
+      ]
+    }
+  },
+  {
+    "class_name": "COVIDBLUESSeverityClassification",
+    "display_name": "COVIDBLUES Severity Classification",
+    "display_class": null,
+    "task_name": "COVIDBLUESSeverityClassification",
+    "description": "Predict the expert LUS severity score (0-3) of a COVID-BLUES frame.",
+    "datasets": [],
+    "input_schema": {
+      "image": "image"
+    },
+    "output_schema": {
+      "severity": "multiclass"
+    },
+    "output_type": "multiclass",
+    "modality": [
+      "image"
+    ],
+    "source_file": "pyhealth/tasks/covid_blues_severity.py",
+    "dataset_classes": [
+      "COVIDBLUESDataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": "multiclass",
+      "modality": [
+        "image"
+      ]
+    }
+  },
+  {
+    "class_name": "KiTS23MalignancyClassification",
+    "display_name": "Ki TS23 Malignancy Classification",
+    "display_class": null,
+    "task_name": "KiTS23MalignancyClassification",
+    "description": "Classify a KiTS23 CT as a benign or malignant kidney tumour (3D).",
+    "datasets": [],
+    "input_schema": {
+      "image": "nifti"
+    },
+    "output_schema": {
+      "malignant": "binary"
+    },
+    "output_type": "binary",
+    "modality": [
+      "image"
+    ],
+    "source_file": "pyhealth/tasks/kits23_classification.py",
+    "dataset_classes": [
+      "KiTS23Dataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "image"
+      ]
+    }
+  },
+  {
+    "class_name": "KiTS23MalignancySliceClassification",
+    "display_name": "Ki TS23 Malignancy Slice Classification",
+    "display_class": null,
+    "task_name": "KiTS23MalignancySliceClassification",
+    "description": "Classify KiTS23 tumours as benign or malignant from axial slices (2.5D).",
+    "datasets": [],
+    "input_schema": {
+      "image": "tensor"
+    },
+    "output_schema": {
+      "malignant": "binary"
+    },
+    "output_type": "binary",
+    "modality": [],
+    "source_file": "pyhealth/tasks/kits23_classification.py",
+    "dataset_classes": [
+      "KiTS23Dataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": "binary",
+      "modality": []
+    }
+  },
+  {
+    "class_name": "KiTS23Segmentation",
+    "display_name": "Ki TS23 Segmentation",
+    "display_class": null,
+    "task_name": "KiTS23Segmentation",
+    "description": "Segment kidneys, kidney tumours and cysts in a KiTS23 CT (3D).",
+    "datasets": [],
+    "input_schema": {
+      "image": "nifti"
+    },
+    "output_schema": {
+      "mask": "nifti"
+    },
+    "output_type": null,
+    "modality": [
+      "image"
+    ],
+    "source_file": "pyhealth/tasks/kits23_segmentation.py",
+    "dataset_classes": [
+      "KiTS23Dataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": null,
+      "modality": [
+        "image"
+      ]
     }
   }
 ]
