@@ -400,6 +400,15 @@
     "access": "open",
     "access_note": "Download"
   },
+  "AHEPADementiaDataset": {
+    "label": "AHEPADementia",
+    "modality": "signal",
+    "description": "AHEPA resting-state EEG dataset of dementia (OpenNeuro ds004504).",
+    "snippet": "from pyhealth.datasets import AHEPADementiaDataset\ndataset = AHEPADementiaDataset(\n    root=\"data/ahepadementia/\",\n)",
+    "source_url": "https://openneuro.org/datasets/ds004504",
+    "access": "open",
+    "access_note": "CC0 license"
+  },
   "COVID19CXRDataset": {
     "label": "COVID19-CXR",
     "access": "open",

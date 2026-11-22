@@ -4523,7 +4523,9 @@
       "malignant": "binary"
     },
     "output_type": "binary",
-    "modality": [],
+    "modality": [
+      "ehr"
+    ],
     "source_file": "pyhealth/tasks/kits23_classification.py",
     "dataset_classes": [
       "KiTS23Dataset"
@@ -4533,7 +4535,9 @@
     "example_url": null,
     "inferred": {
       "output_type": "binary",
-      "modality": []
+      "modality": [
+        "ehr"
+      ]
     }
   },
   {
@@ -4564,6 +4568,64 @@
       "output_type": null,
       "modality": [
         "image"
+      ]
+    }
+  },
+  {
+    "class_name": "DementiaClassificationAHEPA",
+    "display_name": "Dementia Classification AHEPA",
+    "display_class": null,
+    "task_name": "DementiaClassificationAHEPA",
+    "description": "Dementia classification on the AHEPA resting-state EEG dataset.",
+    "datasets": [],
+    "input_schema": {
+      "signal": "tensor"
+    },
+    "output_schema": {
+      "label": "binary"
+    },
+    "output_type": "binary",
+    "modality": [],
+    "source_file": "pyhealth/tasks/dementia_classification_ahepa.py",
+    "dataset_classes": [
+      "AHEPADementiaDataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": "binary",
+      "modality": []
+    }
+  },
+  {
+    "class_name": "PTBXLHeartbeatMI",
+    "display_name": "PTBXL Heartbeat MI",
+    "display_class": null,
+    "task_name": "PTBXLHeartbeatMI",
+    "description": "Myocardial infarction vs healthy, one sample per heartbeat.",
+    "datasets": [],
+    "input_schema": {
+      "signal": "tensor"
+    },
+    "output_schema": {
+      "label": "binary"
+    },
+    "output_type": "binary",
+    "modality": [
+      "signal"
+    ],
+    "source_file": "pyhealth/tasks/ptbxl_heartbeat.py",
+    "dataset_classes": [
+      "PTBXLDataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "signal"
       ]
     }
   }
