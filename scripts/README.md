@@ -37,6 +37,26 @@ Both generators take `--summary FILE` to append a Markdown report.
 
 ---
 
+## extract_bounties.py
+
+Writes `data/bounties.json`, which the homepage bounty section and
+`bounties.html` render, from PyHealth's `bounty.yaml` and the PRs whose titles
+carry `[BTY-<id>]` or `[Bounty-<id>]`. The rules match PyHealth's
+`tools/update_bounty_board.py`: a bounty is complete once a claiming PR merges
+or `complete` is set in `bounty.yaml`, and its credit is the `complete` text or
+else the merged PRs' authors. Email addresses are never written.
+
+```bash
+python scripts/extract_bounties.py                     # GitHub API (public data)
+python scripts/extract_bounties.py --prs-file prs.json # offline
+python scripts/extract_bounties.py --no-prs            # bounty.yaml only
+```
+
+The file is regenerated, never hand-edited. To change a bounty or its credit,
+edit `bounty.yaml` in PyHealth.
+
+---
+
 ## extract_metadata.py
 
 Imports task classes from the installed `pyhealth` package and updates

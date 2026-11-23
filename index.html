@@ -228,6 +228,65 @@
       background: var(--paper);
     }
 
+    /* ── Bounties ── */
+    .bounty-section { margin-top: 3.5rem; }
+    .bounty-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 0.85rem;
+      margin: 1rem 0 1.4rem;
+    }
+    .bounty-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1.1rem 1.2rem;
+      text-decoration: none;
+      color: var(--ink);
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      transition: border-color 0.15s, box-shadow 0.15s, transform 0.1s;
+    }
+    .bounty-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 6px 20px rgba(201,95,38,0.11);
+      transform: translateY(-2px);
+    }
+    .bounty-meta {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .bounty-card h3 { font-size: 1.02rem; margin: 0; line-height: 1.3; }
+    .bounty-thanks {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1.2rem 1.4rem;
+    }
+    .bounty-thanks h3 { font-size: 1.05rem; margin: 0 0 0.7rem; }
+    .bounty-people { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; }
+    .bounty-person {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      text-decoration: none;
+      color: var(--ink);
+      font-size: 0.92rem;
+    }
+    .bounty-person img {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: var(--bg);
+    }
+    .bounty-person span { color: var(--muted); font-size: 0.82rem; }
+    .bounty-person:hover { color: var(--accent); }
+    .bounty-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-top: 1.2rem; }
+
     .section-h2 {
       font-size: clamp(1.4rem, 2.5vw, 2rem);
       margin: 0 0 0.3rem;
@@ -813,6 +872,10 @@
         <div class="stat-number">10+</div>
         <div class="stat-label">Active<br>Researchers</div>
       </a>
+      <a href="bounties.html" class="stat-card">
+        <div class="stat-number" data-bounty-count="completed">30+</div>
+        <div class="stat-label">Bounties<br>Completed</div>
+      </a>
     </section>
 
     <!-- ── Used by (from data/citations.json; institutions with a paper that uses PyHealth) ── -->
@@ -882,6 +945,21 @@
       <div class="roi-cta">
         <a href="https://colab.research.google.com/drive/1KXloapcMeYubw4dT_fPJKTY1pepH2vvl" class="ph-btn primary" target="_blank" rel="noopener">Try it: 10-minute Quickstart in Colab →</a>
         <a href="https://github.com/sunlabuiuc/PyHealth" class="roi-star" target="_blank" rel="noopener">★ Star PyHealth on GitHub</a>
+      </div>
+    </section>
+
+    <!-- ── Bounties (from data/bounties.json, synced nightly from PyHealth) ── -->
+    <section class="bounty-section fade-up" id="bounties">
+      <h2 class="section-h2">Build PyHealth with us: open bounties</h2>
+      <p class="section-sub" id="bountySub">Models, datasets, tasks and tools we'd love help adding. Claim one with a pull request; when it merges, your name goes on this page.</p>
+      <div class="bounty-grid" id="bountyOpen" aria-live="polite"></div>
+      <div class="bounty-thanks">
+        <h3 id="bountyThanksTitle">Thank you to our bounty contributors</h3>
+        <div class="bounty-people" id="bountyPeople"></div>
+      </div>
+      <div class="bounty-cta">
+        <a href="bounties.html" class="ph-btn primary">All bounties and contributors →</a>
+        <a href="https://github.com/sunlabuiuc/PyHealth/issues/1489" class="roi-star" target="_blank" rel="noopener">How to claim one (bounty board)</a>
       </div>
     </section>
 
@@ -1319,6 +1397,55 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Bounties: open ones to claim and the people who completed them.
+    (function loadBounties() {
+      const el = (tag, cls, text) => {
+        const node = document.createElement(tag);
+        if (cls) node.className = cls;
+        if (text !== undefined) node.textContent = text;
+        return node;
+      };
+      fetch('data/bounties.json').then(r => r.json()).then(data => {
+        const c = data.counts;
+        document.querySelectorAll('[data-bounty-count]').forEach(n => {
+          n.textContent = c[n.dataset.bountyCount];
+        });
+        document.getElementById('bountySub').textContent =
+          `${c.open} open bounties: models, datasets, tasks and tools we'd love help ` +
+          `adding. ${c.completed} completed so far by ${c.contributors} contributors. ` +
+          `Claim one with a pull request; when it merges, your name goes on this page.`;
+        const grid = document.getElementById('bountyOpen');
+        const free = data.open.filter(b => !b.claimed_by.length);
+        (free.length ? free : data.open).slice(0, 4).forEach(b => {
+          const a = el('a', 'bounty-card');
+          a.href = data.board_url;
+          a.target = '_blank';
+          a.rel = 'noopener';
+          a.append(el('span', 'bounty-meta', `BTY-${b.id} · ${b.category}`),
+                   el('h3', null, b.title));
+          grid.append(a);
+        });
+        const people = document.getElementById('bountyPeople');
+        data.contributors.forEach(p => {
+          const a = el('a', 'bounty-person');
+          a.href = `https://github.com/${encodeURIComponent(p.login)}`;
+          a.target = '_blank';
+          a.rel = 'noopener';
+          const img = el('img');
+          img.src = `https://github.com/${encodeURIComponent(p.login)}.png?size=56`;
+          img.alt = '';
+          img.loading = 'lazy';
+          const n = p.bounties.length;
+          a.append(img, el('strong', null, p.login),
+                   el('span', null, n > 1 ? `${n} bounties` : '1 bounty'));
+          people.append(a);
+        });
+      }).catch(() => {
+        document.getElementById('bountyOpen').append(
+          el('p', 'section-sub', 'See the bounty board on GitHub for open bounties.'));
+      });
+    })();
 
     let exploreRevealed = false;
     function revealExplore(fromScroll) {
