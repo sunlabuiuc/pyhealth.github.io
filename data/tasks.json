@@ -4585,7 +4585,9 @@
       "label": "binary"
     },
     "output_type": "binary",
-    "modality": [],
+    "modality": [
+      "signal"
+    ],
     "source_file": "pyhealth/tasks/dementia_classification_ahepa.py",
     "dataset_classes": [
       "AHEPADementiaDataset"
@@ -4595,7 +4597,9 @@
     "example_url": null,
     "inferred": {
       "output_type": "binary",
-      "modality": []
+      "modality": [
+        "signal"
+      ]
     }
   },
   {
