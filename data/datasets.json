@@ -409,6 +409,12 @@
     "access": "open",
     "access_note": "CC0 license"
   },
+  "NSRRSleepDataset": {
+    "label": "NSRRSleep",
+    "modality": "signal",
+    "description": "Overnight polysomnography from the NSRR (SHHS and MESA cohorts).",
+    "snippet": "from pyhealth.datasets import NSRRSleepDataset\ndataset = NSRRSleepDataset(\n    root=\"data/nsrrsleep/\",\n)"
+  },
   "COVID19CXRDataset": {
     "label": "COVID19-CXR",
     "access": "open",

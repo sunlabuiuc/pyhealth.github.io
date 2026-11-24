@@ -4632,5 +4632,127 @@
         "signal"
       ]
     }
+  },
+  {
+    "class_name": "DelphiTrajectoryMEDS",
+    "display_name": "Delphi Trajectory MEDS",
+    "display_class": null,
+    "task_name": "DelphiTrajectoryMEDS",
+    "description": "Next-event samples from a MEDS patient for Delphi-2M.",
+    "datasets": [],
+    "input_schema": {
+      "codes": "sequence",
+      "ages": "tensor"
+    },
+    "output_schema": {
+      "next_code": "multiclass",
+      "time_to_next": "tensor"
+    },
+    "output_type": "multiclass",
+    "modality": [
+      "ehr"
+    ],
+    "source_file": "pyhealth/tasks/delphi_trajectory.py",
+    "dataset_classes": [],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": "multiclass",
+      "modality": [
+        "ehr"
+      ]
+    }
+  },
+  {
+    "class_name": "DelphiTrajectoryMIMIC4",
+    "display_name": "Delphi Trajectory MIMIC4",
+    "display_class": null,
+    "task_name": "DelphiTrajectoryMIMIC4",
+    "description": "Next-event ICD samples from a MIMIC-IV patient for Delphi-2M.",
+    "datasets": [],
+    "input_schema": {
+      "codes": "sequence",
+      "ages": "tensor"
+    },
+    "output_schema": {
+      "next_code": "multiclass",
+      "time_to_next": "tensor"
+    },
+    "output_type": "multiclass",
+    "modality": [
+      "ehr"
+    ],
+    "source_file": "pyhealth/tasks/delphi_trajectory.py",
+    "dataset_classes": [
+      "MIMIC4EHRDataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": "multiclass",
+      "modality": [
+        "ehr"
+      ]
+    }
+  },
+  {
+    "class_name": "DelphiTrajectoryUKB",
+    "display_name": "Delphi Trajectory UKB",
+    "display_class": null,
+    "task_name": "DelphiTrajectoryUKB",
+    "description": "Next-event samples from pre-extracted UK Biobank events.",
+    "datasets": [],
+    "input_schema": {
+      "codes": "sequence",
+      "ages": "tensor"
+    },
+    "output_schema": {
+      "next_code": "multiclass",
+      "time_to_next": "tensor"
+    },
+    "output_type": "multiclass",
+    "modality": [
+      "ehr"
+    ],
+    "source_file": "pyhealth/tasks/delphi_trajectory.py",
+    "dataset_classes": [],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": "multiclass",
+      "modality": [
+        "ehr"
+      ]
+    }
+  },
+  {
+    "class_name": "SleepStagingCardioRespiratory",
+    "display_name": "Sleep Staging Cardio Respiratory",
+    "display_class": null,
+    "task_name": "SleepStagingCardioRespiratory",
+    "description": "Sleep staging from cardio-respiratory signals (wav2sleep-style).",
+    "datasets": [],
+    "input_schema": {
+      "ecg": "tensor",
+      "thx": "tensor",
+      "abd": "tensor"
+    },
+    "output_schema": {
+      "label": "multiclass"
+    },
+    "output_type": "multiclass",
+    "modality": [],
+    "source_file": "pyhealth/tasks/sleep_staging_nsrr.py",
+    "dataset_classes": [],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": "multiclass",
+      "modality": []
+    }
   }
 ]
