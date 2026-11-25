@@ -4754,5 +4754,59 @@
       "output_type": "multiclass",
       "modality": []
     }
+  },
+  {
+    "class_name": "SleepStagingHMC",
+    "display_name": "Sleep Staging HMC",
+    "display_class": null,
+    "task_name": "SleepStagingHMC",
+    "description": "Multi-class sleep staging on the HMC database.",
+    "datasets": [],
+    "input_schema": {
+      "signal": "tensor"
+    },
+    "output_schema": {
+      "label": "multiclass"
+    },
+    "output_type": "multiclass",
+    "modality": [],
+    "source_file": "pyhealth/tasks/sleep_staging_hmc.py",
+    "dataset_classes": [
+      "HMCDataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": "multiclass",
+      "modality": []
+    }
+  },
+  {
+    "class_name": "ValueSetPairClassification",
+    "display_name": "Value Set Pair Classification",
+    "display_class": null,
+    "task_name": "ValueSetPairClassification",
+    "description": "Labels (value set title, candidate code name) text pairs as in or out.",
+    "datasets": [],
+    "input_schema": null,
+    "output_schema": null,
+    "output_type": null,
+    "modality": [
+      "ehr"
+    ],
+    "source_file": "pyhealth/tasks/value_set_pair_classification.py",
+    "dataset_classes": [
+      "VSACDataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": null,
+      "modality": [
+        "ehr"
+      ]
+    }
   }
 ]

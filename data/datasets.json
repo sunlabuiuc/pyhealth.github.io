@@ -415,6 +415,15 @@
     "description": "Overnight polysomnography from the NSRR (SHHS and MESA cohorts).",
     "snippet": "from pyhealth.datasets import NSRRSleepDataset\ndataset = NSRRSleepDataset(\n    root=\"data/nsrrsleep/\",\n)"
   },
+  "HMCDataset": {
+    "label": "HMC",
+    "modality": "signal",
+    "description": "Haaglanden Medisch Centrum (HMC) sleep staging database.",
+    "snippet": "from pyhealth.datasets import HMCDataset\ndataset = HMCDataset(\n    root=\"data/hmc/\",\n)",
+    "source_url": "https://physionet.org/content/hmc-sleep-staging/1.1/",
+    "access": "open",
+    "access_note": "Creative Commons Attribution 4.0 license"
+  },
   "COVID19CXRDataset": {
     "label": "COVID19-CXR",
     "access": "open",
