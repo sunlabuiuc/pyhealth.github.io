@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PyHealth Tutorials</title>
-  <meta name="description" content="Nine Colab notebooks that teach PyHealth 2.1, from a 10-minute quickstart study to calibration, interpretability, clinical text and contributing.">
+  <meta name="description" content="Ten Colab notebooks that teach PyHealth 2.1, from a 10-minute quickstart study to calibration, interpretability, clinical text, contributing and AutoImprove.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
@@ -502,7 +502,7 @@
     <section class="ph-hero">
       <p class="ph-eyebrow">PyHealth Tutorials</p>
       <h1>Learn PyHealth in Colab</h1>
-      <p class="ph-tagline">Nine hands-on notebooks for PyHealth 2.1, from your first clinical prediction model to calibration, interpretability, clinical text and contributing. Every notebook runs on a free Colab runtime with synthetic or public data, so no credentials are needed.</p>
+      <p class="ph-tagline">Ten hands-on notebooks for PyHealth 2.1, from your first clinical prediction model to calibration, interpretability, clinical text, contributing and letting agents improve your pipeline with AutoImprove. Every notebook runs on a free Colab runtime with synthetic or public data, so no credentials are needed.</p>
       <div class="ph-cta-row">
         <a href="https://colab.research.google.com/drive/1KXloapcMeYubw4dT_fPJKTY1pepH2vvl" class="ph-btn primary" target="_blank" rel="noopener">Start with the Quickstart →</a>
         <a href="#whats-new" class="ph-btn outline">What's new in 2.1</a>
@@ -549,7 +549,7 @@
 
     <section class="research-section">
       <h2 class="section-h2">The full series</h2>
-      <p class="tut-note">Open a notebook and choose <strong>Runtime &gt; Run all</strong>. The first cell installs <code>pyhealth==2.1.0</code>. Each tutorial lists what it assumes, so you can also jump straight to the topic you need. Tested end to end on Colab with PyHealth 2.1.0.</p>
+      <p class="tut-note">Open a notebook and choose <strong>Runtime &gt; Run all</strong>. The first cell installs <code>pyhealth==2.1.0</code>. Each tutorial lists what it assumes, so you can also jump straight to the topic you need. Tested end to end on Colab with PyHealth 2.1.0. Tutorial 09 covers AutoImprove, added after 2.1.0, so it installs PyHealth from GitHub.</p>
       <div class="tut-list">
       <article class="tut-card">
         <div class="tut-num">00</div>
@@ -640,6 +640,16 @@
           <a class="tut-guide" href="images/tutorials/08-contributing.svg" target="_blank" rel="noopener" title="Open the visual guide full size"><img src="images/tutorials/08-contributing.svg" alt="Visual guide: Put each contribution in the right layer" loading="lazy" width="1440" height="940"><span>Visual guide · click to enlarge</span></a>
         </div>
         <a class="ph-btn primary tut-btn" href="https://colab.research.google.com/drive/1tuiooZgK-rR50NdCG9Ylq5HNgqSUBwvE" target="_blank" rel="noopener">Open in Colab →</a>
+      </article>
+      <article class="tut-card">
+        <div class="tut-num">09</div>
+        <div class="tut-body">
+          <h3>AutoImprove: letting agents improve your pipeline</h3>
+          <ul><li>How agents (an LLM or random search) propose models and settings from your starting pipeline, and why proposals are data, never code</li><li>How patient-grouped cross-validation and the one-SE rule pick a gain that holds up, preferring the simpler model when two are within noise</li><li>How to measure what each changed setting contributed, then test the selection once with a paired confidence interval</li><li>How to read the run's report, and how a null-label control shows the search does not find gains in noise</li></ul>
+          <p class="tut-meta">about 5 minutes on a free Colab CPU runtime · synthetic data, no API key needed · Before this: Tutorials 03 and 04</p>
+          <a class="tut-guide" href="images/tutorials/09-autoimprove.svg" target="_blank" rel="noopener" title="Open the visual guide full size"><img src="images/tutorials/09-autoimprove.svg" alt="Visual guide: Let agents search; keep only the gains that hold up" loading="lazy" width="1440" height="940"><span>Visual guide · click to enlarge</span></a>
+        </div>
+        <a class="ph-btn primary tut-btn" href="https://colab.research.google.com/github/sunlabuiuc/PyHealth/blob/master/examples/tutorials/series/09_autoimprove.ipynb" target="_blank" rel="noopener">Open in Colab →</a>
       </article>
       </div>
     </section>
