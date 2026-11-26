@@ -4769,7 +4769,9 @@
       "label": "multiclass"
     },
     "output_type": "multiclass",
-    "modality": [],
+    "modality": [
+      "signal"
+    ],
     "source_file": "pyhealth/tasks/sleep_staging_hmc.py",
     "dataset_classes": [
       "HMCDataset"
@@ -4779,7 +4781,9 @@
     "example_url": null,
     "inferred": {
       "output_type": "multiclass",
-      "modality": []
+      "modality": [
+        "signal"
+      ]
     }
   },
   {
@@ -4804,6 +4808,38 @@
     "example_url": null,
     "inferred": {
       "output_type": null,
+      "modality": [
+        "ehr"
+      ]
+    }
+  },
+  {
+    "class_name": "PhysioNet2012Mortality",
+    "display_name": "Physio Net2012 Mortality",
+    "display_class": null,
+    "task_name": "PhysioNet2012Mortality",
+    "description": "Predict in-hospital death from the irregular ICU time series.",
+    "datasets": [],
+    "input_schema": {
+      "x": "tensor",
+      "x_time": "tensor"
+    },
+    "output_schema": {
+      "mortality": "binary"
+    },
+    "output_type": "binary",
+    "modality": [
+      "ehr"
+    ],
+    "source_file": "pyhealth/tasks/physionet2012_mortality.py",
+    "dataset_classes": [
+      "PhysioNet2012Dataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": "binary",
       "modality": [
         "ehr"
       ]
