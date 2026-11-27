@@ -1,0 +1,1093 @@
+{
+  "board_url": "https://github.com/sunlabuiuc/PyHealth/issues/1489",
+  "counts": {
+    "open": 36,
+    "claimed": 7,
+    "completed": 40,
+    "partial": 0,
+    "contributors": 22
+  },
+  "open": [
+    {
+      "id": 23,
+      "title": "SHHS Dataset PyHealth 2.0 Migration",
+      "category": "dataset",
+      "priority": 1,
+      "description": "Move SHHSDataset off the legacy BaseSignalDataset onto the 2.0 BaseDataset (YAML config and processors) and ensure the sleep-staging task runs on it, using TUEV as the reference port. [code1](https://github.com/sunlabuiuc/PyHealth/blob/master/pyhealth/datasets/shhs.py), [code2](https://github.com/sunlabuiuc/PyHealth/blob/master/pyhealth/datasets/tuev.py)",
+      "claimed_by": [
+        "ptsoumaki"
+      ],
+      "prs": [
+        1500
+      ]
+    },
+    {
+      "id": 27,
+      "title": "Add YAIB Benchmarks into PyHealth",
+      "category": "task",
+      "priority": 1,
+      "description": "Port the YAIB (Yet Another ICU Benchmark) cohorts and tasks (mortality, AKI, sepsis, kidney function, and length of stay) so PyHealth models can be scored against YAIB baselines on MIMIC-IV and eICU. [code](https://github.com/rvandewater/yaib)",
+      "claimed_by": [],
+      "prs": []
+    },
+    {
+      "id": 29,
+      "title": "Awaken the Giant / GiantMed (KDD 2026)",
+      "category": "model",
+      "priority": 1,
+      "description": "Implement Awaken the Giant (GiantMed), a boundary-aware deep-model-guided LLM framework for medication recommendation on MIMIC-III and MIMIC-IV.",
+      "claimed_by": [
+        "dalloliogm"
+      ],
+      "prs": [
+        1502
+      ]
+    },
+    {
+      "id": 30,
+      "title": "LLM Code-Embedding Transfer (npj Digital Medicine 2026)",
+      "category": "model",
+      "priority": 1,
+      "description": "Add LLM-embedding transfer of EHR predictors across coding systems (such as OMOP/ICD to other vocabularies) for cross-coding-system clinical prediction. [code](https://github.com/mkirchler/grasp), [paper](https://doi.org/10.1038/s41746-026-02363-5)",
+      "claimed_by": [],
+      "prs": []
+    },
+    {
+      "id": 31,
+      "title": "RePrompT (ACL 2026)",
+      "category": "model",
+      "priority": 1,
+      "description": "Implement RePrompT (recurrent prompt tuning integrating structured EHR encoders with LLMs), along with RASPER and ARCI baselines, on MIMIC-III and MIMIC-IV. [code](https://github.com/KU-AI4H/RePrompT), [paper](https://arxiv.org/abs/2604.17725)",
+      "claimed_by": [],
+      "prs": []
+    },
+    {
+      "id": 33,
+      "title": "Context Clues Long-Context EHR Foundation Models (ICLR 2025)",
+      "category": "model",
+      "priority": 1,
+      "description": "Add long-context EHR foundation models (Mamba, Hyena, Llama, GPT) from Context Clues and evaluate them head-to-head against PyHealth's EHRMamba on EHRSHOT and OMOP. [code](https://github.com/som-shahlab/hf_ehr), [paper](https://arxiv.org/abs/2412.16178)",
+      "claimed_by": [],
+      "prs": []
+    },
+    {
+      "id": 35,
+      "title": "FLAME (NeurIPS 2025)",
+      "category": "model",
+      "priority": 1,
+      "description": "Implement FLAME for fine-grained list-wise LLM medication recommendation on PyHealth's MIMIC-III/IV and eICU drug-recommendation tasks alongside SafeDrug, GAMENet, MICRON, and MoleRec. [code](https://github.com/cxfann/Flame), [paper](https://arxiv.org/abs/2505.20218)",
+      "claimed_by": [],
+      "prs": []
+    },
+    {
+      "id": 37,
+      "title": "MIRA Medical Time-Series Foundation Model (NeurIPS 2025)",
+      "category": "model",
+      "priority": 1,
+      "description": "Integrate MIRA as a medical time-series foundation encoder for PyHealth ICU and biosignal tasks across MIMIC-III/IV, PhysioNet 2012, PTB-XL, and Sleep-EDF. [code](https://github.com/microsoft/MIRA), [paper](https://arxiv.org/abs/2506.07584)",
+      "claimed_by": [],
+      "prs": []
+    },
+    {
+      "id": 39,
+      "title": "MedTok Multimodal Code Tokenizer (ICML 2025)",
+      "category": "model",
+      "priority": 1,
+      "description": "Add MedTok as a drop-in multimodal medical code tokenizer and embedding module for PyHealth EHR models on MIMIC-III/IV and EHRSHOT tasks. [code](https://github.com/mims-harvard/MedTok), [paper](https://arxiv.org/abs/2502.04397)",
+      "claimed_by": [
+        "irvifa"
+      ],
+      "prs": [
+        1630
+      ]
+    },
+    {
+      "id": 40,
+      "title": "DiPro (NeurIPS 2025)",
+      "category": "model",
+      "priority": 1,
+      "description": "Implement DiPro for longitudinal EHR and sequential chest X-ray disease-progression modeling on MIMIC-IV and MIMIC-CXR. [code](https://github.com/Chenliu-svg/DiPro), [paper](https://arxiv.org/abs/2510.11112)",
+      "claimed_by": [],
+      "prs": []
+    },
+    {
+      "id": 42,
+      "title": "APN Irregular Time-Series Forecasting (AAAI 2025)",
+      "category": "model",
+      "priority": 1,
+      "description": "Add APN as a simple baseline model alongside an irregular clinical time-series forecasting task on PhysioNet 2012 and MIMIC. [code](https://github.com/decisionintelligence/APN), [paper](https://arxiv.org/abs/2505.11250)",
+      "claimed_by": [
+        "arslan-shafique"
+      ],
+      "prs": [
+        1610
+      ]
+    },
+    {
+      "id": 43,
+      "title": "ARMR (IJCAI 2025)",
+      "category": "model",
+      "priority": 1,
+      "description": "Implement ARMR (Adaptively Responsive Network) for PyHealth's MIMIC-III and MIMIC-IV medication-recommendation tasks. [code](https://github.com/seucoin/armr2), [paper](https://arxiv.org/abs/2507.04428)",
+      "claimed_by": [],
+      "prs": []
+    },
+    {
+      "id": 45,
+      "title": "FedWeight Cross-Site Federated EHR Benchmark (npj Digital Medicine 2025)",
+      "category": "task",
+      "priority": 1,
+      "description": "Add the FedWeight patient density-ratio re-weighting federated learning benchmark across hospital sites on eICU and MIMIC-III. [code](https://github.com/li-lab-mcgill/FedWeight), [paper](https://doi.org/10.1038/s41746-025-01661-8)",
+      "claimed_by": [],
+      "prs": []
+    },
+    {
+      "id": 47,
+      "title": "II-KEA (EMNLP 2025)",
+      "category": "model",
+      "priority": 1,
+      "description": "Implement II-KEA, a knowledge-enhanced agentic causal-discovery diagnosis predictor, for PyHealth's MIMIC-III and MIMIC-IV tasks. [code](https://github.com/hanxiaoxue114/II-KEA_HealthcareAgent), [paper](https://arxiv.org/abs/2505.16288)",
+      "claimed_by": [],
+      "prs": []
+    },
+    {
+      "id": 48,
+      "title": "NutriSighT Underfeeding Prediction Task (Nature Communications 2025)",
+      "category": "task",
+      "priority": 1,
+      "description": "Add the ICU underfeeding prediction task for ventilated patients on MIMIC-IV and AmsterdamUMCdb along with the NutriSighT transformer baseline. [code](https://github.com/mjangda3/NutriSighT), [paper](https://doi.org/10.1038/s41467-025-66200-1)",
+      "claimed_by": [],
+      "prs": []
+    },
+    {
+      "id": 51,
+      "title": "Diffmv Missing-View Diffusion (KDD 2025)",
+      "category": "model",
+      "priority": 1,
+      "description": "Implement Diffmv, a unified diffusion framework for multimodal EHR prediction with random missing views and view laziness on MIMIC-III/IV and eICU. [code](https://github.com/xmed-lab/MMHealth), [paper](https://arxiv.org/abs/2501.16373)",
+      "claimed_by": [],
+      "prs": []
+    },
+    {
+      "id": 52,
+      "title": "APRICOT-M (Nature Communications 2025)",
+      "category": "model",
+      "priority": 1,
+      "description": "Implement the APRICOT-M state-space model and real-time ICU acuity and therapy-requirement prediction tasks on eICU and MIMIC-IV. [code](https://github.com/iheallab/apricotM), [paper](https://doi.org/10.1038/s41467-025-62121-1)",
+      "claimed_by": [],
+      "prs": []
+    },
+    {
+      "id": 53,
+      "title": "KnowRare (npj Digital Medicine 2025)",
+      "category": "model",
+      "priority": 1,
+      "description": "Implement the KnowRare domain-adaptation model and rare-condition ICU outcome tasks across MIMIC-III, MIMIC-IV, and eICU. [code](https://github.com/JasonZuu/KnowRare), [paper](https://arxiv.org/abs/2507.06432)",
+      "claimed_by": [],
+      "prs": []
+    },
+    {
+      "id": 54,
+      "title": "LLMs as EHR Encoders (npj Digital Medicine 2025)",
+      "category": "model",
+      "priority": 1,
+      "description": "Add the LLM-embedding EHR encoder baseline (serialize EHR events, embed with an LLM, and fit a linear head) on EHRSHOT and MIMIC tasks. [code](https://github.com/stefanhgm/ehrshot-benchmark), [paper](https://arxiv.org/abs/2502.17403)",
+      "claimed_by": [],
+      "prs": []
+    },
+    {
+      "id": 55,
+      "title": "MEME Pseudo-Notes EHR Model (npj Digital Medicine 2025)",
+      "category": "model",
+      "priority": 1,
+      "description": "Implement the MEME multiple-embedding model (EHR-to-pseudo-notes) and MIMIC-IV-ED disposition and decompensation tasks on MIMIC-IV and EHRSHOT. [code](https://github.com/Simonlee711/MEME), [paper](https://doi.org/10.1038/s41746-025-01777-x)",
+      "claimed_by": [],
+      "prs": []
+    },
+    {
+      "id": 56,
+      "title": "TRACE Intra-Visit Lab Nowcasting (WWW 2025)",
+      "category": "task",
+      "priority": 1,
+      "description": "Add the intra-visit lab-value nowcasting task on MIMIC-III and MIMIC-IV along with the TRACE patient-trajectory encoder. [code](https://github.com/Amehi/TRACE), [paper](https://arxiv.org/abs/2503.23072)",
+      "claimed_by": [],
+      "prs": []
+    },
+    {
+      "id": 21,
+      "title": "GAN PyHealth 2.0 Migration",
+      "category": "model",
+      "priority": 2,
+      "description": "Port pyhealth/models/gan.py to the PyHealth 2.0 BaseModel and SampleDataset API with unit tests and an example notebook. Coordinate with open PR #1303, which adds a MIMIC-III code-set mode. [code](https://github.com/sunlabuiuc/PyHealth/blob/master/pyhealth/models/gan.py)",
+      "claimed_by": [
+        "margaretdu"
+      ],
+      "prs": [
+        1303
+      ]
+    },
+    {
+      "id": 22,
+      "title": "VAE PyHealth 2.0 Migration",
+      "category": "model",
+      "priority": 2,
+      "description": "Port pyhealth/models/vae.py to the PyHealth 2.0 BaseModel and SampleDataset API so it trains through the standard Trainer, with unit tests and an example notebook. [code](https://github.com/sunlabuiuc/PyHealth/blob/master/pyhealth/models/vae.py)",
+      "claimed_by": [],
+      "prs": []
+    },
+    {
+      "id": 58,
+      "title": "ETHOS-ARES (GigaScience 2025)",
+      "category": "model",
+      "priority": 2,
+      "description": "Implement the ETHOS generative timeline model and MEDS-based hospital outcome tasks (mortality, ICU admission, readmission, and length of stay) on MIMIC-IV using PyHealth's MEDSDataset. [code](https://github.com/ipolharvard/ethos-ares), [paper](https://arxiv.org/abs/2502.06124)",
+      "claimed_by": [],
+      "prs": []
+    },
+    {
+      "id": 59,
+      "title": "MedPatch (MLHC 2025)",
+      "category": "model",
+      "priority": 2,
+      "description": "Implement MedPatch confidence-guided multimodal fusion (EHR time series, CXR, and notes) on MIMIC-IV and MIMIC-CXR alongside MedFuse. [code](https://github.com/nyuad-cai/MedPatch), [paper](https://arxiv.org/abs/2508.09182)",
+      "claimed_by": [],
+      "prs": []
+    },
+    {
+      "id": 60,
+      "title": "TrajSurv (MLHC 2025)",
+      "category": "model",
+      "priority": 2,
+      "description": "Implement the TrajSurv continuous-trajectory survival model and survival prediction tasks on MIMIC-III and eICU. [code](https://github.com/zengsihang/TrajSurv), [paper](https://arxiv.org/abs/2508.00657)",
+      "claimed_by": [],
+      "prs": []
+    },
+    {
+      "id": 61,
+      "title": "MultimodalMIMIC (ICML 2023)",
+      "category": "model",
+      "priority": 2,
+      "description": "Add the irregular multimodal EHR model (time attention over irregularly sampled vitals/labs fused with clinical notes) for MIMIC-III in-hospital mortality and phenotyping. [code](https://github.com/XZhang97666/MultimodalMIMIC)",
+      "claimed_by": [],
+      "prs": []
+    },
+    {
+      "id": 62,
+      "title": "MEDFAIR Imaging Fairness Benchmark (ICLR 2023)",
+      "category": "task",
+      "priority": 2,
+      "description": "Add MEDFAIR's group fairness metrics, model-selection criteria, and debiasing baselines for PyHealth's medical imaging tasks. [code](https://github.com/ys-zong/MEDFAIR)",
+      "claimed_by": [
+        "sanniheruwala"
+      ],
+      "prs": [
+        1560
+      ]
+    },
+    {
+      "id": 63,
+      "title": "MIU-VL Medical Image VLMs (ICLR 2023)",
+      "category": "model",
+      "priority": 2,
+      "description": "Add prompt-based pretrained vision-language model baselines for medical image detection in PyHealth. [code](https://github.com/MembrAI/MIU-VL)",
+      "claimed_by": [],
+      "prs": []
+    },
+    {
+      "id": 67,
+      "title": "CEHR-GPT (arXiv 2024)",
+      "category": "model",
+      "priority": 3,
+      "description": "Implement the CEHR-GPT generative OMOP foundation model for synthetic patient timelines, building on PyHealth's existing CEHR embeddings and processor. [code](https://github.com/knatarajan-lab/cehrgpt), [paper](https://arxiv.org/abs/2402.04400)",
+      "claimed_by": [],
+      "prs": []
+    },
+    {
+      "id": 69,
+      "title": "HiCu Curriculum ICD Coding (MLHC 2022)",
+      "category": "model",
+      "priority": 3,
+      "description": "Add HiCu curriculum learning over the ICD hierarchy to PyHealth's automated medical-coding task on MIMIC-III clinical notes. [code](https://github.com/wren93/HiCu-ICD)",
+      "claimed_by": [],
+      "prs": []
+    },
+    {
+      "id": 70,
+      "title": "GenoML Multimodal Parkinson's Classifier (npj Parkinson's Disease 2022)",
+      "category": "model",
+      "priority": 4,
+      "description": "Add the multimodal (genetics and clinical) Parkinson's disease classifier in PyHealth, noting that PPMI data access and a loader are required. [code](https://github.com/GenoML/GenoML_multimodal_PD)",
+      "claimed_by": [],
+      "prs": []
+    },
+    {
+      "id": 71,
+      "title": "Convolution Over Medical Entities (AI in Medicine 2021)",
+      "category": "model",
+      "priority": 4,
+      "description": "Implement the multimodal CNN over extracted medical entities combined with clinical time series for MIMIC-III mortality and length-of-stay prediction. [code](https://github.com/tanlab/ConvolutionMedicalNer)",
+      "claimed_by": [],
+      "prs": []
+    },
+    {
+      "id": 72,
+      "title": "Temporal Pointwise Convolution / TPC (CHIL 2021)",
+      "category": "model",
+      "priority": 4,
+      "description": "Implement the Temporal Pointwise Convolution (TPC) model for ICU length-of-stay and mortality prediction on eICU and MIMIC-IV. [code](https://github.com/EmmaRocheteau/TPC-LoS-prediction)",
+      "claimed_by": [
+        "SubbuM123",
+        "tkumar007"
+      ],
+      "prs": [
+        1412,
+        1428
+      ]
+    },
+    {
+      "id": 73,
+      "title": "ICU Readmission Architecture Benchmark (Scientific Reports 2020)",
+      "category": "task",
+      "priority": 4,
+      "description": "Add the time-aware attention and sequence model baselines together with the ICU readmission benchmark on MIMIC-III. [code](https://github.com/sebbarb/time_aware_attention)",
+      "claimed_by": [],
+      "prs": []
+    },
+    {
+      "id": 76,
+      "title": "Clinical Fusion Structured + Notes Baselines (BMC MIDM 2020)",
+      "category": "model",
+      "priority": 4,
+      "description": "Add the structured-plus-unstructured clinical notes fusion baselines for MIMIC-III mortality, length of stay, and readmission prediction. [code](https://github.com/onlyzdd/clinical-fusion)",
+      "claimed_by": [],
+      "prs": []
+    }
+  ],
+  "completed": [
+    {
+      "id": 75,
+      "title": "BiteNet (ICDM 2020)",
+      "category": "model",
+      "priority": 4,
+      "credit": [
+        {
+          "login": "Alhibb",
+          "prs": [
+            1528
+          ]
+        }
+      ]
+    },
+    {
+      "id": 74,
+      "title": "BEHRT (Scientific Reports 2020)",
+      "category": "model",
+      "priority": 4,
+      "credit": [
+        {
+          "login": "Alhibb",
+          "prs": [
+            1517
+          ]
+        }
+      ]
+    },
+    {
+      "id": 68,
+      "title": "DescEmb Text-Based Code Embedding (MLHC 2022)",
+      "category": "model",
+      "priority": 3,
+      "credit": [
+        {
+          "login": "Alhibb",
+          "prs": [
+            1530
+          ]
+        }
+      ]
+    },
+    {
+      "id": 66,
+      "title": "Fair Conformal Predictors for Medical Imaging (AAAI 2022)",
+      "category": "calibration",
+      "priority": 3,
+      "credit": [
+        {
+          "login": "Alhibb",
+          "prs": [
+            1513
+          ]
+        }
+      ]
+    },
+    {
+      "id": 65,
+      "title": "CHET Dynamic Disease Graphs (AAAI 2022)",
+      "category": "model",
+      "priority": 3,
+      "credit": [
+        {
+          "login": "Alhibb",
+          "prs": [
+            1550
+          ]
+        }
+      ]
+    },
+    {
+      "id": 64,
+      "title": "SleepKD Sleep EEG Distillation (IJCAI 2023)",
+      "category": "model",
+      "priority": 2,
+      "credit": [
+        {
+          "login": "samehaisaa",
+          "prs": [
+            1503
+          ]
+        },
+        {
+          "login": "irvifa",
+          "prs": [
+            1518
+          ]
+        }
+      ]
+    },
+    {
+      "id": 57,
+      "title": "ProtoECGNet (MLHC 2025)",
+      "category": "model",
+      "priority": 2,
+      "credit": [
+        {
+          "login": "irvifa",
+          "prs": [
+            1323,
+            1525
+          ]
+        }
+      ]
+    },
+    {
+      "id": 50,
+      "title": "UDC Rare-Disease Prediction (WWW 2025)",
+      "category": "model",
+      "priority": 1,
+      "credit": [
+        {
+          "login": "Alhibb",
+          "prs": [
+            1529
+          ]
+        }
+      ]
+    },
+    {
+      "id": 49,
+      "title": "Joint Sequence and Image Irregular Time-Series Model (AAAI 2025)",
+      "category": "model",
+      "priority": 1,
+      "credit": [
+        {
+          "login": "irvifa",
+          "prs": [
+            1605
+          ]
+        }
+      ]
+    },
+    {
+      "id": 46,
+      "title": "GAME Multi-Institution Code Embeddings (Nature Communications 2025)",
+      "category": "model",
+      "priority": 1,
+      "credit": [
+        {
+          "login": "Alhibb",
+          "prs": [
+            1582
+          ]
+        }
+      ]
+    },
+    {
+      "id": 44,
+      "title": "DearLLM (AAAI 2025)",
+      "category": "model",
+      "priority": 1,
+      "credit": [
+        {
+          "login": "thekavishshah",
+          "prs": [
+            1553
+          ]
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "title": "HeartLang (ICLR 2025)",
+      "category": "model",
+      "priority": 1,
+      "credit": [
+        {
+          "login": "rayrayowo",
+          "prs": [
+            1571,
+            1613
+          ]
+        }
+      ]
+    },
+    {
+      "id": 38,
+      "title": "TarDiff Synthetic EHR Time-Series Generator (KDD 2025)",
+      "category": "model",
+      "priority": 1,
+      "credit": [
+        {
+          "login": "irvifa",
+          "prs": [
+            1552,
+            1562,
+            1578
+          ]
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "title": "MAESTRO (NeurIPS 2025)",
+      "category": "model",
+      "priority": 1,
+      "credit": [
+        {
+          "login": "Chinmaykatpatal",
+          "prs": [
+            1549
+          ]
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "title": "Delphi-2M (Nature 2025)",
+      "category": "model",
+      "priority": 1,
+      "credit": [
+        {
+          "login": "etikhonov-dev",
+          "prs": [
+            1587
+          ]
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "title": "CLIMB Multimodal Task Suite (ICML 2025)",
+      "category": "task",
+      "priority": 1,
+      "credit": [
+        {
+          "login": "irvifa",
+          "prs": [
+            1617
+          ]
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "title": "EviCare (KDD 2026)",
+      "category": "model",
+      "priority": 1,
+      "credit": [
+        {
+          "login": "thekavishshah",
+          "prs": [
+            1599
+          ]
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "title": "Raw Attention Interpretability Method",
+      "category": "interpretability",
+      "priority": 2,
+      "credit": [
+        {
+          "login": "irvifa",
+          "prs": [
+            1496
+          ]
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "title": "Grad-CAM Interpretability Method",
+      "category": "interpretability",
+      "priority": 2,
+      "credit": [
+        {
+          "login": "irvifa",
+          "prs": [
+            1499
+          ]
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "title": "Cardiology Dataset PyHealth 2.0 Migration",
+      "category": "dataset",
+      "priority": 1,
+      "credit": [
+        {
+          "login": "irvifa",
+          "prs": [
+            1551
+          ]
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "title": "Attention Rollout",
+      "category": "interpretability",
+      "priority": 2,
+      "credit": [
+        {
+          "login": "fbonc",
+          "prs": []
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "title": "eICU Dataset PyHealth 2.0 Migration",
+      "category": "dataset",
+      "priority": 1,
+      "credit": [
+        {
+          "login": "jhnwu3",
+          "prs": []
+        },
+        {
+          "login": "EricSchrock",
+          "prs": []
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "title": "Length of Stay Prediction",
+      "category": "task",
+      "priority": 1,
+      "credit": [
+        {
+          "login": "jhnwu3",
+          "prs": []
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "title": "Readmission Prediction @ t days",
+      "category": "task",
+      "priority": 1,
+      "credit": [
+        {
+          "login": "EricSchrock",
+          "prs": []
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "title": "SparcNet PyHealth 2.0 Migration",
+      "category": "model",
+      "priority": 2,
+      "credit": [
+        {
+          "login": "joshuxchn",
+          "prs": []
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "title": "TCN PyHealth 2.0 Migration",
+      "category": "model",
+      "priority": 2,
+      "credit": [
+        {
+          "login": "bilalarif3197",
+          "prs": []
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "title": "MedLink PyHealth 2.0 Migration",
+      "category": "model",
+      "priority": 3,
+      "credit": [
+        {
+          "login": "rianfyi",
+          "prs": []
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "title": "GRASP PyHealth 2.0 Migration",
+      "category": "model",
+      "priority": 2,
+      "credit": [
+        {
+          "login": "capccode",
+          "prs": []
+        },
+        {
+          "login": "lookman-olowo",
+          "prs": []
+        },
+        {
+          "login": "christyanamarie",
+          "prs": []
+        },
+        {
+          "login": "ddhangdd",
+          "prs": []
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "title": "AdaCare PyHealth 2.0 Migration",
+      "category": "model",
+      "priority": 2,
+      "credit": [
+        {
+          "login": "Razin93937",
+          "prs": []
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "title": "ContraWR PyHealth 2.0 Migration",
+      "category": "model",
+      "priority": 2,
+      "credit": [
+        {
+          "login": "Razin93937",
+          "prs": []
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "title": "Dr. Agent PyHealth 2.0 Migration",
+      "category": "model",
+      "priority": 2,
+      "credit": [
+        {
+          "login": "joshuasteier",
+          "prs": []
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "title": "ConCare PyHealth 2.0 Migration",
+      "category": "model",
+      "priority": 2,
+      "credit": [
+        {
+          "login": "joshuasteier",
+          "prs": []
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Deepr PyHealth 2.0 Migration",
+      "category": "model",
+      "priority": 2,
+      "credit": [
+        {
+          "login": "joshuasteier",
+          "prs": []
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "MICRON PyHealth 2.0 Migration",
+      "category": "model",
+      "priority": 2,
+      "credit": [
+        {
+          "login": "naveenkcb",
+          "prs": []
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "MoleRec PyHealth 2.0 Migration",
+      "category": "model",
+      "priority": 2,
+      "credit": [
+        {
+          "login": "lehendo",
+          "prs": []
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "SafeDrug PyHealth 2.0 Migration",
+      "category": "model",
+      "priority": 2,
+      "credit": [
+        {
+          "login": "lehendo",
+          "prs": []
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "GAMENet PyHealth 2.0 Migration",
+      "category": "model",
+      "priority": 2,
+      "credit": [
+        {
+          "login": "lehendo",
+          "prs": []
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Transformer PyHealth 2.0 Migration",
+      "category": "model",
+      "priority": 1,
+      "credit": [
+        {
+          "login": "Logiquo",
+          "prs": []
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "GNN PyHealth 2.0 Migration",
+      "category": "model",
+      "priority": 1,
+      "credit": [
+        {
+          "login": "Logiquo",
+          "prs": []
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "title": "CNN PyHealth 2.0 Migration",
+      "category": "model",
+      "priority": 1,
+      "credit": [
+        {
+          "login": "Logiquo",
+          "prs": []
+        }
+      ]
+    }
+  ],
+  "contributors": [
+    {
+      "login": "irvifa",
+      "bounties": [
+        64,
+        57,
+        49,
+        38,
+        32,
+        26,
+        25,
+        24
+      ],
+      "partial": []
+    },
+    {
+      "login": "Alhibb",
+      "bounties": [
+        75,
+        74,
+        68,
+        66,
+        65,
+        50,
+        46
+      ],
+      "partial": []
+    },
+    {
+      "login": "joshuasteier",
+      "bounties": [
+        10,
+        9,
+        8
+      ],
+      "partial": []
+    },
+    {
+      "login": "lehendo",
+      "bounties": [
+        6,
+        5,
+        4
+      ],
+      "partial": []
+    },
+    {
+      "login": "Logiquo",
+      "bounties": [
+        3,
+        2,
+        1
+      ],
+      "partial": []
+    },
+    {
+      "login": "EricSchrock",
+      "bounties": [
+        19,
+        17
+      ],
+      "partial": []
+    },
+    {
+      "login": "jhnwu3",
+      "bounties": [
+        19,
+        18
+      ],
+      "partial": []
+    },
+    {
+      "login": "Razin93937",
+      "bounties": [
+        12,
+        11
+      ],
+      "partial": []
+    },
+    {
+      "login": "thekavishshah",
+      "bounties": [
+        44,
+        28
+      ],
+      "partial": []
+    },
+    {
+      "login": "bilalarif3197",
+      "bounties": [
+        15
+      ],
+      "partial": []
+    },
+    {
+      "login": "capccode",
+      "bounties": [
+        13
+      ],
+      "partial": []
+    },
+    {
+      "login": "Chinmaykatpatal",
+      "bounties": [
+        36
+      ],
+      "partial": []
+    },
+    {
+      "login": "christyanamarie",
+      "bounties": [
+        13
+      ],
+      "partial": []
+    },
+    {
+      "login": "ddhangdd",
+      "bounties": [
+        13
+      ],
+      "partial": []
+    },
+    {
+      "login": "etikhonov-dev",
+      "bounties": [
+        34
+      ],
+      "partial": []
+    },
+    {
+      "login": "fbonc",
+      "bounties": [
+        20
+      ],
+      "partial": []
+    },
+    {
+      "login": "joshuxchn",
+      "bounties": [
+        16
+      ],
+      "partial": []
+    },
+    {
+      "login": "lookman-olowo",
+      "bounties": [
+        13
+      ],
+      "partial": []
+    },
+    {
+      "login": "naveenkcb",
+      "bounties": [
+        7
+      ],
+      "partial": []
+    },
+    {
+      "login": "rayrayowo",
+      "bounties": [
+        41
+      ],
+      "partial": []
+    },
+    {
+      "login": "rianfyi",
+      "bounties": [
+        14
+      ],
+      "partial": []
+    },
+    {
+      "login": "samehaisaa",
+      "bounties": [
+        64
+      ],
+      "partial": []
+    }
+  ]
+}

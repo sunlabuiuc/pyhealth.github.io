@@ -1,7 +1,8 @@
-# Keeps the task and dataset cards in step with PyHealth. Every night (and on
-# demand) it installs PyHealth master, reruns scripts/extract_metadata.py and
-# scripts/extract_datasets.py, and, if data/tasks.json or data/datasets.json
-# changed, opens or updates one "Sync from PyHealth" PR for a person to review,
+# Keeps the task and dataset cards, and the bounty lists, in step with PyHealth.
+# Every night (and on demand) it installs PyHealth master, reruns
+# scripts/extract_metadata.py, scripts/extract_datasets.py and
+# scripts/extract_bounties.py, and, if data/tasks.json, data/datasets.json or
+# data/bounties.json changed, opens or updates one "Sync from PyHealth" PR for a person to review,
 # or, once the repository variable SYNC_AUTO_MERGE is "true", commits straight
 # to main.
 #
@@ -51,8 +52,10 @@ jobs:
       - name: Install PyHealth
         run: pip install --extra-index-url https://download.pytorch.org/whl/cpu ./PyHealth
 
-      - name: Regenerate tasks.json and datasets.json
+      - name: Regenerate tasks.json, datasets.json and bounties.json
         working-directory: site
+        env:
+          GITHUB_TOKEN: ${{ github.token }}  # reads PyHealth's public PRs
         run: |
           sha=$(git -C ../PyHealth rev-parse --short HEAD)
           echo "PYHEALTH_SHA=$sha" >> "$GITHUB_ENV"
@@ -61,6 +64,7 @@ jobs:
           echo >> "$body"
           python scripts/extract_metadata.py --summary "$body"
           python scripts/extract_datasets.py --summary "$body"
+          python scripts/extract_bounties.py --summary "$body"
           cat >> "$body" <<'EOF'
           To review: check out this branch and run `python -m http.server`, then
           read the new cards on `tasks.html` and `datasets.html`. Merge, then
@@ -95,7 +99,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          git add data/tasks.json data/datasets.json
+          git add data/tasks.json data/datasets.json data/bounties.json
           if git diff --cached --quiet; then
             echo "No changes from PyHealth $PYHEALTH_SHA."
           else
@@ -120,6 +124,7 @@ jobs:
           add-paths: |
             data/tasks.json
             data/datasets.json
+            data/bounties.json
           branch: bot/sync-pyhealth
           delete-branch: true
           commit-message: "Sync tasks and datasets from PyHealth ${{ env.PYHEALTH_SHA }}"
