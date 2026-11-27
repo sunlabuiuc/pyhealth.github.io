@@ -169,6 +169,12 @@
     .b-claim { white-space: nowrap; font-size: 0.86rem; }
     .b-claim.free { color: #2f7d4f; font-weight: 600; }
     .b-note { color: var(--muted); font-size: 0.88rem; margin-top: 0.8rem; }
+    .b-partial {
+      font-size: 0.86rem; margin-top: 0.45rem; padding-left: 0.6rem;
+      border-left: 2px solid var(--accent);
+    }
+    .b-partial a { color: var(--accent); }
+    .b-why { max-width: 620px; margin: 0.9rem 0 0; font-size: 0.98rem; }
   </style>
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -195,6 +201,7 @@
       <p class="ph-eyebrow">PyHealth Bounties</p>
       <h1>Build PyHealth with us</h1>
       <p class="ph-tagline">Bounties are models, datasets, tasks and tools we'd love help adding. Claim one by opening a pull request with <code>[BTY-&lt;id&gt;]</code> in its title. When it merges, your name is listed here as the person who built it.</p>
+      <p class="b-why"><strong>Why contribute:</strong> students in the DL4H course can earn extra credit, and contributors who complete a bounty may get the chance to join a research paper and work with our industry partners.</p>
       <div class="ph-cta-row">
         <a href="https://github.com/sunlabuiuc/PyHealth/issues/1489" class="ph-btn primary" target="_blank" rel="noopener">Bounty board and how to claim</a>
         <a href="https://pyhealth.readthedocs.io/en/latest/how_to_contribute.html" class="ph-btn outline" target="_blank" rel="noopener">Contribution guide</a>
@@ -211,7 +218,7 @@
 
     <section class="b-section">
       <h2>Thank you</h2>
-      <p class="b-sub">Everyone who has completed a PyHealth bounty. Each name links to the person's GitHub profile.</p>
+      <p class="b-sub">Everyone who has completed a PyHealth bounty, or part of one. Each name links to the person's GitHub profile.</p>
       <div class="people" id="people"></div>
     </section>
 
@@ -282,13 +289,18 @@
         n.textContent = data.counts[n.dataset.count];
       });
       const people = document.getElementById('people');
+      // "2 bounties", "1 bounty + part of 1", or "part of 1 bounty"
+      const tally = p => {
+        const n = p.bounties.length, k = (p.partial || []).length;
+        if (!n) return k > 1 ? `part of ${k} bounties` : 'part of 1 bounty';
+        return (n > 1 ? `${n} bounties` : '1 bounty') + (k ? ` + part of ${k}` : '');
+      };
       data.contributors.forEach(p => {
-        const n = p.bounties.length;
         const img = el('img', {src: `https://github.com/${encodeURIComponent(p.login)}.png?size=60`,
                                alt: '', loading: 'lazy'});
         const a = ghLink(p.login, '');
         a.className = 'person';
-        a.append(img, el('strong', {}, p.login), el('span', {}, n > 1 ? `${n} bounties` : '1 bounty'));
+        a.append(img, el('strong', {}, p.login), el('span', {}, tally(p)));
         people.append(a);
       });
       const done = document.getElementById('completed');
@@ -313,10 +325,29 @@
           status.append('claimed by ');
           b.claimed_by.forEach((login, i) => { if (i) status.append(', '); status.append(ghLink(login)); });
         } else {
-          status.append('open to claim');
+          status.append(b.partial ? 'rest open to claim' : 'open to claim');
         }
-        open.append(el('tr', {}, el('td', {class: 'b-id'}, `BTY-${b.id}`),
-                       el('td', {}, el('strong', {}, b.title), description(b.description)),
+        const what = el('td', {}, el('strong', {}, b.title), description(b.description));
+        if (b.partial) {
+          // "Merged so far by @a (#1), @b (#2): <done> Remaining: <left>", or
+          // "Merged so far in #1: ..." when the PR's author isn't known
+          const note = el('div', {class: 'b-partial'}, 'Merged so far ');
+          if (b.partial.credit.length) {
+            note.append('by ');
+            b.partial.credit.forEach((c, i) => {
+              if (i) note.append(', ');
+              note.append(ghLink(c.login), ' (');
+              c.prs.forEach((n, j) => { if (j) note.append(', '); note.append(prLink(n)); });
+              note.append(')');
+            });
+          } else {
+            note.append('in ');
+            b.partial.prs.forEach((n, j) => { if (j) note.append(', '); note.append(prLink(n)); });
+          }
+          note.append(': ', b.partial.done, ' Remaining: ', b.partial.remaining);
+          what.append(note);
+        }
+        open.append(el('tr', {}, el('td', {class: 'b-id'}, `BTY-${b.id}`), what,
                        el('td', {class: 'b-cat'}, b.category), status));
       });
     }).catch(() => {

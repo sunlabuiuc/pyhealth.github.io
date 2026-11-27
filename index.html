@@ -800,9 +800,9 @@
 
     <!-- ── Hero ── -->
     <section class="ph-hero">
-      <a href="news.html#pyhealth-2-1-0" class="release-banner">
+      <a href="bounties.html" class="release-banner">
         <span class="release-pill">New</span>
-        PyHealth 2.1.0: leakage-free splits, calibration with confidence intervals, XGBoost + TreeSHAP, and nine Colab tutorials
+        PyHealth bounties: build a method from a recent paper and get credited on pyhealth.dev
         <span aria-hidden="true">→</span>
       </a>
       <p class="ph-eyebrow">Open-Source Healthcare AI</p>
@@ -952,6 +952,7 @@
     <section class="bounty-section fade-up" id="bounties">
       <h2 class="section-h2">Build PyHealth with us: open bounties</h2>
       <p class="section-sub" id="bountySub">Models, datasets, tasks and tools we'd love help adding. Claim one with a pull request; when it merges, your name goes on this page.</p>
+      <p class="section-sub"><strong>Why contribute:</strong> students in the DL4H course can earn extra credit, and contributors who complete a bounty may get the chance to join a research paper and work with our industry partners.</p>
       <div class="bounty-grid" id="bountyOpen" aria-live="polite"></div>
       <div class="bounty-thanks">
         <h3 id="bountyThanksTitle">Thank you to our bounty contributors</h3>
@@ -1436,9 +1437,10 @@
           img.src = `https://github.com/${encodeURIComponent(p.login)}.png?size=56`;
           img.alt = '';
           img.loading = 'lazy';
-          const n = p.bounties.length;
-          a.append(img, el('strong', null, p.login),
-                   el('span', null, n > 1 ? `${n} bounties` : '1 bounty'));
+          const n = p.bounties.length, k = (p.partial || []).length;
+          const tally = !n ? (k > 1 ? `part of ${k} bounties` : 'part of 1 bounty')
+            : (n > 1 ? `${n} bounties` : '1 bounty') + (k ? ` + part of ${k}` : '');
+          a.append(img, el('strong', null, p.login), el('span', null, tally));
           people.append(a);
         });
       }).catch(() => {

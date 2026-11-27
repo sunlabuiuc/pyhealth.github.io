@@ -44,7 +44,10 @@ Writes `data/bounties.json`, which the homepage bounty section and
 carry `[BTY-<id>]` or `[Bounty-<id>]`. The rules match PyHealth's
 `tools/update_bounty_board.py`: a bounty is complete once a claiming PR merges
 or `complete` is set in `bounty.yaml`, and its credit is the `complete` text or
-else the merged PRs' authors. Email addresses are never written.
+else the merged PRs' authors. Email addresses are never written. A bounty whose
+description ends with `— Merged in #PR: <what merged>. Remaining: <what is left>.`
+and whose `complete` is empty is partly done: it stays open, and the authors of
+the merged part are credited for it.
 
 ```bash
 python scripts/extract_bounties.py                     # GitHub API (public data)

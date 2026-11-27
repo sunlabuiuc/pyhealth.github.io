@@ -1,5 +1,32 @@
 [
   {
+    "id": "bounties",
+    "date": "2026-11-27",
+    "tag": "Call for contributions",
+    "title": "PyHealth bounties: build a method from a recent paper, get credited on pyhealth.dev",
+    "summary": "pyhealth.dev now lists every open PyHealth bounty and everyone who has completed one. Bounties are models, datasets, tasks and tools we'd love help adding, most of them from 2025 and 2026 papers in venues such as NeurIPS, KDD, ICML, ICLR, npj Digital Medicine and Nature Communications. 40 are done so far, by 22 contributors, and 36 are open.",
+    "points": [
+      "Pick one on the bounties page, highest priority first, and claim it by opening a pull request with <code>[BTY-&lt;id&gt;]</code> in its title. A draft is fine.",
+      "When your pull request merges, your name and the pull request are listed on the bounties page and on the homepage. Bounties finished in part credit the part that merged, and the rest stays open.",
+      "Students in the DL4H course can earn extra credit, and contributors who complete a bounty may get the chance to join a research paper and work with our industry partners.",
+      "Comment <code>/review</code> on your pull request for an AI review, and ask questions on Discord."
+    ],
+    "links": [
+      [
+        "See the bounties",
+        "bounties.html"
+      ],
+      [
+        "Bounty board on GitHub",
+        "https://github.com/sunlabuiuc/PyHealth/issues/1489"
+      ],
+      [
+        "Join the Discord",
+        "https://discord.gg/mpb835EHaX"
+      ]
+    ]
+  },
+  {
     "id": "2026-11-02-join-the-pyhealth-benchmark",
     "date": "2026-11-02",
     "tag": "Blog",

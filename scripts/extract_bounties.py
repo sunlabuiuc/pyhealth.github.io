@@ -14,6 +14,10 @@ The rules match PyHealth's tools/update_bounty_board.py:
     its `complete` field.
   - Credit is the `complete` text ("@login (#PR, ...), @other"), or else the
     authors of the merged PRs. Email addresses are never written.
+  - One exception: a bounty whose description ends with
+    " — Merged in #PR: <what merged>. Remaining: <what is left>." and whose
+    `complete` is empty is only partly done. It stays open, and the authors of
+    the merged part are credited for it.
 
 PRs are read from the GitHub API (public data; GITHUB_TOKEN or GH_TOKEN raises
 the rate limit). Without network access, pass --prs-file, or --no-prs to use
@@ -36,6 +40,8 @@ BOARD_URL = f"https://github.com/{REPO}/issues/1489"
 TITLE_TAG_RE = re.compile(r"\[\s*(?:bounty|bty)\s*-\s*(\d+)\s*\]", re.IGNORECASE)
 EMAIL_RE = re.compile(r"\s*\(?[\w.%+-]+@[\w-]+(?:\.[\w-]+)+\)?")
 CREDIT_RE = re.compile(r"@([A-Za-z0-9-]+)(?:\s*\(([^)]*)\))?")
+PARTIAL_RE = re.compile(r"\s*—\s*Merged in (?P<prs>#[^:]+):\s*(?P<done>.*?)\s*"
+                        r"Remaining:\s*(?P<left>.+?)\s*$", re.DOTALL)
 
 
 def load_bounties(path):
@@ -78,6 +84,19 @@ def parse_credit(text):
             for login, prs in CREDIT_RE.findall(text)]
 
 
+def split_partial(description):
+    """`... — Merged in #1, #2: done. Remaining: left.` -> (text, {prs, done, left}).
+
+    Returns (description, None) for a bounty with no merged part noted.
+    """
+    m = PARTIAL_RE.search(description)
+    if not m:
+        return description, None
+    return description[:m.start()].strip(), {
+        "prs": [int(n) for n in re.findall(r"#(\d+)", m["prs"])],
+        "done": m["done"].strip(), "remaining": m["left"].strip()}
+
+
 def build(bounties, prs):
     claims = defaultdict(list)
     for pr in sorted(prs, key=lambda p: p["number"]):
@@ -95,7 +114,23 @@ def build(bounties, prs):
                 merged[pr["author"]].append(pr["number"])
         item = {"id": bid, "title": b["title"].strip(), "category": b["category"],
                 "priority": b.get("priority")}
-        if b.get("complete"):
+        text, partial = split_partial(b["description"].strip())
+        if partial and not b.get("complete"):
+            # credit the merged part: tagged merged PRs, plus any untagged PR the
+            # note names whose author is known from the claims
+            by_number = {p["number"]: p for p in prs}
+            for n in partial["prs"]:
+                pr = by_number.get(n)
+                if pr and pr["state"] == "MERGED" and n not in merged[pr["author"]]:
+                    merged[pr["author"]].append(n)
+            partial["credit"] = [{"login": a, "prs": n} for a, n in merged.items()]
+            authors = list(dict.fromkeys(
+                p["author"] for p in claims[bid] if p["state"] == "OPEN"))
+            open_.append({**item, "description": text, "partial": partial,
+                          "claimed_by": authors,
+                          "prs": [p["number"] for p in claims[bid]
+                                  if p["state"] == "OPEN"]})
+        elif b.get("complete"):
             completed.append({**item, "credit": parse_credit(b["complete"])})
         elif merged:
             completed.append({**item, "credit": [
@@ -109,17 +144,23 @@ def build(bounties, prs):
     open_.sort(key=lambda b: (b["priority"] or 9, b["id"]))
     completed.sort(key=lambda b: -b["id"])
 
-    people = defaultdict(list)
+    people, parts = defaultdict(list), defaultdict(list)
     for b in completed:
         for c in b["credit"]:
             people[c["login"]].append(b["id"])
-    contributors = sorted(({"login": k, "bounties": v} for k, v in people.items()),
-                          key=lambda c: (-len(c["bounties"]), c["login"].lower()))
+    for b in open_:
+        for c in (b.get("partial") or {}).get("credit", []):
+            parts[c["login"]].append(b["id"])
+    contributors = sorted(
+        ({"login": k, "bounties": people.get(k, []), "partial": parts.get(k, [])}
+         for k in dict.fromkeys([*people, *parts])),
+        key=lambda c: (-len(c["bounties"]), -len(c["partial"]), c["login"].lower()))
     return {
         "board_url": BOARD_URL,
         "counts": {"open": len(open_),
                    "claimed": sum(1 for b in open_ if b["claimed_by"]),
                    "completed": len(completed),
+                   "partial": sum(1 for b in open_ if b.get("partial")),
                    "contributors": len(contributors)},
         "open": open_,
         "completed": completed,

@@ -1,10 +1,11 @@
 {
   "board_url": "https://github.com/sunlabuiuc/PyHealth/issues/1489",
   "counts": {
-    "open": 43,
-    "claimed": 8,
-    "completed": 33,
-    "contributors": 20
+    "open": 36,
+    "claimed": 7,
+    "completed": 40,
+    "partial": 0,
+    "contributors": 22
   },
   "open": [
     {
@@ -26,15 +27,6 @@
       "category": "task",
       "priority": 1,
       "description": "Port the YAIB (Yet Another ICU Benchmark) cohorts and tasks (mortality, AKI, sepsis, kidney function, and length of stay) so PyHealth models can be scored against YAIB baselines on MIMIC-IV and eICU. [code](https://github.com/rvandewater/yaib)",
-      "claimed_by": [],
-      "prs": []
-    },
-    {
-      "id": 28,
-      "title": "EviCare (KDD 2026)",
-      "category": "model",
-      "priority": 1,
-      "description": "Implement EviCare, a deep-model-guided LLM in-context reasoning framework for diagnosis prediction on MIMIC-III and MIMIC-IV. [code](https://github.com/zhyccc/EviCare), [paper](https://arxiv.org/abs/2604.10455)",
       "claimed_by": [],
       "prs": []
     },
@@ -70,29 +62,11 @@
       "prs": []
     },
     {
-      "id": 32,
-      "title": "CLIMB Multimodal Task Suite (ICML 2025)",
-      "category": "task",
-      "priority": 1,
-      "description": "Integrate the CLIMB multimodal benchmark task suite and shared loaders with PyHealth across datasets such as MIMIC-III/IV, MIMIC-CXR, PTB-XL, TUAB, and TUEV. [code](https://github.com/DDVD233/CLIMB), [paper](https://arxiv.org/abs/2503.07667)",
-      "claimed_by": [],
-      "prs": []
-    },
-    {
       "id": 33,
       "title": "Context Clues Long-Context EHR Foundation Models (ICLR 2025)",
       "category": "model",
       "priority": 1,
       "description": "Add long-context EHR foundation models (Mamba, Hyena, Llama, GPT) from Context Clues and evaluate them head-to-head against PyHealth's EHRMamba on EHRSHOT and OMOP. [code](https://github.com/som-shahlab/hf_ehr), [paper](https://arxiv.org/abs/2412.16178)",
-      "claimed_by": [],
-      "prs": []
-    },
-    {
-      "id": 34,
-      "title": "Delphi-2M (Nature 2025)",
-      "category": "model",
-      "priority": 1,
-      "description": "Port the Delphi generative transformer for multi-disease next-event and time-to-event prediction with a MIMIC-IV/MEDS port alongside the credentialed UK Biobank setup. [code](https://github.com/gerstung-lab/Delphi), [paper](https://doi.org/10.1038/s41586-025-09529-3)",
       "claimed_by": [],
       "prs": []
     },
@@ -120,8 +94,12 @@
       "category": "model",
       "priority": 1,
       "description": "Add MedTok as a drop-in multimodal medical code tokenizer and embedding module for PyHealth EHR models on MIMIC-III/IV and EHRSHOT tasks. [code](https://github.com/mims-harvard/MedTok), [paper](https://arxiv.org/abs/2502.04397)",
-      "claimed_by": [],
-      "prs": []
+      "claimed_by": [
+        "irvifa"
+      ],
+      "prs": [
+        1630
+      ]
     },
     {
       "id": 40,
@@ -133,26 +111,17 @@
       "prs": []
     },
     {
-      "id": 41,
-      "title": "HeartLang (ICLR 2025)",
-      "category": "model",
-      "priority": 1,
-      "description": "Implement the HeartLang ECG language model and PTB-XL, CPSC2018, and Chapman ECG classification benchmarks, coordinating with PTB-XL loader PRs #1187 and #1323. [code](https://github.com/PKUDigitalHealth/HeartLang), [paper](https://arxiv.org/abs/2502.10707)",
-      "claimed_by": [
-        "rayrayowo"
-      ],
-      "prs": [
-        1571
-      ]
-    },
-    {
       "id": 42,
       "title": "APN Irregular Time-Series Forecasting (AAAI 2025)",
       "category": "model",
       "priority": 1,
       "description": "Add APN as a simple baseline model alongside an irregular clinical time-series forecasting task on PhysioNet 2012 and MIMIC. [code](https://github.com/decisionintelligence/APN), [paper](https://arxiv.org/abs/2505.11250)",
-      "claimed_by": [],
-      "prs": []
+      "claimed_by": [
+        "arslan-shafique"
+      ],
+      "prs": [
+        1610
+      ]
     },
     {
       "id": 43,
@@ -173,19 +142,6 @@
       "prs": []
     },
     {
-      "id": 46,
-      "title": "GAME Multi-Institution Code Embeddings (Nature Communications 2025)",
-      "category": "model",
-      "priority": 1,
-      "description": "Add GAME harmonized medical code embeddings as a drop-in embedding initializer for PyHealth models on MIMIC-IV and OMOP. [code](https://github.com/celehs/GAME), [paper](https://arxiv.org/abs/2502.08547)",
-      "claimed_by": [
-        "Alhibb"
-      ],
-      "prs": [
-        1582
-      ]
-    },
-    {
       "id": 47,
       "title": "II-KEA (EMNLP 2025)",
       "category": "model",
@@ -200,15 +156,6 @@
       "category": "task",
       "priority": 1,
       "description": "Add the ICU underfeeding prediction task for ventilated patients on MIMIC-IV and AmsterdamUMCdb along with the NutriSighT transformer baseline. [code](https://github.com/mjangda3/NutriSighT), [paper](https://doi.org/10.1038/s41467-025-66200-1)",
-      "claimed_by": [],
-      "prs": []
-    },
-    {
-      "id": 49,
-      "title": "Joint Sequence and Image Irregular Time-Series Model (AAAI 2025)",
-      "category": "model",
-      "priority": 1,
-      "description": "Implement the self-supervised joint sequence-and-image model for irregular medical time series on PhysioNet 2012 and PhysioNet 2019 sepsis tasks. [code](https://github.com/zju-d3/AAAI25-Irregular-Medical-Time-Series), [paper](https://arxiv.org/abs/2502.06134)",
       "claimed_by": [],
       "prs": []
     },
@@ -347,19 +294,6 @@
       "prs": []
     },
     {
-      "id": 65,
-      "title": "CHET Dynamic Disease Graphs (AAAI 2022)",
-      "category": "model",
-      "priority": 3,
-      "description": "Implement CHET (transition functions over dynamic disease graphs) for diagnosis and heart-failure prediction on MIMIC-III and MIMIC-IV. [code](https://github.com/luchang-cs/chet)",
-      "claimed_by": [
-        "Alhibb"
-      ],
-      "prs": [
-        1550
-      ]
-    },
-    {
       "id": 67,
       "title": "CEHR-GPT (arXiv 2024)",
       "category": "model",
@@ -487,21 +421,35 @@
       ]
     },
     {
+      "id": 65,
+      "title": "CHET Dynamic Disease Graphs (AAAI 2022)",
+      "category": "model",
+      "priority": 3,
+      "credit": [
+        {
+          "login": "Alhibb",
+          "prs": [
+            1550
+          ]
+        }
+      ]
+    },
+    {
       "id": 64,
       "title": "SleepKD Sleep EEG Distillation (IJCAI 2023)",
       "category": "model",
       "priority": 2,
       "credit": [
         {
-          "login": "irvifa",
-          "prs": [
-            1518
-          ]
-        },
-        {
           "login": "samehaisaa",
           "prs": [
             1503
+          ]
+        },
+        {
+          "login": "irvifa",
+          "prs": [
+            1518
           ]
         }
       ]
@@ -536,6 +484,34 @@
       ]
     },
     {
+      "id": 49,
+      "title": "Joint Sequence and Image Irregular Time-Series Model (AAAI 2025)",
+      "category": "model",
+      "priority": 1,
+      "credit": [
+        {
+          "login": "irvifa",
+          "prs": [
+            1605
+          ]
+        }
+      ]
+    },
+    {
+      "id": 46,
+      "title": "GAME Multi-Institution Code Embeddings (Nature Communications 2025)",
+      "category": "model",
+      "priority": 1,
+      "credit": [
+        {
+          "login": "Alhibb",
+          "prs": [
+            1582
+          ]
+        }
+      ]
+    },
+    {
       "id": 44,
       "title": "DearLLM (AAAI 2025)",
       "category": "model",
@@ -550,6 +526,21 @@
       ]
     },
     {
+      "id": 41,
+      "title": "HeartLang (ICLR 2025)",
+      "category": "model",
+      "priority": 1,
+      "credit": [
+        {
+          "login": "rayrayowo",
+          "prs": [
+            1571,
+            1613
+          ]
+        }
+      ]
+    },
+    {
       "id": 38,
       "title": "TarDiff Synthetic EHR Time-Series Generator (KDD 2025)",
       "category": "model",
@@ -559,7 +550,8 @@
           "login": "irvifa",
           "prs": [
             1552,
-            1562
+            1562,
+            1578
           ]
         }
       ]
@@ -574,6 +566,48 @@
           "login": "Chinmaykatpatal",
           "prs": [
             1549
+          ]
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "title": "Delphi-2M (Nature 2025)",
+      "category": "model",
+      "priority": 1,
+      "credit": [
+        {
+          "login": "etikhonov-dev",
+          "prs": [
+            1587
+          ]
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "title": "CLIMB Multimodal Task Suite (ICML 2025)",
+      "category": "task",
+      "priority": 1,
+      "credit": [
+        {
+          "login": "irvifa",
+          "prs": [
+            1617
+          ]
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "title": "EviCare (KDD 2026)",
+      "category": "model",
+      "priority": 1,
+      "credit": [
+        {
+          "login": "thekavishshah",
+          "prs": [
+            1599
           ]
         }
       ]
@@ -883,11 +917,14 @@
       "bounties": [
         64,
         57,
+        49,
         38,
+        32,
         26,
         25,
         24
-      ]
+      ],
+      "partial": []
     },
     {
       "login": "Alhibb",
@@ -896,8 +933,11 @@
         74,
         68,
         66,
-        50
-      ]
+        65,
+        50,
+        46
+      ],
+      "partial": []
     },
     {
       "login": "joshuasteier",
@@ -905,7 +945,8 @@
         10,
         9,
         8
-      ]
+      ],
+      "partial": []
     },
     {
       "login": "lehendo",
@@ -913,7 +954,8 @@
         6,
         5,
         4
-      ]
+      ],
+      "partial": []
     },
     {
       "login": "Logiquo",
@@ -921,100 +963,131 @@
         3,
         2,
         1
-      ]
+      ],
+      "partial": []
     },
     {
       "login": "EricSchrock",
       "bounties": [
         19,
         17
-      ]
+      ],
+      "partial": []
     },
     {
       "login": "jhnwu3",
       "bounties": [
         19,
         18
-      ]
+      ],
+      "partial": []
     },
     {
       "login": "Razin93937",
       "bounties": [
         12,
         11
-      ]
+      ],
+      "partial": []
+    },
+    {
+      "login": "thekavishshah",
+      "bounties": [
+        44,
+        28
+      ],
+      "partial": []
     },
     {
       "login": "bilalarif3197",
       "bounties": [
         15
-      ]
+      ],
+      "partial": []
     },
     {
       "login": "capccode",
       "bounties": [
         13
-      ]
+      ],
+      "partial": []
     },
     {
       "login": "Chinmaykatpatal",
       "bounties": [
         36
-      ]
+      ],
+      "partial": []
     },
     {
       "login": "christyanamarie",
       "bounties": [
         13
-      ]
+      ],
+      "partial": []
     },
     {
       "login": "ddhangdd",
       "bounties": [
         13
-      ]
+      ],
+      "partial": []
+    },
+    {
+      "login": "etikhonov-dev",
+      "bounties": [
+        34
+      ],
+      "partial": []
     },
     {
       "login": "fbonc",
       "bounties": [
         20
-      ]
+      ],
+      "partial": []
     },
     {
       "login": "joshuxchn",
       "bounties": [
         16
-      ]
+      ],
+      "partial": []
     },
     {
       "login": "lookman-olowo",
       "bounties": [
         13
-      ]
+      ],
+      "partial": []
     },
     {
       "login": "naveenkcb",
       "bounties": [
         7
-      ]
+      ],
+      "partial": []
+    },
+    {
+      "login": "rayrayowo",
+      "bounties": [
+        41
+      ],
+      "partial": []
     },
     {
       "login": "rianfyi",
       "bounties": [
         14
-      ]
+      ],
+      "partial": []
     },
     {
       "login": "samehaisaa",
       "bounties": [
         64
-      ]
-    },
-    {
-      "login": "thekavishshah",
-      "bounties": [
-        44
-      ]
+      ],
+      "partial": []
     }
   ]
 }
