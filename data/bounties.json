@@ -1,9 +1,9 @@
 {
   "board_url": "https://github.com/sunlabuiuc/PyHealth/issues/1489",
   "counts": {
-    "open": 36,
-    "claimed": 7,
-    "completed": 40,
+    "open": 35,
+    "claimed": 6,
+    "completed": 41,
     "partial": 0,
     "contributors": 22
   },
@@ -87,19 +87,6 @@
       "description": "Integrate MIRA as a medical time-series foundation encoder for PyHealth ICU and biosignal tasks across MIMIC-III/IV, PhysioNet 2012, PTB-XL, and Sleep-EDF. [code](https://github.com/microsoft/MIRA), [paper](https://arxiv.org/abs/2506.07584)",
       "claimed_by": [],
       "prs": []
-    },
-    {
-      "id": 39,
-      "title": "MedTok Multimodal Code Tokenizer (ICML 2025)",
-      "category": "model",
-      "priority": 1,
-      "description": "Add MedTok as a drop-in multimodal medical code tokenizer and embedding module for PyHealth EHR models on MIMIC-III/IV and EHRSHOT tasks. [code](https://github.com/mims-harvard/MedTok), [paper](https://arxiv.org/abs/2502.04397)",
-      "claimed_by": [
-        "irvifa"
-      ],
-      "prs": [
-        1630
-      ]
     },
     {
       "id": 40,
@@ -541,6 +528,21 @@
       ]
     },
     {
+      "id": 39,
+      "title": "MedTok Multimodal Code Tokenizer (ICML 2025)",
+      "category": "model",
+      "priority": 1,
+      "credit": [
+        {
+          "login": "irvifa",
+          "prs": [
+            1630,
+            1633
+          ]
+        }
+      ]
+    },
+    {
       "id": 38,
       "title": "TarDiff Synthetic EHR Time-Series Generator (KDD 2025)",
       "category": "model",
@@ -918,6 +920,7 @@
         64,
         57,
         49,
+        39,
         38,
         32,
         26,

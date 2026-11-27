@@ -639,5 +639,20 @@
     "source_url": "https://github.com/NinaWie/COVID-BLUES",
     "access": "open",
     "access_note": "No account, registration or agreement needed"
+  },
+  "CDCCOVIDDataset": {
+    "label": "CDCCOVID",
+    "modality": "other",
+    "description": "Load CDC COVID-19 Case Surveillance Public Use Data with Geography.",
+    "snippet": "from pyhealth.datasets import CDCCOVIDDataset\ndataset = CDCCOVIDDataset(\n    root=\"data/cdccovid/\",\n)"
+  },
+  "PH2Dataset": {
+    "label": "PH2",
+    "modality": "other",
+    "description": "PH2 dermoscopy dataset: 200 images with expert lesion segmentations.",
+    "snippet": "from pyhealth.datasets import PH2Dataset\ndataset = PH2Dataset(\n    root=\"data/ph2/\",\n)",
+    "source_url": "https://www.fc.up.pt/addi/ph2%20database.html",
+    "access": "restricted",
+    "access_note": "the archive is released for research and educational use; the authors ask users to cite the paper below. Download it from the page above (the page may ask for a short form) and unpack it."
   }
 }

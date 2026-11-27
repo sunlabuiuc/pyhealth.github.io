@@ -4844,5 +4844,285 @@
         "ehr"
       ]
     }
+  },
+  {
+    "class_name": "CDCCOVIDMortalityPrediction",
+    "display_name": "CDCCOVID Mortality Prediction",
+    "display_class": null,
+    "task_name": "CDCCOVIDMortalityPrediction",
+    "description": "Predict recorded COVID-19 mortality from one surveillance case row.",
+    "datasets": [],
+    "input_schema": {
+      "features": "tensor"
+    },
+    "output_schema": {
+      "mortality": "binary"
+    },
+    "output_type": "binary",
+    "modality": [],
+    "source_file": "pyhealth/tasks/cdc_covid_mortality.py",
+    "dataset_classes": [
+      "CDCCOVIDDataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": "binary",
+      "modality": []
+    }
+  },
+  {
+    "class_name": "CLIMBECGClassification",
+    "display_name": "CLIMBECG Classification",
+    "display_class": null,
+    "task_name": "CLIMBECGClassification",
+    "description": "Multi-label ECG diagnosis with CLIMB's seven classes.",
+    "datasets": [],
+    "input_schema": {
+      "signal": "tensor"
+    },
+    "output_schema": {
+      "label": "multilabel"
+    },
+    "output_type": "multilabel",
+    "modality": [
+      "signal"
+    ],
+    "source_file": "pyhealth/tasks/climb_ecg.py",
+    "dataset_classes": [
+      "CardiologyDataset",
+      "ChapmanShaoxingDataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": "multilabel",
+      "modality": [
+        "signal"
+      ]
+    }
+  },
+  {
+    "class_name": "CPSC2018HeartLangClassification",
+    "display_name": "CPSC2018 Heart Lang Classification",
+    "display_class": null,
+    "task_name": "CPSC2018HeartLangClassification",
+    "description": "HeartLang's 9-label CPSC2018 benchmark.",
+    "datasets": [],
+    "input_schema": {
+      "ecg_sentence": "tensor",
+      "lead_ids": "tensor",
+      "time_ids": "tensor"
+    },
+    "output_schema": {
+      "labels": "multilabel"
+    },
+    "output_type": "multilabel",
+    "modality": [
+      "signal"
+    ],
+    "source_file": "pyhealth/tasks/cpsc2018_heartlang.py",
+    "dataset_classes": [
+      "CardiologyDataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": "multilabel",
+      "modality": [
+        "signal"
+      ]
+    }
+  },
+  {
+    "class_name": "ChapmanShaoxingHeartLangClassification",
+    "display_name": "Chapman Shaoxing Heart Lang Classification",
+    "display_class": null,
+    "task_name": "ChapmanShaoxingHeartLangClassification",
+    "description": "HeartLang's 38-label CSN benchmark on Chapman-Shaoxing.",
+    "datasets": [],
+    "input_schema": {
+      "ecg_sentence": "tensor",
+      "lead_ids": "tensor",
+      "time_ids": "tensor"
+    },
+    "output_schema": {
+      "labels": "multilabel"
+    },
+    "output_type": "multilabel",
+    "modality": [
+      "signal"
+    ],
+    "source_file": "pyhealth/tasks/chapman_heartlang.py",
+    "dataset_classes": [
+      "ChapmanShaoxingDataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": "multilabel",
+      "modality": [
+        "signal"
+      ]
+    }
+  },
+  {
+    "class_name": "EviCareDiagnosisPredictionMIMIC3",
+    "display_name": "Evi Care Diagnosis Prediction MIMIC3",
+    "display_class": null,
+    "task_name": "EviCareDiagnosisPredictionMIMIC3",
+    "description": "EviCare next-visit CCS diagnosis prediction on MIMIC-III.",
+    "datasets": [],
+    "input_schema": {
+      "conditions": "nested_sequence"
+    },
+    "output_schema": {
+      "ccs_targets": "multilabel"
+    },
+    "output_type": "multilabel",
+    "modality": [
+      "ehr"
+    ],
+    "source_file": "pyhealth/tasks/evicare_diagnosis.py",
+    "dataset_classes": [
+      "MIMIC3Dataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": "multilabel",
+      "modality": [
+        "ehr"
+      ]
+    }
+  },
+  {
+    "class_name": "EviCareDiagnosisPredictionMIMIC4",
+    "display_name": "Evi Care Diagnosis Prediction MIMIC4",
+    "display_class": null,
+    "task_name": "EviCareDiagnosisPredictionMIMIC4",
+    "description": "EviCare next-visit CCS diagnosis prediction on MIMIC-IV.",
+    "datasets": [],
+    "input_schema": {
+      "conditions": "nested_sequence"
+    },
+    "output_schema": {
+      "ccs_targets": "multilabel"
+    },
+    "output_type": "multilabel",
+    "modality": [
+      "ehr"
+    ],
+    "source_file": "pyhealth/tasks/evicare_diagnosis.py",
+    "dataset_classes": [
+      "MIMIC4EHRDataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": "multilabel",
+      "modality": [
+        "ehr"
+      ]
+    }
+  },
+  {
+    "class_name": "PH2ArtifactClassification",
+    "display_name": "PH2 Artifact Classification",
+    "display_class": null,
+    "task_name": "PH2ArtifactClassification",
+    "description": "Classify PH2 dermoscopy images as benign or malignant, under a chosen view.",
+    "datasets": [],
+    "input_schema": {
+      "image": "tensor"
+    },
+    "output_schema": {
+      "malignant": "binary"
+    },
+    "output_type": "binary",
+    "modality": [],
+    "source_file": "pyhealth/tasks/ph2_artifact_classification.py",
+    "dataset_classes": [
+      "PH2Dataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": "binary",
+      "modality": []
+    }
+  },
+  {
+    "class_name": "PhysioNet2012InHospitalMortality",
+    "display_name": "Physio Net2012 In Hospital Mortality",
+    "display_class": null,
+    "task_name": "PhysioNet2012InHospitalMortality",
+    "description": "Predict in-hospital death from the first hours of a PhysioNet 2012 stay.",
+    "datasets": [],
+    "input_schema": {
+      "measurements": "tensor",
+      "observed": "tensor",
+      "padding_mask": "tensor",
+      "event_times": "tensor",
+      "event_types": "tensor",
+      "static": "tensor"
+    },
+    "output_schema": {
+      "mortality": "binary"
+    },
+    "output_type": "binary",
+    "modality": [
+      "ehr"
+    ],
+    "source_file": "pyhealth/tasks/physionet2012_inhospital_mortality.py",
+    "dataset_classes": [
+      "PhysioNet2012Dataset"
+    ],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "ehr"
+      ]
+    }
+  },
+  {
+    "class_name": "QueryFocusedEHRTask",
+    "display_name": "Query Focused EHR Task",
+    "display_class": null,
+    "task_name": "query_focused_ehr",
+    "description": "Construct query-focused EHR samples using future diagnoses.",
+    "datasets": [],
+    "input_schema": {
+      "sentences": "text",
+      "query": "text"
+    },
+    "output_schema": {
+      "label": "binary"
+    },
+    "output_type": "binary",
+    "modality": [
+      "text"
+    ],
+    "source_file": "pyhealth/tasks/query_focused_ehr.py",
+    "dataset_classes": [],
+    "colab_url": null,
+    "docs_url": null,
+    "example_url": null,
+    "inferred": {
+      "output_type": "binary",
+      "modality": [
+        "text"
+      ]
+    }
   }
 ]
